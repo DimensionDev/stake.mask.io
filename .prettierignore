@@ -1,0 +1,23 @@
+# Ignore entire directories
+node_modules/
+dist/
+build/
+
+.next/
+.github/
+
+# Ignore specific files
+*.min.js
+*.min.css
+
+# Ignore locales
+*.po
+
+# Ignore all files of a specific type in a specific directory
+public/*.html
+
+# Ignore files based on wildcard patterns
+**/vendor/**/*.js
+
+# Ignore git submodule
+pnpm-lock.yaml
