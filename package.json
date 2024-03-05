@@ -4,24 +4,55 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
+    "build:logs": "scripts/build-logs.sh",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lingui:compile": "lingui compile",
+    "lingui:extract": "NODE_ENV=development lingui extract --clean",
+    "lingui": "pnpm run lingui:extract && pnpm run lingui:compile",
+    "crowdin:sync": "crowdin push && crowdin pull",
+    "crowdin:sync:sources": "crowdin push",
+    "crowdin:sync:translations": "crowdin pull"
   },
   "dependencies": {
+    "@dimensiondev/holoflows-kit": "0.9.0-20240104084316-88642f9",
+    "@masknet/kit": "^0.3.0",
+    "@tanstack/react-query": "^5.8.7",
+    "@tanstack/react-query-devtools": "^5.8.7",
+    "@tanstack/react-query-next-experimental": "^5.8.7",
+    "@vercel/blob": "^0.19.0",
+    "@vercel/kv": "^1.0.1",
+    "lodash-es": "^4.17.21",
+    "postcss": "^8.4.30",
+    "next": "14.1.2",
+    "next-auth": "^4.24.6",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.2"
+    "react-use": "^17.4.0",
+    "tailwindcss": "^3.3.3",
+    "urlcat": "^3.1.0",
+    "uuid": "^9.0.0",
+    "viem": "^1.16.2",
+    "wagmi": "^1.4.3",
+    "zod": "^3.22.4",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "cspell": "^8.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.1.2",
     "postcss": "^8",
+    "prettier": "^3.2.5",
     "tailwindcss": "^3.3.0",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.2"
+    "typescript": "^5",
+    "vitest": "^0.34.6"
   }
 }
