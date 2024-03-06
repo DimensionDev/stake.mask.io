@@ -12,6 +12,7 @@ build/
 
 # Ignore locales
 *.po
+src/locales/**/*.mjs
 
 # Ignore all files of a specific type in a specific directory
 public/*.html
