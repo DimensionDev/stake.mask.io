@@ -1,4 +1,7 @@
 /* cspell:disable */
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -43,6 +46,65 @@ const config = {
             },
         ];
     },
+    webpack: (config, context) => {
+        config.resolve.extensionAlias = {
+            ...config.resolve.extensionAlias,
+            '.js': ['.js', '.ts', '.tsx'],
+            '.mjs': ['.mts', '.mjs'],
+        };
+        config.resolve.extensions = ['.js', '.ts', '.tsx'];
+        config.resolve.fallback = {
+            ...config.resolve.fallback,
+            http: require.resolve('stream-http'),
+            https: require.resolve('https-browserify'),
+            crypto: require.resolve('crypto-browserify'),
+            stream: require.resolve('stream-browserify'),
+            buffer: require.resolve('buffer'),
+            zlib: require.resolve('zlib-browserify'),
+            'text-encoding': require.resolve('@sinonjs/text-encoding'),
+        };
+
+        config.module.rules.push(
+            {
+                test: /\.svg$/i,
+                exclude: /src\/maskbook/,
+                loader: '@svgr/webpack',
+                options: {
+                    svgoConfig: {
+                        plugins: [
+                            {
+                                name: 'preset-default',
+                                params: {
+                                    overrides: {
+                                        // disable plugins
+                                        removeViewBox: false,
+                                    },
+                                },
+                            },
+                            'prefixIds',
+                        ],
+                    },
+                },
+            },
+            {
+                test: /\.svg$/i,
+                include: /src\/maskbook/,
+                loader: require.resolve('svgo-loader'),
+                options: {
+                    js2svg: {
+                        pretty: false,
+                    },
+                },
+                dependency(data) {
+                    if (data === '') return false;
+                    return true;
+                },
+                type: 'asset/resource',
+            },
+        );
+
+        return config;
+    }
 };
 
 export default config;
