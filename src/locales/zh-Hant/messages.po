@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2024-03-06 14:49+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: zh\n"
+"Project-Id-Version: stakemaskio\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-06 18:58\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Traditional\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: stakemaskio\n"
+"X-Crowdin-Project-ID: 654324\n"
+"X-Crowdin-Language: zh-TW\n"
+"X-Crowdin-File: /[DimensionDev.stake.mask.io] main/src/locales/en/messages.po\n"
+"X-Crowdin-File-ID: 846\n"
+
+msgid "Failed to fetch as Blob."
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Please switch to the correct network in your wallet."
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Connection failed"
+msgstr ""
+
+msgid "Failed to fetch as Text."
+msgstr ""
+
+msgid "No wallet client found"
+msgstr ""
+
+msgid "The user declined the request."
+msgstr ""
+
+msgid "Please switch to the wallet used for login"
+msgstr ""
+
+msgid "Please switch to the {chainName} network in your wallet."
+msgstr ""
+
+msgid "Failed to fetch as ArrayBuffer."
+msgstr ""
+
