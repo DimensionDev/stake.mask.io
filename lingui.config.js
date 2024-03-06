@@ -11,7 +11,17 @@ const config = {
     catalogs: [
         {
             path: 'src/locales/{locale}/messages',
-            include: ['src/app/**'],
+            include: [
+                'src/app/**',
+                'src/configs/**',
+                'src/components/**',
+                'src/constants/**',
+                'src/helpers/**',
+                'src/hooks/**',
+                'src/modals/**',
+                'src/store/**',
+                'src/services/**',
+            ],
         },
     ],
     fallbackLocales: {
