@@ -1,7 +1,7 @@
 import { type ForwardedRef, useEffect, useRef } from 'react';
 
 import { useSingletonModal } from '@/hooks/useSingletonModal.js';
-import { SingletonModalRefCreator } from '@/libs/SingletonModal/index.js';
+import type { SingletonModalRefCreator } from '@/libs/SingletonModal/index.js';
 
 export function useRainbowModal(
     openModal: (() => void) | undefined,

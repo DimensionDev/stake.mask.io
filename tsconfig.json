@@ -5,6 +5,7 @@
         "declaration": true,
         "declarationMap": false,
         "strict": true,
+        "stripInternal": true,
         "esModuleInterop": true,
         "jsx": "preserve",
         "module": "NodeNext",
@@ -26,6 +27,7 @@
         "lib": ["ES2022", "DOM", "DOM.Iterable"],
         "target": "ES2022",
         "useDefineForClassFields": true,
+        "forceConsistentCasingInFileNames": true,
         "plugins": [
             {
                 "name": "next"

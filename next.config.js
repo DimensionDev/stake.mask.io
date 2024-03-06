@@ -17,10 +17,14 @@ const config = {
     },
     images: {
         dangerouslyAllowSVG: false,
+        // memory leak issue in development mode
         unoptimized: process.env.NODE_ENV === 'development' ? true : false,
         remotePatterns: [
             {
-                hostname: 'stake.mask.io',
+                hostname: '*.mask.social',
+            },
+            {
+                hostname: '*.mask.io',
             },
         ],
     },
@@ -47,6 +51,28 @@ const config = {
         ];
     },
     webpack: (config, context) => {
+        config.plugins.push(
+            ...[
+                new context.webpack.IgnorePlugin({
+                    resourceRegExp: /^(lokijs|pino-pretty|encoding)$/,
+                }),
+                new context.webpack.DefinePlugin({
+                    'process.version': JSON.stringify('0.0.0'),
+                }),
+            ],
+        );
+
+        config.optimization = {
+            ...config.optimization,
+            usedExports: false,
+        };
+
+        config.experiments = {
+            ...config.experiments,
+            backCompat: false,
+            asyncWebAssembly: true,
+        };
+
         config.resolve.extensionAlias = {
             ...config.resolve.extensionAlias,
             '.js': ['.js', '.ts', '.tsx'],

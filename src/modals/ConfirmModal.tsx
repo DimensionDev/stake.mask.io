@@ -4,7 +4,7 @@ import React, { forwardRef, Fragment, useState } from 'react';
 
 import CloseIcon from '@/assets/close.svg';
 import { useSingletonModal } from '@/hooks/useSingletonModal.js';
-import { SingletonModalRefCreator } from '@/libs/SingletonModal/index.js';
+import type { SingletonModalRefCreator } from '@/libs/SingletonModal/index.js';
 
 export interface ConfirmModalOpenProps {
     title?: string;
