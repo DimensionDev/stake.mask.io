@@ -6,3 +6,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: zh-Hans\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+msgid "Failed to fetch as Blob."
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Please switch to the correct network in your wallet."
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Connection failed"
+msgstr ""
+
+msgid "Failed to fetch as Text."
+msgstr ""
+
+msgid "No wallet client found"
+msgstr ""
+
+msgid "The user declined the request."
+msgstr ""
+
+msgid "Please switch to the wallet used for login"
+msgstr ""
+
+msgid "Please switch to the {chainName} network in your wallet."
+msgstr ""
+
+msgid "Failed to fetch as ArrayBuffer."
+msgstr ""
