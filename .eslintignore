@@ -3,5 +3,5 @@ lingui.config.js
 postcss.config.cjs
 tailwind.config.cjs
 
-src/locales/**/*.js
+src/locales/**/*.mjs
 public/js
