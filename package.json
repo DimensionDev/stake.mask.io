@@ -1,7 +1,7 @@
 {
     "name": "stake.mask.io",
     "type": "module",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "private": true,
     "packageManager": "pnpm@8.10.4",
     "scripts": {
