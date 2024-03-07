@@ -8,7 +8,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/options.js';
 import { createErrorResponseJSON } from '@/helpers/createErrorResponseJSON.js';
 import { createSuccessResponseJSON } from '@/helpers/createSuccessResponseJSON.js';
 
-export function createTwitterClientV2(token: JWT) {
+function createTwitterClientV2(token: JWT) {
     if (!token.twitter.accessToken) throw new Error('No Twitter token found');
     return new Client(token.twitter.accessToken);
 }
@@ -27,8 +27,6 @@ export async function GET(req: NextRequest) {
 
         return createSuccessResponseJSON(results, { status: StatusCodes.OK });
     } catch (error) {
-        console.log(error);
-
         return createErrorResponseJSON(error instanceof Error ? error.message : 'Internal Server Error', {
             status: StatusCodes.INTERNAL_SERVER_ERROR,
         });
