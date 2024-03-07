@@ -3,17 +3,17 @@
 import { AuthOptions } from 'next-auth';
 
 import { CredentialsProvider } from '@/esm/CredentialsProvider.js';
-import { Twitter } from '@/esm/Twitter.js';
+import { TwitterProvider } from '@/esm/TwitterProvider.js';
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
     debug: process.env.NODE_ENV === 'development',
     providers: [
-        Twitter({
+        TwitterProvider({
             id: 'twitter_legacy',
             clientId: process.env.TWITTER_CLIENT_ID,
             clientSecret: process.env.TWITTER_CLIENT_SECRET,
         }),
-        Twitter({
+        TwitterProvider({
             clientId: process.env.TWITTER_CLIENT_ID,
             clientSecret: process.env.TWITTER_CLIENT_SECRET,
             version: '2.0',
@@ -70,4 +70,4 @@ export const authOptions = {
             return token;
         },
     },
-} satisfies AuthOptions;
+};
