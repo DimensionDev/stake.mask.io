@@ -21,11 +21,14 @@
         "crowdin:sync:translations": "crowdin pull"
     },
     "dependencies": {
+        "@emotion/react": "^11.11.4",
+        "@emotion/styled": "^11.11.0",
         "@headlessui/react": "^1.7.18",
         "@heroicons/react": "^2.1.1",
         "@lingui/core": "^4.5.0",
         "@lingui/react": "^4.5.0",
         "@masknet/kit": "^0.3.0",
+        "@mui/material": "^5.15.12",
         "@rainbow-me/rainbowkit": "1.2.0",
         "@servie/events": "^3.0.0",
         "@tanstack/react-query": "^5.8.7",
