@@ -50,4 +50,3 @@ msgstr ""
 
 msgid "Failed to fetch as ArrayBuffer."
 msgstr ""
-
