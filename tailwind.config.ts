@@ -18,7 +18,7 @@ const config: Config = {
                 neutrals7: '#23262F',
                 neutrals8: '#141414',
                 neutrals9: '#05050A',
-                lineGreen: 'linear-gradient(180deg,rgb(0, 229, 119) 0%,rgb(0, 229, 172) 100%)'
+                lineGreen: 'linear-gradient(180deg,rgb(0, 229, 119) 0%,rgb(0, 229, 172) 100%)',
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

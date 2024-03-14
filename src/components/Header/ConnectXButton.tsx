@@ -1,13 +1,20 @@
-"use client"
+'use client';
 
-import { Image } from "@/esm/Image.js";
-import { signIn } from "next-auth/react"
+import { signIn } from 'next-auth/react';
+
+import { Image } from '@/esm/Image.js';
 
 export function ConnectXButton() {
-  return (
-    <button className=" text-neutrals9 py-[12px] px-[24px] text-[14px] font-normal leading-[16px] text-center rounded-lg flex items-center gap-[4px]" style={{ background: 'var(--line-green)' }} onClick={() => { signIn("twitter") }}>
-      <Image src="/x.svg" alt="x logo" width={16} height={16} />
-      Connect with X
-    </button>
-  );
+    return (
+        <button
+            className=" flex items-center gap-[4px] rounded-lg px-[24px] py-[12px] text-center text-[14px] font-normal leading-[16px] text-neutrals9"
+            style={{ background: 'var(--line-green)' }}
+            onClick={() => {
+                signIn('twitter');
+            }}
+        >
+            <Image src="/x.svg" alt="x logo" width={16} height={16} />
+            Connect with X
+        </button>
+    );
 }
