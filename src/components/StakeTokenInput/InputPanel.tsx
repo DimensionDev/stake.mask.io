@@ -13,10 +13,10 @@ export function InputPanel() {
       <button className="text-neutrals8 rounded-[8px] px-[8px] py-[6px] text-[14px]" style={{ background: 'var(--line-green)' }}>MAX</button>
     </div>
     <div className="grid grid-cols-4 gap-[16px]">
-      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px]">25%</button>
-      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px]">50%</button>
-      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px]">75%</button>
-      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px]">100%</button>
+      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px] text-neutrals2">25%</button>
+      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px] text-neutrals2">50%</button>
+      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px] text-neutrals2">75%</button>
+      <button className="rounded-[90px] border-[2px] border-neutrals6 text-[14px] py-[12px] text-neutrals2">100%</button>
     </div>
   </div>
 }

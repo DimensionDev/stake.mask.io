@@ -19,6 +19,8 @@ const config: Config = {
                 neutrals8: '#141414',
                 neutrals9: '#05050A',
                 secondary3: '#FFD166',
+                primary3: '#EB2F45',
+                primary4: '#45B26B',
                 blueBg: '#C2E6FF',
                 lineGreen: 'linear-gradient(180deg,rgb(0, 229, 119) 0%,rgb(0, 229, 172) 100%)',
             },
