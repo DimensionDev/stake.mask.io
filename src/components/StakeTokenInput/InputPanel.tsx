@@ -1,5 +1,5 @@
-import { InputBase } from "@mui/material";
-import MaskIconNetwork from "@/assets/logos/mask-network.svg";
+import { InputBase } from '@mui/material';
+import MaskIconNetwork from '@/assets/logos/mask-network.svg';
 
 interface InputPanelProps {
   amount: string,

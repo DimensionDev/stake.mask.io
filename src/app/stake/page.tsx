@@ -1,8 +1,8 @@
-import { ClaimReward } from "@/components/ClaimReward/index.js";
-import { ProjectDetailCard } from "@/components/ProjectDetailCard/index.js";
-import { StakeRanking } from "@/components/StakeRanking/index.js";
-import { StakeTokenInfo } from "@/components/StakeTokenInfo/index.js";
-import { StakeTokenInput } from "@/components/StakeTokenInput/index.js";
+import { ClaimReward } from '@/components/ClaimReward/index.js';
+import { ProjectDetailCard } from '@/components/ProjectDetailCard/index.js';
+import { StakeRanking } from '@/components/StakeRanking/index.js';
+import { StakeTokenInfo } from '@/components/StakeTokenInfo/index.js';
+import { StakeTokenInput } from '@/components/StakeTokenInput/index.js';
 
 export default function Stake() {
   return <div className="flex h-full flex-col items-center bg-black lg:max-w-[1024px] px-[24px] lg:p-0">

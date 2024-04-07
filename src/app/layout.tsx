@@ -24,9 +24,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Providers>
                     <Header />
-                    <div className='flex bg-black w-full min-h-screen justify-center'>
-                        {children}
-                    </div>
+                    <div className="flex min-h-screen w-full justify-center bg-black">{children}</div>
                     <Footer />
                 </Providers>
             </body>
