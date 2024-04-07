@@ -12,7 +12,7 @@ const projectInfo = {
 export function ProjectDetailCard() {
   return (
     <div
-      className="flex w-full flex-col rounded-[12px] p-[24px] bg-white/[0.03] backdrop-blur-[10px] border-[1px] border-white/[0.07]"
+      className="relative flex w-full top-[200px] lg:top-0 flex-col rounded-[12px] p-[24px] bg-white/[0.03] backdrop-blur-[10px] border-[1px] border-white/[0.07]"
     >
       <div className="flex items-center justify-between">
         <div>

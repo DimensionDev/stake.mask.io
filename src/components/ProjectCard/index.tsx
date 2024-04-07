@@ -1,5 +1,6 @@
 import { Image } from '@/esm/Image.js';
 import { Link } from '@/esm/Link.js';
+import SLNWithNetwork from '@/assets/logos/sln-network.svg'
 
 const projectInfo = {
     symbol: 'SLN',
@@ -11,13 +12,13 @@ const projectInfo = {
 export function ProjectCard() {
     return (
         <div
-            className="flex max-w-[680px] flex-col rounded-[16px] p-[16px]"
+            className="flex max-w-[680px] flex-col rounded-[16px] p-[16px] my-[64px]"
             style={{ background: 'var(--line-green)' }}
         >
             <div className="flex items-center justify-between">
                 <div>
-                    <div className="flex gap-[10px]">
-                        <Image src={projectInfo.logo} alt="SLN logo" width={48} height={48} />
+                    <div className="flex gap-[10px] items-center">
+                        <SLNWithNetwork width={48} height={48} />
                         <div className="text-[32px] leading-[40px] text-neutrals9">{projectInfo.symbol}</div>
                     </div>
                 </div>

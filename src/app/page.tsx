@@ -2,9 +2,9 @@ import { ProjectCard } from '@/components/ProjectCard/index.js';
 
 export default function Home() {
   return (
-    <div className="flex h-full flex-col items-center bg-black lg:max-w-[1024px]">
+    <div className="flex h-full flex-col items-center bg-black lg:max-w-[1024px] px-[24px] lg:p-0">
       <div
-        className="flex -mb-[30px] h-[520px] w-full flex-col justify-end pb-[120px]"
+        className="flex h-[520px] w-full flex-col justify-end absolute lg:relative lg:pb-[120px]"
         style={{ background: 'url(/KV.png)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
       >
         <div className="text-center text-[32px] text-neutrals1">Stake $MASK for Rewards</div>
@@ -13,6 +13,7 @@ export default function Home() {
           earn token rewards!
         </div>
       </div>
+      <div className='h-[520px] lg:hidden' />
       <ProjectCard />
     </div>
   );

@@ -5,9 +5,10 @@ import { Switch } from "@headlessui/react"
 
 export function Stake() {
   const [lockTime, setLockTime] = useState(0)
+  const [amount, setAmount] = useState('')
   const [showX, setShowX] = useState(true)
   return <>
-    <InputPanel />
+    <InputPanel amount={amount} setAmount={setAmount} />
     <SelectLockTime setLockTime={setLockTime} lockTime={lockTime} />
     <div className="flex justify-between text-neutrals4 text-[16px] items-center">
       <div>Pending Rewards</div>
@@ -45,6 +46,6 @@ export function Stake() {
     <div className="text-primary3 text-[16px]">
       MASK Staking is exclusively open to individual users (excluding users listed in the blacklist). Organizations, companies, or institutions are not allowed to participate. More
     </div>
-    <button style={{ background: "var(--line-green)" }} className="rounded-[90px] py-[16px] flex items-center justify-center text-neutrals8 w-full text-[16px]">Enter Amount</button>
+    <button style={{ background: "var(--line-green)" }} disabled={!amount} className={`rounded-[90px] py-[16px] flex items-center justify-center text-neutrals8 w-full text-[16px] ${amount ? "" : "opacity-50"}`}>{amount ? "Enter Amount" : "Stake"}</button>
   </>
 }
