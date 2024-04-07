@@ -6,12 +6,10 @@ import { ConnectWalletButton } from '@/components/Header/ConnectWalletButton.js'
 import { ConnectXButton } from '@/components/Header/ConnectXButton.js';
 import { NavTabs } from '@/components/Header/NavTabs.js';
 import { Image } from '@/esm/Image.js';
-import { useAccount } from 'wagmi';
 import MoreIcon from "@/assets/more.svg"
 
 export function Header() {
     const { data: session, status } = useSession();
-    const { address, isConnected } = useAccount();
 
     return (
         <header className="fixed top-0 w-full items-center justify-between bg-black/10 pt-[48px] pb-[24px] px-[32px] lg:p-[20px] z-[999] flex">
