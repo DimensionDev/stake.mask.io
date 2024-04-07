@@ -34,7 +34,6 @@ export function Stake() {
             className={`${checked ? 'bg-primary4' : 'bg-neutrals4'
               } relative inline-flex p-[4px] w-[64px] items-center rounded-[32px]`}
           >
-            <span className="sr-only">Enable signless</span>
             <span
               className={`${checked ? 'translate-x-8' : 'translate-x-0'
                 } inline-block h-[24px] w-[24px] transform rounded-full bg-neutrals8 transition`}
