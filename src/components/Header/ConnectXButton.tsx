@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn , useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 import { Account } from '@/components/Header/Account.js';
 import { Image } from '@/esm/Image.js';

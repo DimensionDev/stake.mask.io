@@ -1,5 +1,5 @@
-import Close from "@/assets/close.svg"
-import { Account } from "@/components/Header/Account.js"
+import Close from '@/assets/close.svg';
+import { Account } from '@/components/Header/Account.js';
 
 export function ProfileInfo() {
     return (
