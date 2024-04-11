@@ -1,7 +1,7 @@
 'use client';
 
-import { useAccountModal,useConnectModal } from '@rainbow-me/rainbowkit';
-import { useAccount , useBalance } from 'wagmi';
+import { useAccountModal, useConnectModal } from '@rainbow-me/rainbowkit';
+import { useAccount, useBalance } from 'wagmi';
 
 import Metamask from '@/assets/logos/metamask.svg'
 import { Image } from '@/esm/Image.js';
