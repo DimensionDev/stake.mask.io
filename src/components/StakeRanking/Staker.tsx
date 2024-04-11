@@ -1,5 +1,5 @@
-import { Image } from '@/esm/Image.js';
 import MaskIcon from '@/assets/logos/mask.svg';
+import { Image } from '@/esm/Image.js';
 
 interface StakerProps {
     amount: number;

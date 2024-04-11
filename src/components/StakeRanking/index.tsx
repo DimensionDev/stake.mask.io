@@ -1,5 +1,5 @@
-import { TopStaker } from './TopStaker.js';
-import { Staker } from './Staker.js';
+import { Staker } from '@/components/StakeRanking/Staker.js';
+import { TopStaker } from '@/components/StakeRanking/TopStaker.js';
 
 export function StakeRanking() {
     return (

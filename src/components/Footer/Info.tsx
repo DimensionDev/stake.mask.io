@@ -1,12 +1,12 @@
-import { Image } from '@/esm/Image.js';
-import Twitter from '@/assets/logos/twitter.svg';
-import Github from '@/assets/logos/github.svg';
 import Discord from '@/assets/logos/discord.svg';
-import Telegram from '@/assets/logos/telegram.svg';
+import Facebook from '@/assets/logos/facebook.svg';
+import Github from '@/assets/logos/github.svg';
 import Medium from '@/assets/logos/medium.svg';
 import Reddit from '@/assets/logos/reddit.svg';
+import Telegram from '@/assets/logos/telegram.svg';
+import Twitter from '@/assets/logos/twitter.svg';
 import Youtube from '@/assets/logos/youtube.svg';
-import Facebook from '@/assets/logos/facebook.svg';
+import { Image } from '@/esm/Image.js';
 
 const iconsList = [
     { icon: <Twitter width={40} height={40} />, link: 'https://twitter.com/realmaskbook' },

@@ -1,10 +1,11 @@
 "use client"
 
+import { useAccount } from "wagmi"
+
 import Close from "@/assets/close.svg"
 import Metamask from "@/assets/logos/metamask.svg"
-import { useAccount } from "wagmi"
-import { formatAddress } from "@/helpers/formatAddress.js"
 import { MainButton } from "@/components/MainButton.js"
+import { formatAddress } from "@/helpers/formatAddress.js"
 
 export function WalletInfo() {
   const { address } = useAccount();
@@ -19,7 +20,7 @@ export function WalletInfo() {
       <div className="flex w-[30px] h-[30px] rounded-full bg-neutrals8 items-center justify-center">
         <Metamask width={30} height={30} />
       </div>
-      <div className="flex flex-1 items-center">{address && formatAddress(address)}</div>
+      <div className="flex flex-1 items-center">{address ? formatAddress(address) : null}</div>
       <MainButton onClick={() => { }}>Change</MainButton>
     </div>
   </div>

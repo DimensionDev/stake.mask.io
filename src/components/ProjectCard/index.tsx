@@ -1,6 +1,5 @@
-import { Image } from '@/esm/Image.js';
-import { Link } from '@/esm/Link.js';
 import SLNWithNetwork from '@/assets/logos/sln-network.svg';
+import { Link } from '@/esm/Link.js';
 
 const projectInfo = {
     symbol: 'SLN',

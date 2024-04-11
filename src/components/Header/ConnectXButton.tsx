@@ -1,9 +1,9 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
+import { signIn , useSession } from 'next-auth/react';
+
+import { Account } from '@/components/Header/Account.js';
 import { Image } from '@/esm/Image.js';
-import { useSession } from 'next-auth/react';
-import { Account } from './Account.js';
 
 export function ConnectXButton() {
     const { data: session, status } = useSession();

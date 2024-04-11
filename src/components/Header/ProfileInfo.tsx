@@ -1,5 +1,5 @@
 import Close from "@/assets/close.svg"
-import { Account } from "./Account.js"
+import { Account } from "@/components/Header/Account.js"
 
 export function ProfileInfo() {
   return <div className="flex flex-col items-center w-full gap-[24px]">

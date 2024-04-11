@@ -1,10 +1,11 @@
 'use client';
 
-import ETHIcon from '@/assets/logos/eth.svg';
 import { useState } from 'react';
-import { SwitchTab } from './SwitchTab.js';
-import { Stake } from './Stake.js';
-import { UnStake } from './UnStake.js';
+
+import ETHIcon from '@/assets/logos/eth.svg';
+import { Stake } from '@/components/StakeTokenInput/Stake.js';
+import { SwitchTab } from '@/components/StakeTokenInput/SwitchTab.js';
+import { UnStake } from '@/components/StakeTokenInput/UnStake.js';
 
 export function StakeTokenInput() {
     const [tabValue, setTabValue] = useState(0);

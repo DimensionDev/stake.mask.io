@@ -1,6 +1,6 @@
-import { Link } from '@/esm/Link.js';
-import SLNLogo from '@/assets/logos/sln-network.svg';
 import LinkIcon from '@/assets/link.svg';
+import SLNLogo from '@/assets/logos/sln-network.svg';
+import { Link } from '@/esm/Link.js';
 
 const projectInfo = {
     symbol: 'SLN',
@@ -19,7 +19,7 @@ export function ProjectDetailCard() {
                         <div className="text-[32px] leading-[40px] text-neutrals1">{projectInfo.symbol}</div>
                     </div>
                 </div>
-                <div className="flex flex-col "></div>
+                <div className="flex flex-col " />
             </div>
             <Link className="mt-[24px] text-[24px] leading-[32px] text-neutrals1" href="#">
                 {projectInfo.name} <LinkIcon className="h-[16px] w-[16px]" />

@@ -1,4 +1,5 @@
 import SLNLogo from '@/assets/logos/sln-network.svg';
+
 export function ClaimReward() {
     return (
         <div

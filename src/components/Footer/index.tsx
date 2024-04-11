@@ -1,6 +1,7 @@
+import { BottomBar } from '@/components/Footer/BottomBar.js';
+import { Info } from '@/components/Footer/Info.js';
 import { Image } from '@/esm/Image.js';
-import { Info } from './Info.js';
-import { BottomBar } from './BottomBar.js';
+
 export function Footer() {
     return (
         <div className="hidden w-full flex-col bg-black md:flex">

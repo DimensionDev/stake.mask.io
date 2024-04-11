@@ -1,7 +1,8 @@
-import { SelectLockTime } from './SelectLockTime.js';
-import { useState } from 'react';
-import { InputPanel } from './InputPanel.js';
 import { Switch } from '@headlessui/react';
+import { useState } from 'react';
+
+import { InputPanel } from '@/components/StakeTokenInput/InputPanel.js';
+import { SelectLockTime } from '@/components/StakeTokenInput/SelectLockTime.js';
 
 export function Stake() {
   const [lockTime, setLockTime] = useState(0)

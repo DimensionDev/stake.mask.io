@@ -1,12 +1,11 @@
 'use client';
 
-import { Image } from '@/esm/Image.js';
-import { useConnectModal, useAccountModal } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
-import { formatAddress } from '@/helpers/formatAddress.js';
+import { useAccountModal,useConnectModal } from '@rainbow-me/rainbowkit';
+import { useAccount , useBalance } from 'wagmi';
+
 import Metamask from '@/assets/logos/metamask.svg'
-import ETH from '@/assets/logos/eth-black.svg'
-import { useBalance } from 'wagmi'
+import { Image } from '@/esm/Image.js';
+import { formatAddress } from '@/helpers/formatAddress.js';
 
 export function ConnectWalletButton() {
     const { openConnectModal } = useConnectModal();

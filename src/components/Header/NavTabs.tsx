@@ -1,9 +1,9 @@
 'use client';
 
+import { usePathname } from 'next/navigation.js';
 import React from 'react';
 
 import { Link } from '@/esm/Link.js';
-import { usePathname } from 'next/navigation.js';
 
 const navigation = [
     { name: 'Stake', path: '/stake' },

@@ -1,5 +1,6 @@
 import { Link } from '@/esm/Link.js';
-export const BottomBar = () => {
+
+export function BottomBar() {
     return (
         <div className="flex items-center justify-between px-[24px] py-[32px] text-[12px] text-neutrals4">
             <div>Since 2019 to Now ｜ Mask.io</div>
@@ -10,4 +11,4 @@ export const BottomBar = () => {
             </div>
         </div>
     );
-};
+}

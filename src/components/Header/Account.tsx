@@ -1,5 +1,6 @@
-import { Image } from "@/esm/Image.js"
 import X from "@/assets/logos/x.svg"
+import { Image } from "@/esm/Image.js"
+
 export function Account() {
   return <div className="flex relative w-[40px] h-[40px] rounded-[99px] border-[1px] border-neutrals6">
     <Image src={"https://pbs.twimg.com/profile_images/1745828800531992576/pVBm-qbm_400x400.jpg"} layout="fill" alt="avatar" className="rounded-[99px]" />

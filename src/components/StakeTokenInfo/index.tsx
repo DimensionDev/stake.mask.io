@@ -1,4 +1,5 @@
 import MaskIcon from '@/assets/logos/mask.svg';
+
 export function StakeTokenInfo() {
     return (
         <div
