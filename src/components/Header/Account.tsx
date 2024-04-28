@@ -1,5 +1,5 @@
-import X from "@/assets/logos/x.svg"
-import { Image } from "@/esm/Image.js"
+import X from '@/assets/logos/x.svg';
+import { Image } from '@/esm/Image.js';
 
 export function Account() {
     return (
