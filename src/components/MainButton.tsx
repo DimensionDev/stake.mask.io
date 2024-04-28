@@ -10,8 +10,7 @@ export function MainButton({ children, onClick, className }: MainButtonProps) {
             style={{ background: 'var(--line-purple)' }}
             onClick={onClick}
         >
-            {' '}
-            {children}{' '}
+            {children}
         </button>
     );
 }
