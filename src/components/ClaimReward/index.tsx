@@ -4,7 +4,7 @@ export function ClaimReward() {
     return (
         <div
             className="flex w-full flex-col rounded-[16px] p-[16px] text-neutrals9"
-            style={{ background: 'var(--line-green)' }}
+            style={{ background: 'var(--line-purple)' }}
         >
             <div className="flex justify-between">
                 <div className="flex items-center gap-[4px]">

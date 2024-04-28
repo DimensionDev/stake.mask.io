@@ -33,14 +33,12 @@ export function Stake() {
                 <Switch checked={showX} onChange={setShowX}>
                     {({ checked }) => (
                         <button
-                            className={`${
-                                checked ? 'bg-primary4' : 'bg-neutrals4'
-                            } relative inline-flex w-[64px] items-center rounded-[32px] p-[4px]`}
+                            className={`${checked ? 'bg-primary4' : 'bg-neutrals4'
+                                } relative inline-flex w-[64px] items-center rounded-[32px] p-[4px]`}
                         >
                             <span
-                                className={`${
-                                    checked ? 'translate-x-8' : 'translate-x-0'
-                                } inline-block h-[24px] w-[24px] transform rounded-full bg-neutrals8 transition`}
+                                className={`${checked ? 'translate-x-8' : 'translate-x-0'
+                                    } inline-block h-[24px] w-[24px] transform rounded-full bg-neutrals8 transition`}
                             />
                         </button>
                     )}
@@ -51,7 +49,7 @@ export function Stake() {
                 Organizations, companies, or institutions are not allowed to participate. More
             </div>
             <button
-                style={{ background: 'var(--line-green)' }}
+                style={{ background: 'var(--line-purple)' }}
                 disabled={!amount}
                 className={`flex w-full items-center justify-center rounded-[90px] py-[16px] text-[16px] text-neutrals8 ${amount ? '' : 'opacity-50'}`}
             >

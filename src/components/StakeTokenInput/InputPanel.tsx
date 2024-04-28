@@ -24,7 +24,7 @@ export function InputPanel({ amount, setAmount }: InputPanelProps) {
                 />
                 <button
                     className="rounded-[8px] px-[8px] py-[6px] text-[14px] text-neutrals8"
-                    style={{ background: 'var(--line-green)' }}
+                    style={{ background: 'var(--line-purple)' }}
                 >
                     MAX
                 </button>

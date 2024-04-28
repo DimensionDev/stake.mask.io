@@ -4,7 +4,7 @@ export function StakeTokenInfo() {
     return (
         <div
             className="flex w-full flex-col rounded-[16px] p-[16px] text-neutrals8"
-            style={{ background: 'var(--line-green)' }}
+            style={{ background: 'var(--line-purple)' }}
         >
             <div className="flex justify-between text-[12px] text-neutrals8">
                 <div>Stake Token</div>

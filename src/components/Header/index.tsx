@@ -12,7 +12,6 @@ import { NavTabsMobile } from '@/components/Header/NavTabsMobile.js';
 import { Image } from '@/esm/Image.js';
 
 export function Header() {
-    const { data: session, status } = useSession();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
         <header
@@ -23,7 +22,7 @@ export function Header() {
             <div className="flex w-full items-center lg:w-auto">
                 <div className="flex w-full items-center justify-between gap-[32px]">
                     <Image src="/logo.svg" alt="Logo" width={164} height={35} />
-                    <div className="hidden h-[35px] w-[1px] rounded-[1px] bg-black/10 lg:flex" />
+                    <div className="hidden h-[35px] w-[1px] rounded-[1px] bg-white/10 lg:flex" />
                     {mobileMenuOpen ? (
                         <CloseIcon
                             className="cursor-pointer lg:hidden"
@@ -37,7 +36,7 @@ export function Header() {
             </div>
             {mobileMenuOpen ? <NavTabsMobile /> : null}
             <div className="hidden lg:flex">
-                {status === 'authenticated' ? <ConnectWalletButton /> : <ConnectXButton />}
+                <ConnectWalletButton />
             </div>
             {mobileMenuOpen ? null : (
                 <button className="flex lg:hidden" onClick={() => setMobileMenuOpen(true)}>

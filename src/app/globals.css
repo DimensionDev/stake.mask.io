@@ -8,6 +8,7 @@
     --background-end-rgb: 255, 255, 255;
     --line-green: linear-gradient(180deg, rgb(0, 229, 119) 0%, rgb(0, 229, 172) 100%);
     --line-blue: linear-gradient(180deg, #00aee5 0%, #00e5bc 100%);
+    --line-purple: linear-gradient(261deg, #D0D0FF 3.1%, #A996F7 33.87%, #7280FE 54.26%, #D3D6FE 104.35%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,4 +28,10 @@ body {
     .text-balance {
         text-wrap: balance;
     }
+}
+
+.MuiPaper-root{
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }

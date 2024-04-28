@@ -6,7 +6,7 @@ const projectInfo = {
     symbol: 'SLN',
     name: 'SmartLayer.network',
     logo: '/sln.svg',
-    color: 'var(--line-green)',
+    color: 'var(--line-purple)',
 };
 
 export function ProjectDetailCard() {

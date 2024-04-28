@@ -23,3 +23,12 @@ export const CACHE_AGE_30_DAYS = 'public, s-maxage=2592000';
 export const CACHE_AGE_INDEFINITE = 'public, max-age=31536000, immutable';
 // Cache indefinitely on Disk
 export const CACHE_AGE_INDEFINITE_ON_DISK = 'public, s-maxage=31536000, max-age=31536000, must-revalidate';
+
+export const MASK_TOKEN_ADDRESS = '0x69af81e73A73B40adF4f3d4223Cd9b1ECE623074'
+export const MASK_TOKEN_ADDRESS_TESTNET = '0x34cbae8f53af6d7b50656137e773a29754f01f13'
+
+export const REWARD_TOKEN_TEST = '0x19bE64Ced7cDD14984198a7F971462c69046c6A4'
+export const STAKE_MANAGER_TEST = '0xece3ef2bf6f6fa7f13beab519c60a72e92bbd47c'
+export const REWARD_TEST = '0xf0c196d1b1489738cda956e994e82ef6897e85bc'
+
+export const BASE_URL = 'https://masknetwork-dev.firefly.land/v1/mask_stake'

@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn , useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 import { Account } from '@/components/Header/Account.js';
 import { Image } from '@/esm/Image.js';
@@ -13,7 +13,7 @@ export function ConnectXButton() {
     ) : (
         <button
             className=" flex items-center gap-[4px] rounded-lg px-[24px] py-[12px] text-center text-[14px] font-normal leading-[16px] text-neutrals9"
-            style={{ background: 'var(--line-green)' }}
+            style={{ background: 'var(--line-purple)' }}
             onClick={() => {
                 signIn('twitter');
             }}

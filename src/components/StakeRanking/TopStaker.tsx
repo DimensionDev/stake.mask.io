@@ -20,10 +20,10 @@ export function TopStaker({ amount, name, avatar }: StakerProps) {
                 alt="avatar"
             />
             <div
-                className="absolute bottom-5 flex items-center justify-center gap-[4px] rounded-[99px] px-[10px] py-[6px] text-[14px] text-neutrals9"
-                style={{ background: 'var(--line-green)' }}
+                className="absolute bottom-5 flex items-center justify-center gap-[4px] rounded-[99px] px-[10px] py-[6px] text-[14px] text-neutrals9 font-bold"
+                style={{ background: 'var(--line-purple)' }}
             >
-                {amount} <MaskIcon width={16} height={16} />
+                {amount} PTS
             </div>
             <div className=" text-[12px] text-neutrals1">{name}</div>
         </div>

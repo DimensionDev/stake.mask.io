@@ -24,7 +24,7 @@ export function UnStake() {
                 <div>200.0000 SLN</div>
             </div>
             <button
-                style={{ background: 'var(--line-green)' }}
+                style={{ background: 'var(--line-purple)' }}
                 disabled={!amount}
                 className={`flex w-full items-center justify-center rounded-[90px] py-[16px] text-[16px] text-neutrals8 ${amount ? '' : 'opacity-50'}`}
             >
