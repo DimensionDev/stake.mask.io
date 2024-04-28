@@ -19,7 +19,7 @@ export function Staker({ amount, name, avatar, isTop }: StakerProps) {
                 alt="avatar"
             />
             <div
-                className={`absolute bottom-5 flex gap-[4px] rounded-[99px] !bg-neutrals1 px-[10px] py-[6px] text-[14px] text-neutrals9 font-bold`}
+                className={`absolute bottom-5 flex gap-[4px] rounded-[99px] !bg-neutrals1 px-[10px] py-[6px] text-[14px] font-bold text-neutrals9`}
                 style={{ background: `${isTop ? 'var(--line-purple) !important' : ''}` }}
             >
                 {amount} PTS

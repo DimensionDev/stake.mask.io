@@ -7,14 +7,15 @@ export default function Home() {
             <div
                 className="absolute flex h-[520px] w-full flex-col justify-end lg:pb-[120px]"
                 style={{
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 50%, rgba(0,0,0,1)),url(/KV.png)',
+                    background:
+                        'linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 50%, rgba(0,0,0,1)),url(/KV.png)',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                 }}
             >
-                <div className="text-center text-[32px] text-neutrals1 font-[590]">Welcome to Mask Network</div>
-                <div className="text-center text-[16px] text-neutrals4 font-[590]">
+                <div className="text-center text-[32px] font-[590] text-neutrals1">Welcome to Mask Network</div>
+                <div className="text-center text-[16px] font-[590] text-neutrals4">
                     This website is specifically created for Mask investors and believers, where you can stake $Mask to
                     earn token rewards!
                 </div>

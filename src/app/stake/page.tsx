@@ -10,16 +10,16 @@ export default function Stake() {
             <div
                 className="absolute mb-[48px] flex h-[520px] w-full flex-col items-center justify-end px-[24px] lg:px-0 "
                 style={{
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 50%, rgba(0,0,0,1)),url(/KV.png)',
+                    background:
+                        'linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0) 50%, rgba(0,0,0,1)),url(/KV.png)',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                 }}
-            >
-            </div>
+            ></div>
             <div className="h-[300px]" />
             <ProjectDetailCard />
-            <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:flex-row">
+            <div className="mt-[32px] flex w-full flex-col gap-[24px] lg:flex-row">
                 <StakeTokenInfo />
                 <ClaimReward />
             </div>

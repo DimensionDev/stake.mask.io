@@ -10,10 +10,7 @@ const projectInfo = {
 
 export function ProjectCard() {
     return (
-        <div
-            className="my-[64px] flex flex-col rounded-[16px] p-[16px]"
-            style={{ background: 'var(--line-purple)' }}
-        >
+        <div className="my-[64px] flex flex-col rounded-[16px] p-[16px]" style={{ background: 'var(--line-purple)' }}>
             <div className="flex items-center justify-between">
                 <div>
                     <div className="flex items-center gap-[10px]">

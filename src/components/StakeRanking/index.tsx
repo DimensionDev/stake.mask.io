@@ -3,9 +3,14 @@ import { TopStaker } from '@/components/StakeRanking/TopStaker.js';
 
 export function StakeRanking() {
     return (
-        <div className="flex w-full flex-col rounded-[16px] border-[1px] border-neutrals6 p-[16px] relative" >
-            <div className='w-full h-full absolute top-0 z-50' style={{ background: "linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 75%, rgba(0,0,0,1) )" }} />
-            <div className="text-[24px] text-neutrals2 font-bold">Staking Ranking</div>
+        <div className="relative flex w-full flex-col rounded-[16px] border-[1px] border-neutrals6 p-[16px]">
+            <div
+                className="absolute top-0 z-50 h-full w-full"
+                style={{
+                    background: 'linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 75%, rgba(0,0,0,1) )',
+                }}
+            />
+            <div className="text-[24px] font-bold text-neutrals2">Staking Ranking</div>
             <div className="mt-[64px] flex w-full items-center justify-center">
                 <TopStaker
                     avatar="https://pbs.twimg.com/profile_images/1745828800531992576/pVBm-qbm_400x400.jpg"
