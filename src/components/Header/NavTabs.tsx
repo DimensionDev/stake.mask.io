@@ -11,12 +11,12 @@ const navigation = [
     { name: 'About', path: '/about' },
 ];
 
-export interface NavigationHeaderProps { }
+export interface NavigationHeaderProps {}
 
 export function NavTabs() {
     const pathname = usePathname();
     return (
-        <nav className="ml-[32px] full hidden items-center gap-[36px] lg:flex" aria-label="Global">
+        <nav className="full ml-[32px] hidden items-center gap-[36px] lg:flex" aria-label="Global">
             {navigation.map((item) => (
                 <div className="flex flex-col gap-[1px]">
                     <Link

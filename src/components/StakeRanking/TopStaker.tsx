@@ -20,7 +20,7 @@ export function TopStaker({ amount, name, avatar }: StakerProps) {
                 alt="avatar"
             />
             <div
-                className="absolute bottom-5 flex items-center justify-center gap-[4px] rounded-[99px] px-[10px] py-[6px] text-[14px] text-neutrals9 font-bold"
+                className="absolute bottom-5 flex items-center justify-center gap-[4px] rounded-[99px] px-[10px] py-[6px] text-[14px] font-bold text-neutrals9"
                 style={{ background: 'var(--line-purple)' }}
             >
                 {amount} PTS

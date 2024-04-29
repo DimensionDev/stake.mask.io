@@ -1,6 +1,6 @@
-import urlcat from "urlcat";
-import { BASE_URL } from "@/constants/index.js";
-import { fetchJSON } from "@/helpers/fetchJSON.js";
+import urlcat from 'urlcat';
+import { BASE_URL } from '@/constants/index.js';
+import { fetchJSON } from '@/helpers/fetchJSON.js';
 
 interface Response {
   code : number;
@@ -57,6 +57,16 @@ class StakeAPI {
     return response;
   }
 
+    async getUserInfO(address: string, pool_id: string) {
+        const url = urlcat(BASE_URL, '/user_info', {
+            address,
+            pool_id,
+        });
+        const response = await fetchJSON(url, {
+            method: 'GET',
+        });
+        return response;
+    }
 }
 
 export const stakeAPI = new StakeAPI();

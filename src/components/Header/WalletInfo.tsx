@@ -1,19 +1,24 @@
 'use client';
 
-import { useAccount, useDisconnect } from "wagmi"
-
+import { useAccount, useDisconnect } from 'wagmi';
 
 export function WalletInfo() {
-  const { address } = useAccount();
-  const { disconnect } = useDisconnect();
-  return <div className="flex flex-col items-center w-full p-[12px] gap-[8px] bg-neutrals8 rounded-[20px]">
-    <div className="flex items-center w-full justify-between">
-    </div>
-    <button className="flex w-[296px] text-center justify-center p-[8px] gap-[8px] items-center rounded-[8px] text-neutrals1 font-bold hover:bg-neutrals9">
-      Edit
-    </button>
-    <button className="flex w-[296px] text-center justify-center p-[8px] gap-[8px] items-center rounded-[8px] text-neutrals1 font-bold hover:bg-neutrals9" onClick={() => { disconnect() }}>
-      Log out
-    </button>
-  </div>
+    const { address } = useAccount();
+    const { disconnect } = useDisconnect();
+    return (
+        <div className="flex w-full flex-col items-center gap-[8px] rounded-[20px] bg-neutrals8 p-[12px]">
+            <div className="flex w-full items-center justify-between"></div>
+            <button className="flex w-[296px] items-center justify-center gap-[8px] rounded-[8px] p-[8px] text-center font-bold text-neutrals1 hover:bg-neutrals9">
+                Edit
+            </button>
+            <button
+                className="flex w-[296px] items-center justify-center gap-[8px] rounded-[8px] p-[8px] text-center font-bold text-neutrals1 hover:bg-neutrals9"
+                onClick={() => {
+                    disconnect();
+                }}
+            >
+                Log out
+            </button>
+        </div>
+    );
 }
