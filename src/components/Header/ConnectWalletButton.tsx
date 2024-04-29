@@ -9,7 +9,7 @@ import { Image } from '@/esm/Image.js';
 import { formatAddress } from '@/helpers/formatAddress.js';
 import { Popover } from '@mui/material';
 import { WalletInfo } from './WalletInfo.js';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export function ConnectWalletButton() {
     const { openConnectModal } = useConnectModal();

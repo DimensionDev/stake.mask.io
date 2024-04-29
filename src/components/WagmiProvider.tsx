@@ -4,7 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { useMemo } from 'react';
-import { polygon } from 'viem/chains';
+import { sepolia } from 'viem/chains';
 import { WagmiConfig } from 'wagmi';
 
 import { appInfo, chains, config } from '@/configs/wagmiClient.js';
@@ -24,8 +24,8 @@ export function WagmiProvider(props: WagmiProviderProps) {
             <RainbowKitProvider
                 theme={theme}
                 chains={chains}
-                initialChain={polygon}
                 appInfo={appInfo}
+                initialChain={sepolia}
                 showRecentTransactions
             >
                 {props.children}

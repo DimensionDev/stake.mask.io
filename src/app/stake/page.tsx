@@ -1,12 +1,13 @@
 import { ClaimReward } from '@/components/ClaimReward/index.js';
+import { ProfileCard } from '@/components/ProfileCard/index.js';
 import { ProjectDetailCard } from '@/components/ProjectDetailCard/index.js';
+import { StakeCard } from '@/components/StakeCard/index.js';
 import { StakeRanking } from '@/components/StakeRanking/index.js';
 import { StakeTokenInfo } from '@/components/StakeTokenInfo/index.js';
-import { StakeTokenInput } from '@/components/StakeTokenInput/index.js';
 
 export default function Stake() {
     return (
-        <div className="flex h-full flex-col items-center bg-black px-[24px] lg:max-w-[1024px] lg:p-0">
+        <div className="flex h-full flex-col items-center bg-black px-[24px] lg:max-w-[1600px] lg:p-0">
             <div
                 className="absolute mb-[48px] flex h-[520px] w-full flex-col items-center justify-end px-[24px] lg:px-0 "
                 style={{
@@ -19,12 +20,11 @@ export default function Stake() {
             </div>
             <div className="h-[300px]" />
             <ProjectDetailCard />
-            <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:flex-row">
-                <StakeTokenInfo />
-                <ClaimReward />
+            <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4">
+                <ProfileCard />
+                <StakeCard />
             </div>
             <div className="mt-[51px] flex w-full flex-col gap-[24px] lg:flex-row">
-                <StakeTokenInput />
                 <StakeRanking />
             </div>
         </div>

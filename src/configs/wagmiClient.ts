@@ -11,7 +11,7 @@ import {
     base,
     bsc,
     type Chain,
-    confluxESpace,
+    sepolia,
     fantom,
     gnosis,
     mainnet,
@@ -43,7 +43,7 @@ const x1test = {
 } as const satisfies Chain;
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [mainnet, base, polygon, optimism, bsc, arbitrum, gnosis, avalanche, aurora, confluxESpace, fantom, x1test],
+    [mainnet, sepolia],
     [publicProvider()],
 ) as {
     readonly chains: Chain[];
