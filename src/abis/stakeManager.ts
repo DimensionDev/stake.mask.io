@@ -1,1 +1,191 @@
-export const StakeManagerABI = [{"type":"constructor","inputs":[{"name":"_maskToken","type":"address","internalType":"address"}],"stateMutability":"nonpayable"},{"type":"function","name":"changePool","inputs":[],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"createPool","inputs":[{"name":"_pool","type":"tuple","internalType":"struct StakeManager.Pool","components":[{"name":"pointAccStartBlock","type":"uint256","internalType":"uint256"},{"name":"pointAccEndBlock","type":"uint256","internalType":"uint256"},{"name":"unlocked","type":"bool","internalType":"bool"},{"name":"stakingEnabled","type":"bool","internalType":"bool"}]}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"currentPoolId","inputs":[],"outputs":[{"name":"","type":"uint8","internalType":"uint8"}],"stateMutability":"view"},{"type":"function","name":"depositAndLock","inputs":[{"name":"_amount","type":"uint256","internalType":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"maskToken","inputs":[],"outputs":[{"name":"","type":"address","internalType":"contract IERC20"}],"stateMutability":"view"},{"type":"function","name":"owner","inputs":[],"outputs":[{"name":"","type":"address","internalType":"address"}],"stateMutability":"view"},{"type":"function","name":"pools","inputs":[{"name":"","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"pointAccStartBlock","type":"uint256","internalType":"uint256"},{"name":"pointAccEndBlock","type":"uint256","internalType":"uint256"},{"name":"unlocked","type":"bool","internalType":"bool"},{"name":"stakingEnabled","type":"bool","internalType":"bool"}],"stateMutability":"view"},{"type":"function","name":"renounceOwnership","inputs":[],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"transferOwnership","inputs":[{"name":"newOwner","type":"address","internalType":"address"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"updateCurrentPoolId","inputs":[{"name":"_poolId","type":"uint8","internalType":"uint8"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"updatePool","inputs":[{"name":"_poolId","type":"uint8","internalType":"uint8"},{"name":"_pool","type":"tuple","internalType":"struct StakeManager.Pool","components":[{"name":"pointAccStartBlock","type":"uint256","internalType":"uint256"},{"name":"pointAccEndBlock","type":"uint256","internalType":"uint256"},{"name":"unlocked","type":"bool","internalType":"bool"},{"name":"stakingEnabled","type":"bool","internalType":"bool"}]}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"userInfos","inputs":[{"name":"","type":"address","internalType":"address"}],"outputs":[{"name":"stakedAmount","type":"uint256","internalType":"uint256"},{"name":"poolId","type":"uint8","internalType":"uint8"}],"stateMutability":"view"},{"type":"function","name":"withdraw","inputs":[{"name":"_amount","type":"uint256","internalType":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"event","name":"CurrentPoolIdChanged","inputs":[{"name":"fromPoolId","type":"uint8","indexed":true,"internalType":"uint8"},{"name":"toPoolId","type":"uint8","indexed":true,"internalType":"uint8"}],"anonymous":false},{"type":"event","name":"OwnershipTransferred","inputs":[{"name":"previousOwner","type":"address","indexed":true,"internalType":"address"},{"name":"newOwner","type":"address","indexed":true,"internalType":"address"}],"anonymous":false},{"type":"event","name":"PoolCreated","inputs":[{"name":"poolId","type":"uint8","indexed":true,"internalType":"uint8"},{"name":"pointAccStartBlock","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"pointAccEndBlock","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"unlocked","type":"bool","indexed":false,"internalType":"bool"},{"name":"stakingEnabled","type":"bool","indexed":false,"internalType":"bool"}],"anonymous":false},{"type":"event","name":"PoolUpdated","inputs":[{"name":"poolId","type":"uint8","indexed":true,"internalType":"uint8"},{"name":"pointAccStartBlock","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"pointAccEndBlock","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"unlocked","type":"bool","indexed":false,"internalType":"bool"},{"name":"stakingEnabled","type":"bool","indexed":false,"internalType":"bool"}],"anonymous":false},{"type":"event","name":"StakeChanged","inputs":[{"name":"account","type":"address","indexed":true,"internalType":"address"},{"name":"fromPoolId","type":"uint8","indexed":true,"internalType":"uint8"},{"name":"toPoolId","type":"uint8","indexed":true,"internalType":"uint8"}],"anonymous":false},{"type":"event","name":"Staked","inputs":[{"name":"account","type":"address","indexed":true,"internalType":"address"},{"name":"poolId","type":"uint8","indexed":true,"internalType":"uint8"},{"name":"stakedAmount","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"unstaked","inputs":[{"name":"account","type":"address","indexed":true,"internalType":"address"},{"name":"poolId","type":"uint8","indexed":true,"internalType":"uint8"},{"name":"unStakedAmount","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false}] as const
+export const StakeManagerABI = [
+    {
+        type: 'constructor',
+        inputs: [{ name: '_maskToken', type: 'address', internalType: 'address' }],
+        stateMutability: 'nonpayable',
+    },
+    { type: 'function', name: 'changePool', inputs: [], outputs: [], stateMutability: 'nonpayable' },
+    {
+        type: 'function',
+        name: 'createPool',
+        inputs: [
+            {
+                name: '_pool',
+                type: 'tuple',
+                internalType: 'struct StakeManager.Pool',
+                components: [
+                    { name: 'pointAccStartBlock', type: 'uint256', internalType: 'uint256' },
+                    { name: 'pointAccEndBlock', type: 'uint256', internalType: 'uint256' },
+                    { name: 'unlocked', type: 'bool', internalType: 'bool' },
+                    { name: 'stakingEnabled', type: 'bool', internalType: 'bool' },
+                ],
+            },
+        ],
+        outputs: [],
+        stateMutability: 'nonpayable',
+    },
+    {
+        type: 'function',
+        name: 'currentPoolId',
+        inputs: [],
+        outputs: [{ name: '', type: 'uint8', internalType: 'uint8' }],
+        stateMutability: 'view',
+    },
+    {
+        type: 'function',
+        name: 'depositAndLock',
+        inputs: [{ name: '_amount', type: 'uint256', internalType: 'uint256' }],
+        outputs: [],
+        stateMutability: 'nonpayable',
+    },
+    {
+        type: 'function',
+        name: 'maskToken',
+        inputs: [],
+        outputs: [{ name: '', type: 'address', internalType: 'contract IERC20' }],
+        stateMutability: 'view',
+    },
+    {
+        type: 'function',
+        name: 'owner',
+        inputs: [],
+        outputs: [{ name: '', type: 'address', internalType: 'address' }],
+        stateMutability: 'view',
+    },
+    {
+        type: 'function',
+        name: 'pools',
+        inputs: [{ name: '', type: 'uint256', internalType: 'uint256' }],
+        outputs: [
+            { name: 'pointAccStartBlock', type: 'uint256', internalType: 'uint256' },
+            { name: 'pointAccEndBlock', type: 'uint256', internalType: 'uint256' },
+            { name: 'unlocked', type: 'bool', internalType: 'bool' },
+            { name: 'stakingEnabled', type: 'bool', internalType: 'bool' },
+        ],
+        stateMutability: 'view',
+    },
+    { type: 'function', name: 'renounceOwnership', inputs: [], outputs: [], stateMutability: 'nonpayable' },
+    {
+        type: 'function',
+        name: 'transferOwnership',
+        inputs: [{ name: 'newOwner', type: 'address', internalType: 'address' }],
+        outputs: [],
+        stateMutability: 'nonpayable',
+    },
+    {
+        type: 'function',
+        name: 'updateCurrentPoolId',
+        inputs: [{ name: '_poolId', type: 'uint8', internalType: 'uint8' }],
+        outputs: [],
+        stateMutability: 'nonpayable',
+    },
+    {
+        type: 'function',
+        name: 'updatePool',
+        inputs: [
+            { name: '_poolId', type: 'uint8', internalType: 'uint8' },
+            {
+                name: '_pool',
+                type: 'tuple',
+                internalType: 'struct StakeManager.Pool',
+                components: [
+                    { name: 'pointAccStartBlock', type: 'uint256', internalType: 'uint256' },
+                    { name: 'pointAccEndBlock', type: 'uint256', internalType: 'uint256' },
+                    { name: 'unlocked', type: 'bool', internalType: 'bool' },
+                    { name: 'stakingEnabled', type: 'bool', internalType: 'bool' },
+                ],
+            },
+        ],
+        outputs: [],
+        stateMutability: 'nonpayable',
+    },
+    {
+        type: 'function',
+        name: 'userInfos',
+        inputs: [{ name: '', type: 'address', internalType: 'address' }],
+        outputs: [
+            { name: 'stakedAmount', type: 'uint256', internalType: 'uint256' },
+            { name: 'poolId', type: 'uint8', internalType: 'uint8' },
+        ],
+        stateMutability: 'view',
+    },
+    {
+        type: 'function',
+        name: 'withdraw',
+        inputs: [{ name: '_amount', type: 'uint256', internalType: 'uint256' }],
+        outputs: [],
+        stateMutability: 'nonpayable',
+    },
+    {
+        type: 'event',
+        name: 'CurrentPoolIdChanged',
+        inputs: [
+            { name: 'fromPoolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+            { name: 'toPoolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+        ],
+        anonymous: false,
+    },
+    {
+        type: 'event',
+        name: 'OwnershipTransferred',
+        inputs: [
+            { name: 'previousOwner', type: 'address', indexed: true, internalType: 'address' },
+            { name: 'newOwner', type: 'address', indexed: true, internalType: 'address' },
+        ],
+        anonymous: false,
+    },
+    {
+        type: 'event',
+        name: 'PoolCreated',
+        inputs: [
+            { name: 'poolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+            { name: 'pointAccStartBlock', type: 'uint256', indexed: false, internalType: 'uint256' },
+            { name: 'pointAccEndBlock', type: 'uint256', indexed: false, internalType: 'uint256' },
+            { name: 'unlocked', type: 'bool', indexed: false, internalType: 'bool' },
+            { name: 'stakingEnabled', type: 'bool', indexed: false, internalType: 'bool' },
+        ],
+        anonymous: false,
+    },
+    {
+        type: 'event',
+        name: 'PoolUpdated',
+        inputs: [
+            { name: 'poolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+            { name: 'pointAccStartBlock', type: 'uint256', indexed: false, internalType: 'uint256' },
+            { name: 'pointAccEndBlock', type: 'uint256', indexed: false, internalType: 'uint256' },
+            { name: 'unlocked', type: 'bool', indexed: false, internalType: 'bool' },
+            { name: 'stakingEnabled', type: 'bool', indexed: false, internalType: 'bool' },
+        ],
+        anonymous: false,
+    },
+    {
+        type: 'event',
+        name: 'StakeChanged',
+        inputs: [
+            { name: 'account', type: 'address', indexed: true, internalType: 'address' },
+            { name: 'fromPoolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+            { name: 'toPoolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+        ],
+        anonymous: false,
+    },
+    {
+        type: 'event',
+        name: 'Staked',
+        inputs: [
+            { name: 'account', type: 'address', indexed: true, internalType: 'address' },
+            { name: 'poolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+            { name: 'stakedAmount', type: 'uint256', indexed: false, internalType: 'uint256' },
+        ],
+        anonymous: false,
+    },
+    {
+        type: 'event',
+        name: 'unstaked',
+        inputs: [
+            { name: 'account', type: 'address', indexed: true, internalType: 'address' },
+            { name: 'poolId', type: 'uint8', indexed: true, internalType: 'uint8' },
+            { name: 'unStakedAmount', type: 'uint256', indexed: false, internalType: 'uint256' },
+        ],
+        anonymous: false,
+    },
+] as const;

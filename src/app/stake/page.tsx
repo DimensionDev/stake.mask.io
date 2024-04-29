@@ -20,7 +20,7 @@ export default function Stake() {
             ></div>
             <div className="h-[300px]" />
             <ProjectDetailCard />
-            <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4">
+            <div className="mt-[32px] flex w-full flex-col gap-[24px] lg:grid lg:grid-cols-4">
                 <ProfileCard />
                 <StakeCard />
             </div>
