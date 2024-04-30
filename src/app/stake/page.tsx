@@ -1,4 +1,5 @@
 import { ClaimReward } from '@/components/ClaimReward/index.js';
+import { EstimatedRewards } from '@/components/EstimatedRewards/index.js';
 import { ProfileCard } from '@/components/ProfileCard/index.js';
 import { ProjectDetailCard } from '@/components/ProjectDetailCard/index.js';
 import { StakeCard } from '@/components/StakeCard/index.js';
@@ -20,9 +21,10 @@ export default function Stake() {
             ></div>
             <div className="h-[300px]" />
             <ProjectDetailCard />
-            <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4">
+            <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4 ">
                 <ProfileCard />
                 <StakeCard />
+                <EstimatedRewards />
             </div>
             <div className="mt-[51px] flex w-full flex-col gap-[24px] lg:flex-row">
                 <StakeRanking />
