@@ -7,7 +7,7 @@ export function WalletInfo() {
     const { disconnect } = useDisconnect();
     return (
         <div className="flex w-full flex-col items-center gap-[8px] rounded-[20px] bg-neutrals8 p-[12px]">
-            <div className="flex w-full items-center justify-between"></div>
+            <div className="flex w-full items-center justify-between" />
             <button className="flex w-[296px] items-center justify-center gap-[8px] rounded-[8px] p-[8px] text-center font-bold text-neutrals1 hover:bg-neutrals9">
                 Edit
             </button>

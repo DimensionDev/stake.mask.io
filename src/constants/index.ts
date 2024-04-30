@@ -1,7 +1,7 @@
 /* cspell:disable */
 
+
 import { StakeManagerABI } from '@/abis/stakeManager.js';
-import { chain } from 'lodash-es';
 
 export const SITE_NAME = 'Stake Your $MASK';
 export const SITE_DESCRIPTION = 'Stake Your $MASK';

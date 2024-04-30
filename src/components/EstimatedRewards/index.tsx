@@ -1,15 +1,12 @@
 'use client'
 
-import { IS_TESTNET, STAKE_MANAGER_TEST, STAKE_MANAGER, STAKE_MANAGER_CONTRACT } from '@/constants/index.js'
-import { Image } from '@/esm/Image.js'
 import { useQuery } from '@tanstack/react-query'
-import { readContract } from 'wagmi/actions'
 import { useAccount } from 'wagmi'
-import { formatEther } from 'viem'
-import MASK from '@/assets/logos/mask.svg'
-import { MainButton } from '../MainButton.js'
-import { stakeAPI } from '@/providers/StakeAPI.js'
+
 import RSS3 from '@/assets/logos/rss3.svg'
+import { MainButton } from '@/components/MainButton.js'
+import { Image } from '@/esm/Image.js'
+import { stakeAPI } from '@/providers/StakeAPI.js'
 
 export function EstimatedRewards() {
   const { address } = useAccount()

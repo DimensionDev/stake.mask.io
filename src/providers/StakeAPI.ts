@@ -1,4 +1,5 @@
 import urlcat from 'urlcat';
+
 import { BASE_URL } from '@/constants/index.js';
 import { fetchJSON } from '@/helpers/fetchJSON.js';
 

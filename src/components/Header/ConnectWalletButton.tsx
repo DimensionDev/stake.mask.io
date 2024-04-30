@@ -1,15 +1,15 @@
 'use client';
 
-import { useAccountModal, useConnectModal } from '@rainbow-me/rainbowkit';
+import { Popover } from '@mui/material';
+import { useConnectModal } from '@rainbow-me/rainbowkit';
+import {useRef, useState } from 'react';
 import { useAccount, useBalance } from 'wagmi';
 
-import Metamask from '@/assets/logos/metamask.svg';
 import ETH from '@/assets/logos/eth-black.svg';
+import Metamask from '@/assets/logos/metamask.svg';
+import { WalletInfo } from '@/components/Header/WalletInfo.js';
 import { Image } from '@/esm/Image.js';
 import { formatAddress } from '@/helpers/formatAddress.js';
-import { Popover } from '@mui/material';
-import { WalletInfo } from './WalletInfo.js';
-import { useState, useRef, useEffect } from 'react';
 
 export function ConnectWalletButton() {
     const { openConnectModal } = useConnectModal();
@@ -24,7 +24,7 @@ export function ConnectWalletButton() {
             className=" flex items-center gap-[4px] rounded-[99px] p-[2px] pr-[12px] text-center text-[14px] font-normal leading-[22px] text-neutrals9"
             style={{ background: 'var(--line-purple)' }}
             onClick={() => {
-                isConnected ? setOpen(!open) : openConnectModal && openConnectModal();
+                isConnected ? setOpen(!open) : openConnectModal?.();
             }}
         >
             {isConnected ? (

@@ -1,12 +1,10 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 import CloseIcon from '@/assets/close.svg';
 import MoreIcon from '@/assets/more.svg';
 import { ConnectWalletButton } from '@/components/Header/ConnectWalletButton.js';
-import { ConnectXButton } from '@/components/Header/ConnectXButton.js';
 import { NavTabs } from '@/components/Header/NavTabs.js';
 import { NavTabsMobile } from '@/components/Header/NavTabsMobile.js';
 import { Image } from '@/esm/Image.js';

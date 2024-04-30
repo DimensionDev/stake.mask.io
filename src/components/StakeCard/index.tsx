@@ -1,14 +1,14 @@
 'use client';
 
-import { IS_TESTNET, STAKE_MANAGER_TEST, STAKE_MANAGER, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
-import { Image } from '@/esm/Image.js';
 import { useQuery } from '@tanstack/react-query';
-import { StakeManagerABI } from '@/abis/stakeManager.js';
-import { readContract } from 'wagmi/actions';
-import { useAccount } from 'wagmi';
 import { formatEther } from 'viem';
+import { useAccount } from 'wagmi';
+import { readContract } from 'wagmi/actions';
+
 import MASK from '@/assets/logos/mask.svg';
-import { MainButton } from '../MainButton.js';
+import { MainButton } from '@/components/MainButton.js';
+import { STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { Image } from '@/esm/Image.js';
 
 export function StakeCard() {
   const { address } = useAccount()

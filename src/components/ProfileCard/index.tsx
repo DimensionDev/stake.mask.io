@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useAccount } from 'wagmi';
-import { stakeAPI } from '@/providers/StakeAPI.js';
-import { formatAddress } from '@/helpers/formatAddress.js';
+
 import { Image } from '@/esm/Image.js';
+import { formatAddress } from '@/helpers/formatAddress.js';
+import { stakeAPI } from '@/providers/StakeAPI.js';
 
 export function ProfileCard() {
   const { address } = useAccount();

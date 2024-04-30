@@ -1,10 +1,8 @@
-import { ClaimReward } from '@/components/ClaimReward/index.js';
 import { EstimatedRewards } from '@/components/EstimatedRewards/index.js';
 import { ProfileCard } from '@/components/ProfileCard/index.js';
 import { ProjectDetailCard } from '@/components/ProjectDetailCard/index.js';
 import { StakeCard } from '@/components/StakeCard/index.js';
 import { StakeRanking } from '@/components/StakeRanking/index.js';
-import { StakeTokenInfo } from '@/components/StakeTokenInfo/index.js';
 
 export default function Stake() {
     return (
@@ -18,7 +16,7 @@ export default function Stake() {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                 }}
-            ></div>
+             />
             <div className="h-[300px]" />
             <ProjectDetailCard />
             <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4 ">

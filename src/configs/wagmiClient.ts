@@ -5,18 +5,9 @@ import { coinbaseWallet, metaMaskWallet, rabbyWallet, walletConnectWallet } from
 import { type FallbackTransport } from 'viem';
 import { type Config, configureChains, createConfig, type PublicClient, type WebSocketPublicClient } from 'wagmi';
 import {
-    arbitrum,
-    aurora,
-    avalanche,
-    base,
-    bsc,
     type Chain,
-    sepolia,
-    fantom,
-    gnosis,
     mainnet,
-    optimism,
-    polygon,
+    sepolia,
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
