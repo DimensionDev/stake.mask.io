@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useAccount } from "wagmi";
-import { stakeAPI } from "@/providers/StakeAPI.js";
-import { formatAddress } from "@/helpers/formatAddress.js";
-import { Image } from "@/esm/Image.js";
+import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useAccount } from 'wagmi';
+import { stakeAPI } from '@/providers/StakeAPI.js';
+import { formatAddress } from '@/helpers/formatAddress.js';
+import { Image } from '@/esm/Image.js';
 
 export function ProfileCard() {
   const { address } = useAccount();
@@ -13,7 +13,7 @@ export function ProfileCard() {
     queryKey: ["profile", address],
     queryFn: async () => { const { data } = await stakeAPI.getUserInfo(address as string, "1"); return data },
   })
-  console.log(data)
+
   return <div className="flex flex-col relative w-full mt-[10px]">
     <div className="h-[50px]" />
     <div className="absolute w-full h-[130px] z-10 top-[50px]" style={{ background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)' }} />

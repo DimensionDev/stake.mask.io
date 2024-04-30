@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { IS_TESTNET, STAKE_MANAGER_TEST, STAKE_MANAGER, STAKE_MANAGER_CONTRACT } from '@/constants/index.js'
-import { Image } from '@/esm/Image.js'
-import { useQuery } from '@tanstack/react-query'
-import { StakeManagerABI } from '@/abis/stakeManager.js'
-import { readContract } from 'wagmi/actions'
-import { useAccount } from 'wagmi'
-import { formatEther } from 'viem'
-import MASK from '@/assets/logos/mask.svg'
-import { MainButton } from '../MainButton.js'
+import { IS_TESTNET, STAKE_MANAGER_TEST, STAKE_MANAGER, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { Image } from '@/esm/Image.js';
+import { useQuery } from '@tanstack/react-query';
+import { StakeManagerABI } from '@/abis/stakeManager.js';
+import { readContract } from 'wagmi/actions';
+import { useAccount } from 'wagmi';
+import { formatEther } from 'viem';
+import MASK from '@/assets/logos/mask.svg';
+import { MainButton } from '../MainButton.js';
 
 export function StakeCard() {
   const { address } = useAccount()
@@ -22,7 +22,7 @@ export function StakeCard() {
       return { stakeAmount, poolId }
     }
   })
-  console.log(data)
+
   return <div className="flex flex-col border-[1px] border-neutrals6 h-[196px] rounded-[16px] p-[16px] relative">
     <Image src="/glow.png" width={360} height={230} alt='right' className='absolute top-[-30px] left-[-35px] z-50' />
     <div className='text-white text-[20px] font-bold'>Staked MASK</div>
