@@ -15,7 +15,6 @@ import { IS_TESTNET, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.j
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
 
-
 interface ProjectCardProps {
     setIsOpen: (isOpen: boolean) => void;
 }
@@ -47,7 +46,6 @@ export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
             };
         },
     });
-
 
     const statusText = useMemo(() => {
         if (!poolInfo) return 'Not started';
