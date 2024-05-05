@@ -48,10 +48,6 @@ export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
         },
     });
 
-<<<<<<< HEAD
-=======
-    const setIsOpen = useStakeModalStore((state) => state.setIsOpen);
->>>>>>> 3b715a99e57775ccecead4a5c5fdc36657b34c78
 
     const statusText = useMemo(() => {
         if (!poolInfo) return 'Not started';
