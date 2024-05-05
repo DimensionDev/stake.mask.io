@@ -1,6 +1,7 @@
+import { redirect } from 'next/navigation.js';
+
 import { ProjectCard } from '@/components/ProjectCard/index.js';
 import { StakeRanking } from '@/components/StakeRanking/index.js';
-import { redirect } from 'next/navigation.js';
 
 export default function Home() {
     redirect('/stake');

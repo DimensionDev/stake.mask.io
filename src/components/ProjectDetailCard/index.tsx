@@ -1,30 +1,26 @@
 'use client'
 
-import { IS_TESTNET, POOL_ID } from '@/constants/index.js';
-import { Image } from '@/esm/Image.js';
-import { stakeAPI } from '@/providers/StakeAPI.js';
 import { useQuery } from '@tanstack/react-query';
-import { readContract } from 'wagmi/actions';
-import { STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
-import { publicClient } from '@/configs/wagmiClient.js';
 import { useMemo } from 'react';
+import { readContract } from 'wagmi/actions';
+
+import Add from '@/assets/add.svg';
 import Mask from '@/assets/logos/mask.svg';
 import RSS3 from '@/assets/logos/rss3.svg';
 import Ton from '@/assets/logos/ton.svg';
-import Add from '@/assets/add.svg';
 import RightArrow from '@/assets/rightArrow.svg';
-import { MainButton } from '../MainButton.js';
-import { useStakeModalStore } from '@/store/useStakeModalStore.js';
+import { MainButton } from '@/components/MainButton.js';
+import { publicClient } from '@/configs/wagmiClient.js';
+import { IS_TESTNET, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { Image } from '@/esm/Image.js';
+import { stakeAPI } from '@/providers/StakeAPI.js';
 
 
-const projectInfo = {
-    symbol: 'SLN',
-    name: 'SmartLayer.network',
-    logo: '/sln.svg',
-    color: 'var(--line-purple)',
-};
+interface ProjectCardProps {
+    setIsOpen: (isOpen: boolean) => void;
+}
 
-export function ProjectDetailCard() {
+export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
     const { data: apyInfo } = useQuery({
         queryKey: ['poolinfo', 'apy'],
         queryFn: async () => {
@@ -48,7 +44,6 @@ export function ProjectDetailCard() {
         }
     })
 
-    const setIsOpen = useStakeModalStore((state) => state.setIsOpen)
 
     const statusText = useMemo(() => {
         if (!poolInfo) return 'Not started'

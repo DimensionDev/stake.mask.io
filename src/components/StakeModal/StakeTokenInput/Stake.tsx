@@ -1,19 +1,16 @@
 'use client'
 
-import { Switch } from '@headlessui/react';
-import { useState } from 'react';
-
-import { InputPanel } from '@/components/StakeModal/StakeTokenInput/InputPanel.js';
-import { SelectLockTime } from '@/components/StakeModal/StakeTokenInput/SelectLockTime.js';
-import { MASK_TOKEN_CONTRACT, POOL_ID, IS_TESTNET, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
-import { readContract, writeContract } from 'wagmi/actions';
-import { publicClient } from '@/configs/wagmiClient.js';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { stakeAPI } from '@/providers/StakeAPI.js';
-import { useAccount } from 'wagmi';
-import { waitForTransaction } from 'wagmi/actions';
+import { useState } from 'react';
 import { formatEther, parseEther } from 'viem';
+import { useAccount } from 'wagmi';
+import { readContract, waitForTransaction,writeContract  } from 'wagmi/actions';
+
+import { InputPanel } from '@/components/StakeModal/StakeTokenInput/InputPanel.js';
+import { publicClient } from '@/configs/wagmiClient.js';
+import { IS_TESTNET, MASK_TOKEN_CONTRACT, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { stakeAPI } from '@/providers/StakeAPI.js';
 
 export function Stake() {
     const [amount, setAmount] = useState('');

@@ -2,12 +2,14 @@
 
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { useStakeModalStore } from '@/store/useStakeModalStore.js'
-import { StakeTokenInput } from './StakeTokenInput/index.js'
 
-export function StakeModal() {
-  const isOpen = useStakeModalStore(state => state.isOpen)
-  const setIsOpen = useStakeModalStore(state => state.setIsOpen)
+import { StakeTokenInput } from '@/components/StakeModal/StakeTokenInput/index.js'
+
+interface StakeModalProps {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
+export function StakeModal({ isOpen, setIsOpen }: StakeModalProps) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={() => { setIsOpen(false) }}>

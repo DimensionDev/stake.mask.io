@@ -1,14 +1,17 @@
 'use client'
 
+import { useState } from 'react';
+import { useAccount } from 'wagmi';
+
 import { EstimatedRewards } from '@/components/EstimatedRewards/index.js';
 import { ProfileCard } from '@/components/ProfileCard/index.js';
 import { ProjectDetailCard } from '@/components/ProjectDetailCard/index.js';
 import { StakeCard } from '@/components/StakeCard/index.js';
 import { StakeModal } from '@/components/StakeModal/index.js';
-import { useAccount } from 'wagmi';
 import { StakeRanking } from '@/components/StakeRanking/index.js';
 
 export default function Stake() {
+    const [isOpen, setIsOpen] = useState(false);
     const { address } = useAccount();
     return (
         <div className="flex h-full flex-col items-center bg-black px-[24px] w-full lg:max-w-[1200px] lg:p-0">
@@ -29,18 +32,18 @@ export default function Stake() {
                 </div>
             </div>
             <div className="h-[520px]" />
-            <ProjectDetailCard />
+            <ProjectDetailCard setIsOpen={setIsOpen} />
             {address ?
                 <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4 ">
                     <ProfileCard />
-                    <StakeCard />
+                    <StakeCard setIsOpen={setIsOpen} />
                     <EstimatedRewards rewardToken='rss3' />
                     <EstimatedRewards rewardToken='ton' />
                 </div> : null}
             <div className="mt-[51px] flex w-full flex-col gap-[24px] lg:flex-row">
                 <StakeRanking />
             </div>
-            <StakeModal />
+            <StakeModal isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
     );
 }

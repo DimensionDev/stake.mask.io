@@ -2,14 +2,15 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { useAccount } from 'wagmi'
+import { writeContract } from 'wagmi/actions'
 
 import RSS3 from '@/assets/logos/rss3.svg'
 import TON from '@/assets/logos/ton.svg'
 import { MainButton } from '@/components/MainButton.js'
+import { REWARD_CONTRACT } from '@/constants/index.js'
 import { Image } from '@/esm/Image.js'
 import { stakeAPI } from '@/providers/StakeAPI.js'
-import { writeContract } from 'wagmi/actions'
-import { POOL_ID, REWARD_CONTRACT } from '@/constants/index.js'
+
 interface EstimatedRewardsProps {
   rewardToken: string
 }

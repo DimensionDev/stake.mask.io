@@ -9,11 +9,13 @@ import MASK from '@/assets/logos/mask.svg';
 import { MainButton } from '@/components/MainButton.js';
 import { STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
-import { useStakeModalStore } from '@/store/useStakeModalStore.js';
 
-export function StakeCard() {
+interface StakeCardProps {
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export function StakeCard({ setIsOpen }: StakeCardProps) {
   const { address } = useAccount()
-  const setIsOpen = useStakeModalStore((state) => state.setIsOpen)
   const { data, isLoading, isError } = useQuery({
     queryKey: ['stake'],
     queryFn: async () => {

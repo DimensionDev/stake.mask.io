@@ -1,14 +1,14 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { useAccount } from 'wagmi';
 
-import { Stake } from '@/components/StakeModal/StakeTokenInput/Stake.js';
+import CheckBox from '@/assets/checkButton.svg';
 import CloseIcon from '@/assets/close.svg';
 import { ConnectWalletButton } from '@/components/Header/ConnectWalletButton.js';
 import { ConnectXButton } from '@/components/Header/ConnectXButton.js';
-import { useAccount } from 'wagmi';
-import CheckBox from '@/assets/checkButton.svg';
-import { useSession } from 'next-auth/react';
+import { Stake } from '@/components/StakeModal/StakeTokenInput/Stake.js';
 
 interface StakeTokenInputProps {
     onClose: () => void;
@@ -49,7 +49,7 @@ export function StakeTokenInput({ onClose }: StakeTokenInputProps) {
                     <div className='text-sm text-neutrals1 font-bold'>Link X</div>
                 </div>
                 {
-                    status != 'authenticated' ? <ConnectXButton /> : null
+                    status !== 'authenticated' ? <ConnectXButton /> : null
                 }
             </div>
             <Stake />
