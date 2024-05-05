@@ -25,7 +25,7 @@ export function ConnectWalletButton({ small = false }: ConnectWalletButtonProps)
     return (
         <button
             ref={anchorRef}
-            className={`flex items-center gap-[4px] rounded-[99px] justify-center p-[2px] pr-[6px] text-center text-[14px] font-normal leading-[22px] text-neutrals9 ${small ? 'w-[124px] h-[32px] pr-0' : ''}`}
+            className={`flex items-center justify-center gap-[4px] rounded-[99px] p-[2px] pr-[6px] text-center text-[14px] font-normal leading-[22px] text-neutrals9 ${small ? 'h-[32px] w-[124px] pr-0' : ''}`}
             style={{ background: 'var(--line-purple)' }}
             onClick={() => {
                 isConnected ? setOpen(!open) : openConnectModal?.();
@@ -63,8 +63,11 @@ export function ConnectWalletButton({ small = false }: ConnectWalletButtonProps)
                     {small ? null : (
                         <div className={`flex rounded-[99px] p-[8px]`}>
                             <Image src="/wallet.svg" alt="Wallet" width={20} height={20} />
-                        </div>)}
-                    <div className="text-[14px] font-bold text-neutrals9 text-center">{small ? "Connect Wallet" : "Connect your wallet"}</div>
+                        </div>
+                    )}
+                    <div className="text-center text-[14px] font-bold text-neutrals9">
+                        {small ? 'Connect Wallet' : 'Connect your wallet'}
+                    </div>
                 </>
             )}
         </button>

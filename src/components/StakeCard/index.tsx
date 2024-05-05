@@ -27,14 +27,28 @@ export function StakeCard({ setIsOpen }: StakeCardProps) {
     }
   })
 
-  return <div className="flex flex-col border-[1px] border-neutrals6 h-[196px] rounded-[16px] p-[16px] relative">
-    <Image src="/glow.png" width={360} height={230} alt='right' className='absolute top-[-30px] left-[-35px] z-50' />
-    <div className='text-white text-[20px] font-bold'>Staked MASK</div>
-    <div className='text-white text-[48px] w-full text-center leading-[48px] '>{data?.stakeAmount ? formatEther(data.stakeAmount) : 0}</div>
-    <div className='text-white text-[16px] w-full text-center mb-[12px]'>+3 Points/h</div>
-    <MainButton onClick={() => { setIsOpen(true) }} >
-      <MASK width={16} height={16} />
-      Stake MASK
-    </MainButton>
-  </div>
+  return (
+    <div className="relative flex h-[196px] flex-col rounded-[16px] border-[1px] border-neutrals6 p-[16px]">
+      <Image
+        src="/glow.png"
+        width={360}
+        height={230}
+        alt="right"
+        className="absolute left-[-35px] top-[-30px] z-50"
+      />
+      <div className="text-[20px] font-bold text-white">Staked MASK</div>
+      <div className="w-full text-center text-[48px] leading-[48px] text-white ">
+        {data?.stakeAmount ? formatEther(data.stakeAmount) : 0}
+      </div>
+      <div className="mb-[12px] w-full text-center text-[16px] text-white">+3 Points/h</div>
+      <MainButton
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        <MASK width={16} height={16} />
+        Stake MASK
+      </MainButton>
+    </div>
+  );
 }

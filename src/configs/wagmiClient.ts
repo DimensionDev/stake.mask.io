@@ -4,11 +4,7 @@ import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit
 import { coinbaseWallet, metaMaskWallet, rabbyWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets';
 import { type FallbackTransport } from 'viem';
 import { type Config, configureChains, createConfig, type PublicClient, type WebSocketPublicClient } from 'wagmi';
-import {
-    type Chain,
-    mainnet,
-    sepolia,
-} from 'wagmi/chains';
+import { type Chain, mainnet, sepolia } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
 import { SITE_HOSTNAME, SITE_URL } from '@/constants/index.js';

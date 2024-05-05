@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { useAccount } from 'wagmi';
@@ -14,7 +14,7 @@ export default function Stake() {
     const [isOpen, setIsOpen] = useState(false);
     const { address } = useAccount();
     return (
-        <div className="flex h-full flex-col items-center bg-black px-[24px] w-full lg:max-w-[1200px] lg:p-0">
+        <div className="flex h-full w-full flex-col items-center bg-black px-[24px] lg:max-w-[1200px] lg:p-0">
             <div
                 className="absolute flex h-[520px] w-full flex-col justify-end lg:pb-[120px]"
                 style={{
