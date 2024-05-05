@@ -8,7 +8,7 @@ export function MainButton({ children, onClick, className, style }: MainButtonPr
     return (
         <button
             className={
-                'flex items-center justify-center gap-[12px] z-50 rounded-full px-[16px] py-[12px] text-[14px] font-bold text-neutrals9 cursor-pointer ' +
+                'z-50 flex cursor-pointer items-center justify-center gap-[12px] rounded-full px-[16px] py-[12px] text-[14px] font-bold text-neutrals9 ' +
                 className
             }
             style={style || { background: 'var(--line-purple)' }}

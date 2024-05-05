@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { EstimatedRewards } from '@/components/EstimatedRewards/index.js';
 import { ProfileCard } from '@/components/ProfileCard/index.js';
@@ -11,7 +11,7 @@ import { StakeRanking } from '@/components/StakeRanking/index.js';
 export default function Stake() {
     const { address } = useAccount();
     return (
-        <div className="flex h-full flex-col items-center bg-black px-[24px] w-full lg:max-w-[1200px] lg:p-0">
+        <div className="flex h-full w-full flex-col items-center bg-black px-[24px] lg:max-w-[1200px] lg:p-0">
             <div
                 className="absolute flex h-[520px] w-full flex-col justify-end lg:pb-[120px]"
                 style={{
@@ -30,13 +30,14 @@ export default function Stake() {
             </div>
             <div className="h-[520px]" />
             <ProjectDetailCard />
-            {address ?
-                <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4 ">
+            {address ? (
+                <div className="mt-[32px] flex w-full flex-col gap-[24px] lg:grid lg:grid-cols-4 ">
                     <ProfileCard />
                     <StakeCard />
-                    <EstimatedRewards rewardToken='rss3' />
-                    <EstimatedRewards rewardToken='ton' />
-                </div> : null}
+                    <EstimatedRewards rewardToken="rss3" />
+                    <EstimatedRewards rewardToken="ton" />
+                </div>
+            ) : null}
             <div className="mt-[51px] flex w-full flex-col gap-[24px] lg:flex-row">
                 <StakeRanking />
             </div>

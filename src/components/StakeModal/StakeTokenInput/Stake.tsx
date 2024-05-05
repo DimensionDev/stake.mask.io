@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Switch } from '@headlessui/react';
 import { useState } from 'react';
@@ -17,67 +17,77 @@ import { formatEther, parseEther } from 'viem';
 
 export function Stake() {
     const [amount, setAmount] = useState('');
-    const { address } = useAccount()
-    const [allowanceSet, setAllowanceSet] = useState(BigInt(0))
+    const { address } = useAccount();
+    const [allowanceSet, setAllowanceSet] = useState(BigInt(0));
 
     const { data: allowanceFetch } = useSuspenseQuery({
         queryKey: ['allowance'],
         queryFn: async () => {
-            if (!address) return BigInt(0)
+            if (!address) return BigInt(0);
             const res = await readContract({
-                ...MASK_TOKEN_CONTRACT, functionName: 'allowance', args: [address, STAKE_MANAGER_CONTRACT.address]
+                ...MASK_TOKEN_CONTRACT,
+                functionName: 'allowance',
+                args: [address, STAKE_MANAGER_CONTRACT.address],
             });
-            return res
-        }
-    })
+            return res;
+        },
+    });
 
     const { data: balance } = useQuery({
         queryKey: ['balance'],
         queryFn: async () => {
-            if (!address) return '0'
+            if (!address) return '0';
             const res = await readContract({
-                ...MASK_TOKEN_CONTRACT, functionName: 'balanceOf', args: [address]
+                ...MASK_TOKEN_CONTRACT,
+                functionName: 'balanceOf',
+                args: [address],
             });
-            return Number(formatEther(res as bigint)).toFixed(2)
-        }
-    })
+            return Number(formatEther(res as bigint)).toFixed(2);
+        },
+    });
 
     const { data: apyInfo } = useQuery({
         queryKey: ['poolinfo', 'apy'],
         queryFn: async () => {
             const res = stakeAPI.getPoolInfo(POOL_ID);
-            return res
-        }
-    })
+            return res;
+        },
+    });
     const { data: poolInfo } = useQuery({
         queryKey: ['poolinfo'],
         queryFn: async () => {
             const res = await readContract({
-                ...STAKE_MANAGER_CONTRACT, functionName: 'pools', args: [BigInt(POOL_ID)]
+                ...STAKE_MANAGER_CONTRACT,
+                functionName: 'pools',
+                args: [BigInt(POOL_ID)],
             });
 
-            const startTimeStamp = await publicClient({ chainId: IS_TESTNET ? 11155111 : 1 }).getBlock({ blockNumber: res[0] })
-            const endTimeStamp = Number((res[1] - res[0])) * 12 + Number(startTimeStamp.timestamp)
+            const startTimeStamp = await publicClient({ chainId: IS_TESTNET ? 11155111 : 1 }).getBlock({
+                blockNumber: res[0],
+            });
+            const endTimeStamp = Number(res[1] - res[0]) * 12 + Number(startTimeStamp.timestamp);
             return {
                 startTime: new Date(Number(startTimeStamp.timestamp) * 1000),
                 endTime: new Date(endTimeStamp * 1000),
-            }
-        }
-    })
+            };
+        },
+    });
 
-    const allowance = allowanceFetch || allowanceSet
-    console.log('allowance', allowance, parseEther(amount))
+    const allowance = allowanceFetch || allowanceSet;
+    console.log('allowance', allowance, parseEther(amount));
     return (
         <>
             <InputPanel amount={amount} setAmount={setAmount} balance={balance} />
             {/* <SelectLockTime setLockTime={setLockTime} lockTime={lockTime} /> */}
             <div className="flex items-center justify-between text-[16px] text-neutrals4">
                 <div>Unlock MASK Time</div>
-                <div className='text-secondary3 font-bold'>{poolInfo ? dayjs(poolInfo.endTime).format("HH:MM MM/DD/YYYY") : null}</div>
+                <div className="font-bold text-secondary3">
+                    {poolInfo ? dayjs(poolInfo.endTime).format('HH:MM MM/DD/YYYY') : null}
+                </div>
             </div>
             <div className="flex items-center justify-between text-[16px] text-neutrals4">
                 <div>APY</div>
-                <div className='font-bold'> {Math.floor(apyInfo?.data?.apy) || 0}%</div>
+                <div className="font-bold"> {Math.floor(apyInfo?.data?.apy) || 0}%</div>
             </div>
             {/*           
             <div className="flex items-center justify-between text-[16px] text-neutrals4 ">
@@ -97,10 +107,9 @@ export function Stake() {
                 </Switch>
             </div> */}
             <div className="text-[16px] text-primary3">
-                MASK Staking is exclusively open to individual users (excluding users listed in the <span className='underline'>
-                    blacklist</span>).
-                Organizations, companies, or institutions are not allowed to participate. <span className='underline'>
-                    More</span>
+                MASK Staking is exclusively open to individual users (excluding users listed in the{' '}
+                <span className="underline">blacklist</span>). Organizations, companies, or institutions are not allowed
+                to participate. <span className="underline">More</span>
             </div>
             <button
                 style={{ background: 'var(--line-purple)' }}
@@ -109,19 +118,23 @@ export function Stake() {
                 onClick={async () => {
                     if (allowance < parseEther(amount)) {
                         const txHash = await writeContract({
-                            ...MASK_TOKEN_CONTRACT, functionName: 'approve', args: [STAKE_MANAGER_CONTRACT.address, parseEther(amount)]
+                            ...MASK_TOKEN_CONTRACT,
+                            functionName: 'approve',
+                            args: [STAKE_MANAGER_CONTRACT.address, parseEther(amount)],
                         });
-                        console.log('txHash', txHash)
-                        await waitForTransaction({ hash: txHash.hash, chainId: IS_TESTNET ? 11155111 : 1 })
-                        setAllowanceSet(parseEther(amount))
+                        console.log('txHash', txHash);
+                        await waitForTransaction({ hash: txHash.hash, chainId: IS_TESTNET ? 11155111 : 1 });
+                        setAllowanceSet(parseEther(amount));
                     }
                     writeContract({
-                        ...STAKE_MANAGER_CONTRACT, functionName: 'depositAndLock', args: [parseEther(amount)]
+                        ...STAKE_MANAGER_CONTRACT,
+                        functionName: 'depositAndLock',
+                        args: [parseEther(amount)],
                     });
                 }}
             >
-                {amount ? allowance && (allowance >= parseEther(amount)) ? 'Stake' : 'Approve' : 'Enter amount'}
-            </button >
+                {amount ? (allowance && allowance >= parseEther(amount) ? 'Stake' : 'Approve') : 'Enter amount'}
+            </button>
         </>
     );
 }

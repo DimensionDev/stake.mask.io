@@ -11,7 +11,7 @@ export function ConnectXButton() {
         <Account />
     ) : (
         <button
-            className=" flex items-center gap-[4px] rounded-full justify-center px-[24px] py-[8px] text-center text-[14px] font-normal leading-[16px] w-[124px] text-neutrals9"
+            className=" flex w-[124px] items-center justify-center gap-[4px] rounded-full px-[24px] py-[8px] text-center text-[14px] font-normal leading-[16px] text-neutrals9"
             style={{ background: 'var(--line-purple)' }}
             onClick={() => {
                 signIn('twitter');
