@@ -29,7 +29,7 @@ export function ProfileCard() {
     </div>
     <div className="rounded-[16px] h-[130px] flex justify-end items-end p-[16px] flex-col" style={{ background: 'var(--line-purple)' }}>
       <div className="flex flex-col z-50">
-        <div className="text-[32px] text-white">{data?.score}</div>
+        <div className="text-[32px] text-white text-end">{data?.score}</div>
         <div className="text-white/50 text-[16px]">TOTAL POINTS</div>
       </div>
     </div>

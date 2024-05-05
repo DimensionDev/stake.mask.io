@@ -2,6 +2,8 @@
 
 
 import { StakeManagerABI } from '@/abis/stakeManager.js';
+import {erc20ABI as TOKEN_ABI} from '@/abis/erc20.js';
+import {rewardABI as REWARD_ABI} from '@/abis/reward.js';
 
 export const SITE_NAME = 'Stake Your $MASK';
 export const SITE_DESCRIPTION = 'Stake Your $MASK';
@@ -46,3 +48,17 @@ export const STAKE_MANAGER_CONTRACT = {
     abi: StakeManagerABI,
     chainId: IS_TESTNET ? 11155111 : 1,
 };
+
+export const MASK_TOKEN_CONTRACT = {
+    address: IS_TESTNET ? MASK_TOKEN_ADDRESS_TESTNET : MASK_TOKEN_ADDRESS,
+    chainId: IS_TESTNET ? 11155111 : 1,
+    abi: TOKEN_ABI,
+};
+
+export const REWARD_CONTRACT = {
+    address: IS_TESTNET ? REWARD_TEST : REWARD,
+    chainId: IS_TESTNET ? 11155111 : 1,
+    abi: REWARD_ABI,
+};
+
+export const POOL_ID = 1;

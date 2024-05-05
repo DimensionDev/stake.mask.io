@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { InputPanel } from '@/components/StakeTokenInput/InputPanel.js';
+import { InputPanel } from '@/components/StakeModal/StakeTokenInput/InputPanel.js';
 
 export function UnStake() {
     const [amount, setAmount] = useState('');

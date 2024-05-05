@@ -1,7 +1,9 @@
 import { ProjectCard } from '@/components/ProjectCard/index.js';
 import { StakeRanking } from '@/components/StakeRanking/index.js';
+import { redirect } from 'next/navigation.js';
 
 export default function Home() {
+    redirect('/stake');
     return (
         <div className="flex h-full flex-col items-center bg-black px-[24px] lg:max-w-[1024px] lg:p-0">
             <div

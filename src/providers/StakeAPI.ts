@@ -43,7 +43,7 @@ class StakeAPI {
         return response;
     }
 
-    async getPoolInfo(pool_id: string) {
+    async getPoolInfo(pool_id: number) {
         const url = urlcat(BASE_URL, '/pool_info', {
             pool_id,
         });

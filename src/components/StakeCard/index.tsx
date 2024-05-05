@@ -9,9 +9,11 @@ import MASK from '@/assets/logos/mask.svg';
 import { MainButton } from '@/components/MainButton.js';
 import { STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
+import { useStakeModalStore } from '@/store/useStakeModalStore.js';
 
 export function StakeCard() {
   const { address } = useAccount()
+  const setIsOpen = useStakeModalStore((state) => state.setIsOpen)
   const { data, isLoading, isError } = useQuery({
     queryKey: ['stake'],
     queryFn: async () => {
@@ -28,7 +30,7 @@ export function StakeCard() {
     <div className='text-white text-[20px] font-bold'>Staked MASK</div>
     <div className='text-white text-[48px] w-full text-center leading-[48px] '>{data?.stakeAmount ? formatEther(data.stakeAmount) : 0}</div>
     <div className='text-white text-[16px] w-full text-center mb-[12px]'>+3 Points/h</div>
-    <MainButton onClick={() => { }} >
+    <MainButton onClick={() => { setIsOpen(true) }} >
       <MASK width={16} height={16} />
       Stake MASK
     </MainButton>

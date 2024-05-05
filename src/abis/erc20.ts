@@ -74,4 +74,4 @@ export const erc20ABI = [
         ],
         anonymous: false,
     },
-];
+] as const;

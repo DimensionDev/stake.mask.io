@@ -2,7 +2,7 @@
 
 import { Popover } from '@mui/material';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-import {useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useAccount, useBalance } from 'wagmi';
 
 import ETH from '@/assets/logos/eth-black.svg';
@@ -11,7 +11,11 @@ import { WalletInfo } from '@/components/Header/WalletInfo.js';
 import { Image } from '@/esm/Image.js';
 import { formatAddress } from '@/helpers/formatAddress.js';
 
-export function ConnectWalletButton() {
+interface ConnectWalletButtonProps {
+    small?: boolean;
+}
+
+export function ConnectWalletButton({ small = false }: ConnectWalletButtonProps) {
     const { openConnectModal } = useConnectModal();
     const { address, isConnected } = useAccount();
     const { data } = useBalance({ address, formatUnits: 'ether' });
@@ -21,7 +25,7 @@ export function ConnectWalletButton() {
     return (
         <button
             ref={anchorRef}
-            className=" flex items-center gap-[4px] rounded-[99px] p-[2px] pr-[12px] text-center text-[14px] font-normal leading-[22px] text-neutrals9"
+            className={`flex items-center gap-[4px] rounded-[99px] justify-center p-[2px] pr-[6px] text-center text-[14px] font-normal leading-[22px] text-neutrals9 ${small ? 'w-[124px] h-[32px] pr-0' : ''}`}
             style={{ background: 'var(--line-purple)' }}
             onClick={() => {
                 isConnected ? setOpen(!open) : openConnectModal?.();
@@ -56,10 +60,11 @@ export function ConnectWalletButton() {
                 </>
             ) : (
                 <>
-                    <div className={`flex rounded-[99px] p-[8px]`}>
-                        <Image src="/wallet.svg" alt="Wallet" width={20} height={20} />
-                    </div>
-                    <div className="text-[14px] font-bold text-neutrals9">Connect your wallet</div>
+                    {small ? null : (
+                        <div className={`flex rounded-[99px] p-[8px]`}>
+                            <Image src="/wallet.svg" alt="Wallet" width={20} height={20} />
+                        </div>)}
+                    <div className="text-[14px] font-bold text-neutrals9 text-center">{small ? "Connect Wallet" : "Connect your wallet"}</div>
                 </>
             )}
         </button>
