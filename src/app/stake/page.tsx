@@ -33,13 +33,14 @@ export default function Stake() {
             </div>
             <div className="h-[520px]" />
             <ProjectDetailCard setIsOpen={setIsOpen} />
-            {address ?
-                <div className="flex w-full flex-col gap-[24px] mt-[32px] lg:grid lg:grid-cols-4 ">
+            {address ? (
+                <div className="mt-[32px] flex w-full flex-col gap-[24px] lg:grid lg:grid-cols-4 ">
                     <ProfileCard />
                     <StakeCard setIsOpen={setIsOpen} />
-                    <EstimatedRewards rewardToken='rss3' />
-                    <EstimatedRewards rewardToken='ton' />
-                </div> : null}
+                    <EstimatedRewards rewardToken="rss3" />
+                    <EstimatedRewards rewardToken="ton" />
+                </div>
+            ) : null}
             <div className="mt-[51px] flex w-full flex-col gap-[24px] lg:flex-row">
                 <StakeRanking />
             </div>

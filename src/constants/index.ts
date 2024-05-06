@@ -1,8 +1,7 @@
 /* cspell:disable */
 
-
-import {erc20ABI as TOKEN_ABI} from '@/abis/erc20.js';
-import {rewardABI as REWARD_ABI} from '@/abis/reward.js';
+import { erc20ABI as TOKEN_ABI } from '@/abis/erc20.js';
+import { rewardABI as REWARD_ABI } from '@/abis/reward.js';
 import { StakeManagerABI } from '@/abis/stakeManager.js';
 
 export const SITE_NAME = 'Stake Your $MASK';

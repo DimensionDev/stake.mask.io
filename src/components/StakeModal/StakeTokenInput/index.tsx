@@ -55,9 +55,7 @@ export function StakeTokenInput({ onClose }: StakeTokenInputProps) {
                     )}
                     <div className="text-sm font-bold text-neutrals1">Link X</div>
                 </div>
-                {
-                    status !== 'authenticated' ? <ConnectXButton /> : null
-                }
+                {status !== 'authenticated' ? <ConnectXButton /> : null}
             </div>
             <Stake />
         </div>

@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { formatEther, parseEther } from 'viem';
 import { useAccount } from 'wagmi';
-import { readContract, waitForTransaction,writeContract  } from 'wagmi/actions';
+import { readContract, waitForTransaction, writeContract } from 'wagmi/actions';
 
 import { InputPanel } from '@/components/StakeModal/StakeTokenInput/InputPanel.js';
 import { publicClient } from '@/configs/wagmiClient.js';
