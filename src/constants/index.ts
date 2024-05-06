@@ -43,7 +43,7 @@ export const REWARD = '0xf0c196d1b1489738cda956e994e82ef6897e85bc' as `0x${strin
 export const BASE_URL = 'https://masknetwork-dev.firefly.land/v1/mask_stake';
 
 export const IS_TESTNET = process.env.NEXT_PUBLIC_TEST;
-export const CHAIN_ID = IS_TESTNET ? sepolia.id : mainnet.id
+export const CHAIN_ID = IS_TESTNET ? sepolia.id : mainnet.id;
 
 export const STAKE_MANAGER_CONTRACT = {
     address: IS_TESTNET ? STAKE_MANAGER_TEST : STAKE_MANAGER,

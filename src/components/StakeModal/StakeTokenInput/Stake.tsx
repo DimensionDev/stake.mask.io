@@ -75,13 +75,14 @@ export function Stake() {
     return (
         <>
             <InputPanel amount={amount} setAmount={setAmount} balance={balance} />
-            {poolInfo ?
+            {poolInfo ? (
                 <div className="flex items-center justify-between text-[16px] text-neutrals4">
                     <div>Unlock MASK Time</div>
                     <div className="font-bold text-secondary3">
                         {dayjs(poolInfo.endTime).format('HH:MM MM/DD/YYYY')}
                     </div>
-                </div> : null}
+                </div>
+            ) : null}
             <div className="flex items-center justify-between text-[16px] text-neutrals4">
                 <div>APY</div>
                 <div className="font-bold"> {Math.floor(apyInfo?.data?.apy) || 0}%</div>
