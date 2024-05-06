@@ -97,7 +97,10 @@
         "rabby",
         "rarible",
         "rpid",
-        "simplehash"
+        "simplehash",
+        "leaderboard",
+        "poolinfo",
+        "Unstake"
     ],
     "flagWords": [],
     "ignorePaths": [
