@@ -2,7 +2,8 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import { StakeTokenInput } from './StakeTokenInput/index.js';
+
+import { StakeTokenInput } from '@/components/StakeModal/StakeTokenInput/index.js';
 
 
 interface StakeModalProps {
