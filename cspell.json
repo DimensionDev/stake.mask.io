@@ -120,7 +120,8 @@
         ".next/**",
         "public/**",
         "src/assets/**",
-        "src/locales/**"
+        "src/locales/**",
+        "src/abis/**"
     ],
     "overrides": []
 }
