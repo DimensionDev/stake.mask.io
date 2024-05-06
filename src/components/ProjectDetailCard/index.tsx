@@ -11,9 +11,10 @@ import Ton from '@/assets/logos/ton.svg';
 import RightArrow from '@/assets/rightArrow.svg';
 import { MainButton } from '@/components/MainButton.js';
 import { publicClient } from '@/configs/wagmiClient.js';
-import { IS_TESTNET, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { CHAIN_ID, IS_TESTNET, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
+import { sepolia, mainnet } from 'wagmi';
 
 interface ProjectCardProps {
     setIsOpen: (isOpen: boolean) => void;
@@ -36,7 +37,7 @@ export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
                 args: [BigInt(POOL_ID)],
             });
 
-            const startTimeStamp = await publicClient({ chainId: IS_TESTNET ? 11155111 : 1 }).getBlock({
+            const startTimeStamp = await publicClient({ chainId: CHAIN_ID }).getBlock({
                 blockNumber: res[0],
             });
             const endTimeStamp = Number(res[1] - res[0]) * 12 + Number(startTimeStamp.timestamp);
@@ -114,7 +115,6 @@ export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
                     }}
                 >
                     <div className="text-[32px] font-semibold text-neutrals8">
-                        {' '}
                         {Math.floor(apyInfo?.data?.apy) || 0}%
                     </div>
                     <div className="text-[14px] font-bold text-neutrals6">APY</div>
@@ -127,7 +127,6 @@ export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
                     }}
                 >
                     <div className="flex items-center gap-[4px] text-[32px] font-semibold text-neutrals8">
-                        {' '}
                         {Math.floor(apyInfo?.data?.amount) || 0}
                         <Mask width={36} height={36} />
                     </div>

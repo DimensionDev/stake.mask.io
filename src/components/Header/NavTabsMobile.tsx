@@ -16,7 +16,7 @@ export function NavTabsMobile() {
     return (
         <nav className="absolute mt-[128px] flex flex-col gap-[36px] self-start lg:hidden" aria-label="Global">
             {navigation.map((item) => (
-                <div className="flex h-[64px] items-center gap-[30px]">
+                <div className="flex h-[64px] items-center gap-[30px]" key={item.path}>
                     <div
                         className={`h-full w-[2px]`}
                         style={{ background: pathname === item.path ? 'var(--line-purple)' : 'transparent' }}

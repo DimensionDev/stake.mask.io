@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className + ' relative'}>
+            <body className={`${inter.className} relative`}>
                 <Providers>
                     <Header />
                     <div className="flex min-h-screen w-full justify-center bg-black">{children}</div>

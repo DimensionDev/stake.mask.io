@@ -11,14 +11,14 @@ const navigation = [
     { name: 'About', path: '/about' },
 ];
 
-export interface NavigationHeaderProps {}
+export interface NavigationHeaderProps { }
 
 export function NavTabs() {
     const pathname = usePathname();
     return (
         <nav className="full ml-[32px] hidden items-center gap-[36px] lg:flex" aria-label="Global">
             {navigation.map((item) => (
-                <div className="flex flex-col gap-[1px]">
+                <div className="flex flex-col gap-[1px]" key={item.path}>
                     <Link
                         className={`text-[14px] font-bold leading-[16px] ${pathname === item.path ? 'text-neutrals1' : 'text-neutrals5'} transition-colors duration-200 hover:text-neutrals1`}
                         key={item.path}
