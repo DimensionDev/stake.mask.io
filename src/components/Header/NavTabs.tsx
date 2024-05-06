@@ -11,7 +11,7 @@ const navigation = [
     { name: 'About', path: '/about' },
 ];
 
-export interface NavigationHeaderProps { }
+export interface NavigationHeaderProps {}
 
 export function NavTabs() {
     const pathname = usePathname();
