@@ -1,9 +1,10 @@
 /* cspell:disable */
 
+import { mainnet,sepolia } from 'wagmi';
+
 import { erc20ABI as TOKEN_ABI } from '@/abis/erc20.js';
 import { rewardABI as REWARD_ABI } from '@/abis/reward.js';
 import { StakeManagerABI } from '@/abis/stakeManager.js';
-import { sepolia, mainnet } from 'wagmi';
 
 export const SITE_NAME = 'Stake Your $MASK';
 export const SITE_DESCRIPTION = 'Stake Your $MASK';

@@ -11,10 +11,9 @@ import Ton from '@/assets/logos/ton.svg';
 import RightArrow from '@/assets/rightArrow.svg';
 import { MainButton } from '@/components/MainButton.js';
 import { publicClient } from '@/configs/wagmiClient.js';
-import { CHAIN_ID, IS_TESTNET, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { CHAIN_ID, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
-import { sepolia, mainnet } from 'wagmi';
 
 interface ProjectCardProps {
     setIsOpen: (isOpen: boolean) => void;

@@ -9,7 +9,7 @@ import { readContract, waitForTransaction, writeContract } from 'wagmi/actions';
 
 import { InputPanel } from '@/components/StakeModal/StakeTokenInput/InputPanel.js';
 import { publicClient } from '@/configs/wagmiClient.js';
-import { CHAIN_ID, IS_TESTNET, MASK_TOKEN_CONTRACT, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
+import { CHAIN_ID, MASK_TOKEN_CONTRACT, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
 
 export function Stake() {
