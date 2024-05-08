@@ -1,6 +1,6 @@
 /* cspell:disable */
 
-import { mainnet,sepolia } from 'wagmi';
+import { mainnet, sepolia } from 'wagmi';
 
 import { erc20ABI as TOKEN_ABI } from '@/abis/erc20.js';
 import { rewardABI as REWARD_ABI } from '@/abis/reward.js';
