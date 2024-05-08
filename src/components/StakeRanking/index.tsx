@@ -41,13 +41,6 @@ export function StakeRanking() {
             />
             <div className="z-10 text-[24px] font-bold text-neutrals2">Staking Ranking</div>
             <div className="z-10 mt-[64px] flex w-full items-center justify-center">
-<<<<<<< HEAD
-                {rankingList?.length ? <TopStaker
-                        avatar={rankingList[0]?.twitter_image || '/maskAvatar.svg'}
-                        name={rankingList[0]?.twitter_display_name || formatAddress(rankingList[0].address)}
-                        amount={Number(rankingList[0]?.stake_amount) || 0}
-                    /> : null}
-=======
                 {rankingList?.length && (
                     <TopStaker
                         avatar={rankingList[0]?.twitter_image || '/maskAvatar.svg'}
@@ -55,7 +48,6 @@ export function StakeRanking() {
                         amount={Number(rankingList[0]?.stake_amount) || 0}
                     />
                 )}
->>>>>>> 1622411913cfa06855ddd3de6f4f4250bf5aa55a
             </div>
             <div className="mt-[28px] grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-[28px]">
                 {rankingList
