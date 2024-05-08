@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { Staker } from '@/components/StakeRanking/Staker.js';
 import { TopStaker } from '@/components/StakeRanking/TopStaker.js';
@@ -40,22 +40,25 @@ export function StakeRanking() {
             />
             <div className="z-10 text-[24px] font-bold text-neutrals2">Staking Ranking</div>
             <div className="z-10 mt-[64px] flex w-full items-center justify-center">
-                {rankingList?.length &&
+                {rankingList?.length && (
                     <TopStaker
                         avatar={rankingList[0]?.twitter_image || '/maskAvatar.svg'}
                         name={rankingList[0]?.twitter_display_name || formatAddress(rankingList[0].address)}
                         amount={Number(rankingList[0]?.stake_amount) || 0}
-                    />}
+                    />
+                )}
             </div>
             <div className="mt-[28px] grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-[28px]">
-                {rankingList?.slice(1).map((item, index) => (
-                    <Staker
-                        key={index + 1}
-                        avatar={item.twitter_image || '/maskAvatar.svg'}
-                        name={item.twitter_display_name || formatAddress(item.address)}
-                        amount={Number(item.stake_amount) || 0}
-                    />
-                ))}
+                {rankingList
+                    ?.slice(1)
+                    .map((item, index) => (
+                        <Staker
+                            key={index + 1}
+                            avatar={item.twitter_image || '/maskAvatar.svg'}
+                            name={item.twitter_display_name || formatAddress(item.address)}
+                            amount={Number(item.stake_amount) || 0}
+                        />
+                    ))}
             </div>
         </div>
     );
