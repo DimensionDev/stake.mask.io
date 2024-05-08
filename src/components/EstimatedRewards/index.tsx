@@ -7,7 +7,7 @@ import { writeContract } from 'wagmi/actions';
 import RSS3 from '@/assets/logos/rss3.svg';
 import TON from '@/assets/logos/ton.svg';
 import { MainButton } from '@/components/MainButton.js';
-import { POOL_ID,REWARD_CONTRACT  } from '@/constants/index.js';
+import { POOL_ID, REWARD_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
 
