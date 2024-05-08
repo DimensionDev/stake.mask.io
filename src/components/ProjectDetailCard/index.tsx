@@ -1,6 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import { useMemo } from 'react';
 import { readContract } from 'wagmi/actions';
 
@@ -14,7 +15,6 @@ import { publicClient } from '@/configs/wagmiClient.js';
 import { CHAIN_ID, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
-import dayjs from 'dayjs';
 
 interface ProjectCardProps {
     setIsOpen: (isOpen: boolean) => void;

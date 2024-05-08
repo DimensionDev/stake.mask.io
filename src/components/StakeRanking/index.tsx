@@ -1,12 +1,13 @@
 "use client"
 
+import { useQuery } from '@tanstack/react-query';
+
 import { Staker } from '@/components/StakeRanking/Staker.js';
 import { TopStaker } from '@/components/StakeRanking/TopStaker.js';
 import { POOL_ID } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { formatAddress } from '@/helpers/formatAddress.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
-import { useQuery } from '@tanstack/react-query';
 
 export function StakeRanking() {
     const { data: rankingList } = useQuery({
@@ -40,12 +41,11 @@ export function StakeRanking() {
             />
             <div className="z-10 text-[24px] font-bold text-neutrals2">Staking Ranking</div>
             <div className="z-10 mt-[64px] flex w-full items-center justify-center">
-                {rankingList?.length &&
-                    <TopStaker
+                {rankingList?.length ? <TopStaker
                         avatar={rankingList[0]?.twitter_image || '/maskAvatar.svg'}
                         name={rankingList[0]?.twitter_display_name || formatAddress(rankingList[0].address)}
                         amount={Number(rankingList[0]?.stake_amount) || 0}
-                    />}
+                    /> : null}
             </div>
             <div className="mt-[28px] grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-[28px]">
                 {rankingList?.slice(1).map((item, index) => (

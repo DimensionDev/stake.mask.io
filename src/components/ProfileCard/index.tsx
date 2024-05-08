@@ -3,10 +3,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useAccount } from 'wagmi';
 
+import { POOL_ID } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { formatAddress } from '@/helpers/formatAddress.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
-import { POOL_ID } from '@/constants/index.js';
 
 export function ProfileCard() {
     const { address } = useAccount();
