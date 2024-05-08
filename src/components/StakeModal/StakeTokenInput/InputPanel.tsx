@@ -23,8 +23,9 @@ export function InputPanel({ amount, setAmount, balance }: InputPanelProps) {
                 </div>
                 <InputBase
                     placeholder="0"
+                    type='number'
                     className="w-full !text-[40px] !font-bold !text-neutrals2"
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={(e) => { setAmount(e.target.value) }}
                     value={amount}
                 />
                 <div className="flex flex-col items-end gap-[18px]">

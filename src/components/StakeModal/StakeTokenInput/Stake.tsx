@@ -33,7 +33,7 @@ export function Stake() {
     const { data: balance } = useQuery({
         queryKey: ['balance', address],
         queryFn: async () => {
-            if (!address) return '0';
+            if (!address) return;
             const res = await readContract({
                 ...MASK_TOKEN_CONTRACT,
                 functionName: 'balanceOf',

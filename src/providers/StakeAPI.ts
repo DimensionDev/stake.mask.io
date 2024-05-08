@@ -21,12 +21,12 @@ type RankingItem = {
     twitter_username: string;
 };
 
-interface RankingListResponse{
+interface RankingListResponse {
     code: number;
     data: {
-        list: RankingItem[]
-        page:{cursor: string}
-    }
+        list: RankingItem[];
+        page: { cursor: string };
+    };
     message: string;
     reason: string;
 }
