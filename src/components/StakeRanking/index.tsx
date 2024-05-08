@@ -1,8 +1,21 @@
+"use client"
+
 import { Staker } from '@/components/StakeRanking/Staker.js';
 import { TopStaker } from '@/components/StakeRanking/TopStaker.js';
+import { POOL_ID } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
+import { formatAddress } from '@/helpers/formatAddress.js';
+import { stakeAPI } from '@/providers/StakeAPI.js';
+import { useQuery } from '@tanstack/react-query';
 
 export function StakeRanking() {
+    const { data: rankingList } = useQuery({
+        queryKey: ['ranking', POOL_ID],
+        queryFn: async () => {
+            const res = await stakeAPI.getRankingList(POOL_ID);
+            return res.data.list;
+        },
+    });
     return (
         <div className="relative flex w-full flex-col rounded-[16px] border-[1px] border-neutrals6 p-[16px]">
             <Image
@@ -27,20 +40,20 @@ export function StakeRanking() {
             />
             <div className="z-10 text-[24px] font-bold text-neutrals2">Staking Ranking</div>
             <div className="z-10 mt-[64px] flex w-full items-center justify-center">
-                <TopStaker
-                    avatar="https://pbs.twimg.com/profile_images/1745828800531992576/pVBm-qbm_400x400.jpg"
-                    name="ddd009"
-                    amount={100}
-                />
+                {rankingList?.length &&
+                    <TopStaker
+                        avatar={rankingList[0]?.twitter_image || '/maskAvatar.svg'}
+                        name={rankingList[0]?.twitter_display_name || formatAddress(rankingList[0].address)}
+                        amount={Number(rankingList[0]?.stake_amount) || 0}
+                    />}
             </div>
             <div className="mt-[28px] grid grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-[28px]">
-                {new Array(30).fill(0).map((_, index) => (
+                {rankingList?.slice(1).map((item, index) => (
                     <Staker
-                        key={index}
-                        isTop={index < 3}
-                        avatar="https://pbs.twimg.com/profile_images/1745828800531992576/pVBm-qbm_400x400.jpg"
-                        name="ddd009"
-                        amount={100}
+                        key={index + 1}
+                        avatar={item.twitter_image || '/maskAvatar.svg'}
+                        name={item.twitter_display_name || formatAddress(item.address)}
+                        amount={Number(item.stake_amount) || 0}
                     />
                 ))}
             </div>

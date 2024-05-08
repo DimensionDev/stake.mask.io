@@ -10,6 +10,27 @@ interface Response {
     reason: string;
 }
 
+type RankingItem = {
+    address: string;
+    score: number;
+    stake_amount: string;
+    twitter_display_name: string;
+    twitter_id: string;
+    twitter_image: string;
+    twitter_name: string;
+    twitter_username: string;
+};
+
+interface RankingListResponse{
+    code: number;
+    data: {
+        list: RankingItem[]
+        page:{cursor: string}
+    }
+    message: string;
+    reason: string;
+}
+
 class StakeAPI {
     async bindTwitter(original_message: string, signature_message: string, wallet_address: string) {
         const url = urlcat(BASE_URL, '/twitter/authorize', {
@@ -53,7 +74,7 @@ class StakeAPI {
         return response;
     }
 
-    async getUserInfo(address: string, pool_id: string) {
+    async getUserInfo(address: string, pool_id: number) {
         const url = urlcat(BASE_URL, '/user_info', {
             address,
             pool_id,
@@ -64,12 +85,11 @@ class StakeAPI {
         return response;
     }
 
-    async getUserInfO(address: string, pool_id: string) {
-        const url = urlcat(BASE_URL, '/user_info', {
-            address,
+    async getRankingList(pool_id: number) {
+        const url = urlcat(BASE_URL, '/rank', {
             pool_id,
         });
-        const response = await fetchJSON(url, {
+        const response = await fetchJSON<RankingListResponse>(url, {
             method: 'GET',
         });
         return response;

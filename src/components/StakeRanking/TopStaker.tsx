@@ -1,5 +1,6 @@
 import Crown from '@/assets/crown.svg';
 import { Image } from '@/esm/Image.js';
+import { nFormatter } from '@/helpers/formatCommentCounts.js';
 
 interface StakerProps {
     amount: number;
@@ -22,7 +23,7 @@ export function TopStaker({ amount, name, avatar }: StakerProps) {
                 className="absolute bottom-5 flex items-center justify-center gap-[4px] rounded-[99px] px-[10px] py-[6px] text-[14px] font-bold text-neutrals9"
                 style={{ background: 'var(--line-purple)' }}
             >
-                {amount} PTS
+                {nFormatter(amount, 0)} PTS
             </div>
             <div className=" text-[12px] text-neutrals1">{name}</div>
         </div>

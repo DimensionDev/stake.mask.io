@@ -6,13 +6,14 @@ import { useAccount } from 'wagmi';
 import { Image } from '@/esm/Image.js';
 import { formatAddress } from '@/helpers/formatAddress.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
+import { POOL_ID } from '@/constants/index.js';
 
 export function ProfileCard() {
     const { address } = useAccount();
     const { data, isLoading, isError } = useQuery({
         queryKey: ['profile', address],
         queryFn: async () => {
-            const { data } = await stakeAPI.getUserInfo(address as string, '1');
+            const { data } = await stakeAPI.getUserInfo(address as string, POOL_ID);
             return data;
         },
     });

@@ -10,6 +10,7 @@ import { MainButton } from '@/components/MainButton.js';
 import { REWARD_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
+import { POOL_ID } from '@/constants/index.js';
 
 interface EstimatedRewardsProps {
     rewardToken: string;
@@ -17,10 +18,10 @@ interface EstimatedRewardsProps {
 
 export function EstimatedRewards({ rewardToken }: EstimatedRewardsProps) {
     const { address } = useAccount();
-    const { data, isLoading, isError } = useQuery({
+    const { data } = useQuery({
         queryKey: ['profile', address],
         queryFn: async () => {
-            const { data } = await stakeAPI.getUserInfo(address as string, '1');
+            const { data } = await stakeAPI.getUserInfo(address as string, POOL_ID);
             return data;
         },
     });
