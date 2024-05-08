@@ -14,6 +14,7 @@ import { publicClient } from '@/configs/wagmiClient.js';
 import { CHAIN_ID, POOL_ID, STAKE_MANAGER_CONTRACT } from '@/constants/index.js';
 import { Image } from '@/esm/Image.js';
 import { stakeAPI } from '@/providers/StakeAPI.js';
+import dayjs from 'dayjs';
 
 interface ProjectCardProps {
     setIsOpen: (isOpen: boolean) => void;
@@ -78,7 +79,7 @@ export function ProjectDetailCard({ setIsOpen }: ProjectCardProps) {
                     <div className="text-[20px] font-bold leading-[28px] text-neutrals9">
                         Time:{' '}
                         {poolInfo
-                            ? `${poolInfo.startTime.toLocaleDateString()} - ${poolInfo.endTime.toLocaleDateString()}`
+                            ? `${dayjs(poolInfo.endTime).format('MM/DD YYYY')} ~ ${dayjs(poolInfo.endTime).format('MM/DD YYYY')}`
                             : ''}
                     </div>
                 </div>

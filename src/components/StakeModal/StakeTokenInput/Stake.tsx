@@ -50,6 +50,7 @@ export function Stake() {
             return res;
         },
     });
+
     const { data: poolInfo } = useQuery({
         queryKey: ['poolinfo'],
         queryFn: async () => {
