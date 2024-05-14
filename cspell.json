@@ -2,7 +2,18 @@
     "version": "0.1",
     "language": "en",
     "words": [],
-    "ignoreWords": [],
+    "ignoreWords": [
+        "Lingui",
+        "lingui",
+        "rainbowkit",
+        "viem",
+        "Wagmi",
+        "wagmi",
+        "rabby",
+        "multicall",
+        "Chakra",
+        "chakra"
+    ],
     "flagWords": [],
     "ignorePaths": [
         "pnpm-lock.yaml",
@@ -16,7 +27,8 @@
         "public/**",
         "src/assets/**",
         "src/locales/**",
-        "tests/**"
+        "tests/**",
+        "src/routeTree.gen.ts"
     ],
     "overrides": []
 }
