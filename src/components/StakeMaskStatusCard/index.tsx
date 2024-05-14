@@ -27,7 +27,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
 }) => {
   return (
     <Box
-      maxW="1244px"
+      maxW="maxW"
       w="100%"
       pos="relative"
       _before={{

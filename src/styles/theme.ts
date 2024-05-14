@@ -11,6 +11,9 @@ export const theme = extendBaseTheme({
     Button,
     Tabs,
   },
+  sizes: {
+    maxW: '1244px',
+  },
   colors: {
     black: '#000000',
     neutrals: {

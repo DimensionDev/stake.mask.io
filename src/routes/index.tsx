@@ -27,13 +27,14 @@ function Index() {
       </AspectRatio>
       <Flex
         mt="-5vw"
-        px="48px"
+        px={{ base: '24px', md: '48px' }}
+        transition="200ms"
         pb="100px"
         direction="column"
         w="100%"
         align="center"
       >
-        <VStack spacing={3} zIndex={1} textAlign="center">
+        <VStack spacing={3} zIndex={1} textAlign="center" maxW="maxW">
           <Heading
             fontSize="36px"
             fontWeight="600"
