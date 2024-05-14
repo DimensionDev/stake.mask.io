@@ -13,10 +13,18 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/routes/index.tsx
-msgid "Test Button"
+#: src/components/Nav/index.tsx
+msgid "About"
 msgstr ""
 
-#: src/routes/index.tsx
-msgid "Test Text"
+#: src/components/Nav/index.tsx
+msgid "FAQs"
+msgstr ""
+
+#: src/components/Nav/index.tsx
+msgid "Stake"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Stake Mask"
 msgstr ""
