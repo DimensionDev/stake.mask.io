@@ -14,7 +14,7 @@ import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
 function Index() {
   return (
     <Flex direction="column" w="100%" pos="relative" align="center">
-      <Nav pos="absolute" top={0} left={0} zIndex={1} />
+      <Nav pos="fixed" top={0} left={0} zIndex={999} />
       <AspectRatio ratio={1440 / 520} w="full">
         <Image
           src={HomeTopImage}

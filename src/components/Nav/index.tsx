@@ -15,6 +15,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
       bg="rgba(0, 0, 0, 0.10)"
       backdropFilter="blur(10px)"
       transform="translate3d(0, 0, 0)" // use gpu to render blur
+      borderBottom="1px solid rgba(255, 255, 255, 0.1)"
       {...props}
     >
       <Flex p={5} align="center" w="100%" h="inherit" maxW="1440px">

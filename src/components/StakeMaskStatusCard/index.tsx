@@ -109,7 +109,6 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             bg="rgba(255, 255, 255, 0.1)"
             h={{ base: 'auto', md: '152px' }}
             shadow="card"
-            backdropFilter="blur(10px)"
             p={6}
             spacing={6}
           >
@@ -157,7 +156,6 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             bg="rgba(255, 255, 255, 0.1)"
             h="152px"
             shadow="card"
-            backdropFilter="blur(10px)"
             p={6}
             spacing={6}
           >
@@ -185,7 +183,6 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             bg="rgba(255, 255, 255, 0.1)"
             h="152px"
             shadow="card"
-            backdropFilter="blur(10px)"
             p={6}
             spacing={6}
           >
