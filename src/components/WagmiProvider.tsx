@@ -1,6 +1,6 @@
 import '@rainbow-me/rainbowkit/styles.css'
 
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { polygon } from 'viem/chains'
 import { WagmiProvider as WagmiConfig } from 'wagmi'
 import { config } from '../configs/wagmiClient.ts'
@@ -17,6 +17,7 @@ export function WagmiProvider(props: WagmiProviderProps) {
         locale={resolveRainbowKitLocale(Locale.en)}
         initialChain={polygon}
         showRecentTransactions
+        theme={darkTheme()}
       >
         {props.children}
       </RainbowKitProvider>

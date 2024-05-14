@@ -1,1 +1,1 @@
-/*eslint-disable*/import type{Messages}from"@lingui/core";export const messages:Messages=JSON.parse("{\"p6UGtk\":\"Test Button\",\"mnIQMv\":\"Test Text\"}");
+/*eslint-disable*/import type{Messages}from"@lingui/core";export const messages:Messages=JSON.parse("{\"uyJsf6\":\"About\",\"aJ4pMe\":\"FAQs\",\"JYKRJS\":\"Stake\",\"dy48iv\":\"Stake Mask\"}");
