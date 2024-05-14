@@ -1,16 +1,13 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 
-function createURL(pathToFile: string) {
-    return new URL(pathToFile, import.meta.url).pathname;
-}
-
+// https://vitejs.dev/config/
 export default defineConfig({
-    test: {
-        include: ['./tests/**/*.ts'],
-        exclude: ['./tests/**/*.d.ts'],
-        alias: {
-            '@': createURL('./src'),
-        },
-        setupFiles: ['./setups/index.ts'],
-    },
-});
+  plugins: [
+    react({
+      plugins: [['@lingui/swc-plugin', {}]],
+    }),
+    TanStackRouterVite(),
+  ],
+})
