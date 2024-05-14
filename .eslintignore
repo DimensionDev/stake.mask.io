@@ -1,7 +1,0 @@
-next.config.js
-lingui.config.js
-postcss.config.cjs
-tailwind.config.cjs
-
-src/locales/**/*.mjs
-public/js
