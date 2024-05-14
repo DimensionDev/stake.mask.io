@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@8.10.4",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,7 +11,8 @@
     "preview": "vite preview",
     "lingui:compile": "lingui compile",
     "lingui:extract": "NODE_ENV=development lingui extract --clean",
-    "lingui": "pnpm run lingui:extract && pnpm run lingui:compile"
+    "lingui": "pnpm run lingui:extract && pnpm run lingui:compile",
+    "test": "vitest"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -51,6 +53,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
   }
 }

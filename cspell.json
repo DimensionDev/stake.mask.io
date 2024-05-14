@@ -15,7 +15,8 @@
         ".next/**",
         "public/**",
         "src/assets/**",
-        "src/locales/**"
+        "src/locales/**",
+        "tests/**"
     ],
     "overrides": []
 }
