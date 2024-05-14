@@ -12,7 +12,12 @@
         "rabby",
         "multicall",
         "Chakra",
-        "chakra"
+        "chakra",
+        "svgr",
+        "Segoe",
+        "fontsource",
+        "tablist",
+        "Roboto"
     ],
     "flagWords": [],
     "ignorePaths": [
