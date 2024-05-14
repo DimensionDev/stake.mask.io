@@ -17,6 +17,10 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "ARP"
+msgstr ""
+
 #: src/components/Nav/index.tsx
 msgid "FAQs"
 msgstr ""
@@ -27,4 +31,16 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Stake Mask"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes."
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Total MASK Staked"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Total Rewards"
 msgstr ""
