@@ -7,6 +7,7 @@ import { I18nProvider } from '@lingui/react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from './components/WagmiProvider.tsx'
 import { queryClient } from './configs/queryClient.ts'
+import { Modals } from './modals/index.tsx'
 import { routeTree } from './routeTree.gen'
 import { theme } from './styles/theme.ts'
 
@@ -26,6 +27,7 @@ export function App() {
           <QueryClientProvider client={queryClient}>
             <WagmiProvider>
               <RouterProvider router={router} />
+              <Modals />
             </WagmiProvider>
           </QueryClientProvider>
         </ChakraBaseProvider>

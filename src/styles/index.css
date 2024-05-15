@@ -58,3 +58,7 @@ button,
 *:active {
   -webkit-tap-highlight-color: transparent;
 }
+
+.stake-form:focus-within .input-box {
+  border-color: #3182ce;
+}

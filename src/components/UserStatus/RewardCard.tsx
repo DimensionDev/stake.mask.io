@@ -3,6 +3,7 @@ import { t } from '@lingui/macro'
 import { ActionCard, ActionCardProps } from './ActionCard'
 
 import { mainnet } from 'viem/chains'
+import { TokenIcon } from '../TokenIcon'
 
 interface Props extends ActionCardProps {}
 console.log({ mainnet })
@@ -13,23 +14,7 @@ export function RewardCard(props: Props) {
       <Stack alignItems="center" flexGrow={1}>
         <HStack alignItems="center" my="auto" flexGrow={1}>
           <Box width={12} height={12} pos="relative">
-            <Image
-              src={new URL('../../assets/mask-logo.svg', import.meta.url).href}
-              rounded="50%"
-              width={12}
-              height={12}
-            />
-            <Image
-              src={new URL('../../assets/mask-logo.svg', import.meta.url).href}
-              rounded="50%"
-              pos="absolute"
-              right={-1}
-              bottom={0}
-              width={4}
-              height={4}
-              border="1px solid"
-              borderColor="neutrals.6"
-            />
+            <TokenIcon />
           </Box>
           <Stack ml="10px">
             <Text fontSize={24} fontWeight={700} lineHeight="24px">

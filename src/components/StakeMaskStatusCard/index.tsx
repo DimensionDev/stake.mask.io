@@ -1,25 +1,26 @@
-import { FC } from 'react'
 import {
   Box,
   BoxProps,
+  Button,
+  Flex,
   Grid,
+  HStack,
   Heading,
   Icon,
-  VStack,
-  Text,
-  Flex,
   Stack,
-  HStack,
-  Button,
+  Text,
+  VStack,
 } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import No1SVG from '../../assets/no-1.svg?react'
+import { FC } from 'react'
 import MaskLogoSVG from '../../assets/mask-logo.svg?react'
+import No1SVG from '../../assets/no-1.svg?react'
+import PlusSVG from '../../assets/plus.svg?react'
+import QuestionSVG from '../../assets/question.svg?react'
 import RightArrow from '../../assets/right-arrow.svg?react'
 import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
 import TonEthSVG from '../../assets/ton-eth.svg?react'
-import PlusSVG from '../../assets/plus.svg?react'
-import QuestionSVG from '../../assets/question.svg?react'
+import { stakeModal } from '../../modals/index.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
@@ -231,6 +232,9 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             rounded={24}
             leftIcon={<Icon as={MaskLogoSVG} width={6} height={6} />}
             rightIcon={<Icon as={RightArrow} width={6} height={6} />}
+            onClick={() => {
+              stakeModal.show()
+            }}
           >
             {t`Stake Mask Now`}
           </Button>
