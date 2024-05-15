@@ -13,7 +13,6 @@ export function UserStatus(props: UserStatusProps) {
   const { address } = useAccount()
   const store = usePoolStore()
   const { data } = useUserInfo(address, store.poolId)
-  // const data = null
 
   if (!data)
     return (
