@@ -1,42 +1,84 @@
 import type { FC } from 'react'
-import { Center, FlexProps, Tab, TabList, Tabs } from '@chakra-ui/react'
+import {
+  Center,
+  FlexProps,
+  useBreakpointValue,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { Flex, Icon, Divider } from '@chakra-ui/react'
 import LogoSVG from '../../assets/logo.svg?react'
 import { t } from '@lingui/macro'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { MenuButton } from './MenuButton.tsx'
+import { MobileMenu } from './MobileMenu.tsx'
+import { DesktopMenu } from './DesktopMenu.tsx'
 
 export interface NavProps extends FlexProps {}
 
+const menus = [
+  {
+    label: t`Stake`,
+    path: '/',
+  },
+  {
+    label: t`FAQs`,
+    path: '/faqs',
+  },
+  {
+    label: t`About`,
+    path: '/about',
+  },
+]
+
 export const Nav: FC<NavProps> = ({ ...props }) => {
+  const isHiddenTabs = useBreakpointValue({ base: true, lg: false })
+  const mobileMenu = useDisclosure()
+
   return (
     <Center
       w="100%"
-      h="80px"
-      bg="rgba(0, 0, 0, 0.10)"
-      backdropFilter="blur(10px)"
-      transform="translate3d(0, 0, 0)" // use gpu to render blur
-      borderBottom="1px solid rgba(255, 255, 255, 0.1)"
+      h={{ base: '107px', lg: '80px' }}
+      borderBottom={{ base: 'none', lg: '1px solid rgba(255, 255, 255, 0.1)' }}
       {...props}
     >
-      <Flex p={5} align="center" w="100%" h="inherit" maxW="1440px">
+      <Flex
+        p={5}
+        align="center"
+        w="100%"
+        h="inherit"
+        maxW="1440px"
+        pos="relative"
+        zIndex={30}
+      >
         <Icon as={LogoSVG} w="164px" h="auto" />
-        <Divider
-          orientation="vertical"
-          borderLeft="1px solid rgba(255, 255, 255, 0.1)"
-          ml="8"
-          mr="6"
-        />
-        <Tabs variant="nav">
-          <TabList>
-            <Tab>{t`Stake`}</Tab>
-            <Tab>{t`FAQs`}</Tab>
-            <Tab>{t`About`}</Tab>
-          </TabList>
-        </Tabs>
-        <Center ml="auto">
-          <ConnectButton />
-        </Center>
+        {!isHiddenTabs ? (
+          <>
+            <Divider
+              orientation="vertical"
+              borderLeft="1px solid rgba(255, 255, 255, 0.1)"
+              ml="8"
+              mr="6"
+            />
+            <DesktopMenu menus={menus} />
+            <Center ml="auto">
+              <ConnectButton />
+            </Center>
+          </>
+        ) : (
+          <>
+            <MenuButton
+              isOpen={mobileMenu.isOpen}
+              onClick={mobileMenu.onToggle}
+              zIndex={50}
+            />
+          </>
+        )}
       </Flex>
+      <MobileMenu
+        isOpen={isHiddenTabs && mobileMenu.isOpen}
+        onClose={mobileMenu.onClose}
+        menus={menus}
+      />
     </Center>
   )
 }

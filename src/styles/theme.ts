@@ -2,13 +2,14 @@ import { extendBaseTheme, theme as chakraTheme } from '@chakra-ui/react'
 
 import { Tabs } from './components/Tabs.ts'
 
-const { Button } = chakraTheme.components
+const { Button, Drawer } = chakraTheme.components
 
 window.localStorage.setItem('chakra-ui-color-mode', 'dark')
 
 export const theme = extendBaseTheme({
   components: {
     Button,
+    Drawer,
     Tabs,
   },
   sizes: {
@@ -19,6 +20,7 @@ export const theme = extendBaseTheme({
     neutrals: {
       1: '#FCFCFD',
       2: '#F4F5F6',
+      4: '#B1B5C3',
       5: '#B1B5C3',
       6: '#353945',
       8: '#141414',
