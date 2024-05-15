@@ -22,6 +22,4 @@ src/specialFile.js
 # Ignore git submodule
 pnpm-lock.yaml
 
-
-.github
 src/locales/**
