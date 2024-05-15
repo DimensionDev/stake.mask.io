@@ -1,4 +1,4 @@
-import { HStack, Skeleton, StackProps } from '@chakra-ui/react'
+import { Grid, GridProps, Skeleton } from '@chakra-ui/react'
 import { useAccount } from 'wagmi'
 import { UserTotalPoints } from './UserTotalPoint'
 import { useUserInfo } from '../../hooks/useUserInfo'
@@ -7,23 +7,46 @@ import { t } from '@lingui/macro'
 import { StakedMask } from './StakedMask'
 import { RewardCard } from './RewardCard'
 
-export function UserStatus(props: StackProps) {
+export interface UserStatusProps extends GridProps {}
+
+export function UserStatus(props: UserStatusProps) {
   const { address } = useAccount()
   const store = usePoolStore()
   const { data } = useUserInfo(address, store.poolId)
-  console.log('data', data)
+  // const data = null
+
   if (!data)
     return (
-      <HStack display="flex" flexDir="row" width="1280px" gap={4} {...props}>
-        <Skeleton flexGrow={1} flexBasis={0} height="90px"></Skeleton>
-        <Skeleton flexGrow={1} flexBasis={0} height="90px"></Skeleton>
-        <Skeleton flexGrow={1} flexBasis={0} height="90px"></Skeleton>
-        <Skeleton flexGrow={1} flexBasis={0} height="90px"></Skeleton>
-      </HStack>
+      <Grid
+        gap={6}
+        templateColumns={{
+          base: '1fr',
+          md: 'repeat(2, 1fr)',
+          lg: 'repeat(4, 1fr)',
+        }}
+        w="100%"
+        maxW="maxW"
+        {...props}
+      >
+        <Skeleton h="198px" />
+        <Skeleton h="198px" />
+        <Skeleton h="198px" />
+        <Skeleton h="198px" />
+      </Grid>
     )
 
   return (
-    <HStack display="flex" flexDir="row" width="1280px" gap={4} {...props}>
+    <Grid
+      gap={6}
+      templateColumns={{
+        base: '1fr',
+        md: 'repeat(2, 1fr)',
+        lg: 'repeat(4, 1fr)',
+      }}
+      w="100%"
+      maxW="maxW"
+      {...props}
+    >
       <UserTotalPoints flexGrow={1} flexBasis={0} user={data.data} />
       <StakedMask alignSelf="stretch" flexGrow={1} flexBasis={0} />
       <RewardCard
@@ -38,6 +61,6 @@ export function UserStatus(props: StackProps) {
         flexGrow={1}
         flexBasis={0}
       />
-    </HStack>
+    </Grid>
   )
 }

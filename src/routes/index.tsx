@@ -24,14 +24,15 @@ function Index() {
           draggable={false}
         />
       </AspectRatio>
-      <Flex
+      <VStack
         mt="-5vw"
-        px={{ base: '24px', md: '48px' }}
+        px={{ base: '24px', xl: '48px' }}
         transition="200ms"
         pb="100px"
         direction="column"
         w="100%"
         align="center"
+        spacing="96px"
       >
         <VStack spacing={3} zIndex={1} textAlign="center" maxW="maxW">
           <Heading
@@ -56,9 +57,9 @@ function Index() {
             believers, where you can stake $Mask to earn token rewards!
           </Text>
         </VStack>
-        <StakeMaskStatusCard mt="96px" />
-        <UserStatus mt="96px" />
-      </Flex>
+        <StakeMaskStatusCard />
+        <UserStatus />
+      </VStack>
     </Flex>
   )
 }

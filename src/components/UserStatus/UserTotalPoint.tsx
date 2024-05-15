@@ -43,8 +43,10 @@ export function UserTotalPoints({ user, ...props }: Props) {
         <Text
           textTransform="uppercase"
           mt={1}
-          fontWeight="normal"
+          fontWeight="400"
           fontSize="md"
+          color="white"
+          opacity={0.5}
         >{t`Total points`}</Text>
       </Box>
     </VStack>
