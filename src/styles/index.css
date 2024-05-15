@@ -7,18 +7,22 @@
 .gradient-border {
   --border-radius: 10px;
   --border-width: 1px;
-  --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+  --border-color: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.3)
+  );
   position: relative;
   border-radius: var(--border-radius);
 }
 
-.gradient-border::after{
-  content: "";
+.gradient-border::after {
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
   width: calc(100% - 1px);
-  height: calc(100% - 1px);
+  height: calc(100% - 2px);
   padding: var(--border-width);
   border-radius: calc(var(--border-radius) + 1px);
   background: var(--border-color);
@@ -40,6 +44,11 @@
 }
 
 ::selection {
-  background: #7280FE;
+  background: #7280fe;
   color: white;
+}
+
+button,
+*:active {
+  -webkit-tap-highlight-color: transparent;
 }

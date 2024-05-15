@@ -13,7 +13,8 @@
     "lingui:extract": "NODE_ENV=development lingui extract --clean",
     "lingui": "pnpm run lingui:extract && pnpm run lingui:compile",
     "test": "vitest",
-    "cspell:check": "npx cspell \"**/*\""
+    "cspell:check": "cspell \"**/*\"",
+    "prettier": "prettier . -w"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -32,6 +33,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "urlcat": "^3.1.0",
+    "react-use": "^17.5.0",
     "viem": "^2.9.16",
     "vite-plugin-svgr": "^4.2.0",
     "wagmi": "^2.5.19",

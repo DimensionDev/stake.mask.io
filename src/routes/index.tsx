@@ -8,14 +8,12 @@ import {
   Text,
 } from '@chakra-ui/react'
 import HomeTopImage from '../assets/home-top.webp'
-import { Nav } from '../components/Nav'
 import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
 import { UserStatus } from '../components/UserStatus'
 
 function Index() {
   return (
     <Flex direction="column" w="100%" pos="relative" align="center">
-      <Nav pos="absolute" top={0} left={0} zIndex={1} />
       <AspectRatio ratio={1440 / 520} w="full">
         <Image
           src={HomeTopImage}
@@ -26,14 +24,15 @@ function Index() {
           draggable={false}
         />
       </AspectRatio>
-      <Flex
+      <VStack
         mt="-5vw"
-        px={{ base: '24px', md: '48px' }}
+        px={{ base: '24px', xl: '48px' }}
         transition="200ms"
         pb="100px"
         direction="column"
         w="100%"
         align="center"
+        spacing="96px"
       >
         <VStack spacing={3} zIndex={1} textAlign="center" maxW="maxW">
           <Heading
@@ -58,9 +57,9 @@ function Index() {
             believers, where you can stake $Mask to earn token rewards!
           </Text>
         </VStack>
-        <StakeMaskStatusCard mt="96px" />
-        <UserStatus mt="96px" />
-      </Flex>
+        <StakeMaskStatusCard />
+        <UserStatus />
+      </VStack>
     </Flex>
   )
 }
