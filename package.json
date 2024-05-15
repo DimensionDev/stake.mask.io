@@ -12,7 +12,8 @@
     "lingui:compile": "lingui compile",
     "lingui:extract": "NODE_ENV=development lingui extract --clean",
     "lingui": "pnpm run lingui:extract && pnpm run lingui:compile",
-    "test": "vitest"
+    "test": "vitest",
+    "cspell:check": "npx cspell \"**/*\""
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
