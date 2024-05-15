@@ -39,7 +39,8 @@
         "src/assets/**",
         "src/locales/**",
         "tests/**",
-        "src/routeTree.gen.ts"
+        "src/routeTree.gen.ts",
+        "src/abis/**"
     ],
     "overrides": []
 }
