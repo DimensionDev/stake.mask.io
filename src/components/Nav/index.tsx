@@ -1,9 +1,17 @@
-import type { FC } from 'react'
-import { Center, FlexProps, Tab, TabList, Tabs } from '@chakra-ui/react'
-import { Flex, Icon, Divider } from '@chakra-ui/react'
-import LogoSVG from '../../assets/logo.svg?react'
+import {
+  Center,
+  Divider,
+  Flex,
+  FlexProps,
+  Icon,
+  Tab,
+  TabList,
+  Tabs,
+} from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import type { FC } from 'react'
+import LogoSVG from '../../assets/logo.svg?react'
 
 export interface NavProps extends FlexProps {}
 

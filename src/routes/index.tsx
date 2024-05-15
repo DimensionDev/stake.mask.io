@@ -10,6 +10,7 @@ import {
 import HomeTopImage from '../assets/home-top.webp'
 import { Nav } from '../components/Nav'
 import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
+import { UserStatus } from '../components/UserStatus'
 
 function Index() {
   return (
@@ -58,6 +59,7 @@ function Index() {
           </Text>
         </VStack>
         <StakeMaskStatusCard mt="96px" />
+        <UserStatus mt="96px" />
       </Flex>
     </Flex>
   )

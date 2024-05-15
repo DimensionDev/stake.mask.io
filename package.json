@@ -28,12 +28,15 @@
     "cspell": "^8.8.1",
     "dayjs": "^1.11.11",
     "framer-motion": "^11.1.9",
+    "immer": "^10.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "urlcat": "^3.1.0",
     "viem": "^2.9.16",
     "vite-plugin-svgr": "^4.2.0",
     "wagmi": "^2.5.19",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@lingui/cli": "^4.10.1",
@@ -58,5 +61,10 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vitest": "^1.6.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "urlcat@3.1.0": "patches/urlcat@3.1.0.patch"
+    }
   }
 }
