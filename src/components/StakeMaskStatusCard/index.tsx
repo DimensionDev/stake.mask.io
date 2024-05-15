@@ -10,10 +10,12 @@ import {
   Flex,
   Stack,
   HStack,
+  Button,
 } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import No1SVG from '../../assets/no-1.svg?react'
 import MaskLogoSVG from '../../assets/mask-logo.svg?react'
+import RightArrow from '../../assets/right-arrow.svg?react'
 import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
 import TonEthSVG from '../../assets/ton-eth.svg?react'
 import PlusSVG from '../../assets/plus.svg?react'
@@ -42,6 +44,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
         bg: 'linear-gradient(0deg, rgba(185, 174, 251, 0.00) 0%, rgba(166, 151, 255, 0.83) 65%)',
         transform: 'translateY(65%)',
       }}
+      {...props}
     >
       <VStack
         spacing={6}
@@ -52,7 +55,6 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
         align="start"
         pos="relative"
         zIndex={1}
-        {...props}
       >
         <ActivityStatusTag
           pos="absolute"
@@ -109,6 +111,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             bg="rgba(255, 255, 255, 0.1)"
             h={{ base: 'auto', md: '152px' }}
             shadow="card"
+            backdropFilter="blur(10px)"
             p={6}
             spacing={6}
           >
@@ -156,6 +159,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             bg="rgba(255, 255, 255, 0.1)"
             h="152px"
             shadow="card"
+            backdropFilter="blur(10px)"
             p={6}
             spacing={6}
           >
@@ -183,6 +187,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             bg="rgba(255, 255, 255, 0.1)"
             h="152px"
             shadow="card"
+            backdropFilter="blur(10px)"
             p={6}
             spacing={6}
           >
@@ -216,6 +221,20 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
         >
           {t`This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes.`}
         </Text>
+        <Box display="flex" justifyContent="center" width="100%">
+          <Button
+            bg="neutrals.9"
+            width="auto"
+            flexGrow={0}
+            _hover={{ transform: 'scale(1.01)' }}
+            _active={{ transform: 'scale(0.9)' }}
+            rounded={24}
+            leftIcon={<Icon as={MaskLogoSVG} width={6} height={6} />}
+            rightIcon={<Icon as={RightArrow} width={6} height={6} />}
+          >
+            {t`Stake Mask Now`}
+          </Button>
+        </Box>
       </VStack>
     </Box>
   )

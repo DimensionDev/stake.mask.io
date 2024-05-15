@@ -1,4 +1,4 @@
-import { type Chain, connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets, type Chain } from '@rainbow-me/rainbowkit'
 import {
   coinbaseWallet,
   metaMaskWallet,
@@ -6,65 +6,13 @@ import {
   rabbyWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
-import { createClient, defineChain, http } from 'viem'
-import { type Config, createConfig } from 'wagmi'
-import {
-  arbitrum,
-  aurora,
-  avalanche,
-  base,
-  bsc,
-  confluxESpace,
-  fantom,
-  gnosis,
-  mainnet,
-  metis,
-  optimism,
-  polygon,
-} from 'wagmi/chains'
+import { createClient, http } from 'viem'
+import { createConfig, type Config } from 'wagmi'
+import { mainnet, sepolia } from 'wagmi/chains'
 
 import { env } from '../constants/env'
 
-const XLayer = defineChain({
-  id: 196,
-  name: 'X Layer',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'OKB',
-    symbol: 'OKB',
-  },
-  rpcUrls: {
-    default: { http: ['https://rpc.xlayer.tech'] },
-  },
-  blockExplorers: {
-    default: {
-      name: 'X Layer explorer',
-      url: 'https://www.okx.com/explorer/xlayer',
-    },
-  },
-  contracts: {
-    multicall3: {
-      address: '0x8A42F70047a99298822dD1dbA34b454fc49913F2',
-      blockCreated: 67224,
-    },
-  },
-})
-
-export const chains = [
-  mainnet,
-  base,
-  polygon,
-  optimism,
-  bsc,
-  arbitrum,
-  gnosis,
-  avalanche,
-  aurora,
-  confluxESpace,
-  fantom,
-  XLayer,
-  metis,
-] as const satisfies Chain[]
+export const chains = [mainnet, sepolia] as const satisfies Chain[]
 
 export const connectors = connectorsForWallets(
   [

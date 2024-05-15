@@ -1,14 +1,16 @@
-import type { FC } from 'react'
 import {
   Center,
-  FlexProps,
+  Divider,
+  Flex,
+  Icon,
+  type FlexProps,
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { Flex, Icon, Divider } from '@chakra-ui/react'
-import LogoSVG from '../../assets/logo.svg?react'
 import { t } from '@lingui/macro'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import type { FC } from 'react'
+import LogoSVG from '../../assets/logo.svg?react'
 import { MenuButton } from './MenuButton.tsx'
 import { MobileMenu } from './MobileMenu.tsx'
 import { DesktopMenu } from './DesktopMenu.tsx'

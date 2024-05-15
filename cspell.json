@@ -1,7 +1,13 @@
 {
     "version": "0.1",
     "language": "en",
-    "words": [],
+    "words": [
+        "immer",
+        "Merkle",
+        "sepolia",
+        "urlcat",
+        "zustand"
+    ],
     "ignoreWords": [
         "Lingui",
         "lingui",
