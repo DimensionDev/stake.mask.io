@@ -32,11 +32,7 @@ const showMenuButton = keyframes`
     }
 `
 
-export const MobileMenu: FC<MobileMenuProps> = ({
-  isOpen = false,
-  onClose,
-  menus,
-}) => {
+export const MobileMenu: FC<MobileMenuProps> = ({ isOpen = false, onClose, menus }) => {
   useLockBodyScroll(isOpen)
   const { pathname } = useLocation()
 

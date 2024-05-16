@@ -63,14 +63,31 @@ export const Footer: FC = () => {
             gridColumn={{ base: '1/3', md: 'auto' }}
           >
             <Icon as={LogoSVG} w="164px" h="auto" />
-            <Heading
-              color="neutrals.2"
-              letterSpacing="-0.24px"
-              lineHeight="32px"
-              fontWeight={400}
-              fontSize="24px"
-            >
+            <Heading color="neutrals.2" letterSpacing="-0.24px" lineHeight="32px" fontWeight={400} fontSize="24px">
               {`Your Portal To The New, Open Internet.`}
+            </Heading>
+          </VStack>
+          <VStack align="start" spacing={10}>
+            <Heading
+              as="h5"
+              fontSize="16px"
+              fontWeight={700}
+              lineHeight="24px"
+              color="neutrals.2"
+            >{`Integrations`}</Heading>
+            <VStack
+              as="ul"
+              listStyleType="none"
+              fontSize="14px"
+              fontWeight={700}
+              lineHeight="16px"
+              color="neutrals.4"
+              align="start"
+              w="100%"
+              spacing={6}
+              sx={{ li: { w: '100%' } }}
+            >
+              {t`Your Portal To The New, Open Internet.`}
             </Heading>
           </VStack>
           <VStack align="start" spacing={10}>

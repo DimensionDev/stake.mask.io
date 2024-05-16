@@ -93,6 +93,9 @@ devDependencies:
   '@lingui/vite-plugin':
     specifier: ^4.10.1
     version: 4.10.1(typescript@5.4.5)(vite@5.2.11)
+  '@tanstack/react-query-devtools':
+    specifier: ^5.36.2
+    version: 5.36.2(@tanstack/react-query@5.36.0)(react@18.3.1)
   '@tanstack/router-devtools':
     specifier: ^1.32.5
     version: 1.32.5(csstype@3.1.3)(react-dom@18.3.1)(react@18.3.1)
@@ -5302,7 +5305,21 @@ packages:
 
   /@tanstack/query-core@5.36.0:
     resolution: {integrity: sha512-B5BD3pg/mztDR36i77hGcyySKKeYrbM5mnogOROTBi1SUml5ByRK7PGUUl16vvubvQC+mSnqziFG/VIy/DE3FQ==}
-    dev: false
+
+  /@tanstack/query-devtools@5.32.1:
+    resolution: {integrity: sha512-7Xq57Ctopiy/4atpb0uNY5VRuCqRS/1fi/WBCKKX6jHMa6cCgDuV/AQuiwRXcKARbq2OkVAOrW2v4xK9nTbcCA==}
+    dev: true
+
+  /@tanstack/react-query-devtools@5.36.2(@tanstack/react-query@5.36.0)(react@18.3.1):
+    resolution: {integrity: sha512-bkPQrKmKJOa2dNs6rBB9aef8jCG8XAg8QKIhwN8NI+QaXky86IofnO8YjiF6P1mYquLXbQvK0VZ9DnGV0wH/eA==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.36.2
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-devtools': 5.32.1
+      '@tanstack/react-query': 5.36.0(react@18.3.1)
+      react: 18.3.1
+    dev: true
 
   /@tanstack/react-query@5.36.0(react@18.3.1):
     resolution: {integrity: sha512-BATvtM0rohwg7pRHUnxgeDiwLWRGZ8OM/4y8LImHVpecQWoH6Uhytu3Z8YV6V7hQ1sMQBFcUrGE1/e4MxR6YiA==}
@@ -5311,7 +5328,6 @@ packages:
     dependencies:
       '@tanstack/query-core': 5.36.0
       react: 18.3.1
-    dev: false
 
   /@tanstack/react-router@1.32.5(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-3W8db+P2KAJRY+zwxDzVUS99SFbs0wT8/je8yS1i3OExXm9BRCPD8EQX8+wk3EDxrEJ0SYjkGExutzSb7m58jA==}

@@ -18,10 +18,7 @@ export function UserTotalPoints({ user, ...props }: Props) {
           objectFit="cover"
           draggable={false}
           userSelect="none"
-          src={
-            user.twitter_image ||
-            new URL('../../assets/default-avatar.svg', import.meta.url).href
-          }
+          src={user.twitter_image || new URL('../../assets/default-avatar.svg', import.meta.url).href}
           alt="user name"
         />
         <Text fontSize="xx-large" textAlign="right" fontWeight="bold">

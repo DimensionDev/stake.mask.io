@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
 }
@@ -12,11 +13,7 @@ html, body {
 .gradient-border {
   --border-radius: 10px;
   --border-width: 1px;
-  --border-color: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.3)
-  );
+  --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
   position: relative;
   border-radius: var(--border-radius);
 }
@@ -41,11 +38,7 @@ html, body {
 
 .gradient-border.card {
   --border-radius: 16px;
-  --border-color: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.07),
-    rgba(255, 255, 255, 0.3)
-  );
+  --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.3));
 }
 
 ::selection {
@@ -56,4 +49,20 @@ html, body {
 button,
 *:active {
   -webkit-tap-highlight-color: transparent;
+}
+
+body .purple-gradient-button {
+  background: var(--chakra-colors-gradient-purple);
+  color: var(--chakra-colors-neutrals-8);
+}
+body .purple-gradient-button:hover {
+  background: var(--chakra-colors-gradient-purple);
+  transform: scale(1.01);
+}
+body .purple-gradient-button:active {
+  transform: scale(0.95);
+}
+
+.stake-form:focus-within .input-box {
+  border-color: #3182ce;
 }

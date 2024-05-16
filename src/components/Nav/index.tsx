@@ -45,24 +45,11 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
       pos="relative"
       {...props}
     >
-      <Flex
-        p={5}
-        align="center"
-        w="100%"
-        h="inherit"
-        maxW="1440px"
-        pos="relative"
-        zIndex={30}
-      >
+      <Flex p={5} align="center" w="100%" h="inherit" maxW="1440px" pos="relative" zIndex={30}>
         <Icon as={LogoSVG} w="164px" h="auto" />
         {!isHiddenTabs ? (
           <>
-            <Divider
-              orientation="vertical"
-              borderLeft="1px solid rgba(255, 255, 255, 0.1)"
-              ml="8"
-              mr="6"
-            />
+            <Divider orientation="vertical" borderLeft="1px solid rgba(255, 255, 255, 0.1)" ml="8" mr="6" />
             <DesktopMenu menus={menus} />
             <Center ml="auto">
               <ConnectButton />
@@ -70,11 +57,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
           </>
         ) : (
           <>
-            <MenuButton
-              isOpen={mobileMenu.isOpen}
-              onClick={mobileMenu.onToggle}
-              zIndex={50}
-            />
+            <MenuButton isOpen={mobileMenu.isOpen} onClick={mobileMenu.onToggle} zIndex={50} />
           </>
         )}
       </Flex>
@@ -100,6 +83,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
         onClose={mobileMenu.onClose}
         menus={menus}
       />
+      <MobileMenu isOpen={isHiddenTabs && mobileMenu.isOpen} onClose={mobileMenu.onClose} menus={menus} />
     </Center>
   )
 }
