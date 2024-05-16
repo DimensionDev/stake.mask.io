@@ -23,14 +23,7 @@ export function BaseModal({ title, width, height, ...rest }: Props) {
   return (
     <Modal isCentered {...rest}>
       <ModalOverlay />
-      <ModalContent
-        bg="neutrals.8"
-        rounded={20}
-        width={width}
-        height={height}
-        maxW="auto"
-        maxH="auto"
-      >
+      <ModalContent bg="neutrals.8" rounded={20} width={width} height={height} maxW="auto" maxH="auto">
         <ModalHeader display="flex" flexDir="row" padding="24px 24px 0 24px">
           <Text fontSize="32px">{title}</Text>
           <IconButton

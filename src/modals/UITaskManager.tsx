@@ -1,12 +1,5 @@
 import { ModalProps } from '@chakra-ui/react'
-import {
-  Fragment,
-  createElement,
-  useEffect,
-  useMemo,
-  useState,
-  type ComponentType,
-} from 'react'
+import { Fragment, createElement, useEffect, useMemo, useState, type ComponentType } from 'react'
 import { EMPTY_LIST } from '../constants/misc'
 import { DeferTuple, defer } from '../utils/defer'
 
@@ -14,8 +7,7 @@ export interface ContextOptions<Options, Result> {
   show(options?: Omit<Options, 'isOpen'>, signal?: AbortSignal): Promise<Result>
 }
 
-export interface BaseDialogProps<T>
-  extends Pick<ModalProps, 'isOpen' | 'onClose'> {
+export interface BaseDialogProps<T> extends Pick<ModalProps, 'isOpen' | 'onClose'> {
   onSubmit?(result: T | null): void
 }
 
@@ -23,10 +15,7 @@ export interface BaseDialogProps<T>
  * Create a manager of small UI task sessions,
  * which provides both a Context and a Provider.
  */
-export const createUITaskManager = <
-  TaskOptions extends BaseDialogProps<Result>,
-  Result,
->(
+export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>, Result>(
   Component: ComponentType<TaskOptions>,
 ) => {
   let id = 0
@@ -42,10 +31,7 @@ export const createUITaskManager = <
   }
 
   type Controller = {
-    show(
-      options?: Omit<TaskOptions, 'isOpen'>,
-      signal?: AbortSignal,
-    ): Promise<Result | null>
+    show(options?: Omit<TaskOptions, 'isOpen'>, signal?: AbortSignal): Promise<Result | null>
   }
 
   const controller: Controller = {

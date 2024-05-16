@@ -8,12 +8,7 @@ interface Props extends BoxProps {
 export function TokenIcon({ omitChain, ...props }: Props) {
   return (
     <Box width={12} height={12} pos="relative" {...props}>
-      <Image
-        src={new URL('../assets/mask-logo.svg', import.meta.url).href}
-        rounded="50%"
-        width="100%"
-        height="100%"
-      />
+      <Image src={new URL('../assets/mask-logo.svg', import.meta.url).href} rounded="50%" width="100%" height="100%" />
       {omitChain ? null : (
         <Image
           src={new URL('../assets/mask-logo.svg', import.meta.url).href}

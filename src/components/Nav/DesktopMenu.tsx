@@ -20,12 +20,7 @@ export const DesktopMenu: FC<DesktopMenuProps> = ({ menus, ...props }) => {
       }}
     >
       {menus.map((menu) => (
-        <Link
-          to={menu.path}
-          key={menu.path}
-          aria-selected={menu.path === pathname}
-          className="chakra-tabs__tab"
-        >
+        <Link to={menu.path} key={menu.path} aria-selected={menu.path === pathname} className="chakra-tabs__tab">
           {menu.label}
         </Link>
       ))}

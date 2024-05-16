@@ -1,12 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {
-  AspectRatio,
-  Flex,
-  Heading,
-  Image,
-  VStack,
-  Text,
-} from '@chakra-ui/react'
+import { AspectRatio, Flex, Heading, Image, VStack, Text } from '@chakra-ui/react'
 import HomeTopImage from '../assets/home-top.webp'
 import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
 import { UserStatus } from '../components/UserStatus'
@@ -16,14 +9,7 @@ function Index() {
   return (
     <Flex direction="column" w="100%" pos="relative" align="center">
       <AspectRatio ratio={1440 / 520} w="full">
-        <Image
-          src={HomeTopImage}
-          w="100%"
-          h="100%"
-          objectFit="cover"
-          userSelect="none"
-          draggable={false}
-        />
+        <Image src={HomeTopImage} w="100%" h="100%" objectFit="cover" userSelect="none" draggable={false} />
       </AspectRatio>
       <VStack
         mt="-5vw"
@@ -54,8 +40,8 @@ function Index() {
             lineHeight="150%"
             fontWeight="500"
           >
-            This website is specifically created for Mask investors and
-            believers, where you can stake $Mask to earn token rewards!
+            This website is specifically created for Mask investors and believers, where you can stake $Mask to earn
+            token rewards!
           </Text>
         </VStack>
         <StakeMaskStatusCard />

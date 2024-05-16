@@ -1,9 +1,5 @@
 // Copy from @masknet/kit
-export type DeferTuple<T, E = unknown> = [
-  Promise<T>,
-  (value: T | PromiseLike<T>) => void,
-  (reason: E) => void,
-]
+export type DeferTuple<T, E = unknown> = [Promise<T>, (value: T | PromiseLike<T>) => void, (reason: E) => void]
 
 /**
  * ! Please use the Promise constructor if possible

@@ -29,10 +29,7 @@ export function App() {
             <WagmiProvider>
               <RouterProvider router={router} />
               <Modals />
-              <ReactQueryDevtools
-                initialIsOpen={false}
-                buttonPosition="bottom-right"
-              />
+              <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-right" />
             </WagmiProvider>
           </QueryClientProvider>
         </ChakraBaseProvider>

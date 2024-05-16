@@ -46,13 +46,26 @@ export function StakeModal(props: Props) {
             <StepIcon width={6} height={6} step={1} completed={account.isConnected} />
             <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1">{t`Connect Wallet`}</Text>
             {account.isConnected ? null : (
-              <Button className="purple-gradient-button" size="sm" ml="auto" fontSize={14} rounded={24}>{t`Connect Wallet`}</Button>
+              <Button
+                className="purple-gradient-button"
+                size="sm"
+                ml="auto"
+                fontSize={14}
+                rounded={24}
+              >{t`Connect Wallet`}</Button>
             )}
           </ListItem>
           <ListItem display="flex">
             <StepIcon width={6} height={6} step={2} />
             <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1" minW="130px">{t`Link 𝕏`}</Text>
-            <Button className="purple-gradient-button" ml="auto" size="sm" minW="130px" rounded={24} _hover={{ bg: 'gradient.purple' }}>
+            <Button
+              className="purple-gradient-button"
+              ml="auto"
+              size="sm"
+              minW="130px"
+              rounded={24}
+              _hover={{ bg: 'gradient.purple' }}
+            >
               𝕏
             </Button>
           </ListItem>
@@ -97,7 +110,12 @@ export function StakeModal(props: Props) {
               <VStack alignItems="flex-end">
                 <Text fontSize={16} color="neutrals.4" display="inline-flex" alignItems="center">
                   <Trans>
-                    Balance: {balance.isPending ? <Skeleton ml={2} display="inline-block" height="16px" width="20px" /> : balance.data?.value.toLocaleString()}
+                    Balance:{' '}
+                    {balance.isPending ? (
+                      <Skeleton ml={2} display="inline-block" height="16px" width="20px" />
+                    ) : (
+                      balance.data?.value.toLocaleString()
+                    )}
                   </Trans>
                 </Text>
                 <Button
@@ -138,7 +156,11 @@ export function StakeModal(props: Props) {
           </HStack>
           <HStack justifyContent="space-between">
             <Text>{t`Share of Pool`}</Text>
-            {amount && pool?.amount !== undefined ? <Text>{formatNumber((+amount / +pool?.amount) * 100, 2)}%</Text> : <Skeleton height="16px" width="50px" />}
+            {amount && pool?.amount !== undefined ? (
+              <Text>{formatNumber((+amount / +pool?.amount) * 100, 2)}%</Text>
+            ) : (
+              <Skeleton height="16px" width="50px" />
+            )}
           </HStack>
           <HStack justifyContent="space-between">
             <Text>{t`Pool Liquidity`}</Text>
@@ -155,7 +177,8 @@ export function StakeModal(props: Props) {
           </HStack>
           <Text color="danger" lineHeight="24px">
             <Trans>
-              The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.
+              The staking addresses need to pass Go+ security check. Note that staking is not available in some
+              restricted regions.
               <Link href="/">More</Link>
             </Trans>
           </Text>
