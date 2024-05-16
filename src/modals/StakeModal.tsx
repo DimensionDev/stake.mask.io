@@ -13,7 +13,6 @@ import {
   Skeleton,
   Stack,
   Text,
-  Tooltip,
   VStack,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
@@ -26,6 +25,7 @@ import dayjs from 'dayjs'
 import { formatNumber } from '../helpers/formatNumber'
 import { useState } from 'react'
 import { usePoolStore } from '../store/poolStore'
+import { Tooltip } from '../components/Tooltip.tsx'
 
 interface Props extends ModalProps {}
 

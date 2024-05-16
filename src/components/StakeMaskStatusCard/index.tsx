@@ -10,6 +10,7 @@ import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
 import TonEthSVG from '../../assets/ton-eth.svg?react'
 import { stakeModal } from '../../modals/index.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
+import { Tooltip } from '../Tooltip.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
@@ -66,7 +67,11 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             align="center"
           >
             Time 3.20 2024~8.20 2024
-            <Icon as={QuestionSVG} w="6" h="6" ml="10px" />
+            <Tooltip label={t`Staked MASK can be unstake after the campaign ends.`} placement="top" hasArrow>
+              <Box as="span" w="6" h="6" ml="10px">
+                <Icon as={QuestionSVG} w="initial" h="initial" />
+              </Box>
+            </Tooltip>
           </Flex>
         </Flex>
         <Grid

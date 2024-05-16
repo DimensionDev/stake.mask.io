@@ -21,6 +21,7 @@ export const StakingRanking: FC = () => {
         transformOrigin="left top"
         draggable={false}
         userSelect="none"
+        pointerEvents="none"
       />
       <Image
         src={RightGlowImage}
@@ -35,6 +36,7 @@ export const StakingRanking: FC = () => {
         transformOrigin="left top"
         draggable={false}
         userSelect="none"
+        pointerEvents="none"
       />
       <VStack spacing="64px" py={4} px={6} w="100%" overflow="hidden" h="698px" pos="relative">
         <Heading fontSize="24px" fontWeight={700} lineHeight="32px" w="100%" color="neutrals.2">

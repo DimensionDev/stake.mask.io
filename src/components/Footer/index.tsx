@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { AspectRatio, Box, Center, Flex, Grid, Heading, Icon, Image, VStack, Link, HStack } from '@chakra-ui/react'
+import { AspectRatio, Box, Center, Flex, Grid, Heading, Icon, Image, VStack, Link } from '@chakra-ui/react'
 import LogoSVG from '../../assets/logo-2.svg?react'
 import { t } from '@lingui/macro'
 import FooterImage from '../../assets/footer.webp'
@@ -12,6 +12,7 @@ import RedditSVG from '../../assets/social-media/reddit.svg?react'
 import YoutubeSVG from '../../assets/social-media/youtube.svg?react'
 import MediumSVG from '../../assets/social-media/medium.svg?react'
 import TwitterSVG from '../../assets/social-media/twitter.svg?react'
+import { Terms } from './Terms'
 
 const SocialMedias = [
   { icon: TwitterSVG, href: env.external.TWITTER_URL },
@@ -43,7 +44,7 @@ export const Footer: FC = () => {
           <VStack align="start" spacing={8} gridColumn={{ base: '1/3', md: 'auto' }}>
             <Icon as={LogoSVG} w="164px" h="auto" />
             <Heading color="neutrals.2" letterSpacing="-0.24px" lineHeight="32px" fontWeight={400} fontSize="24px">
-              {`Your Portal To The New, Open Internet.`}
+              {t`Your Portal To The New, Open Internet.`}
             </Heading>
           </VStack>
           <VStack align="start" spacing={10}>
@@ -139,7 +140,7 @@ export const Footer: FC = () => {
       <Center borderTop="1px solid" borderTopColor="neutrals.6" w="100%">
         <Flex
           py={{ base: 3, md: 6, lg: 8 }}
-          px={{ base: 3, md: 6 }}
+          px={{ base: 3, md: 6, lg: 9 }}
           transition="200ms"
           w="100%"
           maxW="1440px"
@@ -153,11 +154,7 @@ export const Footer: FC = () => {
             fontWeight={400}
             lineHeight="150%"
           >{t`Since 2019 to Now ｜ Mask.io`}</Box>
-          <HStack spacing={4} color="neutrals.4" fontSize="12px" fontWeight={700} lineHeight="20px">
-            <Link>Terms of Use</Link>
-            <Link>Privacy Policy</Link>
-            <Link>Cookie Policy</Link>
-          </HStack>
+          <Terms />
         </Flex>
       </Center>
     </Flex>
