@@ -10,7 +10,6 @@ import {
   Image,
   VStack,
   Link,
-  HStack,
 } from '@chakra-ui/react'
 import LogoSVG from '../../assets/logo-2.svg?react'
 import { t } from '@lingui/macro'
@@ -24,6 +23,7 @@ import RedditSVG from '../../assets/social-media/reddit.svg?react'
 import YoutubeSVG from '../../assets/social-media/youtube.svg?react'
 import MediumSVG from '../../assets/social-media/medium.svg?react'
 import TwitterSVG from '../../assets/social-media/twitter.svg?react'
+import { Terms } from './Terms'
 
 const SocialMedias = [
   { icon: TwitterSVG, href: env.external.TWITTER_URL },
@@ -194,17 +194,7 @@ export const Footer: FC = () => {
             fontWeight={400}
             lineHeight="150%"
           >{t`Since 2019 to Now ｜ Mask.io`}</Box>
-          <HStack
-            spacing={4}
-            color="neutrals.4"
-            fontSize="12px"
-            fontWeight={700}
-            lineHeight="20px"
-          >
-            <Link>Terms of Use</Link>
-            <Link>Privacy Policy</Link>
-            <Link>Cookie Policy</Link>
-          </HStack>
+          <Terms />
         </Flex>
       </Center>
     </Flex>

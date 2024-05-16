@@ -1,8 +1,10 @@
 import { extendBaseTheme, theme as chakraTheme } from '@chakra-ui/react'
 
 import { Tabs } from './components/Tabs.ts'
+import { Modal } from './components/Modal.ts'
+import { Drawer } from './components/Drawer.ts'
 
-const { Button, Drawer, Skeleton } = chakraTheme.components
+const { Button, Skeleton } = chakraTheme.components
 
 window.localStorage.setItem('chakra-ui-color-mode', 'dark')
 
@@ -11,6 +13,7 @@ export const theme = extendBaseTheme({
     Skeleton,
     Button,
     Drawer,
+    Modal,
     Tabs,
   },
   sizes: {
