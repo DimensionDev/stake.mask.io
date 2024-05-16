@@ -4,10 +4,7 @@ import { FIREFLY_API_ROOT } from '../constants/api'
 import { UserInfoResponse } from '../types/api'
 import urlcat from 'urlcat'
 
-export function useUserInfo(
-  address: string | undefined,
-  pool_id: number | null,
-) {
+export function useUserInfo(address: string | undefined, pool_id: number | null) {
   return useQuery({
     enabled: !!pool_id && !!address,
     queryKey: ['user-info', address, pool_id],

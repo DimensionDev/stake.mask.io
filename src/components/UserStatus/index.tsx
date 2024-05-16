@@ -48,18 +48,8 @@ export function UserStatus(props: UserStatusProps) {
     >
       <UserTotalPoints flexGrow={1} flexBasis={0} user={data.data} />
       <StakedMask alignSelf="stretch" flexGrow={1} flexBasis={0} />
-      <RewardCard
-        alignSelf="stretch"
-        title={t`Estimated Rewards`}
-        flexGrow={1}
-        flexBasis={0}
-      />
-      <RewardCard
-        alignSelf="stretch"
-        title={t`Estimated Rewards`}
-        flexGrow={1}
-        flexBasis={0}
-      />
+      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} flexGrow={1} flexBasis={0} />
+      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} flexGrow={1} flexBasis={0} />
     </Grid>
   )
 }

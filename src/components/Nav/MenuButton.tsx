@@ -10,15 +10,7 @@ export interface MenuButton extends HTMLChakraProps<'button'> {
 
 export const MenuButton: FC<MenuButton> = ({ isOpen = false, ...props }) => {
   return (
-    <Box
-      as="button"
-      color="neutrals.4"
-      w="8"
-      h="8"
-      ml="auto"
-      pos="relative"
-      {...props}
-    >
+    <Box as="button" color="neutrals.4" w="8" h="8" ml="auto" pos="relative" {...props}>
       <Icon
         as={CloseSVG}
         w="8"

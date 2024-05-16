@@ -1,38 +1,40 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
-import { getCurrentPoolId } from '../helpers/getCurrentPoolId'
+import { readStakeManager } from '../helpers/readStakeManager'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface PollState {
   poolId: number | null
-  checkingPoolId: boolean
+  maskTokenAddress: `0x${string}` | undefined
+  /** @deprecated */
   updatePollId(poolId: number): void
-  syncPoolId(): Promise<void>
+  syncingPoolInfo: boolean
+  syncPoolInfo(): Promise<void>
 }
 
 // We get pool id eagerly.
-export const usePoolStore = create<
-  PollState,
-  [['zustand/persist', PollState], ['zustand/immer', never]]
->(
+export const usePoolStore = create<PollState, [['zustand/persist', PollState], ['zustand/immer', never]]>(
   persist(
     immer((set, get) => ({
       poolId: null,
-      checkingPoolId: false,
+      syncingPoolInfo: false,
+      maskTokenAddress: import.meta.env.MASK_TOKEN_ADDRESS,
+      /** @deprecated */
       updatePollId: (poolId: number) =>
         set((state) => {
           state.poolId = poolId
         }),
-      syncPoolId: async () => {
+      syncPoolInfo: async () => {
         set((state) => {
-          state.checkingPoolId = true
+          state.syncingPoolInfo = true
         })
-        const poolId = await getCurrentPoolId()
-        if (poolId && get().poolId !== poolId) {
-          get().updatePollId(poolId)
-        }
+        const { currentPoolId: poolId, maskTokenAddress } = await readStakeManager()
         set((state) => {
-          state.checkingPoolId = false
+          state.maskTokenAddress = maskTokenAddress
+          state.syncingPoolInfo = false
+          if (poolId && get().poolId !== poolId) {
+            state.poolId = poolId
+          }
         })
       },
     })),
@@ -40,7 +42,7 @@ export const usePoolStore = create<
       name: 'mask-stake-pool',
       storage: createJSONStorage(() => localStorage),
       onRehydrateStorage(state) {
-        return () => state.syncPoolId()
+        return () => state.syncPoolInfo()
       },
     },
   ),

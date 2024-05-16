@@ -1,32 +1,19 @@
-import { FC } from 'react'
-import {
-  Box,
-  BoxProps,
-  Grid,
-  Heading,
-  Icon,
-  VStack,
-  Text,
-  Flex,
-  Stack,
-  HStack,
-  Button,
-} from '@chakra-ui/react'
+import { Box, BoxProps, Button, Flex, Grid, HStack, Heading, Icon, Stack, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import No1SVG from '../../assets/no-1.svg?react'
+import { FC } from 'react'
 import MaskLogoSVG from '../../assets/mask-logo.svg?react'
+import No1SVG from '../../assets/no-1.svg?react'
+import PlusSVG from '../../assets/plus.svg?react'
+import QuestionSVG from '../../assets/question.svg?react'
 import RightArrow from '../../assets/right-arrow.svg?react'
 import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
 import TonEthSVG from '../../assets/ton-eth.svg?react'
-import PlusSVG from '../../assets/plus.svg?react'
-import QuestionSVG from '../../assets/question.svg?react'
+import { stakeModal } from '../../modals/index.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
-export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
-  ...props
-}) => {
+export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) => {
   return (
     <Box
       maxW="maxW"
@@ -46,26 +33,9 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
       }}
       {...props}
     >
-      <VStack
-        spacing={6}
-        p={6}
-        bg="gradient.purple"
-        w="full"
-        rounded="24px"
-        align="start"
-        pos="relative"
-        zIndex={1}
-      >
-        <ActivityStatusTag
-          pos="absolute"
-          top={{ base: 2, md: 6 }}
-          right={{ base: 2, md: 6 }}
-        />
-        <Flex
-          direction={{ lg: 'row', base: 'column' }}
-          justify="space-between"
-          w="full"
-        >
+      <VStack spacing={6} p={6} bg="gradient.purple" w="full" rounded="24px" align="start" pos="relative" zIndex={1}>
+        <ActivityStatusTag pos="absolute" top={{ base: 2, md: 6 }} right={{ base: 2, md: 6 }} />
+        <Flex direction={{ lg: 'row', base: 'column' }} justify="space-between" w="full">
           <Heading
             fontSize={{ base: '32px', md: '48px' }}
             fontWeight={700}
@@ -145,12 +115,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
                 </VStack>
               </HStack>
             </Stack>
-            <Box
-              fontSize="16px"
-              fontWeight={700}
-              lineHeight="150%"
-              color="neutrals.6"
-            >
+            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
               {t`Total Rewards`}
             </Box>
           </VStack>
@@ -163,23 +128,11 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             p={6}
             spacing={6}
           >
-            <Box
-              h="56px"
-              fontSize="32px"
-              lineHeight="56px"
-              fontWeight={600}
-              color="neutrals.8"
-              letterSpacing="-0.32px"
-            >
+            <Box h="56px" fontSize="32px" lineHeight="56px" fontWeight={600} color="neutrals.8" letterSpacing="-0.32px">
               12.2%
             </Box>
-            <Box
-              fontSize="16px"
-              fontWeight={700}
-              lineHeight="150%"
-              color="neutrals.6"
-            >
-              {t`ARP`}
+            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
+              {t`APR`}
             </Box>
           </VStack>
           <VStack
@@ -203,22 +156,12 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
               1,234,342
               <Icon as={MaskLogoSVG} w="9" h="9" ml="1" />
             </Flex>
-            <Box
-              fontSize="16px"
-              fontWeight={700}
-              lineHeight="150%"
-              color="neutrals.6"
-            >
+            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
               {t`Total MASK Staked`}
             </Box>
           </VStack>
         </Grid>
-        <Text
-          fontSize="14px"
-          lineHeight="22px"
-          fontWeight={700}
-          color="neutrals.9"
-        >
+        <Text fontSize="14px" lineHeight="22px" fontWeight={700} color="neutrals.9">
           {t`This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes.`}
         </Text>
         <Box display="flex" justifyContent="center" width="100%">
@@ -231,6 +174,9 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({
             rounded={24}
             leftIcon={<Icon as={MaskLogoSVG} width={6} height={6} />}
             rightIcon={<Icon as={RightArrow} width={6} height={6} />}
+            onClick={() => {
+              stakeModal.show()
+            }}
           >
             {t`Stake Mask Now`}
           </Button>

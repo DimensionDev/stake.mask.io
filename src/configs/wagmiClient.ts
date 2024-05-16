@@ -18,13 +18,7 @@ export const connectors = connectorsForWallets(
   [
     {
       groupName: 'Recommended',
-      wallets: [
-        metaMaskWallet,
-        walletConnectWallet,
-        coinbaseWallet,
-        rabbyWallet,
-        okxWallet,
-      ],
+      wallets: [metaMaskWallet, walletConnectWallet, coinbaseWallet, rabbyWallet, okxWallet],
     },
   ],
   {

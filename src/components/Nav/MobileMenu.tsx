@@ -32,27 +32,14 @@ const showMenuButton = keyframes`
     }
 `
 
-export const MobileMenu: FC<MobileMenuProps> = ({
-  isOpen = false,
-  onClose,
-  menus,
-}) => {
+export const MobileMenu: FC<MobileMenuProps> = ({ isOpen = false, onClose, menus }) => {
   useLockBodyScroll(isOpen)
   const { pathname } = useLocation()
 
   if (!isOpen) return null
 
   return (
-    <Flex
-      pos="fixed"
-      top="0"
-      left="0"
-      w="100%"
-      h="100%"
-      direction="column"
-      pt="171px"
-      zIndex={20}
-    >
+    <Flex pos="fixed" top="0" left="0" w="100%" h="100%" direction="column" pt="171px" zIndex={20}>
       <List
         fontSize="24px"
         fontWeight={700}
