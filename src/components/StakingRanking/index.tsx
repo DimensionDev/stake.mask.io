@@ -7,14 +7,7 @@ import RightGlowImage from '../../assets/right-glow.webp'
 
 export const StakingRanking: FC = () => {
   return (
-    <Box
-      w="100%"
-      maxW="maxW"
-      pos="relative"
-      border="1px solid"
-      borderColor="neutrals.6"
-      rounded="16px"
-    >
+    <Box w="100%" maxW="maxW" pos="relative" border="1px solid" borderColor="neutrals.6" rounded="16px">
       <Image
         src={LeftGlowImage}
         w="610px"
@@ -28,6 +21,7 @@ export const StakingRanking: FC = () => {
         transformOrigin="left top"
         draggable={false}
         userSelect="none"
+        pointerEvents="none"
       />
       <Image
         src={RightGlowImage}
@@ -42,6 +36,7 @@ export const StakingRanking: FC = () => {
         transformOrigin="left top"
         draggable={false}
         userSelect="none"
+        pointerEvents="none"
       />
       <VStack spacing="64px" py={4} px={6} w="100%" overflow="hidden" h="698px" pos="relative">
         <Heading fontSize="24px" fontWeight={700} lineHeight="32px" w="100%" color="neutrals.2">

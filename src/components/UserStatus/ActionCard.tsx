@@ -31,6 +31,7 @@ export function ActionCard({ title, ...props }: ActionCardProps) {
         transformOrigin="left top"
         draggable={false}
         userSelect="none"
+        pointerEvents="none"
       />
       <Text lineHeight="140%" fontSize="20px" fontWeight="bold">
         {title}

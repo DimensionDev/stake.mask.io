@@ -1,16 +1,5 @@
 import type { FC } from 'react'
-import {
-  AspectRatio,
-  Box,
-  Center,
-  Flex,
-  Grid,
-  Heading,
-  Icon,
-  Image,
-  VStack,
-  Link,
-} from '@chakra-ui/react'
+import { AspectRatio, Box, Center, Flex, Grid, Heading, Icon, Image, VStack, Link } from '@chakra-ui/react'
 import LogoSVG from '../../assets/logo-2.svg?react'
 import { t } from '@lingui/macro'
 import FooterImage from '../../assets/footer.webp'
@@ -40,12 +29,7 @@ export const Footer: FC = () => {
   return (
     <Flex direction="column" bg="neutrals.9" w="100%" mt="auto">
       <AspectRatio ratio={891 / 61} w="100%">
-        <Image
-          src={FooterImage}
-          objectFit="cover"
-          draggable={false}
-          userSelect="none"
-        />
+        <Image src={FooterImage} objectFit="cover" draggable={false} userSelect="none" />
       </AspectRatio>
       <Center w="100%" borderTop="1px solid" borderTopColor="neutrals.6">
         <Grid
@@ -57,19 +41,9 @@ export const Footer: FC = () => {
           maxW="1440px"
           gap={8}
         >
-          <VStack
-            align="start"
-            spacing={8}
-            gridColumn={{ base: '1/3', md: 'auto' }}
-          >
+          <VStack align="start" spacing={8} gridColumn={{ base: '1/3', md: 'auto' }}>
             <Icon as={LogoSVG} w="164px" h="auto" />
-            <Heading
-              color="neutrals.2"
-              letterSpacing="-0.24px"
-              lineHeight="32px"
-              fontWeight={400}
-              fontSize="24px"
-            >
+            <Heading color="neutrals.2" letterSpacing="-0.24px" lineHeight="32px" fontWeight={400} fontSize="24px">
               {t`Your Portal To The New, Open Internet.`}
             </Heading>
           </VStack>
@@ -94,24 +68,14 @@ export const Footer: FC = () => {
               sx={{ li: { w: '100%' } }}
             >
               <li>
-                <Link
-                  target="_blank"
-                  href={env.external.GITHUB_URL}
-                  _hover={{ textDecoration: 'underline' }}
-                >
+                <Link target="_blank" href={env.external.GITHUB_URL} _hover={{ textDecoration: 'underline' }}>
                   {`Github`}
                 </Link>
               </li>
             </VStack>
           </VStack>
           <VStack align="start" spacing={10}>
-            <Heading
-              as="h5"
-              fontSize="16px"
-              fontWeight={700}
-              lineHeight="24px"
-              color="neutrals.2"
-            >{`Help`}</Heading>
+            <Heading as="h5" fontSize="16px" fontWeight={700} lineHeight="24px" color="neutrals.2">{`Help`}</Heading>
             <VStack
               as="ul"
               listStyleType="none"
@@ -136,11 +100,7 @@ export const Footer: FC = () => {
               </li>
             </VStack>
           </VStack>
-          <VStack
-            align="start"
-            spacing={10}
-            gridColumn={{ base: '1/3', md: 'auto' }}
-          >
+          <VStack align="start" spacing={10} gridColumn={{ base: '1/3', md: 'auto' }}>
             <Heading
               as="h5"
               fontSize="16px"
@@ -180,7 +140,7 @@ export const Footer: FC = () => {
       <Center borderTop="1px solid" borderTopColor="neutrals.6" w="100%">
         <Flex
           py={{ base: 3, md: 6, lg: 8 }}
-          px={{ base: 3, md: 6 }}
+          px={{ base: 3, md: 6, lg: 9 }}
           transition="200ms"
           w="100%"
           maxW="1440px"
