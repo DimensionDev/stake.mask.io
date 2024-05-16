@@ -1,6 +1,7 @@
 import { Image, VStack, Text, Box, StackProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { UserInfo } from '../../types/api'
+import { TextOverflowTooltip } from '../TextOverflowTooltip'
 
 interface Props extends StackProps {
   user: UserInfo
@@ -8,26 +9,40 @@ interface Props extends StackProps {
 
 export function UserTotalPoints({ user, ...props }: Props) {
   return (
-    <VStack {...props}>
-      <Box flexDir="row" w="100%">
+    <VStack overflow="hidden" {...props}>
+      <Box flexDir="row" w="100%" pl="100px" pos="relative">
         <Image
           position="absolute"
+          left={0}
           width={100}
           height={100}
+          border="2px solid"
+          borderColor="gradient.purple"
           borderRadius="50%"
           objectFit="cover"
           draggable={false}
           userSelect="none"
-          src={user.twitter_image || new URL('../../assets/default-avatar.svg', import.meta.url).href}
+          src={user.twitter_image}
+          fallbackSrc={new URL('../../assets/default-avatar.svg', import.meta.url).href}
           alt="user name"
         />
-        <Text fontSize="xx-large" textAlign="right" fontWeight="bold">
-          {user.twitter_display_name || 'N/A'}
-        </Text>
+        <TextOverflowTooltip label={user.twitter_display_name} hasArrow placement="top">
+          <Text
+            fontSize="xx-large"
+            textAlign="right"
+            fontWeight="bold"
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            overflow="hidden"
+          >
+            {user.twitter_display_name || 'N/A'}
+          </Text>
+        </TextOverflowTooltip>
       </Box>
       <Box
         w="100%"
-        h="120px"
+        h="132px"
+        mt="14px"
         boxSizing="border-box"
         flexDir="column"
         rounded={16}
