@@ -1,7 +1,9 @@
 import { FC } from 'react'
-import { AspectRatio, Box, Flex, Heading, VStack } from '@chakra-ui/react'
+import { Box, Flex, Heading, VStack, Image } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { RankingAvatar } from './RankingAvatar.tsx'
+import LeftGlowImage from '../../assets/left-glow.webp'
+import RightGlowImage from '../../assets/right-glow.webp'
 
 export const StakingRanking: FC = () => {
   return (
@@ -13,32 +15,34 @@ export const StakingRanking: FC = () => {
       borderColor="neutrals.6"
       rounded="16px"
     >
-      <AspectRatio
-        ratio={610 / 482}
-        w="50%"
+      <Image
+        src={LeftGlowImage}
+        w="610px"
         minW="610px"
-        bg="gradient.leftAngular"
-        filter="blur(35px)"
-        pos="absolute"
+        h="482px"
+        objectFit="contain"
         top="0"
         left="0"
-        transform="translate3d(0, 0, 0)"
-      >
-        <div />
-      </AspectRatio>
-      <AspectRatio
-        ratio={280 / 400}
-        w="22%"
-        minW="280px"
-        bg="gradient.rightAngular"
-        filter="blur(20px)"
         pos="absolute"
+        transform="translateX(-16%) translateY(-16%) scale(1.3)"
+        transformOrigin="left top"
+        draggable={false}
+        userSelect="none"
+      />
+      <Image
+        src={RightGlowImage}
+        w="280px"
+        minW="280px"
+        h="398px"
+        objectFit="contain"
         top="0"
         right="0"
-        transform="translate3d(0, 0, 0)"
-      >
-        <div />
-      </AspectRatio>
+        pos="absolute"
+        transform="translateX(-15%) translateY(-15%) scale(1.3)"
+        transformOrigin="left top"
+        draggable={false}
+        userSelect="none"
+      />
       <VStack
         spacing="64px"
         py={4}
