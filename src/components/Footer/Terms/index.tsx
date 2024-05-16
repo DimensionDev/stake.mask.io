@@ -1,12 +1,5 @@
 import { FC } from 'react'
-import {
-  HStack,
-  Link,
-  ModalBody,
-  ModalCloseButton,
-  ModalHeader,
-  useDisclosure,
-} from '@chakra-ui/react'
+import { HStack, Link, ModalBody, ModalCloseButton, ModalHeader, useDisclosure } from '@chakra-ui/react'
 import { ModalWithDrawer } from '../../ModalWithDrawer'
 import { t } from '@lingui/macro'
 
@@ -48,7 +41,7 @@ const cookiePolicyContent = (
 const termsOfUseContent = (
   <>
     <p style={{ whiteSpace: 'pre-wrap' }}>
-      {`Terms of Use for Mask.io
+      {t`Terms of Use for Mask.io
 Acceptance of Terms
 By accessing and using Mask.io , you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, you may not use our services.
 Changes to Terms
@@ -82,7 +75,7 @@ If you have any questions about these Terms, please contact us at info@dimension
 
 const privacyPolicyContent = (
   <>
-    <p style={{ whiteSpace: 'pre-wrap' }}>{`Introduction
+    <p style={{ whiteSpace: 'pre-wrap' }}>{t`Introduction
 Mask Network is committed to protecting the privacy of its users. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you stake Mask to receive other token rewards through our website. By using our service, you consent to the data practices described in this policy.
 
 Information Collection and Use
@@ -129,10 +122,7 @@ export const Terms: FC = () => {
   const privacyPolicy = useDisclosure()
   return (
     <>
-      <ModalWithDrawer
-        isOpen={cookiePolicy.isOpen}
-        onClose={cookiePolicy.onClose}
-      >
+      <ModalWithDrawer isOpen={cookiePolicy.isOpen} onClose={cookiePolicy.onClose}>
         <ModalCloseButton />
         <ModalHeader>{t`Cookie Policy`}</ModalHeader>
         <ModalBody
@@ -172,10 +162,7 @@ export const Terms: FC = () => {
           {termsOfUseContent}
         </ModalBody>
       </ModalWithDrawer>
-      <ModalWithDrawer
-        isOpen={privacyPolicy.isOpen}
-        onClose={privacyPolicy.onClose}
-      >
+      <ModalWithDrawer isOpen={privacyPolicy.isOpen} onClose={privacyPolicy.onClose}>
         <ModalCloseButton />
         <ModalHeader>{t`Privacy Policy`}</ModalHeader>
         <ModalBody
@@ -195,13 +182,7 @@ export const Terms: FC = () => {
           {privacyPolicyContent}
         </ModalBody>
       </ModalWithDrawer>
-      <HStack
-        spacing={4}
-        color="neutrals.4"
-        fontSize="12px"
-        fontWeight={700}
-        lineHeight="20px"
-      >
+      <HStack spacing={4} color="neutrals.4" fontSize="12px" fontWeight={700} lineHeight="20px">
         <Link cursor="pointer" onClick={termsOfUse.onOpen}>
           Terms of Use
         </Link>
