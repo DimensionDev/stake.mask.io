@@ -1,4 +1,9 @@
 import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   IconButton,
   Modal,
   ModalBody,
@@ -8,6 +13,7 @@ import {
   ModalOverlay,
   ModalProps,
   Text,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 
 import { t } from '@lingui/macro'
@@ -20,22 +26,46 @@ interface Props extends ModalProps {
   height: ModalContentProps['height']
 }
 export function BaseModal({ title, width, height, ...rest }: Props) {
+  const isMobile = useBreakpointValue({ base: true, md: false })
+  console.log({ isMobile })
+  const header = (
+    <>
+      <Text fontSize="32px">{title}</Text>
+      <IconButton
+        rounded="50%"
+        border="1px solid "
+        borderColor="neutrals.6"
+        bg="transparent"
+        aria-label={t`Close`}
+        ml="auto"
+        icon={<Close />}
+        onClick={rest.onClose}
+      />
+    </>
+  )
+  if (isMobile) {
+    return (
+      <Drawer {...rest} placement="bottom">
+        <DrawerOverlay />
+        <DrawerContent bg="neutrals.8" rounded={20}>
+          <DrawerContent maxH="calc(100vh - 40px)" p={0} display="flex" flexDir="column">
+            <DrawerHeader display="flex" flexDir="row" padding="16px 16px 0 16px">
+              {header}
+            </DrawerHeader>
+            <DrawerBody p={6} display="flex" flexDir="column">
+              {rest.children}
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerContent>
+      </Drawer>
+    )
+  }
   return (
     <Modal isCentered {...rest}>
       <ModalOverlay />
       <ModalContent bg="neutrals.8" rounded={20} width={width} height={height} maxW="auto" maxH="auto">
-        <ModalHeader display="flex" flexDir="row" padding="24px 24px 0 24px">
-          <Text fontSize="32px">{title}</Text>
-          <IconButton
-            rounded="50%"
-            border="1px solid "
-            borderColor="neutrals.6"
-            bg="transparent"
-            aria-label={t`Close`}
-            ml="auto"
-            icon={<Close />}
-            onClick={rest.onClose}
-          />
+        <ModalHeader display="flex" flexDir="row" padding="16px 16px 0 16px">
+          {header}
         </ModalHeader>
         <ModalBody p={6} display="flex" flexDir="column">
           {rest.children}

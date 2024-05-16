@@ -31,7 +31,7 @@ msgid "APR"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
-msgid "Balance: {0}"
+msgid "Balance: <0>{0}</0>"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
@@ -135,6 +135,14 @@ msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "MAX"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
+msgid "Not started"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
+msgid "On going"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -246,6 +254,10 @@ msgstr ""
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By using the Site, you consent to the use of cookies as described in this Cookie Policy."
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Time{0}"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
