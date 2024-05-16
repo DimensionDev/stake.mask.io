@@ -23,8 +23,8 @@ export function StepIcon({ completed, step, ...rest }: Props) {
   return (
     <Box
       rounded={4}
-      bg="white"
       color="black"
+      bg="#fff"
       display="inline-flex"
       alignItems="center"
       justifyContent="center"

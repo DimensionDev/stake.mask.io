@@ -1,3 +1,4 @@
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { StrictMode } from 'react'
 
@@ -28,6 +29,10 @@ export function App() {
             <WagmiProvider>
               <RouterProvider router={router} />
               <Modals />
+              <ReactQueryDevtools
+                initialIsOpen={false}
+                buttonPosition="bottom-right"
+              />
             </WagmiProvider>
           </QueryClientProvider>
         </ChakraBaseProvider>

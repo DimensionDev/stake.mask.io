@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, HStack, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ActionCard, ActionCardProps } from './ActionCard'
 

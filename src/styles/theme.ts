@@ -33,6 +33,12 @@ export const theme = extendBaseTheme({
       rightAngular:
         'conic-gradient(from 187deg at 40.63% 50.41%, rgba(242, 98, 181, 0.00) 125.17920970916748deg, rgba(95, 197, 255, 0.40) 193.4119462966919deg, rgba(255, 172, 137, 0.40) 216.0206937789917deg, rgba(129, 85, 255, 0.40) 236.0708713531494deg, rgba(120, 157, 255, 0.40) 259.95326042175293deg, rgba(159, 115, 241, 0.00) 311.0780096054077deg)',
     },
+    secondary: {
+      1: '#9BD6FF',
+      2: '#E4D7CF',
+      3: '#FFD166',
+      4: '#CDB4DB',
+    },
   },
   shadows: {
     card: '0px 5px 10px 0px rgba(0, 0, 0, 0.05), 0px 15px 30px 0px rgba(0, 0, 0, 0.05), 0px 20px 40px 0px rgba(0, 0, 0, 0.05)',

@@ -34,3 +34,29 @@ export interface UserInfo {
 }
 
 export type UserInfoResponse = Response<UserInfo>
+
+export interface PoolInfo {
+  pool_id: number
+  apr: string
+  amount: string
+  score: number
+  start_time: number
+  end_time: number
+  un_locked: boolean
+  staking_enabled: boolean
+  point_acc_start_block: number
+  point_acc_end_block: number
+  is_current_pool_id: boolean
+  reward_pool: {
+    [token_address: string]: {
+      /** symbol */
+      name: string
+      amount: string
+      address: string
+      big_amount: string
+      reward_pool_id: number
+    }
+  }
+}
+
+export type PoolInfoResponse = Response<PoolInfo>

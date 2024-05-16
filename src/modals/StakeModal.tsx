@@ -10,75 +10,49 @@ import {
   List,
   ListItem,
   ModalProps,
+  Skeleton,
   Stack,
   Text,
+  Tooltip,
   VStack,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
-import { useAccount } from 'wagmi'
+import { useAccount, useBalance } from 'wagmi'
 import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
 import { BaseModal } from './BaseModal'
+import { usePoolInfo } from '../hooks/usePoolInfo'
+import dayjs from 'dayjs'
+import { formatNumber } from '../helpers/formatNumber'
+import { useState } from 'react'
+import { usePoolStore } from '../store/poolStore'
 
 interface Props extends ModalProps {}
 
 export function StakeModal(props: Props) {
   const account = useAccount()
+  const { data: pool } = usePoolInfo()
+  const { maskTokenAddress } = usePoolStore()
+  const [amount, setAmount] = useState('')
+  const balance = useBalance({
+    address: account.address,
+    token: maskTokenAddress,
+  })
   return (
     <BaseModal title={t`Stake`} width={572} height={521} {...props}>
-      <Box
-        as="form"
-        display="flex"
-        flexDir="column"
-        className="stake-form"
-        flexGrow={1}
-      >
+      <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
         <List spacing={6}>
           <ListItem display="flex">
-            <StepIcon
-              width={6}
-              height={6}
-              step={1}
-              completed={account.isConnected}
-            />
-            <Text
-              as="span"
-              ml={3}
-              fontSize={14}
-              fontWeight="bold"
-              color="neutrals.1"
-            >{t`Connect Wallet`}</Text>
+            <StepIcon width={6} height={6} step={1} completed={account.isConnected} />
+            <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1">{t`Connect Wallet`}</Text>
             {account.isConnected ? null : (
-              <Button
-                bg="gradient.purple"
-                size="sm"
-                ml="auto"
-                fontSize={14}
-                color="neutrals.8"
-                _hover={{ bg: 'gradient.purple' }}
-                rounded={24}
-              >{t`Connect Wallet`}</Button>
+              <Button className="purple-gradient-button" size="sm" ml="auto" fontSize={14} rounded={24}>{t`Connect Wallet`}</Button>
             )}
           </ListItem>
           <ListItem display="flex">
             <StepIcon width={6} height={6} step={2} />
-            <Text
-              as="span"
-              ml={3}
-              fontSize={14}
-              fontWeight="bold"
-              color="neutrals.1"
-              minW="130px"
-            >{t`Link 𝕏`}</Text>
-            <Button
-              bg="gradient.purple"
-              ml="auto"
-              size="sm"
-              color="neutrals.8"
-              minW="130px"
-              rounded={24}
-              _hover={{ bg: 'gradient.purple' }}
-            >
+            <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1" minW="130px">{t`Link 𝕏`}</Text>
+            <Button className="purple-gradient-button" ml="auto" size="sm" minW="130px" rounded={24} _hover={{ bg: 'gradient.purple' }}>
               𝕏
             </Button>
           </ListItem>
@@ -88,6 +62,7 @@ export function StakeModal(props: Props) {
           border="1px solid"
           borderColor="neutrals.6"
           rounded={12}
+          mt={6}
           p={4}
           _focusWithin={{
             borderColor: 'neutrals.3',
@@ -110,53 +85,82 @@ export function StakeModal(props: Props) {
               placeholder={t`Stake Amount`}
               border="none"
               outline="none"
+              value={amount}
+              max={1e18}
+              onChange={(e) => {
+                setAmount(e.currentTarget.value)
+              }}
               _focus={{ outline: 'none', border: 'none' }}
               _focusVisible={{ border: 'none', boxShadow: 'none' }}
             />
             <InputRightAddon p={0} bg="transparent">
               <VStack alignItems="flex-end">
-                <Text fontSize={16} color="neutrals.4">
-                  Balance: --
+                <Text fontSize={16} color="neutrals.4" display="inline-flex" alignItems="center">
+                  <Trans>
+                    Balance: {balance.isPending ? <Skeleton ml={2} display="inline-block" height="16px" width="20px" /> : balance.data?.value.toLocaleString()}
+                  </Trans>
                 </Text>
-                <Button size="xs">{t`Max`}</Button>
+                <Button
+                  size="xs"
+                  fontSize="14px"
+                  px="8px"
+                  py="6px"
+                  height={26}
+                  boxSizing="border-box"
+                  color="neutrals.6"
+                  bg="gradient.purple"
+                  _hover={{ bg: 'gradient.purple' }}
+                >{t`MAX`}</Button>
               </VStack>
             </InputRightAddon>
           </InputGroup>
         </Box>
-        <HStack>
-          <Text>{t`Unlock MASK Time`}</Text>
-          <Text>12:00 1/23/2024</Text>
-        </HStack>
-        <HStack>
-          <Text>{t`APR`}</Text>
-          <Text>3.84%</Text>
-        </HStack>
-        <HStack>
-          <Text>{t`Share of Pool`}</Text>
-          <Text>30.99%</Text>
-        </HStack>
-        <HStack>
-          <Text>{t`Pool Liquidity`}</Text>
-          <HStack>
-            <TokenIcon width={4} height={4} omitChain />
-            <Text>200,000.00</Text>
+        <VStack spacing="10px" mt="10px" alignItems="stretch" fontSize={16} color="neutrals.4">
+          <HStack justifyContent="space-between">
+            <Text>{t`Unlock MASK Time`}</Text>
+            {pool?.end_time ? (
+              <Tooltip label={dayjs(pool.end_time * 1000).toISOString()} hasArrow placement="top">
+                <Text color="secondary.3">{dayjs(pool.end_time * 1000).format('hh:mm d/MM/YYYY')}</Text>
+              </Tooltip>
+            ) : (
+              <Skeleton height="16px" width="100px" />
+            )}
           </HStack>
-        </HStack>
-        <Text color="danger">
-          <Trans>
-            The staking addresses need to pass Go+ security check. Note that
-            staking is not available in some restricted regions.
-            <Link id="more" href="/">
-              More
-            </Link>
-          </Trans>
-        </Text>
-        <Button
-          w="100%"
-          bg="gradient.purple"
-          rounded={50}
-          mt="auto"
-        >{t`Please connect first`}</Button>
+          <HStack justifyContent="space-between">
+            <Text>{t`APR`}</Text>
+            {pool?.apr ? (
+              <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`} hasArrow placement="top">
+                <Text>{formatNumber(+pool.apr * 110, 2)}%</Text>
+              </Tooltip>
+            ) : (
+              <Skeleton height="16px" width="100px" />
+            )}
+          </HStack>
+          <HStack justifyContent="space-between">
+            <Text>{t`Share of Pool`}</Text>
+            {amount && pool?.amount !== undefined ? <Text>{formatNumber((+amount / +pool?.amount) * 100, 2)}%</Text> : <Skeleton height="16px" width="50px" />}
+          </HStack>
+          <HStack justifyContent="space-between">
+            <Text>{t`Pool Liquidity`}</Text>
+            <HStack>
+              <TokenIcon width={4} height={4} omitChain />
+              {pool?.amount ? (
+                <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
+                  <Text>{formatNumber(+pool.amount)}</Text>
+                </Tooltip>
+              ) : (
+                <Skeleton height="16px" width="100px" />
+              )}
+            </HStack>
+          </HStack>
+          <Text color="danger" lineHeight="24px">
+            <Trans>
+              The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.
+              <Link href="/">More</Link>
+            </Trans>
+          </Text>
+        </VStack>
+        <Button w="100%" className="purple-gradient-button" rounded={50} mt="10px">{t`Please connect first`}</Button>
       </Box>
     </BaseModal>
   )
