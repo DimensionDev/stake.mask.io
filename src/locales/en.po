@@ -13,8 +13,16 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/UserStatus/StakedMask.tsx
+msgid "1 staked MASK will generate 1 point per hour."
+msgstr ""
+
 #: src/components/Nav/index.tsx
 msgid "About"
+msgstr ""
+
+#: src/components/AcceptCookie.tsx
+msgid "Accept cookies"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
@@ -39,15 +47,15 @@ msgstr ""
 msgid "Connect Wallet"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Contact Us"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Cookie Policy"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are used to store information about you and your internet usage habits to improve your online experience. Cookies enable websites to recognize your device and remember some information about your preferences."
 msgstr ""
 
@@ -60,15 +68,15 @@ msgstr ""
 msgid "FAQs"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "How to Control Cookies"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "If you have any questions or concerns about this Cookie Policy, please contact us at:"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "info@dimension.im"
 msgstr ""
 
@@ -106,8 +114,12 @@ msgid ""
 "If you have any questions about this Privacy Policy, please contact us at info@dimension.im."
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Last Updated: 03.10 2024"
+msgstr ""
+
+#: src/components/AcceptCookie.tsx
+msgid "Learn more"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -118,7 +130,7 @@ msgstr ""
 msgid "MAX"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Persistent Cookies: These cookies are stored on your device until they reach their expiration date or are manually deleted. They are used to remember your preferences and provide a personalized experience when you revisit the website."
 msgstr ""
 
@@ -134,7 +146,7 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Session Cookies: These cookies exist only during your visit to the website and are automatically deleted when you close your browser. They are used to maintain session state, such as storing the contents of your shopping cart."
 msgstr ""
 
@@ -163,6 +175,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Stake Mask Now"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Staked MASK can be unstake after the campaign ends."
 msgstr ""
 
 #: src/components/StakingRanking/index.tsx
@@ -209,7 +225,7 @@ msgstr ""
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.<0>More</0>"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Third-Party Cookies: The Site may use cookies from third-party service providers for traffic analysis and user behavior tracking, as well as to display ads relevant to your interests."
 msgstr ""
 
@@ -217,7 +233,7 @@ msgstr ""
 msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes."
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By using the Site, you consent to the use of cookies as described in this Cookie Policy."
 msgstr ""
 
@@ -233,7 +249,7 @@ msgstr ""
 msgid "Total Rewards"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Types of Cookies We Use"
 msgstr ""
 
@@ -241,19 +257,23 @@ msgstr ""
 msgid "Unlock MASK Time"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "Updates to the Cookie Policy"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "We reserve the right to update this Cookie Policy at any time. The updated Cookie Policy will be posted on this page and will become effective immediately. We recommend checking back regularly for updates."
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/components/AcceptCookie.tsx
+msgid "We use our own cookies."
+msgstr ""
+
+#: src/modals/CookiePolicyModal.tsx
 msgid "What Are Cookies?"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/modals/CookiePolicyModal.tsx
 msgid "You can manage and delete cookies through your browser settings. Please note that disabling cookies may affect your access to and experience on the Site."
 msgstr ""
 
