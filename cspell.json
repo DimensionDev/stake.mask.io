@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "language": "en",
-  "words": ["immer", "Merkle", "sepolia", "urlcat", "zustand"],
+  "words": ["immer", "Merkle", "sepolia", "urlcat", "zustand", "masknet"],
   "ignoreWords": [
     "Lingui",
     "lingui",
@@ -18,7 +18,7 @@
     "fontsource",
     "tablist",
     "Roboto",
-    "Jaydon"
+    "Jaydon",
   ],
   "flagWords": [],
   "ignorePaths": [
