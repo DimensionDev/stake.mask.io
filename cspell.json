@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "language": "en",
-  "words": ["immer", "Merkle", "sepolia", "urlcat", "zustand", "masknet", "unstake"],
+  "words": ["immer", "masknet", "Merkle", "sepolia", "unstake", "urlcat", "webp", "zustand"],
   "ignoreWords": [
     "Lingui",
     "lingui",
@@ -39,3 +39,4 @@
   ],
   "overrides": []
 }
+

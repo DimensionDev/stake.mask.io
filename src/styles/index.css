@@ -56,11 +56,14 @@ body .purple-gradient-button {
   background: var(--chakra-colors-gradient-purple);
   color: var(--chakra-colors-neutrals-8);
 }
-body .purple-gradient-button:hover {
+body .purple-gradient-button:disabled {
+  opacity: 0.8;
+}
+body .purple-gradient-button:not(:disabled):hover {
   background: var(--chakra-colors-gradient-purple);
   transform: scale(1.01);
 }
-body .purple-gradient-button:active {
+body .purple-gradient-button:not(:disabled):active {
   transform: scale(0.95);
 }
 

@@ -1,14 +1,17 @@
-import { Box, Button, HStack, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, HStack, Stack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ActionCard, ActionCardProps } from './ActionCard'
 
-import { mainnet } from 'viem/chains'
+import { formatNumber } from '../../helpers/formatNumber'
+import { PoolInfo } from '../../types/api'
+import { ProgressiveText } from '../ProgressiveText'
 import { TokenIcon } from '../TokenIcon'
 
-interface Props extends ActionCardProps {}
-console.log({ mainnet })
+interface Props extends ActionCardProps {
+  reward?: PoolInfo['reward_pool'][string]
+}
 
-export function RewardCard(props: Props) {
+export function RewardCard({ reward, ...props }: Props) {
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
       <Stack alignItems="center" flexGrow={1}>
@@ -17,12 +20,26 @@ export function RewardCard(props: Props) {
             <TokenIcon />
           </Box>
           <Stack ml="10px">
-            <Text fontSize={24} fontWeight={700} lineHeight="24px">
-              70000.00
-            </Text>
-            <Text fontSize={16} fontWeight={700} lineHeight="16px">
-              RSS3
-            </Text>
+            <ProgressiveText
+              loading={!reward}
+              fontSize={24}
+              fontWeight={700}
+              lineHeight="24px"
+              skeletonHeight="24px"
+              skeletonWidth="50px"
+            >
+              {formatNumber(reward?.amount ? +reward.amount : 0)}
+            </ProgressiveText>
+            <ProgressiveText
+              fontSize={16}
+              loading={!reward}
+              fontWeight={700}
+              lineHeight="16px"
+              textTransform="uppercase"
+              skeletonWidth="30px"
+            >
+              {reward?.name}
+            </ProgressiveText>
           </Stack>
         </HStack>
         <Button

@@ -107,6 +107,10 @@ export function StakeModal(props: Props) {
               placeholder={t`Stake Amount`}
               border="none"
               outline="none"
+              fontSize="40px"
+              fontFamily="input"
+              fontWeight={700}
+              autoFocus
               value={amount}
               max={1e18}
               onChange={(e) => {
@@ -197,7 +201,9 @@ export function StakeModal(props: Props) {
             </Trans>
           </Text>
         </VStack>
-        <Button w="100%" className="purple-gradient-button" rounded={50} mt="10px">{t`Please connect first`}</Button>
+        <Button w="100%" className="purple-gradient-button" rounded={50} mt="10px" disabled>
+          {account.isConnected ? t`Stake` : t`Please connect first`}
+        </Button>
       </Box>
     </BaseModal>
   )

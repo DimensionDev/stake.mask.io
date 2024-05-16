@@ -3,15 +3,20 @@ import { fetchJSON } from '../helpers/fetchJSON'
 import { FIREFLY_API_ROOT } from '../constants/api'
 import { UserInfo, UserInfoResponse } from '../types/api'
 import urlcat from 'urlcat'
+import { useAccount } from 'wagmi'
+import { usePoolStore } from '../store/poolStore'
 
-export function useUserInfo(address: string | undefined, pool_id: number | null) {
+export function useUserInfo() {
+  const { address } = useAccount()
+  const store = usePoolStore()
+  const poolId = store.poolId
   return useQuery({
-    enabled: !!pool_id && !!address,
-    queryKey: ['user-info', address, pool_id],
+    enabled: !!poolId && !!address,
+    queryKey: ['user-info', address, poolId],
     queryFn: async () => {
       const url = urlcat(FIREFLY_API_ROOT, '/v1/mask_stake/user_info', {
         address,
-        pool_id: pool_id,
+        pool_id: poolId,
       })
       return fetchJSON<UserInfoResponse>(url)
     },
