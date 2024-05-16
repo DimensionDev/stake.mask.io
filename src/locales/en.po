@@ -34,6 +34,10 @@ msgstr ""
 msgid "FAQs"
 msgstr ""
 
+#: src/components/Footer/index.tsx
+msgid "Since 2019 to Now ｜ Mask.io"
+msgstr ""
+
 #: src/components/Nav/index.tsx
 msgid "Stake"
 msgstr ""
@@ -46,6 +50,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Stake Mask Now"
+msgstr ""
+
+#: src/components/StakingRanking/index.tsx
+msgid "Staking Ranking"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
