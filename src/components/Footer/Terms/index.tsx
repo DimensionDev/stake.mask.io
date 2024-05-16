@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { HStack, Link, ModalBody, ModalCloseButton, ModalHeader, useDisclosure } from '@chakra-ui/react'
 import { ModalWithDrawer } from '../../ModalWithDrawer'
 import { t } from '@lingui/macro'
+import { cookiePolicyModal } from '../../../modals'
 
 const CookiePolicyContent = () => (
   <>
@@ -189,7 +190,7 @@ export const Terms: FC = () => {
         <Link cursor="pointer" onClick={privacyPolicy.onOpen}>
           Privacy Policy
         </Link>
-        <Link cursor="pointer" onClick={cookiePolicy.onOpen}>
+        <Link cursor="pointer" onClick={() => cookiePolicyModal.show()}>
           Cookie Policy
         </Link>
       </HStack>

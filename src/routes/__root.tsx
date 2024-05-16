@@ -3,6 +3,7 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { Flex } from '@chakra-ui/react'
+import { AcceptCookie } from '../components/AcceptCookie.tsx'
 
 export const Route = createRootRoute({
   component: () => (
@@ -10,6 +11,7 @@ export const Route = createRootRoute({
       <Nav pos="fixed" top={0} left={0} zIndex={99} />
       <Outlet />
       <Footer />
+      <AcceptCookie />
       <TanStackRouterDevtools />
     </Flex>
   ),
