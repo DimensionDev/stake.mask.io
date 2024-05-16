@@ -1,13 +1,4 @@
-import {
-  Center,
-  Divider,
-  Flex,
-  Icon,
-  type FlexProps,
-  useBreakpointValue,
-  useDisclosure,
-  Box,
-} from '@chakra-ui/react'
+import { Center, Divider, Flex, Icon, type FlexProps, useBreakpointValue, useDisclosure, Box } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import type { FC } from 'react'
@@ -78,11 +69,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
           background: mobileMenu.isOpen ? 'rgba(0, 0, 0, 0.80)' : undefined,
         }}
       />
-      <MobileMenu
-        isOpen={isHiddenTabs && mobileMenu.isOpen}
-        onClose={mobileMenu.onClose}
-        menus={menus}
-      />
+      <MobileMenu isOpen={isHiddenTabs && mobileMenu.isOpen} onClose={mobileMenu.onClose} menus={menus} />
       <MobileMenu isOpen={isHiddenTabs && mobileMenu.isOpen} onClose={mobileMenu.onClose} menus={menus} />
     </Center>
   )

@@ -35,7 +35,7 @@ export const theme = extendBaseTheme({
     },
     gradient: {
       purple: 'linear-gradient(261deg, #D0D0FF 3.1%, #A996F7 33.87%, #7280FE 54.26%, #D3D6FE 104.35%)',
-     },
+    },
     secondary: {
       1: '#9BD6FF',
       2: '#E4D7CF',
