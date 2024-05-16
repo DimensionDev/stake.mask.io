@@ -67,7 +67,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "urlcat@3.1.0": "patches/urlcat@3.1.0.patch"
+      "urlcat@3.1.0": "patches/urlcat@3.1.0.patch",
+      "react-use@17.5.0": "patches/react-use@17.5.0.patch"
     }
   }
 }

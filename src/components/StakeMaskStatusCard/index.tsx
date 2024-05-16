@@ -1,5 +1,19 @@
-import { Box, BoxProps, Button, Flex, Grid, HStack, Heading, Icon, Stack, Text, VStack } from '@chakra-ui/react'
-import { t } from '@lingui/macro'
+import {
+  Box,
+  BoxProps,
+  Button,
+  Flex,
+  Grid,
+  HStack,
+  Heading,
+  Icon,
+  Skeleton,
+  Stack,
+  Text,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react'
+import { Trans, t } from '@lingui/macro'
 import { FC } from 'react'
 import MaskLogoSVG from '../../assets/mask-logo.svg?react'
 import No1SVG from '../../assets/no-1.svg?react'
@@ -8,13 +22,19 @@ import QuestionSVG from '../../assets/question.svg?react'
 import RightArrow from '../../assets/right-arrow.svg?react'
 import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
 import TonEthSVG from '../../assets/ton-eth.svg?react'
+import { formatNumber } from '../../helpers/formatNumber.ts'
+import { formatSeconds } from '../../helpers/formatSeconds.ts'
+import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
 import { stakeModal } from '../../modals/index.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
-import { Tooltip } from '../Tooltip.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
 export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) => {
+  const { data: pool, isLoading } = usePoolInfo()
+  const rewardTokens = pool ? Object.values(pool.reward_pool) : []
+  const rss3 = rewardTokens.find((x) => x.name === 'rss3')
+  const ton = rewardTokens.find((x) => x.name === 'ton')
   return (
     <Box
       maxW="maxW"
@@ -66,7 +86,14 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             lineHeight={{ base: 6, lg: '140%' }}
             align="center"
           >
-            Time 3.20 2024~8.20 2024
+            <Trans>
+              Time
+              {isLoading || !pool ? (
+                <Skeleton width="100px" height="16px" ml={1} />
+              ) : (
+                `${formatSeconds(pool?.start_time, 'M.DD YYYY')}~${formatSeconds(pool.end_time, 'M.DD YYYY')}`
+              )}
+            </Trans>
             <Tooltip label={t`Staked MASK can be unstake after the campaign ends.`} placement="top" hasArrow>
               <Box as="span" w="6" h="6" ml="10px">
                 <Icon as={QuestionSVG} w="initial" h="initial" />
@@ -99,9 +126,13 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
               <HStack spacing={1}>
                 <Icon as={Rss3EthSVG} w="12" h="12" />
                 <VStack spacing={0} color="neutrals.8" align="start">
-                  <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
-                    700,000
-                  </Box>
+                  {rss3 ? (
+                    <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
+                      {formatNumber(+rss3.amount)}
+                    </Box>
+                  ) : (
+                    <Skeleton height="24px" width="80px" my="4px" />
+                  )}
                   <Box fontSize="16px" lineHeight="24px" fontWeight={700}>
                     RSS3
                   </Box>
@@ -111,9 +142,14 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
               <HStack spacing={1}>
                 <Icon as={TonEthSVG} w="12" h="12" />
                 <VStack spacing={0} color="neutrals.8" align="start">
-                  <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
-                    40,000
-                  </Box>
+                  {ton ? (
+                    <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
+                      {formatNumber(+ton.amount)}
+                    </Box>
+                  ) : (
+                    <Skeleton height="24px" width="80px" my="4px" />
+                  )}
+
                   <Box fontSize="16px" lineHeight="24px" fontWeight={700}>
                     TON
                   </Box>
@@ -133,9 +169,22 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             p={6}
             spacing={6}
           >
-            <Box h="56px" fontSize="32px" lineHeight="56px" fontWeight={600} color="neutrals.8" letterSpacing="-0.32px">
-              12.2%
-            </Box>
+            {pool?.apr ? (
+              <Tooltip label={formatNumber(+pool.apr * 100, 18)}>
+                <Box
+                  h="56px"
+                  fontSize="32px"
+                  lineHeight="56px"
+                  fontWeight={600}
+                  color="neutrals.8"
+                  letterSpacing="-0.32px"
+                >
+                  {formatNumber(+pool.apr * 110, 2)}%
+                </Box>
+              </Tooltip>
+            ) : (
+              <Skeleton h="56px" width="100px" fontSize="32px"></Skeleton>
+            )}
             <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
               {t`APR`}
             </Box>
@@ -158,7 +207,13 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
               color="neutrals.8"
               letterSpacing="-0.32px"
             >
-              1,234,342
+              {pool?.amount ? (
+                <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
+                  <Text>{formatNumber(+pool.amount)}</Text>
+                </Tooltip>
+              ) : (
+                <Skeleton height="32px" width="100px" />
+              )}
               <Icon as={MaskLogoSVG} w="9" h="9" ml="1" />
             </Flex>
             <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">

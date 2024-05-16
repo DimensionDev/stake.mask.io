@@ -12,14 +12,14 @@ const CookiePolicyContent = () => (
       <br />
       {t`Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are used to store information about you and your internet usage habits to improve your online experience. Cookies enable websites to recognize your device and remember some information about your preferences.`}
     </p>
-    <p>
+    <div>
       {t`Types of Cookies We Use`}
       <ul>
         <li>{t`Session Cookies: These cookies exist only during your visit to the website and are automatically deleted when you close your browser. They are used to maintain session state, such as storing the contents of your shopping cart.`}</li>
         <li>{t`Persistent Cookies: These cookies are stored on your device until they reach their expiration date or are manually deleted. They are used to remember your preferences and provide a personalized experience when you revisit the website.`}</li>
         <li>{t`Third-Party Cookies: The Site may use cookies from third-party service providers for traffic analysis and user behavior tracking, as well as to display ads relevant to your interests.`}</li>
       </ul>
-    </p>
+    </div>
     <p>
       {t`How to Control Cookies`}
       <br />

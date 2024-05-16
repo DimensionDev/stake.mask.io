@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  react-use@17.5.0:
+    hash: hl7dr6rjk7dvc67mgwhhnozk2u
+    path: patches/react-use@17.5.0.patch
   urlcat@3.1.0:
     hash: iexdafwbwqknhkxkkvrkaj5nda
     path: patches/urlcat@3.1.0.patch
@@ -57,7 +60,7 @@ dependencies:
     version: 18.3.1(react@18.3.1)
   react-use:
     specifier: ^17.5.0
-    version: 17.5.0(react-dom@18.3.1)(react@18.3.1)
+    version: 17.5.0(patch_hash=hl7dr6rjk7dvc67mgwhhnozk2u)(react-dom@18.3.1)(react@18.3.1)
   urlcat:
     specifier: ^3.1.0
     version: 3.1.0(patch_hash=iexdafwbwqknhkxkkvrkaj5nda)
@@ -10365,7 +10368,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /react-use@17.5.0(react-dom@18.3.1)(react@18.3.1):
+  /react-use@17.5.0(patch_hash=hl7dr6rjk7dvc67mgwhhnozk2u)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-PbfwSPMwp/hoL847rLnm/qkjg3sTRCvn6YhUZiHaUa3FA6/aNoFX79ul5Xt70O1rK+9GxSVqkY0eTwMdsR/bWg==}
     peerDependencies:
       react: '*'
@@ -10388,6 +10391,7 @@ packages:
       ts-easing: 0.2.0
       tslib: 2.6.2
     dev: false
+    patched: true
 
   /react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}

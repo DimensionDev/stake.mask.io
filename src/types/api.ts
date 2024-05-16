@@ -60,3 +60,9 @@ export interface PoolInfo {
 }
 
 export type PoolInfoResponse = Response<PoolInfo>
+
+export interface TwitterAuthorizeResult {
+  url: string
+}
+
+export type TwitterAuthorizeResponse = Response<TwitterAuthorizeResult>
