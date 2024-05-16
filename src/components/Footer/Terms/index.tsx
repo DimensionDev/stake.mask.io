@@ -3,7 +3,7 @@ import { HStack, Link, ModalBody, ModalCloseButton, ModalHeader, useDisclosure }
 import { ModalWithDrawer } from '../../ModalWithDrawer'
 import { t } from '@lingui/macro'
 
-const cookiePolicyContent = (
+const CookiePolicyContent = () => (
   <>
     <p>{t`This website (hereinafter referred to as "the Site") uses cookies. By using the Site, you consent to the use of cookies as described in this Cookie Policy.`}</p>
     <p>
@@ -38,7 +38,7 @@ const cookiePolicyContent = (
   </>
 )
 
-const termsOfUseContent = (
+const TermsOfUseContent = () => (
   <>
     <p style={{ whiteSpace: 'pre-wrap' }}>
       {t`Terms of Use for Mask.io
@@ -73,7 +73,7 @@ If you have any questions about these Terms, please contact us at info@dimension
   </>
 )
 
-const privacyPolicyContent = (
+const PrivacyPolicyContent = () => (
   <>
     <p style={{ whiteSpace: 'pre-wrap' }}>{t`Introduction
 Mask Network is committed to protecting the privacy of its users. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you stake Mask to receive other token rewards through our website. By using our service, you consent to the data practices described in this policy.
@@ -139,7 +139,7 @@ export const Terms: FC = () => {
             },
           }}
         >
-          {cookiePolicyContent}
+          <CookiePolicyContent />
         </ModalBody>
       </ModalWithDrawer>
       <ModalWithDrawer isOpen={termsOfUse.isOpen} onClose={termsOfUse.onClose}>
@@ -159,7 +159,7 @@ export const Terms: FC = () => {
             },
           }}
         >
-          {termsOfUseContent}
+          <TermsOfUseContent />
         </ModalBody>
       </ModalWithDrawer>
       <ModalWithDrawer isOpen={privacyPolicy.isOpen} onClose={privacyPolicy.onClose}>
@@ -179,7 +179,7 @@ export const Terms: FC = () => {
             },
           }}
         >
-          {privacyPolicyContent}
+          <PrivacyPolicyContent />
         </ModalBody>
       </ModalWithDrawer>
       <HStack spacing={4} color="neutrals.4" fontSize="12px" fontWeight={700} lineHeight="20px">

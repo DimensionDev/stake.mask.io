@@ -1,7 +1,7 @@
 import { Center, Divider, Flex, Icon, type FlexProps, useBreakpointValue, useDisclosure, Box } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import type { FC } from 'react'
+import { FC, useMemo } from 'react'
 import LogoSVG from '../../assets/logo.svg?react'
 import { MenuButton } from './MenuButton.tsx'
 import { MobileMenu } from './MobileMenu.tsx'
@@ -9,24 +9,26 @@ import { DesktopMenu } from './DesktopMenu.tsx'
 
 export interface NavProps extends FlexProps {}
 
-const menus = [
-  {
-    label: t`Stake`,
-    path: '/',
-  },
-  {
-    label: t`FAQs`,
-    path: '/faqs',
-  },
-  {
-    label: t`About`,
-    path: '/about',
-  },
-]
-
 export const Nav: FC<NavProps> = ({ ...props }) => {
   const isHiddenTabs = useBreakpointValue({ base: true, lg: false })
   const mobileMenu = useDisclosure()
+  const menus = useMemo(
+    () => [
+      {
+        label: t`Stake`,
+        path: '/',
+      },
+      {
+        label: t`FAQs`,
+        path: '/faqs',
+      },
+      {
+        label: t`About`,
+        path: '/about',
+      },
+    ],
+    [],
+  )
 
   return (
     <Center
@@ -69,7 +71,6 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
           background: mobileMenu.isOpen ? 'rgba(0, 0, 0, 0.80)' : undefined,
         }}
       />
-      <MobileMenu isOpen={isHiddenTabs && mobileMenu.isOpen} onClose={mobileMenu.onClose} menus={menus} />
       <MobileMenu isOpen={isHiddenTabs && mobileMenu.isOpen} onClose={mobileMenu.onClose} menus={menus} />
     </Center>
   )
