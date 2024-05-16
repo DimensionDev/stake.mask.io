@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/UserStatus/StakedMask.tsx
+msgid "1 staked MASK will generate 1 point per hour."
+msgstr ""
+
 #: src/components/Nav/index.tsx
 msgid "About"
 msgstr ""
@@ -163,6 +167,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Stake Mask Now"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Staked MASK can be unstake after the campaign ends."
 msgstr ""
 
 #: src/components/StakingRanking/index.tsx
