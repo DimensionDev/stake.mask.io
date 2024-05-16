@@ -4,16 +4,13 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { RewardCard } from './RewardCard'
 import { StakedMask } from './StakedMask'
 import { UserTotalPoints } from './UserTotalPoint'
-import { usePoolInfo } from '../../hooks/usePoolInfo'
 
 export interface UserStatusProps extends GridProps {}
 
 export function UserStatus(props: UserStatusProps) {
   const { data: userInfo } = useUserInfo()
-  const { data: pool } = usePoolInfo()
-  const rewardTokens = pool ? Object.values(pool.reward_pool) : []
-  const rss3 = rewardTokens.find((x) => x.name === 'rss3')
-  const ton = rewardTokens.find((x) => x.name === 'ton')
+  const rss3 = userInfo?.reward_pool.find((x) => x.name === 'rss3')
+  const ton = userInfo?.reward_pool.find((x) => x.name === 'ton')
 
   if (!userInfo)
     return (

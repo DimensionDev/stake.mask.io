@@ -6,8 +6,6 @@ import { Drawer } from './components/Drawer.ts'
 
 window.localStorage.setItem('chakra-ui-color-mode', 'dark')
 
-console.log(chakraTheme.components.Tooltip)
-
 export const theme = extendBaseTheme({
   components: {
     ...chakraTheme.components,

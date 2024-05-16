@@ -12,8 +12,7 @@ export interface BaseDialogProps<T> extends Pick<ModalProps, 'isOpen' | 'onClose
 }
 
 /**
- * Create a manager of small UI task sessions,
- * which provides both a Context and a Provider.
+ * Create a manager of UI task sessions,
  */
 export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>, Result>(
   Component: ComponentType<TaskOptions>,
@@ -59,10 +58,10 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
         show(options?: Omit<TaskOptions, 'isOpen'>, signal?: AbortSignal) {
           const [promise, resolve, reject] = defer<Result | null>()
           id += 1
-          signal?.addEventListener('abort', function abortHandler() {
+          function abortHandler() {
             resolve(null)
-            signal.removeEventListener('abort', abortHandler)
-          })
+          }
+          signal?.addEventListener('abort', abortHandler, { once: true })
           const newTask: Task = {
             id,
             isOpen: true,
@@ -73,6 +72,7 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
           }
           setTasks((list) => [...list, newTask])
           promise.then(() => {
+            signal?.removeEventListener('abort', abortHandler)
             removeTask(newTask.id)
           })
           return promise

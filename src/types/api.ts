@@ -22,15 +22,15 @@ export interface UserInfo {
   twitter_display_name: string
   twitter_image: string
   address_type: string
-  reward_pool: {
+  reward_pool: Array<{
     reward_pool_id: number
     amount: string
     big_amount: string
     /** token name */
     name: string
     /** Merkle tree */
-    proof: string[]
-  }
+    proof: Array<`0x${string}`>
+  }>
 }
 
 export type UserInfoResponse = Response<UserInfo>
