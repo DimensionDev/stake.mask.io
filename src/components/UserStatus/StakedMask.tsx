@@ -1,9 +1,10 @@
-import { BoxProps, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { ActionCard } from './ActionCard'
 import { t } from '@lingui/macro'
 
 import MaskLogo from '../../assets/mask-logo.svg?react'
 import Question from '../../assets/question.svg?react'
+import { Tooltip } from '../Tooltip.tsx'
 
 export function StakedMask(props: BoxProps) {
   return (
@@ -14,7 +15,11 @@ export function StakedMask(props: BoxProps) {
         </Text>
         <HStack alignItems="center" my="auto">
           <Text>2.343</Text>
-          <Icon as={Question} width={6} height={6} />
+          <Tooltip label={t`1 staked MASK will generate 1 point per hour.`} placement="top" hasArrow>
+            <Box as="span" w={6} h={6}>
+              <Icon as={Question} w="initial" h="initial" />
+            </Box>
+          </Tooltip>
         </HStack>
         <Button
           rounded={24}

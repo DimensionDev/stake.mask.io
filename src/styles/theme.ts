@@ -4,18 +4,31 @@ import { Tabs } from './components/Tabs.ts'
 import { Modal } from './components/Modal.ts'
 import { Drawer } from './components/Drawer.ts'
 
-const { Button, Skeleton } = chakraTheme.components
-
 window.localStorage.setItem('chakra-ui-color-mode', 'dark')
+
+console.log(chakraTheme.components.Tooltip)
 
 export const theme = extendBaseTheme({
   components: {
     ...chakraTheme.components,
-    Skeleton,
-    Button,
     Drawer,
     Modal,
     Tabs,
+    Tooltip: {
+      ...chakraTheme.components.Tooltip,
+      baseStyle() {
+        return {
+          ...chakraTheme.components.Tooltip.baseStyle,
+          _dark: {
+            '--tooltip-bg': 'rgba(255, 255, 255, 0.9)',
+          },
+          color: 'neutrals.8',
+          py: 2,
+          px: 2,
+          borderRadius: '8px',
+        }
+      },
+    },
   },
   sizes: {
     maxW: '1244px',
