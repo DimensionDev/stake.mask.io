@@ -15,6 +15,9 @@ export function UserTotalPoints({ user, ...props }: Props) {
           width={100}
           height={100}
           borderRadius="50%"
+          objectFit="cover"
+          draggable={false}
+          userSelect="none"
           src={
             user.twitter_image ||
             new URL('../../assets/default-avatar.svg', import.meta.url).href
