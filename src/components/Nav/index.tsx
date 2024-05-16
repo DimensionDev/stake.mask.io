@@ -6,6 +6,7 @@ import {
   type FlexProps,
   useBreakpointValue,
   useDisclosure,
+  Box,
 } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
@@ -41,6 +42,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
       w="100%"
       h={{ base: '107px', lg: '80px' }}
       borderBottom={{ base: 'none', lg: '1px solid rgba(255, 255, 255, 0.1)' }}
+      pos="relative"
       {...props}
     >
       <Flex
@@ -76,6 +78,23 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
           </>
         )}
       </Flex>
+      <Box
+        pos="absolute"
+        w="100%"
+        h="100%"
+        bg="rgba(0, 0, 0, 0.10)"
+        backdropFilter="blur(10px)"
+        transform="translate3d(0, 0, 0)" // use gpu to render blur
+        top="0"
+        left="0"
+        zIndex={0}
+        transition="300ms"
+        willChange="height"
+        style={{
+          height: mobileMenu.isOpen ? '100vh' : undefined,
+          background: mobileMenu.isOpen ? 'rgba(0, 0, 0, 0.80)' : undefined,
+        }}
+      />
       <MobileMenu
         isOpen={isHiddenTabs && mobileMenu.isOpen}
         onClose={mobileMenu.onClose}
