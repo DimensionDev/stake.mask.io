@@ -13,6 +13,7 @@ interface ConnectorWithRkDetails extends Connector {
   rkDetails: {
     iconUrl: () => Promise<string>
     rdns: string
+    id: string
   }
 }
 
@@ -24,9 +25,10 @@ export const ConnectedWalletIcon: FC<BoxProps> = memo(({ ...props }) => {
     queryKey: ['connected-wallet-icon', account?.address],
     queryFn() {
       const walletId = localStorage.getItem('rk-latest-id')
-      const connector = connectors.find(
-        (connector) => (connector as ConnectorWithRkDetails).rkDetails.rdns === walletId,
-      )
+      const connector = connectors.find((connector) => {
+        const c = connector as ConnectorWithRkDetails
+        return c.rkDetails.rdns === walletId || c.rkDetails.id === walletId
+      })
       return (connector as ConnectorWithRkDetails)?.rkDetails?.iconUrl()
     },
     refetchOnMount: false,
@@ -37,7 +39,7 @@ export const ConnectedWalletIcon: FC<BoxProps> = memo(({ ...props }) => {
   return <Image src={icon} boxSize={9} {...props} />
 })
 
-export const ConnectButton: FC = () => {
+export const ConnectButton: FC = memo(() => {
   return (
     <RawConnectButton.Custom>
       {({ account, chain, openAccountModal, openChainModal, openConnectModal, authenticationStatus, mounted }) => {
@@ -125,4 +127,4 @@ export const ConnectButton: FC = () => {
       }}
     </RawConnectButton.Custom>
   )
-}
+})
