@@ -1,7 +1,18 @@
 {
   "version": "0.1",
   "language": "en",
-  "words": ["immer", "masknet", "Merkle", "sepolia", "unstake", "urlcat", "webp", "zustand", "splinetool"],
+  "words": [
+    "immer",
+    "masknet",
+    "Merkle",
+    "sepolia",
+    "splinecode",
+    "splinetool",
+    "unstake",
+    "urlcat",
+    "webp",
+    "zustand"
+  ],
   "ignoreWords": [
     "Lingui",
     "lingui",

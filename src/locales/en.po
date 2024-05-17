@@ -46,6 +46,10 @@ msgstr ""
 msgid "Balance: {0}"
 msgstr ""
 
+#: src/modals/StakeModal.tsx
+msgid "Can not get determination MASK token"
+msgstr ""
+
 #: src/modals/ProfileModal.tsx
 msgid "Cancel"
 msgstr ""
@@ -56,6 +60,10 @@ msgstr ""
 
 #: src/modals/ProfileModal.tsx
 msgid "Confirm"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Connect to stake"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -171,6 +179,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 msgid "Not started"
+msgstr ""
+
+#: src/components/UserStatus/RewardCard.tsx
+msgid "Not unlocked yet"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx

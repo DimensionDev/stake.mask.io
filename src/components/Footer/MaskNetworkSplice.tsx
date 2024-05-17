@@ -1,5 +1,5 @@
 import { type FC, lazy, Suspense } from 'react'
-import { Center } from '@chakra-ui/react'
+import { Center, Spinner } from '@chakra-ui/react'
 
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
@@ -26,7 +26,7 @@ export const MaskNetworkSplice: FC = () => {
       }}
       onWheelCapture={(e) => e.stopPropagation()}
     >
-      <Suspense fallback={null}>
+      <Suspense fallback={<Spinner />}>
         <Spline scene="/mask_network.splinecode" renderOnDemand />
       </Suspense>
     </Center>

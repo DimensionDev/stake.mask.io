@@ -4,6 +4,7 @@ import { useWriteContract } from 'wagmi'
 import { rewardABI } from '../../abis/reward'
 import { formatNumber } from '../../helpers/formatNumber'
 import { useUserInfo } from '../../hooks/useUserInfo'
+import { usePoolStore } from '../../store/poolStore'
 import { UserInfo } from '../../types/api'
 import { ProgressiveText } from '../ProgressiveText'
 import { TokenIcon } from '../TokenIcon'
@@ -12,10 +13,12 @@ import { ActionCard, ActionCardProps } from './ActionCard'
 interface Props extends ActionCardProps {
   tokenIcon?: string
   reward?: UserInfo['reward_pool'][number]
+  unlocked?: boolean
 }
 
-export function RewardCard({ reward, tokenIcon, ...props }: Props) {
+export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
   const { writeContractAsync, isPending } = useWriteContract()
+  const { rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast()
   return (
@@ -50,6 +53,7 @@ export function RewardCard({ reward, tokenIcon, ...props }: Props) {
         </HStack>
         <Button
           rounded={24}
+          isDisabled={!unlocked}
           alignSelf="stretch"
           color="neutrals.9"
           bg="gradient.purple"
@@ -57,7 +61,7 @@ export function RewardCard({ reward, tokenIcon, ...props }: Props) {
           _active={{ transform: 'scale(0.9)' }}
           disabled={loadingUserInfo}
           onClick={async () => {
-            if (!reward || !userInfo) return
+            if (!reward || !userInfo || !rewardAddress) return
             const rewardPool = userInfo.reward_pool.find((x) => x.reward_pool_id === reward.reward_pool_id)
             if (!rewardPool) {
               toast({
@@ -66,16 +70,17 @@ export function RewardCard({ reward, tokenIcon, ...props }: Props) {
               })
               return
             }
+            // TODO check if is unlocked
             const res = await writeContractAsync({
               abi: rewardABI,
-              address: import.meta.env.REWARD_CONTRACT_ADDRESS,
+              address: rewardAddress,
               functionName: 'claim',
               args: [reward.reward_pool_id, BigInt(reward.big_amount), rewardPool.proof],
             })
             console.log('claim result', res)
           }}
         >
-          {isPending ? <Spinner size="sm" /> : t`Claim`}
+          {unlocked ? isPending ? <Spinner size="sm" /> : t`Claim` : t`Not unlocked yet`}
         </Button>
       </Stack>
     </ActionCard>
