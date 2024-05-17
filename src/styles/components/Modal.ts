@@ -50,6 +50,9 @@ export const Modal = {
         rounded: '100%',
         border: '2px solid',
         borderColor: 'neutrals.6',
+        _active: {
+          transform: 'scale(0.95)',
+        },
       },
     }
   },

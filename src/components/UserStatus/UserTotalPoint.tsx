@@ -1,7 +1,9 @@
-import { Image, VStack, Text, Box, StackProps } from '@chakra-ui/react'
+import { Box, StackProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { UserInfo } from '../../types/api'
 import { TextOverflowTooltip } from '../TextOverflowTooltip'
+import { TwitterAvatar } from '../TwitterAvatar'
+import { profileModal } from '../../modals'
 
 interface Props extends StackProps {
   user: UserInfo
@@ -11,20 +13,16 @@ export function UserTotalPoints({ user, ...props }: Props) {
   return (
     <VStack overflow="hidden" {...props}>
       <Box flexDir="row" w="100%" pl="100px" pos="relative">
-        <Image
-          position="absolute"
+        <TwitterAvatar
+          size={100}
+          pos="absolute"
+          cursor="pointer"
           left={0}
-          width={100}
-          height={100}
-          border="2px solid"
-          borderColor="gradient.purple"
-          borderRadius="50%"
-          objectFit="cover"
-          draggable={false}
-          userSelect="none"
           src={user.twitter_image}
-          fallbackSrc={new URL('../../assets/default-avatar.svg', import.meta.url).href}
-          alt="user name"
+          omitBadge
+          onClick={() => {
+            profileModal.show()
+          }}
         />
         <TextOverflowTooltip label={user.twitter_display_name} hasArrow placement="top">
           <Text
@@ -34,6 +32,10 @@ export function UserTotalPoints({ user, ...props }: Props) {
             textOverflow="ellipsis"
             whiteSpace="nowrap"
             overflow="hidden"
+            cursor="pointer"
+            onClick={() => {
+              profileModal.show()
+            }}
           >
             {user.twitter_display_name || 'N/A'}
           </Text>

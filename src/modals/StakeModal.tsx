@@ -1,3 +1,4 @@
+import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -24,61 +25,82 @@ import { useAccount, useBalance } from 'wagmi'
 import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
 import { Tooltip } from '../components/Tooltip.tsx'
+import { TwitterAvatar } from '../components/TwitterAvatar.tsx'
 import { formatNumber } from '../helpers/formatNumber'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
 import { usePoolInfo } from '../hooks/usePoolInfo'
+import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
+import { profileModal } from './index.tsx'
 
-interface Props extends ModalProps {}
-
-export function StakeModal(props: Props) {
+export function StakeModal(props: ModalProps) {
   const account = useAccount()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
   const { maskTokenAddress } = usePoolStore()
   const [amount, setAmount] = useState('')
-  const balance = useBalance({
-    address: account.address,
-    token: maskTokenAddress,
-  })
+  const balance = useBalance({ address: account.address, token: maskTokenAddress })
   const [{ loading }, linkTwitter] = useLinkTwitter()
+  const { data: userInfo } = useUserInfo()
+  const linkedTwitter = !!userInfo?.twitter_id
+
   return (
     <BaseModal title={t`Stake`} width={572} height={521} {...props}>
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
-        <List spacing={6}>
-          <ListItem display="flex">
-            <StepIcon width={6} height={6} step={1} completed={account.isConnected} />
-            <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1">{t`Connect Wallet`}</Text>
-            {account.isConnected ? null : (
-              <Button
-                className="purple-gradient-button"
-                size="sm"
-                ml="auto"
-                fontSize={14}
-                rounded={24}
-                onClick={() => {
-                  openConnectModal?.()
-                }}
-              >{t`Connect Wallet`}</Button>
-            )}
-          </ListItem>
-          <ListItem display="flex">
-            <StepIcon width={6} height={6} step={2} />
-            <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1" minW="130px">{t`Link 𝕏`}</Text>
-            <Button
-              className="purple-gradient-button"
+        {!account.isConnected || !linkedTwitter ? (
+          <List spacing={6}>
+            <ListItem display="flex">
+              <StepIcon width={6} height={6} step={1} completed={account.isConnected} />
+              <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1">{t`Connect Wallet`}</Text>
+              {account.isConnected ? null : (
+                <Button
+                  className="purple-gradient-button"
+                  size="sm"
+                  ml="auto"
+                  fontSize={14}
+                  rounded={24}
+                  onClick={() => {
+                    openConnectModal?.()
+                  }}
+                >{t`Connect Wallet`}</Button>
+              )}
+            </ListItem>
+            <ListItem display="flex">
+              <StepIcon width={6} height={6} step={2} completed={linkedTwitter} />
+              <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1" minW="130px">{t`Link 𝕏`}</Text>
+              {linkedTwitter ? null : (
+                <Button
+                  className="purple-gradient-button"
+                  ml="auto"
+                  size="sm"
+                  minW="130px"
+                  rounded={24}
+                  _hover={{ bg: 'gradient.purple' }}
+                  onClick={linkTwitter}
+                >
+                  {loading ? <Spinner size="sm" /> : '𝕏'}
+                </Button>
+              )}
+            </ListItem>
+          </List>
+        ) : null}
+        {userInfo ? (
+          <HStack mt={6}>
+            <TwitterAvatar size={12} src={userInfo.twitter_image} />
+            <Text fontSize={14} fontWeight={700} color="neutrals.1" ml={6}>
+              {userInfo.twitter_display_name}
+            </Text>
+            <Text
               ml="auto"
-              size="sm"
-              minW="130px"
-              rounded={24}
-              _hover={{ bg: 'gradient.purple' }}
-              onClick={linkTwitter}
-            >
-              {loading ? <Spinner size="sm" /> : '𝕏'}
-            </Button>
-          </ListItem>
-        </List>
+              cursor="pointer"
+              _hover={{ textDecoration: 'underline' }}
+              onClick={() => {
+                profileModal.show()
+              }}
+            >{t`Edit`}</Text>
+          </HStack>
+        ) : null}
         <Box
           className="input-box"
           border="1px solid"
@@ -104,7 +126,7 @@ export function StakeModal(props: Props) {
             </InputLeftAddon>
             <Input
               size="lg"
-              placeholder={t`Stake Amount`}
+              placeholder={t`Amount`}
               border="none"
               outline="none"
               fontSize="40px"
@@ -124,16 +146,15 @@ export function StakeModal(props: Props) {
                 <Text fontSize={16} color="neutrals.4" display="inline-flex" alignItems="center">
                   <Trans>
                     Balance:{' '}
-                    <Skeleton
-                      as="span"
-                      ml={2}
-                      display="inline-block"
-                      height="16px"
-                      width="20px"
-                      isLoaded={!balance.isPending}
-                    >
-                      {balance.isPending ? null : balance.data?.value.toLocaleString()}
-                    </Skeleton>
+                    {balance.isPending ? (
+                      <Skeleton as="span" ml={2} height="16px" width="20px" />
+                    ) : balance.isError ? (
+                      <Tooltip label={balance.error.message}>
+                        <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
+                      </Tooltip>
+                    ) : (
+                      balance.data?.formatted
+                    )}
                   </Trans>
                 </Text>
                 <Button
@@ -146,6 +167,11 @@ export function StakeModal(props: Props) {
                   color="neutrals.6"
                   bg="gradient.purple"
                   _hover={{ bg: 'gradient.purple' }}
+                  onClick={() => {
+                    if (balance.data) {
+                      setAmount(balance.data.formatted)
+                    }
+                  }}
                 >{t`MAX`}</Button>
               </VStack>
             </InputRightAddon>

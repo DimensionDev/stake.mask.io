@@ -14,7 +14,7 @@ const ExternalEnvSchema = z.object({
   REDDIT_URL: z.string().default('https://www.reddit.com/r/MaskNetwork'),
   GITHUB_URL: z.string().default('https://github.com/DimensionDev'),
   YOUTUBE_URL: z.string().default('https://www.youtube.com/c/MaskNetwork'),
-  MEDIUM_URL: z.string().default('https://www.youtube.com/c/MaskNetwork'),
+  MEDIUM_URL: z.string().default('https://masknetwork.medium.com/'),
 })
 
 export const env = {

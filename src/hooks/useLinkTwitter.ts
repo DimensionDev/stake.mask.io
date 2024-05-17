@@ -1,4 +1,5 @@
 import { useToast } from '@chakra-ui/react'
+import { useMemo } from 'react'
 import { useAsyncFn } from 'react-use'
 import urlcat from 'urlcat'
 import { UserRejectedRequestError } from 'viem'
@@ -7,12 +8,11 @@ import { FIREFLY_API_ROOT } from '../constants/api'
 import { fetchJSON } from '../helpers/fetchJSON'
 import { TwitterAuthorizeResponse } from '../types/api'
 
-// Any message is ok.
-const message = 'Stake $MASK'
 export function useLinkTwitter() {
   const account = useAccount()
   const toast = useToast()
   const { signMessageAsync } = useSignMessage()
+  const message = useMemo(() => `Link X ${Date.now()}`, [])
 
   return useAsyncFn(async () => {
     if (!account.address) return

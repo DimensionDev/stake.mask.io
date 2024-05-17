@@ -10,10 +10,11 @@ import { TokenIcon } from '../TokenIcon'
 import { ActionCard, ActionCardProps } from './ActionCard'
 
 interface Props extends ActionCardProps {
+  tokenIcon?: string
   reward?: UserInfo['reward_pool'][number]
 }
 
-export function RewardCard({ reward, ...props }: Props) {
+export function RewardCard({ reward, tokenIcon, ...props }: Props) {
   const { writeContractAsync, isPending } = useWriteContract()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast()
@@ -22,7 +23,7 @@ export function RewardCard({ reward, ...props }: Props) {
       <Stack alignItems="center" flexGrow={1}>
         <HStack alignItems="center" my="auto" flexGrow={1}>
           <Box width={12} height={12} pos="relative">
-            <TokenIcon />
+            <TokenIcon src={tokenIcon} />
           </Box>
           <Stack ml="10px">
             <ProgressiveText

@@ -119,7 +119,7 @@ export const Footer: FC = () => {
               gap={3}
             >
               {SocialMedias.map((media) => (
-                <li>
+                <li key={media.href}>
                   <Center
                     as="a"
                     href={media.href}
