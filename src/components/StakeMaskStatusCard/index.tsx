@@ -13,7 +13,9 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { FC } from 'react'
+import { useAccount } from 'wagmi'
 import MaskLogoSVG from '../../assets/mask-logo.svg?react'
 import No1SVG from '../../assets/no-1.svg?react'
 import PlusSVG from '../../assets/plus.svg?react'
@@ -25,16 +27,18 @@ import { formatNumber } from '../../helpers/formatNumber.ts'
 import { formatSeconds } from '../../helpers/formatSeconds.ts'
 import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
 import { stakeModal } from '../../modals/index.tsx'
-import { ActivityStatusTag } from './ActivityStatusTag.tsx'
 import { Tooltip } from '../Tooltip.tsx'
+import { ActivityStatusTag } from './ActivityStatusTag.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
 export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) => {
+  const account = useAccount()
   const { data: pool, isLoading } = usePoolInfo()
   const rewardTokens = pool ? Object.values(pool.reward_pool) : []
   const rss3 = rewardTokens.find((x) => x.name === 'rss3')
   const ton = rewardTokens.find((x) => x.name === 'ton')
+  const { openConnectModal } = useConnectModal()
   return (
     <Box
       maxW="maxW"
@@ -235,10 +239,14 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             leftIcon={<Icon as={MaskLogoSVG} width={6} height={6} />}
             rightIcon={<Icon as={RightArrow} width={6} height={6} />}
             onClick={() => {
+              if (!account.isConnected) {
+                openConnectModal?.()
+                return
+              }
               stakeModal.show()
             }}
           >
-            {t`Stake Mask Now`}
+            {account.isConnected ? t`Stake Mask Now` : t`Connect to stake`}
           </Button>
         </Box>
       </VStack>

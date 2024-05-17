@@ -7,7 +7,6 @@ import {
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
-  Link,
   List,
   ListItem,
   ModalProps,
@@ -16,34 +15,53 @@ import {
   Stack,
   Text,
   VStack,
+  useToast,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import dayjs from 'dayjs'
-import { useState } from 'react'
-import { useAccount, useBalance } from 'wagmi'
+import { useMemo, useState } from 'react'
+import { erc20Abi, parseUnits } from 'viem'
+import { useAccount, useBalance, useToken, useWriteContract } from 'wagmi'
+import { StakeManagerABI } from '../abis/stakeManager.ts'
 import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
 import { Tooltip } from '../components/Tooltip.tsx'
 import { TwitterAvatar } from '../components/TwitterAvatar.tsx'
 import { formatNumber } from '../helpers/formatNumber'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
+import { useMaskAllowance } from '../hooks/useMaskAllowance.ts'
 import { usePoolInfo } from '../hooks/usePoolInfo'
 import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
 import { profileModal } from './index.tsx'
+import { Link } from '@tanstack/react-router'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
-  const { maskTokenAddress } = usePoolStore()
+  const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const [amount, setAmount] = useState('')
   const balance = useBalance({ address: account.address, token: maskTokenAddress })
+  const allowance = useMaskAllowance()
+  const maskToken = useToken({ address: maskTokenAddress })
   const [{ loading }, linkTwitter] = useLinkTwitter()
   const { data: userInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id
+
+  const amountValue = useMemo(() => {
+    if (!amount) return BigInt(0)
+    const decimals = maskToken.data?.decimals || 18
+    return parseUnits(amount, decimals)
+  }, [amount, maskToken.data?.decimals])
+
+  const insufficientBalance = balance.data ? balance.data.value < amountValue : false
+  const disabled = insufficientBalance || allowance.isLoading
+
+  const toast = useToast()
+  const { writeContractAsync, isPending } = useWriteContract()
 
   return (
     <BaseModal title={t`Stake`} width={572} height={521} {...props}>
@@ -223,11 +241,45 @@ export function StakeModal(props: ModalProps) {
             <Trans>
               The staking addresses need to pass Go+ security check. Note that staking is not available in some
               restricted regions.
-              <Link href="/">More</Link>
+              <Link to="/faqs" style={{ textDecoration: 'underline' }} onClick={props.onClose}>
+                More
+              </Link>
             </Trans>
           </Text>
         </VStack>
-        <Button w="100%" className="purple-gradient-button" rounded={50} mt="10px" disabled>
+        <Button
+          isLoading={allowance.isLoading || isPending}
+          w="100%"
+          className="purple-gradient-button"
+          rounded={50}
+          mt="10px"
+          isDisabled={disabled}
+          onClick={async () => {
+            if (!maskTokenAddress || !stakeManagerAddress) {
+              toast({
+                status: 'error',
+                title: t`Can not get determination MASK token`,
+              })
+              return
+            }
+            const insufficientAllowance = allowance.data ? allowance.data < amountValue : true
+            if (insufficientAllowance) {
+              await writeContractAsync({
+                abi: erc20Abi,
+                address: maskTokenAddress,
+                functionName: 'approve',
+                args: [stakeManagerAddress, amountValue],
+              })
+              return
+            }
+            await writeContractAsync({
+              abi: StakeManagerABI,
+              address: stakeManagerAddress,
+              functionName: 'depositAndLock',
+              args: [amountValue],
+            })
+          }}
+        >
           {account.isConnected ? t`Stake` : t`Please connect first`}
         </Button>
       </Box>

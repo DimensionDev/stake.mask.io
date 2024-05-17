@@ -2,25 +2,35 @@ import { Box, BoxProps, Button, HStack, Icon, Stack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
+import { useMemo } from 'react'
+import { formatUnits } from 'viem'
 import { useAccount, useReadContract } from 'wagmi'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import MaskLogo from '../../assets/mask-logo.svg?react'
 import Question from '../../assets/question.svg?react'
-import { formatNumber } from '../../helpers/formatNumber.ts'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
+import { stakeModal } from '../../modals/index.tsx'
+import { usePoolStore } from '../../store/poolStore.ts'
 import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
-import { stakeModal } from '../../modals/index.tsx'
 
 export function StakedMask(props: BoxProps) {
   const account = useAccount()
+  const { stakeManagerAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const { isLoading, data: chainData } = useReadContract({
     abi: StakeManagerABI,
     functionName: 'userInfos',
-    address: import.meta.env.STAKE_MANAGER_CONTRACT_ADDRESS,
+    address: stakeManagerAddress,
     args: account.address ? [account.address] : undefined,
   })
+
+  const staked = useMemo(() => {
+    if (chainData) {
+      return formatUnits(chainData[0], 18)
+    }
+    return userInfo?.amount
+  }, [chainData, userInfo?.amount])
   return (
     <ActionCard title={t`Stake Mask`} {...props}>
       <Stack alignItems="center">
@@ -32,7 +42,7 @@ export function StakedMask(props: BoxProps) {
           skeletonWidth="100px"
           skeletonHeight="56px"
         >
-          {chainData ? chainData[0].toLocaleString() : formatNumber(userInfo?.amount)}
+          {staked}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
           <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">
