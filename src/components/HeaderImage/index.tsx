@@ -10,7 +10,7 @@ export const HeaderImage: FC = () => {
       pos="relative"
       w="100%"
       h="520px"
-      bg="radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 35%, rgb(82 42 190) 70%, rgb(120 80 220) 80%, rgb(170 157 220) 95%)"
+      bg="radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0) 35%, rgb(82 42 190) 70%, rgb(120 80 220) 80%, rgb(170 157 220) 95%)"
       bgSize="280% 200%"
       bgPos="50% 10%"
       sx={{
