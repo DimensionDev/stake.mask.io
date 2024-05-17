@@ -6,13 +6,13 @@
     "masknet",
     "Merkle",
     "sepolia",
+    "splinetool",
+    "splinecode",
+    "Pageable",
     "unstake",
     "urlcat",
     "webp",
-    "zustand",
-    "splinetool",
-    "splinecode",
-    "Pageable"
+    "zustand"
   ],
   "ignoreWords": [
     "Lingui",

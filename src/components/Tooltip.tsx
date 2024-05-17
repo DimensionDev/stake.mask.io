@@ -3,11 +3,11 @@ import { Icon, Tooltip as RawTooltip } from '@chakra-ui/react'
 import { TooltipProps } from '@chakra-ui/react'
 import TooltipArrow from '../assets/tooltip-arrow.svg?react'
 
-export const Tooltip: FC<TooltipProps> = ({ children, label, hasArrow, ...props }) => {
+export const Tooltip: FC<TooltipProps> = ({ children, label, hasArrow = true, placement = 'top', ...props }) => {
   return (
     <RawTooltip
       label={
-        hasArrow && props.placement === 'top' ? (
+        hasArrow && placement === 'top' ? (
           <>
             {label}
             <Icon
@@ -25,7 +25,7 @@ export const Tooltip: FC<TooltipProps> = ({ children, label, hasArrow, ...props 
           label
         )
       }
-      placement="top"
+      placement={placement}
       {...props}
     >
       {children}

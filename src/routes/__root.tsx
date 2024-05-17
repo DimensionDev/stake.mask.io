@@ -4,6 +4,7 @@ import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { Flex } from '@chakra-ui/react'
 import { AcceptCookie } from '../components/AcceptCookie.tsx'
+import { Modals } from '../modals/index.tsx'
 
 export const Route = createRootRoute({
   component: () => (
@@ -13,6 +14,7 @@ export const Route = createRootRoute({
       <Footer />
       <AcceptCookie />
       <TanStackRouterDevtools />
+      <Modals />
     </Flex>
   ),
 })

@@ -49,7 +49,7 @@ export function BaseModal({ title, width, ...rest }: Props) {
     )
   }
   return (
-    <Modal isCentered {...rest}>
+    <Modal isCentered {...rest} onEsc={rest.onClose}>
       <ModalOverlay />
       <ModalContent bg="neutrals.8" rounded={20} width={width} maxW="auto" maxH="auto">
         <ModalHeader display="flex" flexDir="row" padding="24px 24px 0 24px">
