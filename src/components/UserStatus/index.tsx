@@ -4,15 +4,20 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { RewardCard } from './RewardCard'
 import { StakedMask } from './StakedMask'
 import { UserTotalPoints } from './UserTotalPoint'
+import { useAccount } from 'wagmi'
 
 export interface UserStatusProps extends GridProps {}
 
 export function UserStatus(props: UserStatusProps) {
-  const { data: userInfo } = useUserInfo()
+  const { data: userInfo, isLoading } = useUserInfo()
   const rss3 = userInfo?.reward_pool.find((x) => x.name === 'rss3')
   const ton = userInfo?.reward_pool.find((x) => x.name === 'ton')
 
-  if (!userInfo)
+  const account = useAccount()
+
+  if (!account.address) return null
+
+  if (!userInfo || isLoading)
     return (
       <Grid
         gap={6}
