@@ -1,8 +1,8 @@
 import type { FC, ReactNode } from 'react'
 import { type BoxProps, Center, Flex, keyframes, List } from '@chakra-ui/react'
 import { useLockBodyScroll } from 'react-use'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Link, useLocation } from '@tanstack/react-router'
+import { ConnectButton } from '../ConnectButton.tsx'
 
 export interface MobileMenuProps extends BoxProps {
   isOpen?: boolean
