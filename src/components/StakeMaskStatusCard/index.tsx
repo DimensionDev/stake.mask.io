@@ -10,7 +10,6 @@ import {
   Skeleton,
   Stack,
   Text,
-  Tooltip,
   VStack,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
@@ -27,6 +26,7 @@ import { formatSeconds } from '../../helpers/formatSeconds.ts'
 import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
 import { stakeModal } from '../../modals/index.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
+import { Tooltip } from '../Tooltip.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 

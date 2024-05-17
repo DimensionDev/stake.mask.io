@@ -1,5 +1,5 @@
 import { FC, memo, useState } from 'react'
-import { Box, Fade, HStack, Icon, Link } from '@chakra-ui/react'
+import { Box, Fade, HStack, Icon, Link, Stack } from '@chakra-ui/react'
 import CloseCircle from '../assets/close-circle.svg?react'
 import Heart from '../assets/heart.svg?react'
 import { t } from '@lingui/macro'
@@ -20,9 +20,20 @@ export const AcceptCookie: FC = memo(() => {
         lineHeight="150%"
         pos="fixed"
         bottom="40px"
-        right="70px"
+        right={{ base: '50%', md: '70px' }}
+        transform={{ base: 'translateX(50%)', md: 'none' }}
+        zIndex={2}
       >
-        <HStack bg="neutrals.8" rounded="100px" py={2} px={4} spacing={6}>
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          bg="neutrals.8"
+          rounded={{ base: '12px', md: '100px' }}
+          py={2}
+          px={4}
+          spacing={6}
+          w={{ base: '250px', md: 'auto' }}
+          align="center"
+        >
           <Box>
             {t`We use our own cookies.`}
             <Link
@@ -36,7 +47,7 @@ export const AcceptCookie: FC = memo(() => {
             leftIcon={<Icon as={Heart} w={4} h={4} />}
             onClick={() => setIsAcceptedCookie(true)}
           >{t`Accept cookies`}</GradientButton>
-        </HStack>
+        </Stack>
         <Box as="button" w={6} h={6} onClick={() => setIsClosed(true)}>
           <Icon as={CloseCircle} w={6} h={6} />
         </Box>
