@@ -22,6 +22,7 @@ export const HeaderImage: FC = () => {
         },
       }}
       onWheelCapture={(e) => e.stopPropagation()}
+      onContextMenuCapture={(e) => e.preventDefault()}
     >
       <Suspense
         fallback={
