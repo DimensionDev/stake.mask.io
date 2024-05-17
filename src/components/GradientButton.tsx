@@ -9,6 +9,7 @@ export function GradientButton(props: ButtonProps) {
       _active={{ transform: 'scale(0.95)' }}
       fontSize="14px"
       rounded="100px"
+      px={6}
       {...props}
     />
   )
