@@ -14,6 +14,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/components/UserStatus/StakedMask.tsx
+msgid "+{0} Points/h"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
 msgid "1 staked MASK will generate 1 point per hour."
 msgstr ""
 
@@ -36,10 +40,6 @@ msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
 msgid "Claim"
-msgstr ""
-
-#: src/modals/BaseModal.tsx
-msgid "Close"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -137,6 +137,10 @@ msgstr ""
 msgid "MAX"
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
+msgid "No match pool found."
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 msgid "Not started"
 msgstr ""
@@ -176,6 +180,7 @@ msgid "Since 2019 to Now ｜ Mask.io"
 msgstr ""
 
 #: src/components/Nav/index.tsx
+#: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
 msgstr ""

@@ -1,14 +1,22 @@
-import { Box, Button, HStack, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, HStack, Spinner, Stack, useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { useWriteContract } from 'wagmi'
+import { rewardABI } from '../../abis/reward'
+import { formatNumber } from '../../helpers/formatNumber'
+import { useUserInfo } from '../../hooks/useUserInfo'
+import { UserInfo } from '../../types/api'
+import { ProgressiveText } from '../ProgressiveText'
+import { TokenIcon } from '../TokenIcon'
 import { ActionCard, ActionCardProps } from './ActionCard'
 
-import { mainnet } from 'viem/chains'
-import { TokenIcon } from '../TokenIcon'
+interface Props extends ActionCardProps {
+  reward?: UserInfo['reward_pool'][number]
+}
 
-interface Props extends ActionCardProps {}
-console.log({ mainnet })
-
-export function RewardCard(props: Props) {
+export function RewardCard({ reward, ...props }: Props) {
+  const { writeContractAsync, isPending } = useWriteContract()
+  const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
+  const toast = useToast()
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
       <Stack alignItems="center" flexGrow={1}>
@@ -17,12 +25,26 @@ export function RewardCard(props: Props) {
             <TokenIcon />
           </Box>
           <Stack ml="10px">
-            <Text fontSize={24} fontWeight={700} lineHeight="24px">
-              70000.00
-            </Text>
-            <Text fontSize={16} fontWeight={700} lineHeight="16px">
-              RSS3
-            </Text>
+            <ProgressiveText
+              loading={!reward}
+              fontSize={24}
+              fontWeight={700}
+              lineHeight="24px"
+              skeletonHeight="24px"
+              skeletonWidth="50px"
+            >
+              {formatNumber(reward?.amount ? +reward.amount : 0)}
+            </ProgressiveText>
+            <ProgressiveText
+              fontSize={16}
+              loading={!reward}
+              fontWeight={700}
+              lineHeight="16px"
+              textTransform="uppercase"
+              skeletonWidth="30px"
+            >
+              {reward?.name}
+            </ProgressiveText>
           </Stack>
         </HStack>
         <Button
@@ -32,8 +54,27 @@ export function RewardCard(props: Props) {
           bg="gradient.purple"
           _hover={{ bg: 'gradient.purple', transform: 'scale(1.01)' }}
           _active={{ transform: 'scale(0.9)' }}
+          disabled={loadingUserInfo}
+          onClick={async () => {
+            if (!reward || !userInfo) return
+            const rewardPool = userInfo.reward_pool.find((x) => x.reward_pool_id === reward.reward_pool_id)
+            if (!rewardPool) {
+              toast({
+                status: 'error',
+                title: t`No match pool found.`,
+              })
+              return
+            }
+            const res = await writeContractAsync({
+              abi: rewardABI,
+              address: import.meta.env.REWARD_CONTRACT_ADDRESS,
+              functionName: 'claim',
+              args: [reward.reward_pool_id, BigInt(reward.big_amount), rewardPool.proof],
+            })
+            console.log('claim result', res)
+          }}
         >
-          {t`Claim`}
+          {isPending ? <Spinner size="sm" /> : t`Claim`}
         </Button>
       </Stack>
     </ActionCard>

@@ -1,18 +1,16 @@
 import { Grid, GridProps, Skeleton } from '@chakra-ui/react'
-import { useAccount } from 'wagmi'
-import { UserTotalPoints } from './UserTotalPoint'
-import { useUserInfo } from '../../hooks/useUserInfo'
-import { usePoolStore } from '../../store/poolStore'
 import { t } from '@lingui/macro'
-import { StakedMask } from './StakedMask'
+import { useUserInfo } from '../../hooks/useUserInfo'
 import { RewardCard } from './RewardCard'
+import { StakedMask } from './StakedMask'
+import { UserTotalPoints } from './UserTotalPoint'
 
 export interface UserStatusProps extends GridProps {}
 
 export function UserStatus(props: UserStatusProps) {
-  const { address } = useAccount()
-  const store = usePoolStore()
-  const { data: userInfo } = useUserInfo(address, store.poolId)
+  const { data: userInfo } = useUserInfo()
+  const rss3 = userInfo?.reward_pool.find((x) => x.name === 'rss3')
+  const ton = userInfo?.reward_pool.find((x) => x.name === 'ton')
 
   if (!userInfo)
     return (
@@ -47,9 +45,9 @@ export function UserStatus(props: UserStatusProps) {
       {...props}
     >
       <UserTotalPoints user={userInfo} />
-      <StakedMask alignSelf="stretch" />
-      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} />
-      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} />
+      <StakedMask />
+      <RewardCard title={t`Estimated Rewards`} reward={rss3} />
+      <RewardCard title={t`Estimated Rewards`} reward={ton} />
     </Grid>
   )
 }
