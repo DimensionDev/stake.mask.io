@@ -1,8 +1,8 @@
+import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
   HStack,
-  Icon,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -33,7 +33,6 @@ import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
 import { profileModal } from './index.tsx'
-import { InfoIcon } from '@chakra-ui/icons'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()

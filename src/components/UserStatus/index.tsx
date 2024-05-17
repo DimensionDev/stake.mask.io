@@ -46,8 +46,16 @@ export function UserStatus(props: UserStatusProps) {
     >
       <UserTotalPoints user={userInfo} />
       <StakedMask />
-      <RewardCard title={t`Estimated Rewards`} reward={rss3} />
-      <RewardCard title={t`Estimated Rewards`} reward={ton} />
+      <RewardCard
+        title={t`Estimated Rewards`}
+        reward={rss3}
+        tokenIcon={new URL('../../assets/rss3.svg', import.meta.url).href}
+      />
+      <RewardCard
+        title={t`Estimated Rewards`}
+        reward={ton}
+        tokenIcon={new URL('../../assets/ton.svg', import.meta.url).href}
+      />
     </Grid>
   )
 }
