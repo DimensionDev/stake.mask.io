@@ -35,10 +35,9 @@ export function StakedMask(props: BoxProps) {
           {chainData ? chainData[0].toLocaleString() : formatNumber(userInfo?.amount)}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
-          <ProgressiveText
-            loading={loadingUserInfo}
-            skeletonWidth="50px"
-          >{t`+${userInfo?.score_per_hour} Points/h`}</ProgressiveText>
+          <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">
+            {t`+${userInfo?.score_per_hour} Points/h`}
+          </ProgressiveText>
           <Tooltip label={t`1 staked MASK will generate 1 point per hour.`} placement="top" hasArrow>
             <Box as="span" w={6} h={6}>
               <Icon as={Question} w="initial" h="initial" />

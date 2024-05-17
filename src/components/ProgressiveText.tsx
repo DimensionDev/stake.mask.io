@@ -16,7 +16,7 @@ export const ProgressiveText = memo(
   ) {
     if (loading) {
       return (
-        <Text {...props}>
+        <Text as="div" {...props}>
           <Skeleton height={skeletonHeight ?? '1.5em'} width={skeletonWidth ?? '100%'} />
         </Text>
       )

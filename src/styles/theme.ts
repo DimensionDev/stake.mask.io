@@ -33,7 +33,7 @@ export const theme = extendBaseTheme({
   },
   colors: {
     black: '#000000',
-    white: '#fffff',
+    white: '#ffffff',
     danger: '#EB2F45',
     neutrals: {
       1: '#FCFCFD',

@@ -21,6 +21,7 @@ export interface UserInfo {
   twitter_username: string
   twitter_display_name: string
   twitter_image: string
+  twitter_show_image: boolean
   address_type: string
   reward_pool: Array<{
     reward_pool_id: number
@@ -66,3 +67,13 @@ export interface TwitterAuthorizeResult {
 }
 
 export type TwitterAuthorizeResponse = Response<TwitterAuthorizeResult>
+
+export interface UpdateUserInfoParams {
+  display_username: string
+  show_avatar: boolean
+  original_message: string
+  signature_message: string
+  wallet_address: string
+}
+
+export type UpdateUserInfoResponse = Response<string>

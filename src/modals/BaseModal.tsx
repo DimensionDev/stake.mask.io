@@ -20,8 +20,8 @@ import { ReactNode } from 'react'
 
 interface Props extends ModalProps {
   title: ReactNode
-  width: ModalContentProps['width']
-  height: ModalContentProps['height']
+  width?: ModalContentProps['width']
+  height?: ModalContentProps['height']
 }
 export function BaseModal({ title, width, ...rest }: Props) {
   const isMobile = useBreakpointValue({ base: true, md: false })
