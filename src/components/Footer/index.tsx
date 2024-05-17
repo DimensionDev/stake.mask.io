@@ -1,8 +1,7 @@
 import type { FC } from 'react'
-import { AspectRatio, Box, Center, Flex, Grid, Heading, Icon, Image, VStack, Link } from '@chakra-ui/react'
+import { Box, Center, Flex, Grid, Heading, Icon, VStack, Link } from '@chakra-ui/react'
 import LogoSVG from '../../assets/logo-2.svg?react'
 import { t } from '@lingui/macro'
-import FooterImage from '../../assets/footer.webp'
 import { env } from '../../constants/env.ts'
 import DiscordSVG from '../../assets/social-media/discord.svg?react'
 import FacebookSVG from '../../assets/social-media/facebook.svg?react'
@@ -13,6 +12,7 @@ import YoutubeSVG from '../../assets/social-media/youtube.svg?react'
 import MediumSVG from '../../assets/social-media/medium.svg?react'
 import TwitterSVG from '../../assets/social-media/twitter.svg?react'
 import { Terms } from './Terms'
+import { MaskNetworkSplice } from './MaskNetworkSplice.tsx'
 
 const SocialMedias = [
   { icon: TwitterSVG, href: env.external.TWITTER_URL },
@@ -28,9 +28,10 @@ const SocialMedias = [
 export const Footer: FC = () => {
   return (
     <Flex direction="column" bg="neutrals.9" w="100%" mt="auto">
-      <AspectRatio ratio={891 / 61} w="100%">
-        <Image src={FooterImage} objectFit="cover" draggable={false} userSelect="none" />
-      </AspectRatio>
+      <MaskNetworkSplice />
+      {/*<AspectRatio ratio={891 / 61} w="100%">*/}
+      {/*  <Image src={FooterImage} objectFit="cover" draggable={false} userSelect="none" />*/}
+      {/*</AspectRatio>*/}
       <Center w="100%" borderTop="1px solid" borderTopColor="neutrals.6">
         <Grid
           templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
