@@ -29,17 +29,33 @@ msgstr ""
 msgid "Accept cookies"
 msgstr ""
 
+#: src/modals/StakeModal.tsx
+msgid "Amount"
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/index.tsx
 #: src/modals/StakeModal.tsx
 msgid "APR"
 msgstr ""
 
+#: src/modals/ProfileModal.tsx
+msgid "Avatar"
+msgstr ""
+
 #: src/modals/StakeModal.tsx
-msgid "Balance: <0>{0}</0>"
+msgid "Balance: {0}"
+msgstr ""
+
+#: src/modals/ProfileModal.tsx
+msgid "Cancel"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
 msgid "Claim"
+msgstr ""
+
+#: src/modals/ProfileModal.tsx
+msgid "Confirm"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -60,6 +76,10 @@ msgstr ""
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are used to store information about you and your internet usage habits to improve your online experience. Cookies enable websites to recognize your device and remember some information about your preferences."
+msgstr ""
+
+#: src/modals/StakeModal.tsx
+msgid "Edit"
 msgstr ""
 
 #: src/components/UserStatus/index.tsx
@@ -166,6 +186,18 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
+#: src/modals/ProfileModal.tsx
+msgid "Profile"
+msgstr ""
+
+#: src/modals/ProfileModal.tsx
+msgid "Profile Name"
+msgstr ""
+
+#: src/modals/ProfileModal.tsx
+msgid "Profile Name is required"
+msgstr ""
+
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Session Cookies: These cookies exist only during your visit to the website and are automatically deleted when you close your browser. They are used to maintain session state, such as storing the contents of your shopping cart."
@@ -173,6 +205,10 @@ msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "Share of Pool"
+msgstr ""
+
+#: src/modals/ProfileModal.tsx
+msgid "Show Avatar"
 msgstr ""
 
 #: src/components/Footer/index.tsx
@@ -183,10 +219,6 @@ msgstr ""
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
-msgstr ""
-
-#: src/modals/StakeModal.tsx
-msgid "Stake Amount"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
