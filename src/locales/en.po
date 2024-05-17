@@ -66,6 +66,7 @@ msgstr ""
 msgid "Connect to stake"
 msgstr ""
 
+#: src/components/ConnectButton.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Connect Wallet"
