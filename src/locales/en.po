@@ -153,12 +153,20 @@ msgstr ""
 msgid "Link 𝕏"
 msgstr ""
 
+#: src/components/StakingRanking/index.tsx
+msgid "Loading"
+msgstr ""
+
 #: src/modals/StakeModal.tsx
 msgid "MAX"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
 msgid "No match pool found."
+msgstr ""
+
+#: src/components/StakingRanking/index.tsx
+msgid "No users have participated in staking yet."
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx

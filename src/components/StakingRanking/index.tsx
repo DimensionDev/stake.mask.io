@@ -1,9 +1,94 @@
 import { FC } from 'react'
-import { Box, Flex, Heading, VStack, Image } from '@chakra-ui/react'
+import { Box, Flex, Heading, VStack, Image, Center, Icon } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { RankingAvatar } from './RankingAvatar.tsx'
+import { RankingAvatar, RankingAvatarProps } from './RankingAvatar.tsx'
 import LeftGlowImage from '../../assets/left-glow.webp'
 import RightGlowImage from '../../assets/right-glow.webp'
+import FileSVG from '../../assets/file.svg?react'
+import { usePoolStore } from '../../store/poolStore.ts'
+import { useQuery } from '@tanstack/react-query'
+import urlcat from 'urlcat'
+import { FIREFLY_API_ROOT } from '../../constants/api.ts'
+import { fetchJSON } from '../../helpers/fetchJSON.ts'
+import { StakeRankItem, StakeRankResponse } from '../../types/api.ts'
+import { Spinner } from '../Spinner.tsx'
+
+export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 'tag' | 'name' | 'src'>> = ({
+  item,
+  ...props
+}) => {
+  return (
+    <RankingAvatar
+      src={item.twitter_image}
+      name={item.twitter_name}
+      tag={`${item.score} PTS`}
+      boxSize="64px"
+      {...props}
+    />
+  )
+}
+
+export const StakingRankingList: FC = () => {
+  const poolStore = usePoolStore()
+  const {
+    data = [],
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: [poolStore.poolId],
+    async queryFn() {
+      const url = urlcat(FIREFLY_API_ROOT, '/v1/mask_stake/rank', {
+        limit: 30,
+      })
+      const response = await fetchJSON<StakeRankResponse>(url)
+      return response.data.list
+    },
+    enabled: !!poolStore.poolId,
+  })
+
+  if (isLoading) {
+    return (
+      <Center w="100%" h="100%" flexDirection="column" color="neutrals.3">
+        <Spinner boxSize={6} />
+        <Box fontSize="12px" fontWeight={400} lineHeight="150%" mt={2}>{t`Loading`}</Box>
+      </Center>
+    )
+  }
+
+  if (error || data.length <= 0) {
+    return (
+      <Center w="100%" h="100%" flexDirection="column" color="neutrals.3">
+        <Icon as={FileSVG} boxSize={6} />
+        <Box
+          fontSize="12px"
+          fontWeight={400}
+          lineHeight="150%"
+          mt={2}
+        >{t`No users have participated in staking yet.`}</Box>
+      </Center>
+    )
+  }
+
+  const topScorer = data[0]
+  const secondScorer = data[1]
+  const thirdTopScorer = data[2]
+  const otherScorers = data.slice(3)
+
+  return (
+    <Flex w="100%" wrap="wrap" justify="center" gap="64px">
+      <RankingItem boxSize="80px" isCrown item={topScorer} mx="auto" />
+      {secondScorer && thirdTopScorer ? (
+        <Flex justify="center" w="100%" gap="64px" h="64px">
+          {secondScorer ? <RankingItem item={secondScorer} /> : null}
+          {thirdTopScorer ? <RankingItem item={thirdTopScorer} /> : null}
+        </Flex>
+      ) : null}
+      {otherScorers.map((scorer) => {
+        return <RankingItem item={scorer} key={scorer.address} />
+      })}
+    </Flex>
+  )
+}
 
 export const StakingRanking: FC = () => {
   return (
@@ -42,16 +127,7 @@ export const StakingRanking: FC = () => {
         <Heading fontSize="24px" fontWeight={700} lineHeight="32px" w="100%" color="neutrals.2">
           {t`Staking Ranking`}
         </Heading>
-        <Flex w="100%" wrap="wrap" justify="center" gap="64px">
-          <RankingAvatar src="" name="Jaydon Saris" tag="20.09K PTS" size={80} isCrown mx="auto" />
-          <Flex justify="center" w="100%" gap="64px">
-            <RankingAvatar src="" name="Jaydon Saris" tag="20.09K PTS" size={64} />
-            <RankingAvatar src="" name="Jaydon Saris" tag="20.09K PTS" size={64} />
-          </Flex>
-          {Array.from(new Array(26), (_, i) => {
-            return <RankingAvatar key={i} src="" name="Jaydon Saris" tag="20.09K PTS" size={64} />
-          })}
-        </Flex>
+        <StakingRankingList />
         <Box
           w="100%"
           h="127px"

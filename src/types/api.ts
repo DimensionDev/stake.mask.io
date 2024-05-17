@@ -5,6 +5,14 @@ interface Response<T> {
   data: T
 }
 
+export type PageableResponse<T> = Response<
+  T & {
+    page: {
+      cursor: string
+    }
+  }
+>
+
 export interface UserInfo {
   /** score calculated in schedule, inaccurate */
   score: number
@@ -67,6 +75,19 @@ export interface TwitterAuthorizeResult {
 }
 
 export type TwitterAuthorizeResponse = Response<TwitterAuthorizeResult>
+
+export interface StakeRankItem {
+  address: string
+  twitter_id: string
+  twitter_name: string
+  twitter_username: string
+  twitter_display_name: string
+  twitter_image: string
+  stake_amount: string
+  score: number
+}
+
+export type StakeRankResponse = PageableResponse<{ list: StakeRankItem[] }>
 
 export interface UpdateUserInfoParams {
   display_username: string

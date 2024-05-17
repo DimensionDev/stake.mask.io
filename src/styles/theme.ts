@@ -38,6 +38,7 @@ export const theme = extendBaseTheme({
     neutrals: {
       1: '#FCFCFD',
       2: '#F4F5F6',
+      3: '#E6E8EC',
       4: '#B1B5C3',
       5: '#B1B5C3',
       6: '#353945',

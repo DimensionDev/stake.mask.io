@@ -29,9 +29,6 @@ export const Footer: FC = () => {
   return (
     <Flex direction="column" bg="neutrals.9" w="100%" mt="auto">
       <MaskNetworkSplice />
-      {/*<AspectRatio ratio={891 / 61} w="100%">*/}
-      {/*  <Image src={FooterImage} objectFit="cover" draggable={false} userSelect="none" />*/}
-      {/*</AspectRatio>*/}
       <Center w="100%" borderTop="1px solid" borderTopColor="neutrals.6">
         <Grid
           templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
@@ -40,7 +37,7 @@ export const Footer: FC = () => {
           transition="200ms"
           w="100%"
           maxW="1440px"
-          gap={8}
+          gap={{ base: 6, md: 8 }}
         >
           <VStack align="start" spacing={8} gridColumn={{ base: '1/3', md: 'auto' }}>
             <Icon as={LogoSVG} w="164px" h="auto" />
@@ -48,7 +45,7 @@ export const Footer: FC = () => {
               {t`Your Portal To The New, Open Internet.`}
             </Heading>
           </VStack>
-          <VStack align="start" spacing={10}>
+          <VStack align="start" spacing={{ base: 6, md: 10 }}>
             <Heading
               as="h5"
               fontSize="16px"
@@ -75,7 +72,7 @@ export const Footer: FC = () => {
               </li>
             </VStack>
           </VStack>
-          <VStack align="start" spacing={10}>
+          <VStack align="start" spacing={{ base: 6, md: 10 }}>
             <Heading as="h5" fontSize="16px" fontWeight={700} lineHeight="24px" color="neutrals.2">{`Help`}</Heading>
             <VStack
               as="ul"
@@ -101,7 +98,7 @@ export const Footer: FC = () => {
               </li>
             </VStack>
           </VStack>
-          <VStack align="start" spacing={10} gridColumn={{ base: '1/3', md: 'auto' }}>
+          <VStack align="start" spacing={{ base: 6, md: 10 }} gridColumn={{ base: '1/3', md: 'auto' }}>
             <Heading
               as="h5"
               fontSize="16px"
