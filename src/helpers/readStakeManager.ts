@@ -5,7 +5,7 @@ import { config } from '../configs/wagmiClient'
 
 const stakeManagerContract = {
   chainId: sepolia.id,
-  address: import.meta.env.STAKE_MANAGER_CONTRACT_ADDRESS || '0xece3ef2bf6f6fa7f13beab519c60a72e92bbd47c',
+  address: import.meta.env.VITE_STAKE_MANAGER_CONTRACT_ADDRESS || '0xece3ef2bf6f6fa7f13beab519c60a72e92bbd47c',
   abi: StakeManagerABI,
 } as const
 
