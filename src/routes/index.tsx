@@ -1,16 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { AspectRatio, Flex, Heading, Image, VStack, Text } from '@chakra-ui/react'
-import HomeTopImage from '../assets/home-top.webp'
+import { Flex, Heading, VStack, Text } from '@chakra-ui/react'
 import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
 import { UserStatus } from '../components/UserStatus'
 import { StakingRanking } from '../components/StakingRanking'
+import { HeaderImage } from '../components/HeaderImage'
 
 function Index() {
   return (
     <Flex direction="column" w="100%" pos="relative" align="center">
-      <AspectRatio ratio={1440 / 520} w="full">
-        <Image src={HomeTopImage} w="100%" h="100%" objectFit="cover" userSelect="none" draggable={false} />
-      </AspectRatio>
+      <HeaderImage />
       <VStack
         mt="-5vw"
         px={{ base: '24px', xl: '48px' }}
