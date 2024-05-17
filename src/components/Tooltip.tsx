@@ -25,7 +25,6 @@ export const Tooltip: FC<TooltipProps> = ({ children, label, hasArrow, ...props 
           label
         )
       }
-      hasArrow
       placement="top"
       {...props}
     >
