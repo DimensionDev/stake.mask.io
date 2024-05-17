@@ -12,9 +12,9 @@ export interface UserStatusProps extends GridProps {}
 export function UserStatus(props: UserStatusProps) {
   const { address } = useAccount()
   const store = usePoolStore()
-  const { data } = useUserInfo(address, store.poolId)
+  const { data: userInfo } = useUserInfo(address, store.poolId)
 
-  if (!data)
+  if (!userInfo)
     return (
       <Grid
         gap={6}
@@ -46,10 +46,10 @@ export function UserStatus(props: UserStatusProps) {
       maxW="maxW"
       {...props}
     >
-      <UserTotalPoints flexGrow={1} flexBasis={0} user={data.data} />
-      <StakedMask alignSelf="stretch" flexGrow={1} flexBasis={0} />
-      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} flexGrow={1} flexBasis={0} />
-      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} flexGrow={1} flexBasis={0} />
+      <UserTotalPoints user={userInfo} />
+      <StakedMask alignSelf="stretch" />
+      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} />
+      <RewardCard alignSelf="stretch" title={t`Estimated Rewards`} />
     </Grid>
   )
 }

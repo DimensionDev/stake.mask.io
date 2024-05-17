@@ -170,7 +170,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             spacing={6}
           >
             {pool?.apr ? (
-              <Tooltip label={formatNumber(+pool.apr * 100, 18)}>
+              <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`}>
                 <Box
                   h="56px"
                   fontSize="32px"

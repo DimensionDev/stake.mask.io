@@ -17,22 +17,24 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import { useAccount, useBalance } from 'wagmi'
 import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
+import { Tooltip } from '../components/Tooltip.tsx'
 import { formatNumber } from '../helpers/formatNumber'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
 import { usePoolInfo } from '../hooks/usePoolInfo'
 import { usePoolStore } from '../store/poolStore'
-import { Tooltip } from '../components/Tooltip.tsx'
 import { BaseModal } from './BaseModal'
 
 interface Props extends ModalProps {}
 
 export function StakeModal(props: Props) {
   const account = useAccount()
+  const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
   const { maskTokenAddress } = usePoolStore()
   const [amount, setAmount] = useState('')
@@ -55,6 +57,9 @@ export function StakeModal(props: Props) {
                 ml="auto"
                 fontSize={14}
                 rounded={24}
+                onClick={() => {
+                  openConnectModal?.()
+                }}
               >{t`Connect Wallet`}</Button>
             )}
           </ListItem>

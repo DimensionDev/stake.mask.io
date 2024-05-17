@@ -27,7 +27,6 @@ interface Props extends ModalProps {
 }
 export function BaseModal({ title, width, height, ...rest }: Props) {
   const isMobile = useBreakpointValue({ base: true, md: false })
-  console.log({ isMobile })
   const header = (
     <>
       <Text fontSize="32px">{title}</Text>
