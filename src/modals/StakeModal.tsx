@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   HStack,
+  Icon,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -32,6 +33,7 @@ import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
 import { profileModal } from './index.tsx'
+import { InfoIcon } from '@chakra-ui/icons'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
@@ -39,7 +41,7 @@ export function StakeModal(props: ModalProps) {
   const { data: pool } = usePoolInfo()
   const { maskTokenAddress } = usePoolStore()
   const [amount, setAmount] = useState('')
-  const balance = useBalance({ token: maskTokenAddress })
+  const balance = useBalance({ address: account.address, token: maskTokenAddress })
   const [{ loading }, linkTwitter] = useLinkTwitter()
   const { data: userInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id
@@ -87,6 +89,9 @@ export function StakeModal(props: ModalProps) {
         {userInfo ? (
           <HStack mt={6}>
             <TwitterAvatar size={12} src={userInfo.twitter_image} />
+            <Text fontSize={14} fontWeight={700} color="neutrals.1" ml={6}>
+              {userInfo.twitter_display_name}
+            </Text>
             <Text
               ml="auto"
               cursor="pointer"
@@ -144,6 +149,10 @@ export function StakeModal(props: ModalProps) {
                     Balance:{' '}
                     {balance.isPending ? (
                       <Skeleton as="span" ml={2} height="16px" width="20px" />
+                    ) : balance.isError ? (
+                      <Tooltip label={balance.error.message}>
+                        <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
+                      </Tooltip>
                     ) : (
                       balance.data?.formatted
                     )}
