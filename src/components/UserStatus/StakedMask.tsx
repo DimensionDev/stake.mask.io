@@ -32,7 +32,7 @@ export function StakedMask(props: BoxProps) {
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
   return (
-    <ActionCard title={t`Stake Mask`} {...props}>
+    <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
         <ProgressiveText
           loading={isLoading && loadingUserInfo}
