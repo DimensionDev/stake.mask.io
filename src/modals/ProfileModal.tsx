@@ -6,6 +6,7 @@ import { TwitterAvatar } from '../components/TwitterAvatar'
 import { useUpdateUserInfo } from '../hooks/useUpdateUserInfo'
 import { useUserInfo } from '../hooks/useUserInfo'
 import { BaseModal } from './BaseModal'
+import { createUITaskManager } from './UITaskManager'
 
 export function ProfileModal(props: ModalProps) {
   const { data: userInfo } = useUserInfo()
@@ -78,3 +79,5 @@ export function ProfileModal(props: ModalProps) {
     </BaseModal>
   )
 }
+
+export const { ui: profileModalUi, controller: profileModal } = createUITaskManager(ProfileModal)

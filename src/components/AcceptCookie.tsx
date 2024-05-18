@@ -1,11 +1,11 @@
-import { FC, memo, useState } from 'react'
 import { Box, Fade, HStack, Icon, Link, Stack } from '@chakra-ui/react'
+import { t } from '@lingui/macro'
+import { FC, memo, useState } from 'react'
+import { useLocalStorage } from 'react-use'
 import CloseCircle from '../assets/close-circle.svg?react'
 import Heart from '../assets/heart.svg?react'
-import { t } from '@lingui/macro'
+import { cookiePolicyModal } from '../modals/CookiePolicyModal.tsx'
 import { GradientButton } from './GradientButton.tsx'
-import { cookiePolicyModal } from '../modals'
-import { useLocalStorage } from 'react-use'
 
 export const AcceptCookie: FC = memo(() => {
   const [isAcceptedCookie, setIsAcceptedCookie] = useLocalStorage('is-accepted-cookie', false)

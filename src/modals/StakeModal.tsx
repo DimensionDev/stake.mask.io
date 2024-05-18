@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
+import { Link } from '@tanstack/react-router'
 import dayjs from 'dayjs'
 import { useMemo, useState } from 'react'
 import { erc20Abi, parseUnits } from 'viem'
@@ -35,8 +36,8 @@ import { usePoolInfo } from '../hooks/usePoolInfo'
 import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
-import { profileModal } from './index.tsx'
-import { Link } from '@tanstack/react-router'
+import { createUITaskManager } from './UITaskManager.tsx'
+import { profileModal } from './ProfileModal.tsx'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
@@ -286,3 +287,5 @@ export function StakeModal(props: ModalProps) {
     </BaseModal>
   )
 }
+
+export const { ui: stakeModalUi, controller: stakeModal } = createUITaskManager(StakeModal)

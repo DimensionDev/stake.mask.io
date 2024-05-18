@@ -3,7 +3,7 @@ import { t } from '@lingui/macro'
 import { UserInfo } from '../../types/api'
 import { TextOverflowTooltip } from '../TextOverflowTooltip'
 import { TwitterAvatar } from '../TwitterAvatar'
-import { profileModal } from '../../modals'
+import { profileModal } from '../../modals/ProfileModal'
 
 interface Props extends StackProps {
   user: UserInfo
