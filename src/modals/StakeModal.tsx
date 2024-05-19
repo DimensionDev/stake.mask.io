@@ -22,9 +22,10 @@ import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Link } from '@tanstack/react-router'
 import dayjs from 'dayjs'
-import { useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import { parseUnits } from 'viem'
 import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
+import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
 import { MaskApproveBoundary } from '../components/MaskApproveBoundary.tsx'
 import { StepIcon } from '../components/StepIcon'
@@ -41,8 +42,9 @@ import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
 import { profileModal } from './ProfileModal.tsx'
+import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
-import { waitForTransactionReceipt } from 'wagmi/actions'
+import { verifyModal } from './VerifyModal.tsx'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
@@ -55,7 +57,7 @@ export function StakeModal(props: ModalProps) {
   const allowance = useMaskAllowance()
   const maskToken = useToken({ address: maskTokenAddress })
   const [{ loading: linkingTwitter }, linkTwitter] = useLinkTwitter()
-  const { data: userInfo } = useUserInfo()
+  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id
   const [waiting, setWaiting] = useState(false)
 
@@ -65,12 +67,28 @@ export function StakeModal(props: ModalProps) {
     return parseUnits(amount, decimals)
   }, [amount, maskToken.data?.decimals])
 
-  const insufficientBalance = balance.data ? balance.data.value < amountValue : false
+  useLayoutEffect(() => {
+    if (!account.isConnected || isLoadingUserInfo || linkedTwitter) return
+    const abort = new AbortController()
+    verifyModal.show(
+      {
+        onSign: () => {
+          linkTwitter()
+          abort.abort()
+        },
+      },
+      abort.signal,
+    )
+    return () => {
+      abort.abort()
+    }
+  }, [account.isConnected, isLoadingUserInfo, linkTwitter, linkedTwitter])
 
   const toast = useToast()
   const { writeContractAsync, isPending } = useWriteContract()
   const handleError = useHandleError()
 
+  const insufficientBalance = balance.data ? balance.data.value < amountValue : false
   const loading = allowance.isLoading || isPending || waiting
   const disabled = insufficientBalance || allowance.isLoading || amountValue === ZERO
   return (
@@ -113,8 +131,8 @@ export function StakeModal(props: ModalProps) {
             </ListItem>
           </List>
         ) : null}
-        {userInfo ? (
-          <HStack>
+        {userInfo?.twitter_id ? (
+          <HStack mb={6}>
             <TwitterAvatar size={12} src={userInfo.twitter_image} />
             <Text fontSize={14} fontWeight={700} color="neutrals.1" ml={6}>
               {userInfo.twitter_display_name}
@@ -134,7 +152,6 @@ export function StakeModal(props: ModalProps) {
           border="1px solid"
           borderColor="neutrals.6"
           rounded={12}
-          mt={6}
           p={4}
           _focusWithin={{
             borderColor: 'neutrals.3',
@@ -298,6 +315,10 @@ export function StakeModal(props: ModalProps) {
                       status: 'success',
                       title: t`Transaction submitted!`,
                     })
+                    resultModal.show({
+                      message: t`Stake Successfully`,
+                      description: t`You have successfully staked 2000.0021 MASK.`,
+                    })
                   }
                 } catch (err) {
                   if (handleError(err)) return
@@ -316,4 +337,5 @@ export function StakeModal(props: ModalProps) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const { ui: stakeModalUi, controller: stakeModal } = createUITaskManager(StakeModal)

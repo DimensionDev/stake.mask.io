@@ -1,6 +1,6 @@
 import { Button, ButtonProps, ScaleFade, useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, memo, useState } from 'react'
 import { erc20Abi } from 'viem'
 import { useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -12,7 +12,7 @@ interface BoundaryProps extends PropsWithChildren {
   amount: bigint
   buttonProps?: ButtonProps
 }
-export function MaskApproveBoundary({ children, amount }: BoundaryProps) {
+export const MaskApproveBoundary = memo(function MaskApproveBoundary({ children, amount }: BoundaryProps) {
   const allowance = useMaskAllowance()
   const insufficientAllowance = allowance.data === undefined ? true : allowance.data < amount
   const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
@@ -69,4 +69,4 @@ export function MaskApproveBoundary({ children, amount }: BoundaryProps) {
     )
   }
   return <>{children}</>
-}
+})

@@ -28,6 +28,7 @@ export function ProfileModal(props: ModalProps) {
           fontWeight={700}
           type="text"
           value={username}
+          autoFocus
           onChange={(e) => {
             setUsername(e.currentTarget.value)
           }}
@@ -49,7 +50,7 @@ export function ProfileModal(props: ModalProps) {
         <FormLabel htmlFor={switchId} mb={0} ml={3} fontSize={12} color="neutrals.1">{t`Show Avatar`}</FormLabel>
       </FormControl>
       <Flex justifyContent="space-between" gap={3} mt={6}>
-        <Button rounded={24} flexGrow={1}>{t`Cancel`}</Button>
+        <Button rounded={24} flexGrow={1} onClick={props.onClose}>{t`Cancel`}</Button>
         <GradientButton
           flexGrow={1}
           disabled={!username}
