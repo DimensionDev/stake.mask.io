@@ -41,19 +41,19 @@ export const MaskApproveBoundary = memo(function MaskApproveBoundary({ children,
                 args: [stakeManagerAddress, amount],
               })
               setWaiting(true)
-              const res = await waitForTransactionReceipt(config, {
+              const receipt = await waitForTransactionReceipt(config, {
                 hash,
                 confirmations: 1,
               })
               allowance.refetch()
-              if (res.status === 'reverted') {
+              if (receipt.status === 'reverted') {
                 toast({
                   status: 'error',
                   title: t`The approval transaction gets reverted!`,
                 })
                 throw new Error('The approval transaction gets reverted!')
               }
-              res.status
+              receipt.status
             } catch (err) {
               if (handleError(err)) return
               throw err

@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Icon, Stack, useToast } from '@chakra-ui/react'
+import { Box, Button, HStack, Icon, Skeleton, SkeletonCircle, Stack, useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -27,8 +27,14 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
   const { rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast()
-  const amount = reward?.amount ? +reward.amount : 0
-  const isDisabled = !unlocked || !amount
+
+  if (!reward) {
+    return <RewardCardSkeleton {...props} />
+  }
+
+  const amount = reward.amount ? +reward.amount : 0
+  const isDisabled = !unlocked || !amount || loadingUserInfo
+  const tokenSymbol = reward.name.toUpperCase() || 'Unknown Token'
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
       <Stack alignItems="center" flexGrow={1}>
@@ -57,7 +63,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
               textTransform="uppercase"
               skeletonWidth="30px"
             >
-              {reward?.name}
+              {tokenSymbol}
             </ProgressiveText>
           </Stack>
         </HStack>
@@ -74,7 +80,6 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
             )
           }
           className="purple-gradient-button"
-          disabled={loadingUserInfo}
           onClick={async () => {
             if (!reward || !userInfo || !rewardAddress) return
             const rewardPool = userInfo.reward_pool.find((x) => x.reward_pool_id === reward.reward_pool_id)
@@ -96,15 +101,15 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
               title: t`Transaction submitted!`,
             })
 
-            const res = await waitForTransactionReceipt(config, {
+            const receipt = await waitForTransactionReceipt(config, {
               hash,
               confirmations: 1,
             })
 
-            if (res.status === 'reverted') {
+            if (receipt.status === 'reverted') {
               toast({
                 status: 'error',
-                title: t`The approval transaction gets reverted!`,
+                title: t`The transaction gets reverted!`,
               })
               throw new Error('The approval transaction gets reverted!')
             } else {
@@ -117,6 +122,27 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           }}
         >
           {isPending ? <Spinner h="24px" w="24px" color="neutrals.9" /> : t`Claim`}
+        </Button>
+      </Stack>
+    </ActionCard>
+  )
+}
+
+export function RewardCardSkeleton(props: ActionCardProps) {
+  return (
+    <ActionCard display="flex" flexDir="column" {...props}>
+      <Stack alignItems="center" flexGrow={1}>
+        <HStack alignItems="center" my="auto" flexGrow={1}>
+          <Box width={12} height={12} pos="relative">
+            <SkeletonCircle w={12} height={12} />
+          </Box>
+          <Stack ml="10px">
+            <Skeleton fontSize={24} width="100px" height="24px" />
+            <Skeleton fontSize={24} lineHeight="16px" width="60px" height="16px" />
+          </Stack>
+        </HStack>
+        <Button rounded={24} isDisabled alignSelf="stretch" color="neutrals.9" className="purple-gradient-button">
+          <Spinner h="24px" w="24px" color="neutrals.9" />
         </Button>
       </Stack>
     </ActionCard>

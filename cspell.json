@@ -13,6 +13,7 @@
     "splinecode",
     "splinetool",
     "unstake",
+    "unstaked",
     "urlcat",
     "webp",
     "zustand"
@@ -55,3 +56,4 @@
   ],
   "overrides": []
 }
+

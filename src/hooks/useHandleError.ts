@@ -1,19 +1,25 @@
 import { useToast } from '@chakra-ui/react'
 import { useCallback } from 'react'
-import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
+import { BaseError, ContractFunctionExecutionError, TransactionExecutionError, UserRejectedRequestError } from 'viem'
 
 export function useHandleError() {
-  const toast = useToast()
+  const toast = useToast({ status: 'error' })
   return useCallback(
     (err: unknown) => {
+      if (!(err instanceof BaseError)) return false
       const cause = err instanceof TransactionExecutionError ? err.cause : err
       if (cause instanceof UserRejectedRequestError) {
         toast({
-          status: 'error',
           title: cause.details,
         })
         return true
+      } else if (err instanceof ContractFunctionExecutionError) {
+        toast({
+          title: err.message,
+        })
+        return true
       }
+
       return false
     },
     [toast],

@@ -303,16 +303,16 @@ export function StakeModal(props: ModalProps) {
                       title: t`Transaction submitted!`,
                     })
                     setWaiting(true)
-                    const res = await waitForTransactionReceipt(config, {
+                    const receipt = await waitForTransactionReceipt(config, {
                       hash,
                       confirmations: 1,
                     })
-                    if (res.status === 'reverted') {
+                    if (receipt.status === 'reverted') {
                       toast({
                         status: 'error',
-                        title: t`The approval transaction gets reverted!`,
+                        title: t`The transaction gets reverted!`,
                       })
-                      throw new Error('The approval transaction gets reverted!')
+                      throw new Error('The transaction gets reverted!')
                     } else {
                       await resultModal.show({
                         title: t`Stake`,
