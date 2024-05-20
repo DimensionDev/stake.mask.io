@@ -21,19 +21,19 @@ import {
 import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Link } from '@tanstack/react-router'
-import dayjs from 'dayjs'
 import { useLayoutEffect, useMemo, useState } from 'react'
 import { parseUnits } from 'viem'
 import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
-import { MaskApproveBoundary } from '../components/MaskApproveBoundary.tsx'
+import { StakeRequirementBoundary } from '../components/StakeRequirementBoundary/index.tsx'
 import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
 import { Tooltip } from '../components/Tooltip.tsx'
 import { TwitterAvatar } from '../components/TwitterAvatar.tsx'
 import { ZERO } from '../constants/misc.ts'
 import { formatNumber } from '../helpers/formatNumber'
+import { formatSeconds } from '../helpers/formatSeconds.ts'
 import { useHandleError } from '../hooks/useHandleError.ts'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
 import { useMaskAllowance } from '../hooks/useMaskAllowance.ts'
@@ -88,9 +88,8 @@ export function StakeModal(props: ModalProps) {
   const { writeContractAsync, isPending } = useWriteContract()
   const handleError = useHandleError()
 
-  const insufficientBalance = balance.data ? balance.data.value < amountValue : false
   const loading = allowance.isLoading || isPending || waiting
-  const disabled = insufficientBalance || allowance.isLoading || amountValue === ZERO
+  const disabled = allowance.isLoading || amountValue === ZERO
   return (
     <BaseModal title={t`Stake`} width={572} height={521} {...props}>
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
@@ -226,8 +225,8 @@ export function StakeModal(props: ModalProps) {
           <HStack justifyContent="space-between">
             <Text>{t`Unlock MASK Time`}</Text>
             {pool?.end_time ? (
-              <Tooltip label={dayjs(pool.end_time * 1000).toISOString()} hasArrow placement="top">
-                <Text color="secondary.3">{dayjs(pool.end_time * 1000).format('hh:mm d/MM/YYYY')}</Text>
+              <Tooltip label={formatSeconds(pool.end_time)} hasArrow placement="top">
+                <Text color="secondary.3">{formatSeconds(pool.end_time, 'hh:mm d/MM/YYYY')}</Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="100px" />
@@ -274,64 +273,65 @@ export function StakeModal(props: ModalProps) {
             </Trans>
           </Text>
         </VStack>
-        <MaskApproveBoundary amount={amountValue}>
-          <ScaleFade in initialScale={0.5} key="stake-button">
-            <Button
-              isLoading={loading}
-              loadingText={waiting ? t`Waiting for transaction confirmation` : ''}
-              w="100%"
-              className="purple-gradient-button"
-              rounded={50}
-              mt="10px"
-              isDisabled={disabled}
-              onClick={async () => {
-                if (!maskTokenAddress || !stakeManagerAddress) {
-                  toast({
-                    status: 'error',
-                    title: t`Can not get determination MASK token`,
-                  })
-                  return
-                }
-                try {
-                  const hash = await writeContractAsync({
-                    abi: StakeManagerABI,
-                    address: stakeManagerAddress,
-                    functionName: 'depositAndLock',
-                    args: [amountValue],
-                  })
-                  setWaiting(true)
-                  const res = await waitForTransactionReceipt(config, {
-                    hash,
-                    confirmations: 1,
-                  })
-                  if (res.status === 'reverted') {
+        <Box mt="auto">
+          <StakeRequirementBoundary amount={amountValue}>
+            <ScaleFade in initialScale={0.5} key="stake-button">
+              <Button
+                isLoading={loading}
+                loadingText={waiting ? t`Waiting for transaction confirmation` : ''}
+                w="100%"
+                className="purple-gradient-button"
+                rounded={50}
+                isDisabled={disabled}
+                onClick={async () => {
+                  if (!maskTokenAddress || !stakeManagerAddress) {
                     toast({
                       status: 'error',
-                      title: t`The approval transaction gets reverted!`,
+                      title: t`Can not get determination MASK token`,
                     })
-                    throw new Error('The approval transaction gets reverted!')
-                  } else {
-                    toast({
-                      status: 'success',
-                      title: t`Transaction submitted!`,
-                    })
-                    resultModal.show({
-                      message: t`Stake Successfully`,
-                      description: t`You have successfully staked 2000.0021 MASK.`,
-                    })
+                    return
                   }
-                } catch (err) {
-                  if (handleError(err)) return
-                  throw err
-                } finally {
-                  setWaiting(false)
-                }
-              }}
-            >
-              {account.isConnected ? t`Stake` : t`Please connect first`}
-            </Button>
-          </ScaleFade>
-        </MaskApproveBoundary>
+                  try {
+                    const hash = await writeContractAsync({
+                      abi: StakeManagerABI,
+                      address: stakeManagerAddress,
+                      functionName: 'depositAndLock',
+                      args: [amountValue],
+                    })
+                    setWaiting(true)
+                    const res = await waitForTransactionReceipt(config, {
+                      hash,
+                      confirmations: 1,
+                    })
+                    if (res.status === 'reverted') {
+                      toast({
+                        status: 'error',
+                        title: t`The approval transaction gets reverted!`,
+                      })
+                      throw new Error('The approval transaction gets reverted!')
+                    } else {
+                      toast({
+                        status: 'success',
+                        title: t`Transaction submitted!`,
+                      })
+                      resultModal.show({
+                        message: t`Stake Successfully`,
+                        description: t`You have successfully staked 2000.0021 MASK.`,
+                      })
+                    }
+                  } catch (err) {
+                    if (handleError(err)) return
+                    throw err
+                  } finally {
+                    setWaiting(false)
+                  }
+                }}
+              >
+                {account.isConnected ? t`Stake` : t`Please connect first`}
+              </Button>
+            </ScaleFade>
+          </StakeRequirementBoundary>
+        </Box>
       </Box>
     </BaseModal>
   )

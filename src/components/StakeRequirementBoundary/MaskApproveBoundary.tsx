@@ -4,9 +4,9 @@ import { PropsWithChildren, memo, useState } from 'react'
 import { erc20Abi } from 'viem'
 import { useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
-import { useHandleError } from '../hooks/useHandleError'
-import { useMaskAllowance } from '../hooks/useMaskAllowance'
-import { usePoolStore } from '../store/poolStore'
+import { useHandleError } from '../../hooks/useHandleError'
+import { useMaskAllowance } from '../../hooks/useMaskAllowance'
+import { usePoolStore } from '../../store/poolStore'
 
 interface BoundaryProps extends PropsWithChildren {
   amount: bigint
@@ -32,7 +32,6 @@ export const MaskApproveBoundary = memo(function MaskApproveBoundary({ children,
           loadingText={
             waiting ? t`Waiting for transaction confirmation` : allowance.isPending ? t`Checking` : t`Unlocking`
           }
-          mt="10px"
           onClick={async () => {
             try {
               const hash = await writeContractAsync({
