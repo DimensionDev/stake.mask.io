@@ -18,12 +18,12 @@ import {
 
 import { ReactNode } from 'react'
 
-interface Props extends ModalProps {
+export interface BaseModalProps extends ModalProps {
   title: ReactNode
   width?: ModalContentProps['width']
   height?: ModalContentProps['height']
 }
-export function BaseModal({ title, width, height, ...rest }: Props) {
+export function BaseModal({ title, width, height, ...rest }: BaseModalProps) {
   const isMobile = useBreakpointValue({ base: true, md: false })
   const header = (
     <>

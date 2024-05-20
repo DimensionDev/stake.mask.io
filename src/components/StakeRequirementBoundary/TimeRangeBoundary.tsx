@@ -5,6 +5,7 @@ import { useBlockNumber, useReadContract } from 'wagmi'
 import { StakeManagerABI } from '../../abis/stakeManager'
 import { usePoolInfo } from '../../hooks/usePoolInfo'
 import { usePoolStore } from '../../store/poolStore'
+import { Spinner } from '../Spinner'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps
@@ -37,11 +38,15 @@ export const TimeRangeBoundary = memo<BoundaryProps>(function TimeRangeBoundary(
   }, [data, poolInfo, blockNumber])
 
   useEffect(() => {
-    setWatch(hasStarted && !hasEnded)
-  }, [hasStarted, hasEnded])
+    if (hasEnded) setWatch(false)
+  }, [hasEnded])
 
   if (loadingPoolInfo || loadingPools) {
-    return <Button w="100%" colorScheme="red" rounded={50} disabled isLoading loadingText={t`Checking`} mt="10px" />
+    return (
+      <Button w="100%" colorScheme="red" rounded={50} isDisabled>
+        <Spinner w="24px" h="24px" color="neutrals.9" />
+      </Button>
+    )
   }
 
   if (!hasStarted) {
