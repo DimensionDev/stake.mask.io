@@ -45,6 +45,7 @@ export const theme = extendBaseTheme({
       8: '#141414',
       9: '#05050A',
     },
+    'flow-line': '#AF9EF8',
     gradient: {
       purple: 'linear-gradient(261deg, #D0D0FF 3.1%, #A996F7 33.87%, #7280FE 54.26%, #D3D6FE 104.35%)',
     },

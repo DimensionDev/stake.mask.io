@@ -15,6 +15,7 @@ const ExternalEnvSchema = z.object({
   GITHUB_URL: z.string().default('https://github.com/DimensionDev'),
   YOUTUBE_URL: z.string().default('https://www.youtube.com/c/MaskNetwork'),
   MEDIUM_URL: z.string().default('https://masknetwork.medium.com/'),
+  MASK_URL: z.string().default('https://mask.io'),
 })
 
 export const env = {
@@ -35,5 +36,6 @@ export const env = {
     GITHUB_URL: import.meta.env.VITE_GITHUB_URL,
     YOUTUBE_URL: import.meta.env.VITE_YOUTUBE_URL,
     MEDIUM_URL: import.meta.env.VITE_MEDIUM_URL,
+    MASK_URL: import.meta.env.VITE_MASK_URL,
   }),
 }

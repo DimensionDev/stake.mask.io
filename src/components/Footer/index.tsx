@@ -146,12 +146,9 @@ export const Footer: FC = () => {
           direction={{ base: 'column', sm: 'row' }}
           gap={{ base: 3, sm: 0 }}
         >
-          <Box
-            color="neutrals.4"
-            fontSize="12px"
-            fontWeight={400}
-            lineHeight="150%"
-          >{t`Since 2019 to Now ｜ Mask.io`}</Box>
+          <Box color="neutrals.4" fontSize="12px" fontWeight={400} lineHeight="150%">
+            {t`Since 2019 to Now ｜ `} <Link href={env.external.MASK_URL} target="_blank">{t`Mask.io`}</Link>
+          </Box>
           <Terms />
         </Flex>
       </Center>
