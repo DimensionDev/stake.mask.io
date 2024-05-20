@@ -38,8 +38,8 @@ export const TimeRangeBoundary = memo<BoundaryProps>(function TimeRangeBoundary(
   }, [data, poolInfo, blockNumber])
 
   useEffect(() => {
-    setWatch(hasStarted && !hasEnded)
-  }, [hasStarted, hasEnded])
+    if (hasEnded) setWatch(false)
+  }, [hasEnded])
 
   if (loadingPoolInfo || loadingPools) {
     return (
