@@ -283,7 +283,6 @@ msgstr ""
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
-#: src/components/UserStatus/StakedMask.tsx
 msgid "Stake Mask"
 msgstr ""
 
@@ -344,7 +343,6 @@ msgid ""
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
-#: src/components/UserStatus/RewardCard.tsx
 msgid "The approval transaction gets reverted!"
 msgstr ""
 
@@ -352,6 +350,7 @@ msgstr ""
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.<0>More</0>"
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/modals/StakeModal.tsx
 msgid "The transaction gets reverted!"
@@ -416,6 +415,10 @@ msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
 msgid "Unstake"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Unstake Mask"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
