@@ -103,7 +103,6 @@ export const ConnectButton: FC = memo(() => {
                     fontWeight={700}
                     onClick={openChainModal}
                     h="36px"
-                    _hover={{ transform: 'scale(1.05)' }}
                     _active={{ transform: 'scale(0.95)' }}
                     transition="200ms"
                   >
