@@ -7,7 +7,7 @@ export interface ContextOptions<Options, Result> {
   show(options?: Omit<Options, 'isOpen'>, signal?: AbortSignal): Promise<Result>
 }
 
-export interface BaseDialogProps<T> extends Pick<ModalProps, 'isOpen' | 'onClose'> {
+export interface BaseDialogProps<T> extends Partial<Pick<ModalProps, 'isOpen' | 'onClose'>> {
   onSubmit?(result: T | null): void
 }
 
@@ -30,7 +30,7 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
   }
 
   type Controller = {
-    show(options?: Omit<TaskOptions, 'isOpen'>, signal?: AbortSignal): Promise<Result | null>
+    show(options?: Omit<TaskOptions, 'isOpen' | 'children' | 'onClose'>, signal?: AbortSignal): Promise<Result | null>
   }
 
   const controller: Controller = {

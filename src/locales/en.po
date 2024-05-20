@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2024-05-16 12:57+0800\n"
+"POT-Creation-Date: 2024-05-18 10:43+0800\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,7 +51,13 @@ msgid "Can not get determination MASK token"
 msgstr ""
 
 #: src/modals/ProfileModal.tsx
+#: src/modals/VerifyModal.tsx
 msgid "Cancel"
+msgstr ""
+
+#: src/components/MaskApproveBoundary.tsx
+#: src/components/MaskApproveBoundary.tsx
+msgid "Checking"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
@@ -66,6 +72,7 @@ msgstr ""
 msgid "Connect to stake"
 msgstr ""
 
+#: src/components/ConnectButton.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Connect Wallet"
@@ -84,6 +91,10 @@ msgstr ""
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are used to store information about you and your internet usage habits to improve your online experience. Cookies enable websites to recognize your device and remember some information about your preferences."
+msgstr ""
+
+#: src/modals/ResultModal.tsx
+msgid "Done"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -181,10 +192,6 @@ msgstr ""
 msgid "Not started"
 msgstr ""
 
-#: src/components/UserStatus/RewardCard.tsx
-msgid "Not unlocked yet"
-msgstr ""
-
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 msgid "On going"
 msgstr ""
@@ -231,11 +238,16 @@ msgstr ""
 msgid "Show Avatar"
 msgstr ""
 
+#: src/modals/VerifyModal.tsx
+msgid "Sign"
+msgstr ""
+
 #: src/components/Footer/index.tsx
 msgid "Since 2019 to Now ｜ Mask.io"
 msgstr ""
 
 #: src/components/Nav/index.tsx
+#: src/modals/ResultModal.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
@@ -249,6 +261,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Stake Mask Now"
+msgstr ""
+
+#: src/modals/StakeModal.tsx
+msgid "Stake Successfully"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
@@ -295,6 +311,11 @@ msgid ""
 "If you have any questions about these Terms, please contact us at info@dimension.im."
 msgstr ""
 
+#: src/components/MaskApproveBoundary.tsx
+#: src/modals/StakeModal.tsx
+msgid "The approval transaction gets reverted!"
+msgstr ""
+
 #: src/modals/StakeModal.tsx
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.<0>More</0>"
 msgstr ""
@@ -317,6 +338,10 @@ msgstr ""
 msgid "Time{0}"
 msgstr ""
 
+#: src/modals/VerifyModal.tsx
+msgid "To finish connecting, you must sign a message in your wallet to verify that you are the owner of this account."
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Total MASK Staked"
 msgstr ""
@@ -329,18 +354,39 @@ msgstr ""
 msgid "Total Rewards"
 msgstr ""
 
+#: src/modals/StakeModal.tsx
+msgid "Transaction submitted!"
+msgstr ""
+
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Types of Cookies We Use"
+msgstr ""
+
+#: src/components/MaskApproveBoundary.tsx
+msgid "Unlock MASK"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "Unlock MASK Time"
 msgstr ""
 
+#: src/components/MaskApproveBoundary.tsx
+msgid "Unlocking"
+msgstr ""
+
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Updates to the Cookie Policy"
+msgstr ""
+
+#: src/modals/VerifyModal.tsx
+msgid "Verify your account"
+msgstr ""
+
+#: src/components/MaskApproveBoundary.tsx
+#: src/modals/StakeModal.tsx
+msgid "Waiting for transaction confirmation"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -357,9 +403,17 @@ msgstr ""
 msgid "What Are Cookies?"
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
+msgid "You can claim after the event ends."
+msgstr ""
+
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "You can manage and delete cookies through your browser settings. Please note that disabling cookies may affect your access to and experience on the Site."
+msgstr ""
+
+#: src/modals/StakeModal.tsx
+msgid "You have successfully staked 2000.0021 MASK."
 msgstr ""
 
 #: src/components/Footer/index.tsx

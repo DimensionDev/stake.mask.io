@@ -25,6 +25,7 @@ export const MaskNetworkSplice: FC = () => {
         },
       }}
       onWheelCapture={(e) => e.stopPropagation()}
+      onContextMenuCapture={(e) => e.preventDefault()}
     >
       <Suspense fallback={<Spinner />}>
         <Spline scene="/mask_network.splinecode" renderOnDemand />

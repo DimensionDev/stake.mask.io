@@ -1,11 +1,11 @@
 import { Center, Divider, Flex, Icon, type FlexProps, useBreakpointValue, useDisclosure, Box } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { FC, useMemo } from 'react'
 import LogoSVG from '../../assets/logo.svg?react'
 import { MenuButton } from './MenuButton.tsx'
 import { MobileMenu } from './MobileMenu.tsx'
 import { DesktopMenu } from './DesktopMenu.tsx'
+import { ConnectButton } from '../ConnectButton.tsx'
 
 export interface NavProps extends FlexProps {}
 

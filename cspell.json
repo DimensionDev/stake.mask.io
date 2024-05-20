@@ -6,8 +6,9 @@
     "masknet",
     "Merkle",
     "sepolia",
-    "splinecode",
     "splinetool",
+    "splinecode",
+    "Pageable",
     "unstake",
     "urlcat",
     "webp",
@@ -29,7 +30,8 @@
     "fontsource",
     "tablist",
     "Roboto",
-    "Jaydon"
+    "Jaydon",
+    "rdns"
   ],
   "flagWords": [],
   "ignorePaths": [

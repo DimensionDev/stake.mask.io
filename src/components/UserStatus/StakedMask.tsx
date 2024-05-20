@@ -9,10 +9,10 @@ import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import MaskLogo from '../../assets/mask-logo.svg?react'
 import Question from '../../assets/question.svg?react'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
-import { stakeModal } from '../../modals/index.tsx'
 import { usePoolStore } from '../../store/poolStore.ts'
 import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
+import { stakeModal } from '../../modals/StakeModal.tsx'
 
 export function StakedMask(props: BoxProps) {
   const account = useAccount()
@@ -32,7 +32,7 @@ export function StakedMask(props: BoxProps) {
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
   return (
-    <ActionCard title={t`Stake Mask`} {...props}>
+    <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
         <ProgressiveText
           loading={isLoading && loadingUserInfo}

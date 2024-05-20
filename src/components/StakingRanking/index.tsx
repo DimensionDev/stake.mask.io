@@ -35,15 +35,15 @@ export const StakingRankingList: FC = () => {
     error,
     isLoading,
   } = useQuery({
-    queryKey: [poolStore.poolId],
+    queryKey: ['staking-ranking-list', poolStore.poolId],
     async queryFn() {
       const url = urlcat(FIREFLY_API_ROOT, '/v1/mask_stake/rank', {
         limit: 30,
+        pool_id: poolStore.poolId ?? undefined,
       })
       const response = await fetchJSON<StakeRankResponse>(url)
       return response.data.list
     },
-    enabled: !!poolStore.poolId,
   })
 
   if (isLoading) {

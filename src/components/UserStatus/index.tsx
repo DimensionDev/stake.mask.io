@@ -4,6 +4,7 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { RewardCard } from './RewardCard'
 import { StakedMask } from './StakedMask'
 import { UserTotalPoints } from './UserTotalPoint'
+import { useAccount } from 'wagmi'
 import { usePoolStore } from '../../store/poolStore'
 import { useReadContract } from 'wagmi'
 import { StakeManagerABI } from '../../abis/stakeManager'
@@ -11,7 +12,7 @@ import { StakeManagerABI } from '../../abis/stakeManager'
 export interface UserStatusProps extends GridProps {}
 
 export function UserStatus(props: UserStatusProps) {
-  const { data: userInfo } = useUserInfo()
+  const { data: userInfo, isLoading } = useUserInfo()
   const { poolId, stakeManagerAddress } = usePoolStore()
   const rss3 = userInfo?.reward_pool.find((x) => x.name === 'rss3')
   const ton = userInfo?.reward_pool.find((x) => x.name === 'ton')
@@ -24,25 +25,30 @@ export function UserStatus(props: UserStatusProps) {
   })
   const unlocked = res.data?.[2]
 
-  if (!userInfo)
-    return (
-      <Grid
-        gap={6}
-        templateColumns={{
-          base: '1fr',
-          md: 'repeat(2, 1fr)',
-          lg: 'repeat(4, 1fr)',
-        }}
-        w="100%"
-        maxW="maxW"
-        {...props}
-      >
-        <Skeleton h="198px" />
-        <Skeleton h="198px" />
-        <Skeleton h="198px" />
-        <Skeleton h="198px" />
-      </Grid>
-    )
+  const account = useAccount()
+
+  if (!account.address) return null
+
+  if (!userInfo || isLoading)
+    if (!userInfo)
+      return (
+        <Grid
+          gap={6}
+          templateColumns={{
+            base: '1fr',
+            md: 'repeat(2, 1fr)',
+            lg: 'repeat(4, 1fr)',
+          }}
+          w="100%"
+          maxW="maxW"
+          {...props}
+        >
+          <Skeleton h="198px" />
+          <Skeleton h="198px" />
+          <Skeleton h="198px" />
+          <Skeleton h="198px" />
+        </Grid>
+      )
 
   return (
     <Grid
