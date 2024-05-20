@@ -46,6 +46,10 @@ msgstr ""
 msgid "Balance: {0}"
 msgstr ""
 
+#: src/components/StakeRequirementBoundary/BlackListBoundary.tsx
+msgid "Blacklist is powered by <0>Go+</0>"
+msgstr ""
+
 #: src/modals/StakeModal.tsx
 msgid "Can not get determination MASK token"
 msgstr ""
@@ -55,8 +59,9 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/components/MaskApproveBoundary.tsx
-#: src/components/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Checking"
 msgstr ""
 
@@ -101,6 +106,10 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#: src/components/StakeRequirementBoundary/TimeRangeBoundary.tsx
+msgid "Ended"
+msgstr ""
+
 #: src/components/UserStatus/index.tsx
 #: src/components/UserStatus/index.tsx
 msgid "Estimated Rewards"
@@ -123,6 +132,10 @@ msgstr ""
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "info@dimension.im"
+msgstr ""
+
+#: src/components/StakeRequirementBoundary/MaskBalanceBoundary.tsx
+msgid "Insufficient balance"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -192,6 +205,10 @@ msgstr ""
 msgid "Not started"
 msgstr ""
 
+#: src/components/StakeRequirementBoundary/TimeRangeBoundary.tsx
+msgid "Not started yet."
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 msgid "On going"
 msgstr ""
@@ -246,6 +263,10 @@ msgstr ""
 msgid "Since 2019 to Now ｜ Mask.io"
 msgstr ""
 
+#: src/components/StakeRequirementBoundary/RegionBoundary.tsx
+msgid "Sorry, you are in a restricted region"
+msgstr ""
+
 #: src/components/Nav/index.tsx
 #: src/modals/ResultModal.tsx
 #: src/modals/StakeModal.tsx
@@ -269,6 +290,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Staked MASK can be unstake after the campaign ends."
+msgstr ""
+
+#: src/components/StakeRequirementBoundary/RegionBoundary.tsx
+msgid "Staking is not available in restricted countries, including the US, Canada, China, Iran, North Korea, the Syrian Arab Republic, Netherlands, Crimea, Malaysia, Bangladesh, Bolivia and Cuba."
 msgstr ""
 
 #: src/components/StakingRanking/index.tsx
@@ -311,7 +336,7 @@ msgid ""
 "If you have any questions about these Terms, please contact us at info@dimension.im."
 msgstr ""
 
-#: src/components/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/modals/StakeModal.tsx
 msgid "The approval transaction gets reverted!"
 msgstr ""
@@ -363,7 +388,7 @@ msgstr ""
 msgid "Types of Cookies We Use"
 msgstr ""
 
-#: src/components/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlock MASK"
 msgstr ""
 
@@ -371,7 +396,7 @@ msgstr ""
 msgid "Unlock MASK Time"
 msgstr ""
 
-#: src/components/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlocking"
 msgstr ""
 
@@ -384,7 +409,7 @@ msgstr ""
 msgid "Verify your account"
 msgstr ""
 
-#: src/components/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/modals/StakeModal.tsx
 msgid "Waiting for transaction confirmation"
 msgstr ""
@@ -418,4 +443,8 @@ msgstr ""
 
 #: src/components/Footer/index.tsx
 msgid "Your Portal To The New, Open Internet."
+msgstr ""
+
+#: src/components/StakeRequirementBoundary/BlackListBoundary.tsx
+msgid "Your wallet address is on the blacklist"
 msgstr ""
