@@ -30,6 +30,7 @@ export interface UserInfo {
   twitter_display_name: string
   twitter_image: string
   twitter_show_image: boolean
+  /** '1' for CEX user, '2' for spam user, '3' and '0' for normal user */
   address_type: string
   reward_pool: Array<{
     reward_pool_id: number

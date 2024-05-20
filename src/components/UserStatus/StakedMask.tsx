@@ -31,6 +31,8 @@ export function StakedMask(props: BoxProps) {
     }
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
+  const ratio = userInfo?.address_type === '1' ? 1.05 : 1
+
   return (
     <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
@@ -48,7 +50,7 @@ export function StakedMask(props: BoxProps) {
           <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">
             {t`+${userInfo?.score_per_hour} Points/h`}
           </ProgressiveText>
-          <Tooltip label={t`1 staked MASK will generate 1 point per hour.`} placement="top" hasArrow>
+          <Tooltip label={t`1 staked MASK will generate ${ratio} point per hour.`} placement="top" hasArrow>
             <Box as="span" w={6} h={6}>
               <Icon as={Question} w="initial" h="initial" />
             </Box>
