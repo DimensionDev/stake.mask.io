@@ -175,6 +175,7 @@ export function StakeModal(props: ModalProps) {
               outline="none"
               fontSize="40px"
               fontFamily="input"
+              type="number"
               fontWeight={700}
               autoFocus
               value={rawAmount}
