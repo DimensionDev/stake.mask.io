@@ -61,6 +61,7 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Checking"
 msgstr ""
 
@@ -279,6 +280,8 @@ msgid "Stake"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
+#: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
+#: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/StakedMask.tsx
 msgid "Stake Mask"
@@ -342,12 +345,16 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/RewardCard.tsx
-#: src/modals/StakeModal.tsx
 msgid "The approval transaction gets reverted!"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.<0>More</0>"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+#: src/modals/StakeModal.tsx
+msgid "The transaction gets reverted!"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -385,6 +392,7 @@ msgid "Total Rewards"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/StakedMask.tsx
 #: src/modals/StakeModal.tsx
 msgid "Transaction submitted!"
 msgstr ""
@@ -404,6 +412,14 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlocking"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Unstake"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Unstake Successfully"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -449,6 +465,10 @@ msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "You have successfully staked {rawAmount} MASK."
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "You have successfully unstaked {staked} MASK"
 msgstr ""
 
 #: src/components/Footer/index.tsx
