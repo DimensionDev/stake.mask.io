@@ -187,7 +187,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
                 </Box>
               </Tooltip>
             ) : (
-              <Skeleton h="56px" width="100px" fontSize="32px"></Skeleton>
+              <Skeleton h="32px" my="12px" width="100px" fontSize="32px"></Skeleton>
             )}
             <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
               {t`APR`}

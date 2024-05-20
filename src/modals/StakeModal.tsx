@@ -52,7 +52,7 @@ export function StakeModal(props: ModalProps) {
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
   const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
-  const [amount, setAmount] = useState('')
+  const [rawAmount, setRawAmount] = useState('')
   const balance = useBalance({ address: account.address, token: maskTokenAddress })
   const allowance = useMaskAllowance()
   const maskToken = useToken({ address: maskTokenAddress })
@@ -61,11 +61,11 @@ export function StakeModal(props: ModalProps) {
   const linkedTwitter = !!userInfo?.twitter_id
   const [waiting, setWaiting] = useState(false)
 
-  const amountValue = useMemo(() => {
-    if (!amount) return BigInt(0)
+  const amount = useMemo(() => {
+    if (!rawAmount) return BigInt(0)
     const decimals = maskToken.data?.decimals || 18
-    return parseUnits(amount, decimals)
-  }, [amount, maskToken.data?.decimals])
+    return parseUnits(rawAmount, decimals)
+  }, [rawAmount, maskToken.data?.decimals])
 
   useLayoutEffect(() => {
     if (!account.isConnected || isLoadingUserInfo || linkedTwitter) return
@@ -89,7 +89,7 @@ export function StakeModal(props: ModalProps) {
   const handleError = useHandleError()
 
   const loading = allowance.isLoading || isPending || waiting
-  const disabled = allowance.isLoading || amountValue === ZERO
+  const disabled = allowance.isLoading || amount === ZERO
   return (
     <BaseModal title={t`Stake`} width={572} height={521} {...props}>
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
@@ -177,10 +177,10 @@ export function StakeModal(props: ModalProps) {
               fontFamily="input"
               fontWeight={700}
               autoFocus
-              value={amount}
+              value={rawAmount}
               max={1e18}
               onChange={(e) => {
-                setAmount(e.currentTarget.value)
+                setRawAmount(e.currentTarget.value)
               }}
               _focus={{ outline: 'none', border: 'none' }}
               _focusVisible={{ border: 'none', boxShadow: 'none' }}
@@ -213,7 +213,7 @@ export function StakeModal(props: ModalProps) {
                   _hover={{ bg: 'gradient.purple' }}
                   onClick={() => {
                     if (balance.data) {
-                      setAmount(balance.data.formatted)
+                      setRawAmount(balance.data.formatted)
                     }
                   }}
                 >{t`MAX`}</Button>
@@ -244,8 +244,8 @@ export function StakeModal(props: ModalProps) {
           </HStack>
           <HStack justifyContent="space-between">
             <Text>{t`Share of Pool`}</Text>
-            {amount && pool?.amount !== undefined ? (
-              <Text>{formatNumber((+amount / +pool?.amount) * 100, 2)}%</Text>
+            {rawAmount && pool?.amount !== undefined ? (
+              <Text>{formatNumber((+rawAmount / +pool.amount) * 100, 2)}%</Text>
             ) : (
               <Skeleton height="16px" width="50px" />
             )}
@@ -274,7 +274,7 @@ export function StakeModal(props: ModalProps) {
           </Text>
         </VStack>
         <Box mt="auto">
-          <StakeRequirementBoundary amount={amountValue}>
+          <StakeRequirementBoundary amount={amount}>
             <ScaleFade in initialScale={0.5} key="stake-button">
               <Button
                 isLoading={loading}
@@ -296,28 +296,30 @@ export function StakeModal(props: ModalProps) {
                       abi: StakeManagerABI,
                       address: stakeManagerAddress,
                       functionName: 'depositAndLock',
-                      args: [amountValue],
+                      args: [amount],
+                    })
+                    toast({
+                      status: 'success',
+                      title: t`Transaction submitted!`,
                     })
                     setWaiting(true)
-                    const res = await waitForTransactionReceipt(config, {
+                    const receipt = await waitForTransactionReceipt(config, {
                       hash,
                       confirmations: 1,
                     })
-                    if (res.status === 'reverted') {
+                    if (receipt.status === 'reverted') {
                       toast({
                         status: 'error',
-                        title: t`The approval transaction gets reverted!`,
+                        title: t`The transaction gets reverted!`,
                       })
-                      throw new Error('The approval transaction gets reverted!')
+                      throw new Error('The transaction gets reverted!')
                     } else {
-                      toast({
-                        status: 'success',
-                        title: t`Transaction submitted!`,
-                      })
-                      resultModal.show({
+                      await resultModal.show({
+                        title: t`Stake`,
                         message: t`Stake Successfully`,
-                        description: t`You have successfully staked 2000.0021 MASK.`,
+                        description: t`You have successfully staked ${rawAmount} MASK.`,
                       })
+                      props.onClose()
                     }
                   } catch (err) {
                     if (handleError(err)) return

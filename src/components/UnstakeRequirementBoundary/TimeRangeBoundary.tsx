@@ -5,7 +5,8 @@ import { useBlockNumber, useReadContract } from 'wagmi'
 import { StakeManagerABI } from '../../abis/stakeManager'
 import { usePoolInfo } from '../../hooks/usePoolInfo'
 import { usePoolStore } from '../../store/poolStore'
-import { Spinner } from '../Spinner'
+import { MaskStakingButton } from '../MaskStakingButton'
+import { stakeModal } from '../../modals/StakeModal'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps
@@ -38,23 +39,19 @@ export const TimeRangeBoundary = memo<BoundaryProps>(function TimeRangeBoundary(
   }, [data, poolInfo, blockNumber])
 
   useEffect(() => {
-    if (hasEnded) setWatch(false)
+    setWatch(!hasEnded)
   }, [hasEnded])
 
   if (loadingPoolInfo || loadingPools) {
-    return (
-      <Button w="100%" colorScheme="red" rounded={50} isDisabled>
-        <Spinner w="24px" h="24px" color="neutrals.9" />
-      </Button>
-    )
+    return <Button w="100%" colorScheme="red" rounded={50} isDisabled isLoading loadingText={t`Checking`} />
   }
 
   if (!hasStarted) {
-    return <Button isDisabled rounded={50} className="purple-gradient-button" w="100%">{t`Not started yet.`}</Button>
+    return <MaskStakingButton isDisabled>{t`Stake Mask`}</MaskStakingButton>
   }
 
-  if (hasEnded) {
-    return <Button isDisabled rounded={50} className="purple-gradient-button" w="100%">{t`Ended`}</Button>
+  if (!hasEnded) {
+    return <MaskStakingButton onClick={() => stakeModal.show()}>{t`Stake Mask`}</MaskStakingButton>
   }
 
   return <>{children}</>

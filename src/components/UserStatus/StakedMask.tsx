@@ -1,24 +1,29 @@
-import { Box, BoxProps, Button, HStack, Icon, Stack } from '@chakra-ui/react'
+import { Box, BoxProps, HStack, Icon, Stack, useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { formatUnits } from 'viem'
-import { useAccount, useReadContract } from 'wagmi'
+import { useAccount, useConfig, useReadContract, useWriteContract } from 'wagmi'
+import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
-import MaskLogo from '../../assets/mask-logo.svg?react'
 import Question from '../../assets/question.svg?react'
+import { ZERO } from '../../constants/misc.ts'
+import { useHandleError } from '../../hooks/useHandleError.ts'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
+import { resultModal } from '../../modals/ResultModal.tsx'
 import { usePoolStore } from '../../store/poolStore.ts'
+import { MaskStakingButton } from '../MaskStakingButton.tsx'
 import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
-import { stakeModal } from '../../modals/StakeModal.tsx'
+import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.tsx'
 
 export function StakedMask(props: BoxProps) {
+  const config = useConfig()
   const account = useAccount()
   const { stakeManagerAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
-  const { isLoading, data: chainData } = useReadContract({
+  const { isLoading: isReadingUserInfos, data: chainData } = useReadContract({
     abi: StakeManagerABI,
     functionName: 'userInfos',
     address: stakeManagerAddress,
@@ -31,11 +36,21 @@ export function StakedMask(props: BoxProps) {
     }
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
+  const ratio = userInfo?.address_type === '1' ? 1.05 : 1
+
+  const [waiting, setWaiting] = useState(false)
+  const { writeContractAsync, isPending: isWithdrawing } = useWriteContract()
+  const toast = useToast()
+  const handleError = useHandleError()
+
+  const isZero = chainData?.[0] ? chainData[0] === ZERO : true
+  const loading = isWithdrawing || waiting || isReadingUserInfos
+  const disabled = isZero
   return (
     <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
         <ProgressiveText
-          loading={isLoading && loadingUserInfo}
+          loading={isReadingUserInfos && loadingUserInfo}
           fontSize={48}
           lineHeight="56px"
           fontWeight={700}
@@ -48,27 +63,59 @@ export function StakedMask(props: BoxProps) {
           <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">
             {t`+${userInfo?.score_per_hour} Points/h`}
           </ProgressiveText>
-          <Tooltip label={t`1 staked MASK will generate 1 point per hour.`} placement="top" hasArrow>
+          <Tooltip label={t`1 staked MASK will generate ${ratio} point per hour.`} placement="top" hasArrow>
             <Box as="span" w={6} h={6}>
               <Icon as={Question} w="initial" h="initial" />
             </Box>
           </Tooltip>
         </HStack>
-        <Button
-          rounded={24}
-          mt="auto"
-          alignSelf="stretch"
-          bg="gradient.purple"
-          color="neutrals.9"
-          _hover={{ bg: 'gradient.purple', transform: 'scale(1.01)' }}
-          _active={{ transform: 'scale(0.9)' }}
-          leftIcon={<Icon as={MaskLogo} width={6} height={6} />}
-          onClick={() => {
-            stakeModal.show()
-          }}
-        >
-          {t`Stake Mask`}
-        </Button>
+        <UnstakeRequirementBoundary>
+          <MaskStakingButton
+            isDisabled={disabled}
+            isLoading={loading}
+            onClick={async () => {
+              if (!chainData?.[0]) return
+              try {
+                const hash = await writeContractAsync({
+                  abi: StakeManagerABI,
+                  address: stakeManagerAddress,
+                  functionName: 'withdraw',
+                  args: [chainData[0]],
+                })
+                toast({
+                  status: 'success',
+                  title: t`Transaction submitted!`,
+                })
+
+                setWaiting(true)
+                const receipt = await waitForTransactionReceipt(config, {
+                  hash,
+                  confirmations: 1,
+                })
+                setWaiting(false)
+
+                if (receipt.status === 'reverted') {
+                  toast({
+                    status: 'error',
+                    title: t`The transaction gets reverted!`,
+                  })
+                  throw new Error('The transaction gets reverted!')
+                } else {
+                  await resultModal.show({
+                    title: t`Unstake`,
+                    message: t`Unstake Successfully`,
+                    description: t`You have successfully unstaked ${staked} MASK`,
+                  })
+                }
+              } catch (err) {
+                if (handleError(err)) return
+                throw err
+              } finally {
+                setWaiting(false)
+              }
+            }}
+          >{t`Unstake Mask`}</MaskStakingButton>
+        </UnstakeRequirementBoundary>
       </Stack>
     </ActionCard>
   )

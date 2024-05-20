@@ -1,13 +1,12 @@
 import { Grid, GridProps, Skeleton } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { useAccount, useReadContract } from 'wagmi'
+import { StakeManagerABI } from '../../abis/stakeManager'
 import { useUserInfo } from '../../hooks/useUserInfo'
+import { usePoolStore } from '../../store/poolStore'
 import { RewardCard } from './RewardCard'
 import { StakedMask } from './StakedMask'
 import { UserTotalPoints } from './UserTotalPoint'
-import { useAccount } from 'wagmi'
-import { usePoolStore } from '../../store/poolStore'
-import { useReadContract } from 'wagmi'
-import { StakeManagerABI } from '../../abis/stakeManager'
 
 export interface UserStatusProps extends GridProps {}
 
@@ -70,6 +69,7 @@ export function UserStatus(props: UserStatusProps) {
         tokenIcon={new URL('../../assets/rss3.svg', import.meta.url).href}
         unlocked={unlocked}
       />
+
       <RewardCard
         title={t`Estimated Rewards`}
         reward={ton}

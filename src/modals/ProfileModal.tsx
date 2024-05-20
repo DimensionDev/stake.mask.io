@@ -81,4 +81,5 @@ export function ProfileModal(props: ModalProps) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const { ui: profileModalUi, controller: profileModal } = createUITaskManager(ProfileModal)

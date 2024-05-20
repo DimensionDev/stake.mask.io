@@ -18,7 +18,7 @@ msgid "+{0} Points/h"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "1 staked MASK will generate 1 point per hour."
+msgid "1 staked MASK will generate {ratio} point per hour."
 msgstr ""
 
 #: src/components/Nav/index.tsx
@@ -61,12 +61,17 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
-#: src/components/StakeRequirementBoundary/TimeRangeBoundary.tsx
+#: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Checking"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/RewardCard.tsx
 msgid "Claim"
+msgstr ""
+
+#: src/components/UserStatus/RewardCard.tsx
+msgid "Claim Successfully"
 msgstr ""
 
 #: src/modals/ProfileModal.tsx
@@ -194,7 +199,7 @@ msgid "MAX"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
-msgid "No match pool found."
+msgid "No matched pool found."
 msgstr ""
 
 #: src/components/StakingRanking/index.tsx
@@ -268,14 +273,15 @@ msgid "Sorry, you are in a restricted region"
 msgstr ""
 
 #: src/components/Nav/index.tsx
-#: src/modals/ResultModal.tsx
+#: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-#: src/components/UserStatus/StakedMask.tsx
+#: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
+#: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 msgid "Stake Mask"
 msgstr ""
@@ -337,12 +343,17 @@ msgid ""
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
-#: src/modals/StakeModal.tsx
 msgid "The approval transaction gets reverted!"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.<0>More</0>"
+msgstr ""
+
+#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/StakedMask.tsx
+#: src/modals/StakeModal.tsx
+msgid "The transaction gets reverted!"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -379,6 +390,8 @@ msgstr ""
 msgid "Total Rewards"
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/StakedMask.tsx
 #: src/modals/StakeModal.tsx
 msgid "Transaction submitted!"
 msgstr ""
@@ -398,6 +411,18 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlocking"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Unstake"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Unstake Mask"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Unstake Successfully"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -437,8 +462,16 @@ msgstr ""
 msgid "You can manage and delete cookies through your browser settings. Please note that disabling cookies may affect your access to and experience on the Site."
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
+msgid "You have successfully claimed {0} RSS3."
+msgstr ""
+
 #: src/modals/StakeModal.tsx
-msgid "You have successfully staked 2000.0021 MASK."
+msgid "You have successfully staked {rawAmount} MASK."
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "You have successfully unstaked {staked} MASK"
 msgstr ""
 
 #: src/components/Footer/index.tsx
