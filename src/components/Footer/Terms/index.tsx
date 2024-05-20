@@ -1,8 +1,8 @@
-import { FC } from 'react'
 import { HStack, Link, ModalBody, ModalCloseButton, ModalHeader, useDisclosure } from '@chakra-ui/react'
-import { ModalWithDrawer } from '../../ModalWithDrawer'
 import { t } from '@lingui/macro'
-import { cookiePolicyModal } from '../../../modals'
+import { FC } from 'react'
+import { cookiePolicyModal } from '../../../modals/CookiePolicyModal'
+import { ModalWithDrawer } from '../../ModalWithDrawer'
 
 const CookiePolicyContent = () => (
   <>

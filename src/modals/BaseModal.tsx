@@ -23,7 +23,7 @@ interface Props extends ModalProps {
   width?: ModalContentProps['width']
   height?: ModalContentProps['height']
 }
-export function BaseModal({ title, width, ...rest }: Props) {
+export function BaseModal({ title, width, height, ...rest }: Props) {
   const isMobile = useBreakpointValue({ base: true, md: false })
   const header = (
     <>
@@ -51,7 +51,7 @@ export function BaseModal({ title, width, ...rest }: Props) {
   return (
     <Modal isCentered {...rest} onEsc={rest.onClose}>
       <ModalOverlay />
-      <ModalContent bg="neutrals.8" rounded={20} width={width} maxW="auto" maxH="auto">
+      <ModalContent bg="neutrals.8" rounded={20} width={width} height={height} maxW="auto" maxH="auto">
         <ModalHeader display="flex" flexDir="row" padding="24px 24px 0 24px">
           {header}
         </ModalHeader>

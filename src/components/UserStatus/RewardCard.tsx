@@ -1,13 +1,15 @@
-import { Box, Button, HStack, Spinner, Stack, useToast } from '@chakra-ui/react'
+import { Box, Button, HStack, Icon, Spinner, Stack, useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useWriteContract } from 'wagmi'
 import { rewardABI } from '../../abis/reward'
+import QuestionSVG from '../../assets/question.svg?react'
 import { formatNumber } from '../../helpers/formatNumber'
 import { useUserInfo } from '../../hooks/useUserInfo'
 import { usePoolStore } from '../../store/poolStore'
 import { UserInfo } from '../../types/api'
 import { ProgressiveText } from '../ProgressiveText'
 import { TokenIcon } from '../TokenIcon'
+import { Tooltip } from '../Tooltip'
 import { ActionCard, ActionCardProps } from './ActionCard'
 
 interface Props extends ActionCardProps {
@@ -21,6 +23,8 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
   const { rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast()
+  const amount = reward?.amount ? +reward.amount : 0
+  const isDisabled = !unlocked || !amount
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
       <Stack alignItems="center" flexGrow={1}>
@@ -37,7 +41,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
               skeletonHeight="24px"
               skeletonWidth="50px"
             >
-              {formatNumber(reward?.amount ? +reward.amount : 0)}
+              {formatNumber(amount)}
             </ProgressiveText>
             <ProgressiveText
               fontSize={16}
@@ -53,12 +57,17 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
         </HStack>
         <Button
           rounded={24}
-          isDisabled={!unlocked}
+          isDisabled={isDisabled}
           alignSelf="stretch"
           color="neutrals.9"
-          bg="gradient.purple"
-          _hover={{ bg: 'gradient.purple', transform: 'scale(1.01)' }}
-          _active={{ transform: 'scale(0.9)' }}
+          rightIcon={
+            unlocked ? undefined : (
+              <Tooltip label={t`You can claim after the event ends.`} shouldWrapChildren>
+                <Icon as={QuestionSVG} w="initial" h="initial" />
+              </Tooltip>
+            )
+          }
+          className="purple-gradient-button"
           disabled={loadingUserInfo}
           onClick={async () => {
             if (!reward || !userInfo || !rewardAddress) return
@@ -80,7 +89,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
             console.log('claim result', res)
           }}
         >
-          {unlocked ? isPending ? <Spinner size="sm" /> : t`Claim` : t`Not unlocked yet`}
+          {isPending ? <Spinner size="sm" /> : t`Claim`}
         </Button>
       </Stack>
     </ActionCard>

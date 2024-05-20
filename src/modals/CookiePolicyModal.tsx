@@ -1,6 +1,7 @@
 import { ModalWithDrawer } from '../components/ModalWithDrawer'
 import { ModalBody, ModalCloseButton, ModalHeader } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { createUITaskManager } from './UITaskManager'
 
 const CookiePolicyContent = () => (
   <>
@@ -61,3 +62,4 @@ export function CookiePolicyModal({ isOpen, onClose }: { isOpen: boolean; onClos
     </ModalWithDrawer>
   )
 }
+export const { ui: cookiePolicyUi, controller: cookiePolicyModal } = createUITaskManager(CookiePolicyModal)

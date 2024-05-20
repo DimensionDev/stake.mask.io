@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   ModalProps,
+  ScaleFade,
   Skeleton,
   Spinner,
   Stack,
@@ -19,27 +20,35 @@ import {
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
+import { Link } from '@tanstack/react-router'
 import dayjs from 'dayjs'
-import { useMemo, useState } from 'react'
-import { erc20Abi, parseUnits } from 'viem'
-import { useAccount, useBalance, useToken, useWriteContract } from 'wagmi'
+import { useLayoutEffect, useMemo, useState } from 'react'
+import { parseUnits } from 'viem'
+import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
+import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
+import { MaskApproveBoundary } from '../components/MaskApproveBoundary.tsx'
 import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
 import { Tooltip } from '../components/Tooltip.tsx'
 import { TwitterAvatar } from '../components/TwitterAvatar.tsx'
+import { ZERO } from '../constants/misc.ts'
 import { formatNumber } from '../helpers/formatNumber'
+import { useHandleError } from '../hooks/useHandleError.ts'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
 import { useMaskAllowance } from '../hooks/useMaskAllowance.ts'
 import { usePoolInfo } from '../hooks/usePoolInfo'
 import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
-import { profileModal } from './index.tsx'
-import { Link } from '@tanstack/react-router'
+import { profileModal } from './ProfileModal.tsx'
+import { resultModal } from './ResultModal.tsx'
+import { createUITaskManager } from './UITaskManager.tsx'
+import { verifyModal } from './VerifyModal.tsx'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
+  const config = useConfig()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
   const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
@@ -47,9 +56,10 @@ export function StakeModal(props: ModalProps) {
   const balance = useBalance({ address: account.address, token: maskTokenAddress })
   const allowance = useMaskAllowance()
   const maskToken = useToken({ address: maskTokenAddress })
-  const [{ loading }, linkTwitter] = useLinkTwitter()
-  const { data: userInfo } = useUserInfo()
+  const [{ loading: linkingTwitter }, linkTwitter] = useLinkTwitter()
+  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id
+  const [waiting, setWaiting] = useState(false)
 
   const amountValue = useMemo(() => {
     if (!amount) return BigInt(0)
@@ -57,17 +67,35 @@ export function StakeModal(props: ModalProps) {
     return parseUnits(amount, decimals)
   }, [amount, maskToken.data?.decimals])
 
-  const insufficientBalance = balance.data ? balance.data.value < amountValue : false
-  const disabled = insufficientBalance || allowance.isLoading
+  useLayoutEffect(() => {
+    if (!account.isConnected || isLoadingUserInfo || linkedTwitter) return
+    const abort = new AbortController()
+    verifyModal.show(
+      {
+        onSign: () => {
+          linkTwitter()
+          abort.abort()
+        },
+      },
+      abort.signal,
+    )
+    return () => {
+      abort.abort()
+    }
+  }, [account.isConnected, isLoadingUserInfo, linkTwitter, linkedTwitter])
 
   const toast = useToast()
   const { writeContractAsync, isPending } = useWriteContract()
+  const handleError = useHandleError()
 
+  const insufficientBalance = balance.data ? balance.data.value < amountValue : false
+  const loading = allowance.isLoading || isPending || waiting
+  const disabled = insufficientBalance || allowance.isLoading || amountValue === ZERO
   return (
     <BaseModal title={t`Stake`} width={572} height={521} {...props}>
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
         {!account.isConnected || !linkedTwitter ? (
-          <List spacing={6}>
+          <List spacing={6} mb={6}>
             <ListItem display="flex">
               <StepIcon width={6} height={6} step={1} completed={account.isConnected} />
               <Text as="span" ml={3} fontSize={14} fontWeight="bold" color="neutrals.1">{t`Connect Wallet`}</Text>
@@ -97,14 +125,14 @@ export function StakeModal(props: ModalProps) {
                   _hover={{ bg: 'gradient.purple' }}
                   onClick={linkTwitter}
                 >
-                  {loading ? <Spinner size="sm" /> : '𝕏'}
+                  {linkingTwitter ? <Spinner size="sm" /> : '𝕏'}
                 </Button>
               )}
             </ListItem>
           </List>
         ) : null}
-        {userInfo ? (
-          <HStack mt={6}>
+        {userInfo?.twitter_id ? (
+          <HStack mb={6}>
             <TwitterAvatar size={12} src={userInfo.twitter_image} />
             <Text fontSize={14} fontWeight={700} color="neutrals.1" ml={6}>
               {userInfo.twitter_display_name}
@@ -124,7 +152,6 @@ export function StakeModal(props: ModalProps) {
           border="1px solid"
           borderColor="neutrals.6"
           rounded={12}
-          mt={6}
           p={4}
           _focusWithin={{
             borderColor: 'neutrals.3',
@@ -171,7 +198,7 @@ export function StakeModal(props: ModalProps) {
                         <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
                       </Tooltip>
                     ) : (
-                      balance.data?.formatted
+                      balance.data.formatted
                     )}
                   </Trans>
                 </Text>
@@ -247,42 +274,68 @@ export function StakeModal(props: ModalProps) {
             </Trans>
           </Text>
         </VStack>
-        <Button
-          isLoading={allowance.isLoading || isPending}
-          w="100%"
-          className="purple-gradient-button"
-          rounded={50}
-          mt="10px"
-          isDisabled={disabled}
-          onClick={async () => {
-            if (!maskTokenAddress || !stakeManagerAddress) {
-              toast({
-                status: 'error',
-                title: t`Can not get determination MASK token`,
-              })
-              return
-            }
-            const insufficientAllowance = allowance.data ? allowance.data < amountValue : true
-            if (insufficientAllowance) {
-              await writeContractAsync({
-                abi: erc20Abi,
-                address: maskTokenAddress,
-                functionName: 'approve',
-                args: [stakeManagerAddress, amountValue],
-              })
-              return
-            }
-            await writeContractAsync({
-              abi: StakeManagerABI,
-              address: stakeManagerAddress,
-              functionName: 'depositAndLock',
-              args: [amountValue],
-            })
-          }}
-        >
-          {account.isConnected ? t`Stake` : t`Please connect first`}
-        </Button>
+        <MaskApproveBoundary amount={amountValue}>
+          <ScaleFade in initialScale={0.5} key="stake-button">
+            <Button
+              isLoading={loading}
+              loadingText={waiting ? t`Waiting for transaction confirmation` : ''}
+              w="100%"
+              className="purple-gradient-button"
+              rounded={50}
+              mt="10px"
+              isDisabled={disabled}
+              onClick={async () => {
+                if (!maskTokenAddress || !stakeManagerAddress) {
+                  toast({
+                    status: 'error',
+                    title: t`Can not get determination MASK token`,
+                  })
+                  return
+                }
+                try {
+                  const hash = await writeContractAsync({
+                    abi: StakeManagerABI,
+                    address: stakeManagerAddress,
+                    functionName: 'depositAndLock',
+                    args: [amountValue],
+                  })
+                  setWaiting(true)
+                  const res = await waitForTransactionReceipt(config, {
+                    hash,
+                    confirmations: 1,
+                  })
+                  if (res.status === 'reverted') {
+                    toast({
+                      status: 'error',
+                      title: t`The approval transaction gets reverted!`,
+                    })
+                    throw new Error('The approval transaction gets reverted!')
+                  } else {
+                    toast({
+                      status: 'success',
+                      title: t`Transaction submitted!`,
+                    })
+                    resultModal.show({
+                      message: t`Stake Successfully`,
+                      description: t`You have successfully staked 2000.0021 MASK.`,
+                    })
+                  }
+                } catch (err) {
+                  if (handleError(err)) return
+                  throw err
+                } finally {
+                  setWaiting(false)
+                }
+              }}
+            >
+              {account.isConnected ? t`Stake` : t`Please connect first`}
+            </Button>
+          </ScaleFade>
+        </MaskApproveBoundary>
       </Box>
     </BaseModal>
   )
 }
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const { ui: stakeModalUi, controller: stakeModal } = createUITaskManager(StakeModal)

@@ -2,17 +2,18 @@ import { useToast } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { useAsyncFn } from 'react-use'
 import urlcat from 'urlcat'
-import { UserRejectedRequestError } from 'viem'
 import { useAccount, useSignMessage } from 'wagmi'
 import { FIREFLY_API_ROOT } from '../constants/api'
 import { fetchJSON } from '../helpers/fetchJSON'
 import { TwitterAuthorizeResponse } from '../types/api'
+import { useHandleError } from './useHandleError'
 
 export function useLinkTwitter() {
   const account = useAccount()
   const toast = useToast()
   const { signMessageAsync } = useSignMessage()
   const message = useMemo(() => `Link X ${Date.now()}`, [])
+  const handleError = useHandleError()
 
   return useAsyncFn(async () => {
     if (!account.address) return
@@ -35,13 +36,7 @@ export function useLinkTwitter() {
       }
       location.href = res.data.url
     } catch (err) {
-      if (err instanceof UserRejectedRequestError) {
-        toast({
-          status: 'error',
-          title: err.details,
-        })
-        return
-      }
+      if (handleError(err)) return
       throw err
     }
   }, [account.address, signMessageAsync])

@@ -26,9 +26,9 @@ import TonEthSVG from '../../assets/ton-eth.svg?react'
 import { formatNumber } from '../../helpers/formatNumber.ts'
 import { formatSeconds } from '../../helpers/formatSeconds.ts'
 import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
-import { stakeModal } from '../../modals/index.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
+import { stakeModal } from '../../modals/StakeModal.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
