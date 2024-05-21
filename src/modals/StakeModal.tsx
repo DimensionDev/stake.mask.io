@@ -38,6 +38,7 @@ import { useHandleError } from '../hooks/useHandleError.ts'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
 import { useMaskAllowance } from '../hooks/useMaskAllowance.ts'
 import { usePoolInfo } from '../hooks/usePoolInfo'
+import { useToast } from '../hooks/useToast.tsx'
 import { useUserInfo } from '../hooks/useUserInfo.ts'
 import { usePoolStore } from '../store/poolStore'
 import { BaseModal } from './BaseModal'
@@ -45,15 +46,12 @@ import { profileModal } from './ProfileModal.tsx'
 import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
-import { useToast } from '../hooks/useToast.tsx'
-import { useAccountStore } from '../store/accountStore.ts'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
   const config = useConfig()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
-  const { token } = useAccountStore()
   const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const [rawAmount, setRawAmount] = useState('')
   const balance = useBalance({ address: account.address, token: maskTokenAddress })

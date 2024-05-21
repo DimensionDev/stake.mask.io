@@ -9,6 +9,7 @@ import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
 import { ZERO } from '../../constants/misc.ts'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
 import { useToast } from '../../hooks/useToast.tsx'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
@@ -18,8 +19,6 @@ import { MaskStakingButton } from '../MaskStakingButton.tsx'
 import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.tsx'
-import { formatNumber } from '../../helpers/formatNumber.ts'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 export function StakedMask(props: BoxProps) {
   const config = useConfig()
