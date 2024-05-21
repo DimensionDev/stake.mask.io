@@ -110,7 +110,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
           </Flex>
         </Flex>
         <Grid
-          templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
+          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
           gap={6}
           w="100%"
           px={{ base: 0, lg: 6 }}
@@ -124,7 +124,8 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             backdropFilter="blur(10px)"
             p={6}
             spacing={6}
-            minW={{ base: 'none', md: '404px' }}
+            gridColumn={{ base: '1/2', md: '1/3', lg: '1/2' }}
+            minW={{ base: 'none', md: 'none', lg: '404px' }}
           >
             <Stack
               flexDirection={{ base: 'column', md: 'row' }}
@@ -175,7 +176,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             h="152px"
             shadow="card"
             backdropFilter="blur(10px)"
-            p={6}
+            py={6}
             spacing={6}
           >
             {pool?.apr ? (
@@ -204,7 +205,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             h="152px"
             shadow="card"
             backdropFilter="blur(10px)"
-            p={6}
+            py={6}
             spacing={6}
           >
             <Flex

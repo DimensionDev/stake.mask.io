@@ -37,7 +37,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
   const tokenSymbol = reward.name.toUpperCase() || 'Unknown Token'
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
-      <Stack alignItems="center" flexGrow={1}>
+      <Stack alignItems="center" flexGrow={1} spacing={5} mt={5}>
         <HStack alignItems="center" my="auto" flexGrow={1}>
           <Box width={12} height={12} pos="relative">
             <TokenIcon src={tokenIcon} />
