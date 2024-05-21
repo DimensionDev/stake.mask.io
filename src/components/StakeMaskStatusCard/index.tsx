@@ -225,7 +225,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
               )}
               <Icon as={MaskLogoSVG} w="9" h="9" ml="1" />
             </Flex>
-            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
+            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6" whiteSpace="nowrap">
               {t`Total MASK Staked`}
             </Box>
           </VStack>

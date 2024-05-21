@@ -58,7 +58,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
                   cursor="pointer"
                   size="40px"
                   mr="4px"
-                  variant="dark"
+                  variant="light"
                   onClick={() => {
                     profileModal.show()
                   }}

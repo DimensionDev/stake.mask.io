@@ -39,7 +39,11 @@ export const ConnectedWalletIcon: FC<BoxProps> = memo(({ ...props }) => {
   return <Image src={icon} boxSize={9} {...props} />
 })
 
-export const ConnectButton: FC = memo(() => {
+export interface ConnectButtonProps {
+  connectText?: string
+}
+
+export const ConnectButton: FC<ConnectButtonProps> = memo(({ connectText }) => {
   return (
     <RawConnectButton.Custom>
       {({ account, chain, openAccountModal, openChainModal, openConnectModal, authenticationStatus, mounted }) => {
@@ -61,17 +65,16 @@ export const ConnectButton: FC = memo(() => {
             {(() => {
               if (!connected) {
                 return (
-                  <GradientButton
-                    onClick={openConnectModal}
-                    leftIcon={<Icon as={WalletSVG} w={4} h={4} />}
-                  >{t`Connect Wallet`}</GradientButton>
+                  <GradientButton onClick={openConnectModal} leftIcon={<Icon as={WalletSVG} w={4} h={4} />}>
+                    {connectText ?? t`Connect Wallet`}
+                  </GradientButton>
                 )
               }
 
               if (chain.unsupported) {
                 return (
                   <Button px={6} colorScheme="red" rounded="full" onClick={openChainModal} type="button">
-                    Wrong network
+                    {t`Wrong network`}
                   </Button>
                 )
               }
@@ -86,7 +89,7 @@ export const ConnectButton: FC = memo(() => {
                     onClick={openAccountModal}
                     type="button"
                   >
-                    <ConnectedWalletIcon rounded="100%" bg="white" p={1} />
+                    <ConnectedWalletIcon rounded="100%" bg="white" />
                     <Box as="span" ml={1} w="110px" lineHeight="20px">
                       {account.ensName ? account.ensName : formatEthereumAddress(account.address, 4)}
                     </Box>

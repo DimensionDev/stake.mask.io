@@ -16,8 +16,8 @@ export function TwitterAvatar({ size, src, variant = 'light', omitBadge, ...prop
       <Image
         width={size}
         height={size}
-        border="2px solid"
-        borderColor={isLight ? 'gradient.purple' : 'neutrals.6'}
+        bg={isLight ? 'gradient.purple' : 'neutrals.6'}
+        p="2px"
         borderRadius="50%"
         objectFit="cover"
         draggable={false}
