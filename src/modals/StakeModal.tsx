@@ -98,7 +98,7 @@ export function StakeModal(props: ModalProps) {
   const loading = allowance.isLoading || isPending || waiting
   const disabled = allowance.isLoading || amount === ZERO
   return (
-    <BaseModal title={t`Stake`} width={572} height={521} {...props}>
+    <BaseModal title={t`Stake`} width={572} {...props}>
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
         {!account.isConnected || !linkedTwitter ? (
           <List spacing={6} mb={6}>
@@ -283,7 +283,7 @@ export function StakeModal(props: ModalProps) {
             </Trans>
           </Text>
         </VStack>
-        <Box mt="auto">
+        <Box mt="10px">
           <StakeRequirementBoundary amount={amount}>
             <ScaleFade in initialScale={0.5} key="stake-button">
               <Button
