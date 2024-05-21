@@ -67,9 +67,9 @@ export function ProfileModal(props: ModalProps) {
               display_username: username,
               show_avatar: !!showAvatar,
             })
-            if (res?.code !== 0 && res?.reason) {
+            if (res?.code !== 200 && res?.reason) {
               toast({
-                status: 'error',
+                status: 'success',
                 title: res.reason,
               })
               return

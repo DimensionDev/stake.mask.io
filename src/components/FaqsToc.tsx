@@ -78,6 +78,7 @@ export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ content
   useEffect(() => {
     document.body.style.overflowX = 'initial'
     return () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       document.body.style.overflowX = null
     }

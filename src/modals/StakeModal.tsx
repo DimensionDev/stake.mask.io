@@ -148,7 +148,7 @@ export function StakeModal(props: ModalProps) {
         ) : null}
         <Box
           className="input-box"
-          border="1px solid"
+          border="2px solid"
           borderColor="neutrals.6"
           rounded={12}
           p={4}
@@ -198,7 +198,7 @@ export function StakeModal(props: ModalProps) {
                         <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
                       </Tooltip>
                     ) : (
-                      balance.data.formatted
+                      formatNumber(+balance.data.formatted, 4)
                     )}
                   </Trans>
                 </Text>
