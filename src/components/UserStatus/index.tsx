@@ -29,25 +29,24 @@ export function UserStatus(props: UserStatusProps) {
   if (!account.address) return null
 
   if (!userInfo || isLoading)
-    if (!userInfo)
-      return (
-        <Grid
-          gap={6}
-          templateColumns={{
-            base: '1fr',
-            md: 'repeat(2, 1fr)',
-            lg: 'repeat(4, 1fr)',
-          }}
-          w="100%"
-          maxW="maxW"
-          {...props}
-        >
-          <Skeleton h="198px" />
-          <Skeleton h="198px" />
-          <Skeleton h="198px" />
-          <Skeleton h="198px" />
-        </Grid>
-      )
+    return (
+      <Grid
+        gap={6}
+        templateColumns={{
+          base: '1fr',
+          md: 'repeat(2, 1fr)',
+          lg: 'repeat(4, 1fr)',
+        }}
+        w="100%"
+        maxW="maxW"
+        {...props}
+      >
+        <Skeleton h="202px" rounded="16px" />
+        <Skeleton h="202px" rounded="16px" />
+        <Skeleton h="202px" rounded="16px" />
+        <Skeleton h="202px" rounded="16px" />
+      </Grid>
+    )
 
   return (
     <Grid

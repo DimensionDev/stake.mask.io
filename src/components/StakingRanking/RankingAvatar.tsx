@@ -5,11 +5,12 @@ import CrownSVG from '../../assets/crown.svg?react'
 export interface RankingAvatarProps extends BoxProps {
   tag: ReactNode
   name: ReactNode
+  highlight?: boolean
   src?: string
   isCrown?: boolean
 }
 
-export const RankingAvatar: FC<RankingAvatarProps> = ({ name, tag, src, isCrown, ...props }) => {
+export const RankingAvatar: FC<RankingAvatarProps> = ({ name, tag, src, isCrown, highlight, ...props }) => {
   return (
     <Center
       pos="relative"
@@ -32,7 +33,7 @@ export const RankingAvatar: FC<RankingAvatarProps> = ({ name, tag, src, isCrown,
         <Box
           py="6px"
           px="10px"
-          bg="gradient.purple"
+          bg={highlight ? 'gradient.purple' : 'white'}
           rounded="100px"
           whiteSpace="nowrap"
           fontSize="14px"

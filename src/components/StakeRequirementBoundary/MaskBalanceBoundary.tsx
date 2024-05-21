@@ -17,7 +17,7 @@ export const MaskBalanceBoundary = memo(function MaskBalanceBoundary({ children,
   if (insufficientBalance) {
     return (
       <ScaleFade in initialScale={0.5} key="balance-button">
-        <Button isDisabled w="100%" className="purple-gradient-button">
+        <Button isDisabled w="100%" rounded={50} className="purple-gradient-button">
           {t`Insufficient balance`}
         </Button>
       </ScaleFade>

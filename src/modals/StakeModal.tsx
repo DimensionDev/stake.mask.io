@@ -61,11 +61,11 @@ export function StakeModal(props: ModalProps) {
   const linkedTwitter = !!userInfo?.twitter_id
   const [waiting, setWaiting] = useState(false)
 
+  const decimals = maskToken.data?.decimals || 18
   const amount = useMemo(() => {
     if (!rawAmount) return BigInt(0)
-    const decimals = maskToken.data?.decimals || 18
     return parseUnits(rawAmount, decimals)
-  }, [rawAmount, maskToken.data?.decimals])
+  }, [rawAmount, decimals])
 
   useLayoutEffect(() => {
     if (!account.isConnected || isLoadingUserInfo || linkedTwitter) return
@@ -175,10 +175,11 @@ export function StakeModal(props: ModalProps) {
               outline="none"
               fontSize="40px"
               fontFamily="input"
+              type="number"
               fontWeight={700}
               autoFocus
               value={rawAmount}
-              max={1e18}
+              max={1e10}
               onChange={(e) => {
                 setRawAmount(e.currentTarget.value)
               }}
@@ -245,7 +246,9 @@ export function StakeModal(props: ModalProps) {
           <HStack justifyContent="space-between">
             <Text>{t`Share of Pool`}</Text>
             {rawAmount && pool?.amount !== undefined ? (
-              <Text>{formatNumber((+rawAmount / +pool.amount) * 100, 2)}%</Text>
+              <Tooltip label={`${formatNumber((+rawAmount / +pool.amount) * 100, 4)}%`} hasArrow placement="top">
+                <Text>{formatNumber((+rawAmount / +pool.amount) * 100, 2)}%</Text>
+              </Tooltip>
             ) : (
               <Skeleton height="16px" width="50px" />
             )}

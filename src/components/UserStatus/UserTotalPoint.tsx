@@ -21,6 +21,7 @@ export function UserTotalPoints({ user, ...props }: Props) {
           src={user.twitter_image}
           omitBadge
           onClick={() => {
+            if (!user.twitter_id) return
             profileModal.show()
           }}
         />
@@ -34,6 +35,7 @@ export function UserTotalPoints({ user, ...props }: Props) {
             overflow="hidden"
             cursor="pointer"
             onClick={() => {
+              if (!user.twitter_id) return
               profileModal.show()
             }}
           >

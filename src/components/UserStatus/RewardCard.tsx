@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Icon, Skeleton, SkeletonCircle, Stack, useToast } from '@chakra-ui/react'
+import { Box, Button, HStack, Icon, Skeleton, SkeletonCircle, Stack, Text, useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -9,7 +9,6 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { resultModal } from '../../modals/ResultModal'
 import { usePoolStore } from '../../store/poolStore'
 import { UserInfo } from '../../types/api'
-import { ProgressiveText } from '../ProgressiveText'
 import { Spinner } from '../Spinner'
 import { TokenIcon } from '../TokenIcon'
 import { Tooltip } from '../Tooltip'
@@ -44,27 +43,13 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           </Box>
           <Stack ml="10px">
             <Tooltip label={amount}>
-              <ProgressiveText
-                loading={!reward}
-                fontSize={24}
-                fontWeight={700}
-                lineHeight="24px"
-                skeletonHeight="24px"
-                skeletonWidth="50px"
-              >
+              <Text fontSize={24} fontWeight={700} lineHeight="24px">
                 {formatNumber(amount)}
-              </ProgressiveText>
+              </Text>
             </Tooltip>
-            <ProgressiveText
-              fontSize={16}
-              loading={!reward}
-              fontWeight={700}
-              lineHeight="16px"
-              textTransform="uppercase"
-              skeletonWidth="30px"
-            >
+            <Text fontSize={16} fontWeight={700} lineHeight="16px">
               {tokenSymbol}
-            </ProgressiveText>
+            </Text>
           </Stack>
         </HStack>
         <Button
@@ -81,7 +66,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           }
           className="purple-gradient-button"
           onClick={async () => {
-            if (!reward || !userInfo || !rewardAddress) return
+            if (!userInfo || !rewardAddress) return
             const rewardPool = userInfo.reward_pool.find((x) => x.reward_pool_id === reward.reward_pool_id)
             if (!rewardPool) {
               toast({

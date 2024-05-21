@@ -76,11 +76,11 @@ export const StakingRankingList: FC = () => {
 
   return (
     <Flex w="100%" wrap="wrap" justify="center" gap="64px">
-      <RankingItem boxSize="80px" isCrown item={topScorer} mx="auto" />
+      <RankingItem boxSize="80px" isCrown item={topScorer} highlight mx="auto" />
       {secondScorer && thirdTopScorer ? (
         <Flex justify="center" w="100%" gap="64px" h="64px">
-          {secondScorer ? <RankingItem item={secondScorer} /> : null}
-          {thirdTopScorer ? <RankingItem item={thirdTopScorer} /> : null}
+          {secondScorer ? <RankingItem item={secondScorer} highlight /> : null}
+          {thirdTopScorer ? <RankingItem item={thirdTopScorer} highlight /> : null}
         </Flex>
       ) : null}
       {otherScorers.map((scorer) => {
