@@ -14,6 +14,7 @@ import { Spinner } from '../Spinner'
 import { TokenIcon } from '../TokenIcon'
 import { Tooltip } from '../Tooltip'
 import { ActionCard, ActionCardProps } from './ActionCard'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 interface Props extends ActionCardProps {
   tokenIcon?: string
@@ -45,7 +46,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           <Stack ml="10px">
             <Tooltip label={amount}>
               <Text fontSize={24} fontWeight={700} lineHeight="24px">
-                {formatNumber(amount)}
+                {formatMarketCap(amount)}
               </Text>
             </Tooltip>
             <Text fontSize={16} fontWeight={700} lineHeight="16px">

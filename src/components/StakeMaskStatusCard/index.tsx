@@ -30,6 +30,7 @@ import { usePoolState } from '../../hooks/usePoolState.ts'
 import { stakeModal } from '../../modals/StakeModal.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
@@ -219,7 +220,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             >
               {pool?.amount ? (
                 <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
-                  <Text>{formatNumber(+pool.amount)}</Text>
+                  <Text>{formatMarketCap(+pool.amount)}</Text>
                 </Tooltip>
               ) : (
                 <Skeleton height="32px" width="100px" />
