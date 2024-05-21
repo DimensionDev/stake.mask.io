@@ -71,7 +71,7 @@ export function ProfileModal(props: ModalProps) {
             })
             if (res?.code !== 200 && res?.reason) {
               toast({
-                status: 'success',
+                status: 'error',
                 title: res.reason,
               })
               return
