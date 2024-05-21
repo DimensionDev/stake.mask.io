@@ -16,7 +16,6 @@ import {
   Stack,
   Text,
   VStack,
-  useToast,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
@@ -45,6 +44,7 @@ import { profileModal } from './ProfileModal.tsx'
 import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
+import { useToast } from '../hooks/useToast.tsx'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()

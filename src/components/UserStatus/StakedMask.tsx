@@ -1,4 +1,4 @@
-import { Box, BoxProps, HStack, Icon, Stack, useToast } from '@chakra-ui/react'
+import { Box, BoxProps, HStack, Icon, Stack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
@@ -10,6 +10,7 @@ import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
 import { ZERO } from '../../constants/misc.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
+import { useToast } from '../../hooks/useToast.tsx'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
 import { resultModal } from '../../modals/ResultModal.tsx'
 import { usePoolStore } from '../../store/poolStore.ts'

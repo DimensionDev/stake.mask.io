@@ -1,4 +1,3 @@
-import { useToast } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { useAsyncFn } from 'react-use'
 import urlcat from 'urlcat'
@@ -7,6 +6,7 @@ import { FIREFLY_API_ROOT } from '../constants/api'
 import { fetchJSON } from '../helpers/fetchJSON'
 import { TwitterAuthorizeResponse } from '../types/api'
 import { useHandleError } from './useHandleError'
+import { useToast } from './useToast'
 
 export function useLinkTwitter() {
   const account = useAccount()
