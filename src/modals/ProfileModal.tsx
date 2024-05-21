@@ -1,8 +1,9 @@
-import { Button, Flex, FormControl, FormLabel, Input, ModalProps, Switch, useToast } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Input, ModalProps, Switch } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useId, useState } from 'react'
 import { GradientButton } from '../components/GradientButton'
 import { TwitterAvatar } from '../components/TwitterAvatar'
+import { useToast } from '../hooks/useToast'
 import { useUpdateUserInfo } from '../hooks/useUpdateUserInfo'
 import { useUserInfo } from '../hooks/useUserInfo'
 import { BaseModal } from './BaseModal'
@@ -66,9 +67,9 @@ export function ProfileModal(props: ModalProps) {
               display_username: username,
               show_avatar: !!showAvatar,
             })
-            if (res?.code !== 0 && res?.reason) {
+            if (res?.code !== 200 && res?.reason) {
               toast({
-                status: 'error',
+                status: 'success',
                 title: res.reason,
               })
               return

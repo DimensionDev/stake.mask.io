@@ -91,7 +91,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             align="center"
           >
             <Trans>
-              Time
+              Time{' '}
               {isLoading || !pool ? (
                 <Skeleton width="100px" height="16px" ml={1} />
               ) : (
@@ -99,7 +99,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
               )}
             </Trans>
             <Tooltip label={t`Staked MASK can be unstake after the campaign ends.`} placement="top" hasArrow>
-              <Box as="span" w="6" h="6" ml="10px">
+              <Box as="span" w="6" h="6" ml="10px" cursor="pointer">
                 <Icon as={QuestionSVG} w="initial" h="initial" />
               </Box>
             </Tooltip>

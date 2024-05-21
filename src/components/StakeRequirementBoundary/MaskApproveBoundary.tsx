@@ -1,4 +1,4 @@
-import { Button, ButtonProps, ScaleFade, useToast } from '@chakra-ui/react'
+import { Button, ButtonProps, ScaleFade } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { PropsWithChildren, memo, useState } from 'react'
 import { erc20Abi } from 'viem'
@@ -7,6 +7,7 @@ import { waitForTransactionReceipt } from 'wagmi/actions'
 import { useHandleError } from '../../hooks/useHandleError'
 import { useMaskAllowance } from '../../hooks/useMaskAllowance'
 import { usePoolStore } from '../../store/poolStore'
+import { useToast } from '../../hooks/useToast'
 
 interface BoundaryProps extends PropsWithChildren {
   amount: bigint
