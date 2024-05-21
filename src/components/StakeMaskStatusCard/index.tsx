@@ -173,6 +173,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             backdropFilter="blur(10px)"
             p={6}
             spacing={6}
+            minW={{ base: 'none', md: '404px' }}
           >
             {pool?.apr ? (
               <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`} hasArrow placement="top">

@@ -25,8 +25,8 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: calc(100% - 1px);
-  height: calc(100% - 2px);
+  width: calc(100% - calc(var(--border-width) * 2));
+  height: calc(100% - calc(var(--border-width) * 2));
   padding: var(--border-width);
   border-radius: calc(var(--border-radius) + 1px);
   background: var(--border-color);
