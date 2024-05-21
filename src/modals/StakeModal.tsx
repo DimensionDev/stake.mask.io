@@ -67,6 +67,13 @@ export function StakeModal(props: ModalProps) {
     return parseUnits(rawAmount, decimals)
   }, [rawAmount, decimals])
 
+  const share = useMemo(() => {
+    if (!rawAmount || pool?.amount === undefined) return
+    const num = +rawAmount
+    const deno = num + +pool.amount
+    return num / deno
+  }, [rawAmount, pool?.amount])
+
   useLayoutEffect(() => {
     if (!account.isConnected || isLoadingUserInfo || linkedTwitter) return
     const abort = new AbortController()
@@ -245,9 +252,9 @@ export function StakeModal(props: ModalProps) {
           </HStack>
           <HStack justifyContent="space-between">
             <Text>{t`Share of Pool`}</Text>
-            {rawAmount && pool?.amount !== undefined ? (
-              <Tooltip label={`${formatNumber((+rawAmount / +pool.amount) * 100, 4)}%`} hasArrow placement="top">
-                <Text>{formatNumber((+rawAmount / +pool.amount) * 100, 2)}%</Text>
+            {share !== undefined ? (
+              <Tooltip label={`${formatNumber(share * 100, 4)}%`} hasArrow placement="top">
+                <Text>{formatNumber(share * 100, 2)}%</Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="50px" />
