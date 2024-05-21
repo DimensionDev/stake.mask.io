@@ -1,17 +1,21 @@
-import { Center, Divider, Flex, Icon, type FlexProps, useBreakpointValue, useDisclosure, Box } from '@chakra-ui/react'
+import { Box, Center, Divider, Flex, Icon, useBreakpointValue, useDisclosure, type FlexProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { Link } from '@tanstack/react-router'
 import { FC, useMemo } from 'react'
 import LogoSVG from '../../assets/logo.svg?react'
+import { useUserInfo } from '../../hooks/useUserInfo.ts'
+import { ConnectButton } from '../ConnectButton.tsx'
+import { TwitterAvatar } from '../TwitterAvatar.tsx'
+import { DesktopMenu } from './DesktopMenu.tsx'
 import { MenuButton } from './MenuButton.tsx'
 import { MobileMenu } from './MobileMenu.tsx'
-import { DesktopMenu } from './DesktopMenu.tsx'
-import { ConnectButton } from '../ConnectButton.tsx'
-import { Link } from '@tanstack/react-router'
+import { profileModal } from '../../modals/ProfileModal.tsx'
 
 export interface NavProps extends FlexProps {}
 
 export const Nav: FC<NavProps> = ({ ...props }) => {
   const isHiddenTabs = useBreakpointValue({ base: true, lg: false })
+  const { data: user } = useUserInfo()
   const mobileMenu = useDisclosure()
   const menus = useMemo(
     () => [
@@ -48,6 +52,18 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
             <Divider orientation="vertical" borderLeft="1px solid rgba(255, 255, 255, 0.1)" ml="8" mr="6" />
             <DesktopMenu menus={menus} />
             <Center ml="auto">
+              {user ? (
+                <TwitterAvatar
+                  src={user.twitter_image}
+                  cursor="pointer"
+                  size="40px"
+                  mr="4px"
+                  variant="dark"
+                  onClick={() => {
+                    profileModal.show()
+                  }}
+                />
+              ) : null}
               <ConnectButton />
             </Center>
           </>
