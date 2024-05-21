@@ -14,7 +14,7 @@ export function ResultModal({ title, message, description, ...props }: Props) {
     <BaseModal title={title} height={552} width={572} {...props}>
       <VStack alignItems="center">
         <Image src={new URL('../assets/astronaut.svg', import.meta.url).href} w={245} h={251} />
-        <Text color="neutrals.3" fontSize={32} lineHeight="40px" mt={8}>
+        <Text color="neutrals.3" fontSize={32} fontWeight={700} lineHeight="40px" mt={8}>
           {message}
         </Text>
         <Text color="neutrals.3" fontSize={16} mt={8}>
