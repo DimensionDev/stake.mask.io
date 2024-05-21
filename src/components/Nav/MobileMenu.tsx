@@ -121,7 +121,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ isOpen = false, onClose, menus
           >
             <TwitterAvatar src={user.twitter_image} cursor="pointer" size="40px" mr="4px" variant="dark" />
             <Box color="neutrals.1" fontSize="14px" fontWeight={700} lineHeight="22px">
-              {user.twitter_name}
+              {user.twitter_display_name}
             </Box>
           </HStack>
         ) : null}
