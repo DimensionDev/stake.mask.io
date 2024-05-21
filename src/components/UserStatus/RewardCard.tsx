@@ -14,6 +14,7 @@ import { Spinner } from '../Spinner'
 import { TokenIcon } from '../TokenIcon'
 import { Tooltip } from '../Tooltip'
 import { ActionCard, ActionCardProps } from './ActionCard'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 interface Props extends ActionCardProps {
   tokenIcon?: string
@@ -37,7 +38,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
   const tokenSymbol = reward.name.toUpperCase() || 'Unknown Token'
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
-      <Stack alignItems="center" flexGrow={1}>
+      <Stack alignItems="center" flexGrow={1} spacing={5} mt={5}>
         <HStack alignItems="center" my="auto" flexGrow={1}>
           <Box width={12} height={12} pos="relative">
             <TokenIcon src={tokenIcon} />
@@ -45,7 +46,7 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           <Stack ml="10px">
             <Tooltip label={amount}>
               <Text fontSize={24} fontWeight={700} lineHeight="24px">
-                {formatNumber(amount)}
+                {formatMarketCap(amount)}
               </Text>
             </Tooltip>
             <Text fontSize={16} fontWeight={700} lineHeight="16px">

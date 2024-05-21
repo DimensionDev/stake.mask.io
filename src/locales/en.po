@@ -82,6 +82,10 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
+#: src/components/Nav/MobileMenu.tsx
+msgid "Connect"
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Connect to stake"
 msgstr ""
@@ -296,6 +300,10 @@ msgstr ""
 msgid "Stake"
 msgstr ""
 
+#: src/routes/index.tsx
+msgid "Stake $MASK for Rewards"
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/index.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
@@ -387,6 +395,10 @@ msgstr ""
 msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By using the Site, you consent to the use of cookies as described in this Cookie Policy."
 msgstr ""
 
+#: src/routes/index.tsx
+msgid "This website is specifically created for Mask investors and believers, where you can stake $Mask to earn token rewards!"
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Time {0}"
 msgstr ""
@@ -468,6 +480,10 @@ msgstr ""
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "What Are Cookies?"
+msgstr ""
+
+#: src/components/ConnectButton.tsx
+msgid "Wrong network"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx

@@ -1,11 +1,11 @@
 import { Box, StackProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { formatNumber } from '../../helpers/formatNumber'
 import { profileModal } from '../../modals/ProfileModal'
 import { UserInfo } from '../../types/api'
 import { TextOverflowTooltip } from '../TextOverflowTooltip'
 import { Tooltip } from '../Tooltip'
 import { TwitterAvatar } from '../TwitterAvatar'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 interface Props extends StackProps {
   user: UserInfo
@@ -60,7 +60,7 @@ export function UserTotalPoints({ user, ...props }: Props) {
       >
         <Tooltip label={user.realtime_score}>
           <Text as="span" mt="auto" ml="auto">
-            {formatNumber(user.realtime_score, 2)}
+            {formatMarketCap(user.realtime_score)}
           </Text>
         </Tooltip>
         <Text

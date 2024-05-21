@@ -1,8 +1,12 @@
 import type { FC, ReactNode } from 'react'
-import { type BoxProps, Center, Flex, keyframes, List } from '@chakra-ui/react'
+import { Box, type BoxProps, Flex, HStack, keyframes, List, VStack } from '@chakra-ui/react'
 import { useLockBodyScroll } from 'react-use'
 import { Link, useLocation } from '@tanstack/react-router'
 import { ConnectButton } from '../ConnectButton.tsx'
+import { t } from '@lingui/macro'
+import { TwitterAvatar } from '../TwitterAvatar.tsx'
+import { profileModal } from '../../modals/ProfileModal.tsx'
+import { useUserInfo } from '../../hooks/useUserInfo.ts'
 
 export interface MobileMenuProps extends BoxProps {
   isOpen?: boolean
@@ -35,6 +39,7 @@ const showMenuButton = keyframes`
 export const MobileMenu: FC<MobileMenuProps> = ({ isOpen = false, onClose, menus }) => {
   useLockBodyScroll(isOpen)
   const { pathname } = useLocation()
+  const { data: user } = useUserInfo()
 
   if (!isOpen) return null
 
@@ -90,18 +95,38 @@ export const MobileMenu: FC<MobileMenuProps> = ({ isOpen = false, onClose, menus
         })}
       </List>
 
-      <Center
+      <VStack
         w="100%"
         mt="auto"
         pb="44px"
+        spacing={2}
         animation={`${showMenuButton} 500ms forwards`}
         transform="translateY(20%)"
         opacity={0}
         sx={{ animationDelay: `${(menus.length - 1) * 200}ms` }}
         onClick={onClose}
       >
-        <ConnectButton />
-      </Center>
+        {user?.twitter_id ? (
+          <HStack
+            as="button"
+            bg="neutrals.9"
+            p="2px"
+            spacing={3}
+            w="100%"
+            rounded="100px"
+            maxW="270px"
+            onClick={() => {
+              profileModal.show()
+            }}
+          >
+            <TwitterAvatar src={user.twitter_image} cursor="pointer" size="40px" mr="4px" variant="dark" />
+            <Box color="neutrals.1" fontSize="14px" fontWeight={700} lineHeight="22px">
+              {user.twitter_display_name}
+            </Box>
+          </HStack>
+        ) : null}
+        <ConnectButton connectText={t`Connect`} />
+      </VStack>
     </Flex>
   )
 }

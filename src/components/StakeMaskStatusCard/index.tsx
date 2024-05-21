@@ -30,6 +30,7 @@ import { usePoolState } from '../../hooks/usePoolState.ts'
 import { stakeModal } from '../../modals/StakeModal.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
@@ -110,7 +111,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
           </Flex>
         </Flex>
         <Grid
-          templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
+          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
           gap={6}
           w="100%"
           px={{ base: 0, lg: 6 }}
@@ -124,7 +125,8 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             backdropFilter="blur(10px)"
             p={6}
             spacing={6}
-            minW={{ base: 'none', md: '404px' }}
+            gridColumn={{ base: '1/2', md: '1/3', lg: '1/2' }}
+            minW={{ base: 'none', md: 'none', lg: '404px' }}
           >
             <Stack
               flexDirection={{ base: 'column', md: 'row' }}
@@ -175,7 +177,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             h="152px"
             shadow="card"
             backdropFilter="blur(10px)"
-            p={6}
+            py={6}
             spacing={6}
           >
             {pool?.apr ? (
@@ -204,7 +206,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             h="152px"
             shadow="card"
             backdropFilter="blur(10px)"
-            p={6}
+            py={6}
             spacing={6}
           >
             <Flex
@@ -218,14 +220,14 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             >
               {pool?.amount ? (
                 <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
-                  <Text>{formatNumber(+pool.amount)}</Text>
+                  <Text>{formatMarketCap(+pool.amount)}</Text>
                 </Tooltip>
               ) : (
                 <Skeleton height="32px" width="100px" />
               )}
               <Icon as={MaskLogoSVG} w="9" h="9" ml="1" />
             </Flex>
-            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
+            <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6" whiteSpace="nowrap">
               {t`Total MASK Staked`}
             </Box>
           </VStack>

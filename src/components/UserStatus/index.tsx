@@ -68,7 +68,6 @@ export function UserStatus(props: UserStatusProps) {
         tokenIcon={new URL('../../assets/rss3.svg', import.meta.url).href}
         unlocked={unlocked}
       />
-
       <RewardCard
         title={t`Estimated Rewards`}
         reward={ton}

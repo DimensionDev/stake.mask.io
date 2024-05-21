@@ -4,6 +4,7 @@ import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
 import { UserStatus } from '../components/UserStatus'
 import { StakingRanking } from '../components/StakingRanking'
 import { HeaderImage } from '../components/HeaderImage'
+import { t } from '@lingui/macro'
 
 function Index() {
   return (
@@ -28,7 +29,7 @@ function Index() {
             bgClip="text"
             color="transparent"
           >
-            Stake $MASK for Rewards
+            {t`Stake $MASK for Rewards`}
           </Heading>
           <Text
             bg="linear-gradient(90deg, rgba(255, 255, 255, 0.50) 0.43%, #FFF 46.33%, rgba(255, 255, 255, 0.50) 98.54%)"
@@ -38,8 +39,7 @@ function Index() {
             lineHeight="150%"
             fontWeight="500"
           >
-            This website is specifically created for Mask investors and believers, where you can stake $Mask to earn
-            token rewards!
+            {t`This website is specifically created for Mask investors and believers, where you can stake $Mask to earn token rewards!`}
           </Text>
         </VStack>
         <StakeMaskStatusCard />
