@@ -1,20 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Skeleton, type BoxProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import dayjs from 'dayjs'
-import { useEffect, useMemo, useState, type FC } from 'react'
+import { type FC } from 'react'
 import { usePoolInfo } from '../../hooks/usePoolInfo'
+import { usePoolState } from '../../hooks/usePoolState'
 
 export const ActivityStatusTag: FC<BoxProps> = ({ ...props }) => {
   const { data: pool, isLoading } = usePoolInfo()
-  const [tick, setTick] = useState(0)
-  useEffect(() => {
-    setInterval(() => {
-      setTick((n) => n + 1)
-    }, 1e4)
-  }, [])
-  const isStarted = useMemo(() => (pool ? dayjs(pool.start_time * 1000).isBefore(Date.now()) : false), [pool, tick])
-  const isEnded = useMemo(() => (pool ? dayjs(pool.end_time * 1000).isAfter(Date.now()) : false), [pool, tick])
+
+  const { isStarted, isEnded } = usePoolState(pool)
+
   return (
     <Box
       bg={isEnded ? 'neutrals.5' : 'neutrals.9'}

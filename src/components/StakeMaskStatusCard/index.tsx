@@ -26,9 +26,10 @@ import TonEthSVG from '../../assets/ton-eth.svg?react'
 import { formatNumber } from '../../helpers/formatNumber.ts'
 import { formatSeconds } from '../../helpers/formatSeconds.ts'
 import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
+import { usePoolState } from '../../hooks/usePoolState.ts'
+import { stakeModal } from '../../modals/StakeModal.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
-import { stakeModal } from '../../modals/StakeModal.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
@@ -39,6 +40,9 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
   const rss3 = rewardTokens.find((x) => x.name === 'rss3')
   const ton = rewardTokens.find((x) => x.name === 'ton')
   const { openConnectModal } = useConnectModal()
+
+  const { isEnded } = usePoolState(pool)
+
   return (
     <Box
       maxW="maxW"
@@ -234,6 +238,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             bg="neutrals.9"
             width="auto"
             flexGrow={0}
+            isDisabled={isEnded}
             _hover={{ transform: 'scale(1.01)' }}
             _active={{ transform: 'scale(0.9)' }}
             rounded={24}
