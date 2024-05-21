@@ -52,7 +52,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
             <Divider orientation="vertical" borderLeft="1px solid rgba(255, 255, 255, 0.1)" ml="8" mr="6" />
             <DesktopMenu menus={menus} />
             <Center ml="auto">
-              {user ? (
+              {user?.twitter_id ? (
                 <TwitterAvatar
                   src={user.twitter_image}
                   cursor="pointer"
