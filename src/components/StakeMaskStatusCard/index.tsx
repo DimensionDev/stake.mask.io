@@ -23,6 +23,7 @@ import QuestionSVG from '../../assets/question.svg?react'
 import RightArrow from '../../assets/right-arrow.svg?react'
 import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
 import TonEthSVG from '../../assets/ton-eth.svg?react'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { formatNumber } from '../../helpers/formatNumber.ts'
 import { formatSeconds } from '../../helpers/formatSeconds.ts'
 import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
@@ -30,7 +31,6 @@ import { usePoolState } from '../../hooks/usePoolState.ts'
 import { stakeModal } from '../../modals/StakeModal.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { ActivityStatusTag } from './ActivityStatusTag.tsx'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 

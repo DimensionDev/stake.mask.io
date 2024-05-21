@@ -9,8 +9,8 @@ export function MaskStakingButton(props: Props) {
       color="neutrals.9"
       rounded={24}
       w="100%"
-      {...props}
       leftIcon={<Icon as={MaskLogo} width={6} height={6} />}
+      {...props}
     />
   )
 }

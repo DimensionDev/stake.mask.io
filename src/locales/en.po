@@ -439,10 +439,6 @@ msgstr ""
 msgid "Unlock MASK"
 msgstr ""
 
-#: src/modals/StakeModal.tsx
-msgid "Unlock MASK Time"
-msgstr ""
-
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlocking"
 msgstr ""
@@ -453,6 +449,10 @@ msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
 msgid "Unstake Mask"
+msgstr ""
+
+#: src/modals/StakeModal.tsx
+msgid "Unstake MASK Time"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx

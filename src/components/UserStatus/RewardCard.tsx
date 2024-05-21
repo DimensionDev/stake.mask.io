@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Icon, Skeleton, SkeletonCircle, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -18,24 +18,21 @@ import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 interface Props extends ActionCardProps {
   tokenIcon?: string
+  tokenSymbol?: string
   reward?: UserInfo['reward_pool'][number]
   unlocked?: boolean
 }
 
-export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
+export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlocked, ...props }: Props) {
   const config = useConfig()
   const { writeContractAsync, isPending } = useWriteContract()
   const { rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast()
 
-  if (!reward) {
-    return <RewardCardSkeleton {...props} />
-  }
-
-  const amount = reward.amount ? +reward.amount : 0
+  const amount = reward?.amount ? +reward.amount : 0
   const isDisabled = !unlocked || !amount || loadingUserInfo
-  const tokenSymbol = reward.name.toUpperCase() || 'Unknown Token'
+  const tokenSymbol = reward?.name?.toUpperCase() || defaultSymbol
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
       <Stack alignItems="center" flexGrow={1} spacing={5} mt={5}>
@@ -68,8 +65,8 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           }
           className="purple-gradient-button"
           onClick={async () => {
-            if (!userInfo || !rewardAddress) return
-            const rewardPool = userInfo.reward_pool.find((x) => x.reward_pool_id === reward.reward_pool_id)
+            if (!reward || !userInfo || !rewardAddress) return
+            const rewardPool = userInfo.reward_pool.find((x) => x.reward_pool_id === reward?.reward_pool_id)
             if (!rewardPool) {
               toast({
                 status: 'error',
@@ -109,27 +106,6 @@ export function RewardCard({ reward, tokenIcon, unlocked, ...props }: Props) {
           }}
         >
           {isPending ? <Spinner h="24px" w="24px" color="neutrals.9" /> : t`Claim`}
-        </Button>
-      </Stack>
-    </ActionCard>
-  )
-}
-
-export function RewardCardSkeleton(props: ActionCardProps) {
-  return (
-    <ActionCard display="flex" flexDir="column" {...props}>
-      <Stack alignItems="center" flexGrow={1}>
-        <HStack alignItems="center" my="auto" flexGrow={1}>
-          <Box width={12} height={12} pos="relative">
-            <SkeletonCircle w={12} height={12} />
-          </Box>
-          <Stack ml="10px">
-            <Skeleton fontSize={24} width="100px" height="24px" />
-            <Skeleton fontSize={24} lineHeight="16px" width="60px" height="16px" />
-          </Stack>
-        </HStack>
-        <Button rounded={24} isDisabled alignSelf="stretch" color="neutrals.9" className="purple-gradient-button">
-          <Spinner h="24px" w="24px" color="neutrals.9" />
         </Button>
       </Stack>
     </ActionCard>

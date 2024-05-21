@@ -20,7 +20,7 @@ export const TimeRangeBoundary = memo<BoundaryProps>(function TimeRangeBoundary(
     functionName: 'pools',
     args: poolId ? [BigInt(poolId)] : undefined,
   })
-  const [watch, setWatch] = useState(true)
+  const [watch, setWatch] = useState<boolean | { pollingInterval: number }>({ pollingInterval: 60_000 })
   const { data: blockNumber } = useBlockNumber({ watch })
 
   const hasStarted = useMemo(() => {

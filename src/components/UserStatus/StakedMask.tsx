@@ -9,6 +9,7 @@ import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
 import { ZERO } from '../../constants/misc.ts'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
 import { useToast } from '../../hooks/useToast.tsx'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
@@ -33,7 +34,7 @@ export function StakedMask(props: BoxProps) {
 
   const staked = useMemo(() => {
     if (chainData) {
-      return formatUnits(chainData[0], 18)
+      return +formatUnits(chainData[0], 18)
     }
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
@@ -58,7 +59,7 @@ export function StakedMask(props: BoxProps) {
           skeletonWidth="100px"
           skeletonHeight="56px"
         >
-          {staked}
+          {staked ? formatMarketCap(staked, 4) : '-'}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
           <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { readStakeManager } from '../helpers/readStakeManager'
-import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface PollState {
   poolId: number | null
@@ -46,7 +46,6 @@ export const usePoolStore = create<PollState, [['zustand/persist', PollState], [
     })),
     {
       name: 'mask-stake-pool',
-      storage: createJSONStorage(() => localStorage),
       onRehydrateStorage(state) {
         return () => state.syncPoolInfo()
       },

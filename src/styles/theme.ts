@@ -1,9 +1,9 @@
-import { extendBaseTheme, theme as chakraTheme } from '@chakra-ui/react'
+import { theme as chakraTheme, extendBaseTheme } from '@chakra-ui/react'
 
-import { Tabs } from './components/Tabs.ts'
-import { Modal } from './components/Modal.ts'
 import { Drawer } from './components/Drawer.ts'
+import { Modal } from './components/Modal.ts'
 import { Switch } from './components/Switch.ts'
+import { Tabs } from './components/Tabs.ts'
 
 window.localStorage.setItem('chakra-ui-color-mode', 'dark')
 
