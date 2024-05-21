@@ -12,6 +12,7 @@ import { FIREFLY_API_ROOT } from '../../constants/api.ts'
 import { fetchJSON } from '../../helpers/fetchJSON.ts'
 import { StakeRankItem, StakeRankResponse } from '../../types/api.ts'
 import { Spinner } from '../Spinner.tsx'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 'tag' | 'name' | 'src'>> = ({
   item,
@@ -21,7 +22,7 @@ export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 
     <RankingAvatar
       src={item.twitter_image}
       name={item.twitter_name}
-      tag={`${item.score} PTS`}
+      tag={`${formatMarketCap(item.score)} PTS`}
       boxSize="64px"
       {...props}
     />
