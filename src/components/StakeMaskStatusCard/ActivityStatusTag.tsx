@@ -17,7 +17,7 @@ export const ActivityStatusTag: FC<BoxProps> = ({ ...props }) => {
   const isEnded = useMemo(() => (pool ? dayjs(pool.end_time * 1000).isAfter(Date.now()) : false), [pool, tick])
   return (
     <Box
-      bg="neutrals.9"
+      bg={isEnded ? 'neutrals.5' : 'neutrals.9'}
       color="neutrals.1"
       rounded="6px"
       fontSize="12px"
