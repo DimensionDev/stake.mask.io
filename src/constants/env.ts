@@ -41,4 +41,3 @@ export const env = {
     SUPPORT_MAIL_URL: import.meta.env.VITE_SUPPORT_MAIL_URL,
   }),
 }
-console.log(env.shared)
