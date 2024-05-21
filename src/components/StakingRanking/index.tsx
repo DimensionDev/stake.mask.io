@@ -13,6 +13,7 @@ import { fetchJSON } from '../../helpers/fetchJSON.ts'
 import { StakeRankItem, StakeRankResponse } from '../../types/api.ts'
 import { Spinner } from '../Spinner.tsx'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { Tooltip } from '../Tooltip.tsx'
 
 export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 'tag' | 'name' | 'src'>> = ({
   item,
@@ -22,7 +23,7 @@ export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 
     <RankingAvatar
       src={item.twitter_image}
       name={item.twitter_name}
-      tag={`${formatMarketCap(item.score)} PTS`}
+      tag={<Tooltip label={`${item.score} PTS`} hasArrow>{`${formatMarketCap(item.score)} PTS`}</Tooltip>}
       boxSize="64px"
       {...props}
     />
