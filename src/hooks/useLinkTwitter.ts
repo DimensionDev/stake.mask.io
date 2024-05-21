@@ -4,10 +4,10 @@ import urlcat from 'urlcat'
 import { useAccount, useSignMessage } from 'wagmi'
 import { FIREFLY_API_ROOT } from '../constants/api'
 import { fetchJSON } from '../helpers/fetchJSON'
+import { useAccountStore } from '../store/accountStore'
 import { LoginResponse, TwitterAuthorizeResponse } from '../types/api'
 import { useHandleError } from './useHandleError'
 import { useToast } from './useToast'
-import { useAccountStore } from '../store/accountStore'
 
 export function useLinkTwitter() {
   const account = useAccount()

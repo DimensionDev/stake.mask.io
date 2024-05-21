@@ -18,7 +18,7 @@ export function useUpdateUserInfo() {
       return fetchJSON<UpdateUserInfoResponse>(url, {
         method: 'POST',
         headers: {
-          Authentication: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(params),
       })
