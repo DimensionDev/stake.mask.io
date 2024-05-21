@@ -25,6 +25,10 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+#: src/routes/about.tsx
+msgid "About MASK Stake"
+msgstr ""
+
 #: src/components/AcceptCookie.tsx
 msgid "Accept cookies"
 msgstr ""
@@ -194,6 +198,18 @@ msgstr ""
 msgid "Loading"
 msgstr ""
 
+#: src/routes/about.tsx
+msgid "MASK Stake is a staking project designed specifically for long-term holders of the MASK token. By staking MASK tokens on the MASK Stake platform, users can earn rewards from collaborating projects."
+msgstr ""
+
+#: src/routes/about.tsx
+msgid "MASK Stake provides a stable income opportunity for MASK token holders while contributing to the growth of the MASK ecosystem. Whether you are an individual investor or an institutional investor, MASK Stake offers a secure and reliable staking platform to maximize the returns on your MASK tokens."
+msgstr ""
+
+#: src/components/Footer/index.tsx
+msgid "Mask.io"
+msgstr ""
+
 #: src/modals/StakeModal.tsx
 msgid "MAX"
 msgstr ""
@@ -265,7 +281,7 @@ msgid "Sign"
 msgstr ""
 
 #: src/components/Footer/index.tsx
-msgid "Since 2019 to Now ｜ Mask.io"
+msgid "Since 2019 to Now ｜"
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/RegionBoundary.tsx
