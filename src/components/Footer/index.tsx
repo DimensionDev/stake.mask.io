@@ -13,6 +13,7 @@ import MediumSVG from '../../assets/social-media/medium.svg?react'
 import TwitterSVG from '../../assets/social-media/twitter.svg?react'
 import { Terms } from './Terms'
 import { MaskNetworkSplice } from './MaskNetworkSplice.tsx'
+import { Link as RouteLink } from '@tanstack/react-router'
 
 const SocialMedias = [
   { icon: TwitterSVG, href: env.external.TWITTER_URL },
@@ -87,13 +88,13 @@ export const Footer: FC = () => {
               sx={{ li: { w: '100%' } }}
             >
               <li>
-                <Link target="_blank" _hover={{ textDecoration: 'underline' }}>
-                  {`FAQs`}
+                <Link as={RouteLink} to="/faqs" _hover={{ textDecoration: 'underline' }}>
+                  {t`FAQs`}
                 </Link>
               </li>
               <li>
-                <Link target="_blank" _hover={{ textDecoration: 'underline' }}>
-                  {`Support`}
+                <Link target="_blank" href={env.external.SUPPORT_MAIL_URL} _hover={{ textDecoration: 'underline' }}>
+                  {t`Support`}
                 </Link>
               </li>
             </VStack>

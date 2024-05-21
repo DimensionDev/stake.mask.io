@@ -192,11 +192,12 @@ export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ content
       mr="32px"
       pr="32px"
       pos="sticky"
-      top="80px"
+      top={{ base: '110px', lg: '80px' }}
       h="auto"
       maxH="calc(100vh - 80px)"
       mb="auto"
       overflowY="auto"
+      transition="200ms"
     >
       {content}
     </Box>
