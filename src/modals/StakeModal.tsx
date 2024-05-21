@@ -16,7 +16,6 @@ import {
   Stack,
   Text,
   VStack,
-  useToast,
 } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
@@ -45,6 +44,7 @@ import { profileModal } from './ProfileModal.tsx'
 import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
+import { useToast } from '../hooks/useToast.tsx'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
@@ -148,7 +148,7 @@ export function StakeModal(props: ModalProps) {
         ) : null}
         <Box
           className="input-box"
-          border="1px solid"
+          border="2px solid"
           borderColor="neutrals.6"
           rounded={12}
           p={4}
@@ -198,7 +198,7 @@ export function StakeModal(props: ModalProps) {
                         <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
                       </Tooltip>
                     ) : (
-                      balance.data.formatted
+                      formatNumber(+balance.data.formatted, 4)
                     )}
                   </Trans>
                 </Text>
@@ -269,7 +269,7 @@ export function StakeModal(props: ModalProps) {
           <Text color="danger" lineHeight="24px">
             <Trans>
               The staking addresses need to pass Go+ security check. Note that staking is not available in some
-              restricted regions.
+              restricted regions.{' '}
               <Link to="/faqs" style={{ textDecoration: 'underline' }} onClick={props.onClose}>
                 More
               </Link>

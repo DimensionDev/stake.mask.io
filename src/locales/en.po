@@ -115,6 +115,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 #: src/components/StakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Ended"
 msgstr ""
@@ -363,7 +364,7 @@ msgid "The approval transaction gets reverted!"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
-msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions.<0>More</0>"
+msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions. <0>More</0>"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
@@ -387,7 +388,7 @@ msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By u
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "Time{0}"
+msgid "Time {0}"
 msgstr ""
 
 #: src/modals/VerifyModal.tsx

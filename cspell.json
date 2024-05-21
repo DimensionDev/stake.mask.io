@@ -52,7 +52,9 @@
     "src/locales/**",
     "tests/**",
     "src/routeTree.gen.ts",
-    "src/abis/**"
+    "src/abis/**",
+    "src/routes/faqs.tsx",
+    "src/routes/about.tsx"
   ],
   "overrides": []
 }

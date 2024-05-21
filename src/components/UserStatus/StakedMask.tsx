@@ -1,4 +1,4 @@
-import { Box, BoxProps, HStack, Icon, Stack, useToast } from '@chakra-ui/react'
+import { Box, BoxProps, HStack, Icon, Stack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
@@ -10,6 +10,7 @@ import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
 import { ZERO } from '../../constants/misc.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
+import { useToast } from '../../hooks/useToast.tsx'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
 import { resultModal } from '../../modals/ResultModal.tsx'
 import { usePoolStore } from '../../store/poolStore.ts'
@@ -64,7 +65,7 @@ export function StakedMask(props: BoxProps) {
             {t`+${userInfo?.score_per_hour} Points/h`}
           </ProgressiveText>
           <Tooltip label={t`1 staked MASK will generate ${ratio} point per hour.`} placement="top" hasArrow>
-            <Box as="span" w={6} h={6}>
+            <Box as="span" w={6} h={6} cursor="pointer">
               <Icon as={Question} w="initial" h="initial" />
             </Box>
           </Tooltip>
