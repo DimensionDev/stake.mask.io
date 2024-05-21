@@ -1,8 +1,9 @@
-import { extendBaseTheme, theme as chakraTheme } from '@chakra-ui/react'
+import { extendBaseTheme, theme as chakraTheme, StyleFunctionProps } from '@chakra-ui/react'
 
 import { Tabs } from './components/Tabs.ts'
 import { Modal } from './components/Modal.ts'
 import { Drawer } from './components/Drawer.ts'
+import { Switch } from './components/Switch.ts'
 
 window.localStorage.setItem('chakra-ui-color-mode', 'dark')
 
@@ -12,6 +13,7 @@ export const theme = extendBaseTheme({
     Drawer,
     Modal,
     Tabs,
+    Switch,
     Tooltip: {
       ...chakraTheme.components.Tooltip,
       baseStyle() {
