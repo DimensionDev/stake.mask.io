@@ -64,7 +64,7 @@ export function StakedMask(props: BoxProps) {
             {t`+${userInfo?.score_per_hour} Points/h`}
           </ProgressiveText>
           <Tooltip label={t`1 staked MASK will generate ${ratio} point per hour.`} placement="top" hasArrow>
-            <Box as="span" w={6} h={6}>
+            <Box as="span" w={6} h={6} cursor="pointer">
               <Icon as={Question} w="initial" h="initial" />
             </Box>
           </Tooltip>

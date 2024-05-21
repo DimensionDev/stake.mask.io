@@ -6,6 +6,7 @@ import { MenuButton } from './MenuButton.tsx'
 import { MobileMenu } from './MobileMenu.tsx'
 import { DesktopMenu } from './DesktopMenu.tsx'
 import { ConnectButton } from '../ConnectButton.tsx'
+import { Link } from '@tanstack/react-router'
 
 export interface NavProps extends FlexProps {}
 
@@ -39,7 +40,9 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
       {...props}
     >
       <Flex p={5} align="center" w="100%" h="inherit" maxW="1440px" pos="relative" zIndex={30}>
-        <Icon as={LogoSVG} w="164px" h="auto" />
+        <Link to="/">
+          <Icon as={LogoSVG} w="164px" h="auto" />
+        </Link>
         {!isHiddenTabs ? (
           <>
             <Divider orientation="vertical" borderLeft="1px solid rgba(255, 255, 255, 0.1)" ml="8" mr="6" />

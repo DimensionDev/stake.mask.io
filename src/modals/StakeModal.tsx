@@ -269,7 +269,7 @@ export function StakeModal(props: ModalProps) {
           <Text color="danger" lineHeight="24px">
             <Trans>
               The staking addresses need to pass Go+ security check. Note that staking is not available in some
-              restricted regions.
+              restricted regions.{' '}
               <Link to="/faqs" style={{ textDecoration: 'underline' }} onClick={props.onClose}>
                 More
               </Link>
