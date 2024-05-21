@@ -129,6 +129,7 @@ msgstr ""
 msgid "Estimated Rewards"
 msgstr ""
 
+#: src/components/Footer/index.tsx
 #: src/components/Nav/index.tsx
 msgid "FAQs"
 msgstr ""
@@ -329,6 +330,10 @@ msgstr ""
 
 #: src/components/StakingRanking/index.tsx
 msgid "Staking Ranking"
+msgstr ""
+
+#: src/components/Footer/index.tsx
+msgid "Support"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
