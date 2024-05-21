@@ -1,9 +1,11 @@
 import { Box, StackProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { formatNumber } from '../../helpers/formatNumber'
+import { profileModal } from '../../modals/ProfileModal'
 import { UserInfo } from '../../types/api'
 import { TextOverflowTooltip } from '../TextOverflowTooltip'
+import { Tooltip } from '../Tooltip'
 import { TwitterAvatar } from '../TwitterAvatar'
-import { profileModal } from '../../modals/ProfileModal'
 
 interface Props extends StackProps {
   user: UserInfo
@@ -56,9 +58,11 @@ export function UserTotalPoints({ user, ...props }: Props) {
         bg="linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%), linear-gradient(261deg, #D0D0FF 3.1%, #A996F7 33.87%, #7280FE 54.26%, #D3D6FE 104.35%)"
         textAlign="right"
       >
-        <Text mt="auto" ml="auto">
-          {user.realtime_amount}
-        </Text>
+        <Tooltip label={user.realtime_score}>
+          <Text as="span" mt="auto" ml="auto">
+            {formatNumber(user.realtime_score, 2)}
+          </Text>
+        </Tooltip>
         <Text
           textTransform="uppercase"
           mt={1}
