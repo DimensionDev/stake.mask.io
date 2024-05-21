@@ -120,6 +120,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             backdropFilter="blur(10px)"
             p={6}
             spacing={6}
+            minW="404px"
           >
             <Stack
               flexDirection={{ base: 'column', md: 'row' }}

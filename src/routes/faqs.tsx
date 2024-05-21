@@ -194,13 +194,7 @@ You can buy MASK spot on major CEX such as Binance, OKX, and Gate.io .`
   const contentElRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Center
-      w="100%"
-      pt={{ base: '110px', md: '80px' }}
-      px={{ base: '24px', xl: '48px' }}
-      transition="200ms"
-      overflow="auto"
-    >
+    <Center w="100%" pt={{ base: '110px', md: '80px' }} px={{ base: '24px', xl: '48px' }} transition="200ms">
       <Flex
         w="100%"
         maxW="maxW"
@@ -215,7 +209,6 @@ You can buy MASK spot on major CEX such as Binance, OKX, and Gate.io .`
           color="neutrals.4"
           fontSize="16px"
           lineHeight="150%"
-          id="content"
           sx={{
             'h1, h2, h3, h4, h5, h6': {
               mb: '32px',

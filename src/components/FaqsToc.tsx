@@ -76,6 +76,14 @@ export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ content
   const navigate = useNavigate()
 
   useEffect(() => {
+    document.body.style.overflowX = 'initial'
+    return () => {
+      // @ts-ignore
+      document.body.style.overflowX = null
+    }
+  }, [])
+
+  useEffect(() => {
     if (contentRef.current) {
       setTOCItem(generateTOC(contentRef.current))
     }
@@ -175,7 +183,19 @@ export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ content
   }
 
   return (
-    <Box w="304px" minW="304px" color="neutrals.4" pr="64px" pos="sticky" top="80px" h="auto" mb="auto">
+    <Box
+      w="272px"
+      minW="272px"
+      color="neutrals.4"
+      mr="32px"
+      pr="32px"
+      pos="sticky"
+      top="80px"
+      h="auto"
+      maxH="calc(100vh - 80px)"
+      mb="auto"
+      overflowY="auto"
+    >
       {content}
     </Box>
   )
