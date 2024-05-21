@@ -98,7 +98,7 @@ export function StakeModal(props: ModalProps) {
   const loading = allowance.isLoading || isPending || waiting
   const disabled = allowance.isLoading || amount === ZERO
   return (
-    <BaseModal title={t`Stake`} width={572} height={521} {...props}>
+    <BaseModal title={t`Stake`} width={572} {...props}>
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
         {!account.isConnected || !linkedTwitter ? (
           <List spacing={6} mb={6}>
@@ -277,13 +277,18 @@ export function StakeModal(props: ModalProps) {
             <Trans>
               The staking addresses need to pass Go+ security check. Note that staking is not available in some
               restricted regions.{' '}
-              <Link to="/faqs" style={{ textDecoration: 'underline' }} onClick={props.onClose}>
+              <Link
+                to="/faqs"
+                hash="staking-guidelines"
+                style={{ textDecoration: 'underline' }}
+                onClick={props.onClose}
+              >
                 More
               </Link>
             </Trans>
           </Text>
         </VStack>
-        <Box mt="auto">
+        <Box mt="10px">
           <StakeRequirementBoundary amount={amount}>
             <ScaleFade in initialScale={0.5} key="stake-button">
               <Button
