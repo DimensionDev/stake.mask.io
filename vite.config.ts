@@ -17,7 +17,6 @@ export default defineConfig({
       name: 'markdown-to-string-loader',
       transform(code, id) {
         if (/\.md$/.test(id)) {
-          console.log(id, code)
           return `export default \`${code}\``
         }
       },
