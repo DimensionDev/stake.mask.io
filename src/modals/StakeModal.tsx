@@ -2,6 +2,7 @@ import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Flex,
   HStack,
   Input,
   InputGroup,
@@ -163,17 +164,19 @@ export function StakeModal(props: ModalProps) {
             borderColor: 'neutrals.3',
           }}
         >
-          <InputGroup>
+          <InputGroup alignItems="center">
             <InputLeftAddon flexShrink={0} p={0} bg="transparent">
-              <TokenIcon flexShrink={0} />
-              <Stack ml={4}>
-                <Text fontSize={20} lineHeight="20px">
-                  Mask
-                </Text>
-                <Text fontSize={16} lineHeight="16px">
-                  Ethereum
-                </Text>
-              </Stack>
+              <Flex bg="rgba(255,255,255,0.03)" px={3} py={2} rounded={999} fontWeight="bold" alignItems="center">
+                <TokenIcon flexShrink={0} />
+                <Stack ml={4}>
+                  <Text fontSize={20} lineHeight="20px">
+                    Mask
+                  </Text>
+                  <Text fontSize={16} lineHeight="16px">
+                    Ethereum
+                  </Text>
+                </Stack>
+              </Flex>
             </InputLeftAddon>
             <Input
               size="lg"
@@ -233,11 +236,12 @@ export function StakeModal(props: ModalProps) {
         </Box>
         <VStack spacing="10px" mt="10px" alignItems="stretch" fontSize={16} color="neutrals.4">
           <HStack justifyContent="space-between">
-            <Text>{t`Unlock MASK Time`}</Text>
+            <Text>{t`Unstake MASK Time`}</Text>
             {pool?.end_time ? (
-              <Tooltip label={formatSeconds(pool.end_time)} hasArrow placement="top">
-                <Text color="secondary.3">{formatSeconds(pool.end_time, 'hh:mm d/MM/YYYY')}</Text>
-              </Tooltip>
+              <Text color="secondary.3">
+                {/* cspell:ignore UTCZ*/}
+                {formatSeconds(pool.end_time, 'hh:mm d/MM/YYYY (UTCZ)').replace(/:00\)$/, ')')}
+              </Text>
             ) : (
               <Skeleton height="16px" width="100px" />
             )}
@@ -259,7 +263,7 @@ export function StakeModal(props: ModalProps) {
                 <Text>{formatNumber(share * 100, 2)}%</Text>
               </Tooltip>
             ) : (
-              <Skeleton height="16px" width="50px" />
+              <Text>-</Text>
             )}
           </HStack>
           <HStack justifyContent="space-between">
