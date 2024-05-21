@@ -5,6 +5,7 @@ import { UserInfo, UserInfoResponse } from '../types/api'
 import urlcat from 'urlcat'
 import { useAccount } from 'wagmi'
 import { usePoolStore } from '../store/poolStore'
+import { convertTwitterAvatar } from '../helpers/convertTwitterAvatar'
 
 export function useUserInfo() {
   const { address } = useAccount()
@@ -24,7 +25,7 @@ export function useUserInfo() {
       if (!res.data) return res.data
       return {
         ...res.data,
-        twitter_image: res.data.twitter_image.replace(/_normal.(jpe?g|png|gif|bmp)/, '_400x400.$1'),
+        twitter_image: convertTwitterAvatar(res.data.twitter_image),
       } as UserInfo
     },
   })
