@@ -62,4 +62,5 @@ export function CookiePolicyModal({ isOpen, onClose }: { isOpen: boolean; onClos
     </ModalWithDrawer>
   )
 }
+// eslint-disable-next-line react-refresh/only-export-components
 export const { ui: cookiePolicyUi, controller: cookiePolicyModal } = createUITaskManager(CookiePolicyModal)

@@ -78,7 +78,7 @@ export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ content
   useEffect(() => {
     document.body.style.overflowX = 'initial'
     return () => {
-      // @ts-ignore
+      // @ts-expect-error
       document.body.style.overflowX = null
     }
   }, [])

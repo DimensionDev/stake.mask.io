@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Skeleton, type BoxProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import dayjs from 'dayjs'
