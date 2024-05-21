@@ -1,10 +1,11 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
 import { Flex } from '@chakra-ui/react'
 import { AcceptCookie } from '../components/AcceptCookie.tsx'
 import { Modals } from '../modals/index.tsx'
+import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { env } from '../constants/env.ts'
 
 export const Route = createRootRoute({
   component: () => (
@@ -13,7 +14,7 @@ export const Route = createRootRoute({
       <Outlet />
       <Footer />
       <AcceptCookie />
-      <TanStackRouterDevtools />
+      {env.shared.NODE_ENV === 'development' ? <TanStackRouterDevtools initialIsOpen={false} /> : null}
       <Modals />
     </Flex>
   ),
