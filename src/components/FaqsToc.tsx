@@ -88,6 +88,7 @@ export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ content
     if (contentRef.current) {
       setTOCItem(generateTOC(contentRef.current))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const content =
