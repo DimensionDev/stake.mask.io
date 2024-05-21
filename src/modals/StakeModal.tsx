@@ -46,12 +46,14 @@ import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
 import { useToast } from '../hooks/useToast.tsx'
+import { useAccountStore } from '../store/accountStore.ts'
 
 export function StakeModal(props: ModalProps) {
   const account = useAccount()
   const config = useConfig()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
+  const { token } = useAccountStore()
   const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const [rawAmount, setRawAmount] = useState('')
   const balance = useBalance({ address: account.address, token: maskTokenAddress })
@@ -138,7 +140,7 @@ export function StakeModal(props: ModalProps) {
             </ListItem>
           </List>
         ) : null}
-        {userInfo?.twitter_id ? (
+        {linkedTwitter ? (
           <HStack mb={6}>
             <TwitterAvatar size={12} src={userInfo.twitter_image} />
             <Text fontSize={14} fontWeight={700} color="neutrals.1" ml={6}>

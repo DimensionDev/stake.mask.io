@@ -46,7 +46,6 @@ export const usePoolStore = create<PollState, [['zustand/persist', PollState], [
     })),
     {
       name: 'mask-stake-pool',
-      storage: createJSONStorage(() => localStorage),
       onRehydrateStorage(state) {
         return () => state.syncPoolInfo()
       },

@@ -86,6 +86,10 @@ export interface TwitterAuthorizeResult {
 
 export type TwitterAuthorizeResponse = Response<TwitterAuthorizeResult>
 
+export type LoginResponse = Response<{
+  token: string
+}>
+
 export interface StakeRankItem {
   address: string
   twitter_id: string
