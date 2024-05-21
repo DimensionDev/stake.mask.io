@@ -18,6 +18,8 @@ import { MaskStakingButton } from '../MaskStakingButton.tsx'
 import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.tsx'
+import { formatNumber } from '../../helpers/formatNumber.ts'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 export function StakedMask(props: BoxProps) {
   const config = useConfig()
@@ -33,7 +35,7 @@ export function StakedMask(props: BoxProps) {
 
   const staked = useMemo(() => {
     if (chainData) {
-      return formatUnits(chainData[0], 18)
+      return +formatUnits(chainData[0], 18)
     }
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
@@ -58,7 +60,7 @@ export function StakedMask(props: BoxProps) {
           skeletonWidth="100px"
           skeletonHeight="56px"
         >
-          {staked}
+          {staked ? formatMarketCap(staked, 4) : '-'}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
           <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">

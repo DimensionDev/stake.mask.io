@@ -1,4 +1,4 @@
-import { extendBaseTheme, theme as chakraTheme } from '@chakra-ui/react'
+import { extendBaseTheme, theme as chakraTheme, StyleFunctionProps } from '@chakra-ui/react'
 
 import { Tabs } from './components/Tabs.ts'
 import { Modal } from './components/Modal.ts'

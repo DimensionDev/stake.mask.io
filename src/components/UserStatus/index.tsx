@@ -66,12 +66,14 @@ export function UserStatus(props: UserStatusProps) {
         title={t`Estimated Rewards`}
         reward={rss3}
         tokenIcon={new URL('../../assets/rss3.svg', import.meta.url).href}
+        tokenSymbol="RSS3"
         unlocked={unlocked}
       />
       <RewardCard
         title={t`Estimated Rewards`}
         reward={ton}
         tokenIcon={new URL('../../assets/ton.svg', import.meta.url).href}
+        tokenSymbol="TON"
         unlocked={unlocked}
       />
     </Grid>

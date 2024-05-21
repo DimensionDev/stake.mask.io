@@ -10,7 +10,7 @@ function removeTrailingZeros(str: string) {
   return result === '0' ? '0' : result
 }
 
-export function formatMarketCap(amount: BigNumber.Value) {
+export function formatMarketCap(amount: BigNumber.Value, digits = 2) {
   let bigNumber = BigNumber(amount)
   const isNegative = bigNumber.isNegative()
   const prefix = isNegative ? '-' : ''
@@ -22,15 +22,15 @@ export function formatMarketCap(amount: BigNumber.Value) {
       bigNumber = bigNumber.dividedBy(1000)
       suffixIndex++
     }
-    return prefix + parseFloat(bigNumber.toFixed(2)) + (suffixes[suffixIndex] ?? '')
+    return prefix + parseFloat(bigNumber.toFixed(digits)) + (suffixes[suffixIndex] ?? '')
   }
   if (bigNumber.isLessThan(1)) {
-    const zeroCount = bigNumber.toFormat().substring(2).match(/^0+/)?.[0].length ?? 0
-    const format = bigNumber.toFormat(zeroCount + 4, 1)
+    const zeroCount = bigNumber.toFormat().substring(digits).match(/^0+/)?.[0].length ?? 0
+    const format = bigNumber.toFormat(zeroCount + digits + 2, 1)
     if (format.length >= 10) {
       return prefix + abbreviationForZero(removeTrailingZeros(format), zeroCount)
     }
     return prefix + removeTrailingZeros(format)
   }
-  return prefix + removeTrailingZeros(bigNumber.toFormat(2))
+  return prefix + removeTrailingZeros(bigNumber.toFormat(digits))
 }
