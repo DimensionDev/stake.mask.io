@@ -1,12 +1,12 @@
-import { Button, ButtonProps } from '@chakra-ui/react'
+import { ButtonProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { PropsWithChildren, memo, useEffect, useMemo, useState } from 'react'
 import { useBlockNumber, useReadContract } from 'wagmi'
 import { StakeManagerABI } from '../../abis/stakeManager'
 import { usePoolInfo } from '../../hooks/usePoolInfo'
+import { stakeModal } from '../../modals/StakeModal'
 import { usePoolStore } from '../../store/poolStore'
 import { MaskStakingButton } from '../MaskStakingButton'
-import { stakeModal } from '../../modals/StakeModal'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps
@@ -43,7 +43,7 @@ export const TimeRangeBoundary = memo<BoundaryProps>(function TimeRangeBoundary(
   }, [hasEnded])
 
   if (loadingPoolInfo || loadingPools) {
-    return <Button w="100%" colorScheme="red" rounded={50} isDisabled isLoading loadingText={t`Checking`} />
+    return <MaskStakingButton rounded={50} isDisabled isLoading loadingText={t`Checking`} />
   }
 
   if (!hasStarted) {
