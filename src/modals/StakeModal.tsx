@@ -183,12 +183,14 @@ export function StakeModal(props: ModalProps) {
               fontSize="40px"
               fontFamily="input"
               type="number"
+              min={0}
               fontWeight={700}
               autoFocus
               value={rawAmount}
               max={1e10}
               onChange={(e) => {
-                setRawAmount(e.currentTarget.value)
+                const value = e.currentTarget.value
+                setRawAmount(+value < 0 ? '0' : value)
               }}
               _focus={{ outline: 'none', border: 'none' }}
               _focusVisible={{ border: 'none', boxShadow: 'none' }}

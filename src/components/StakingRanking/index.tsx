@@ -1,19 +1,20 @@
-import { FC } from 'react'
-import { Box, Flex, Heading, VStack, Image, Center, Icon } from '@chakra-ui/react'
+import { Box, Center, Flex, Heading, Icon, Image, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { RankingAvatar, RankingAvatarProps } from './RankingAvatar.tsx'
+import { useQuery } from '@tanstack/react-query'
+import { FC } from 'react'
+import urlcat from 'urlcat'
+import FileSVG from '../../assets/file.svg?react'
 import LeftGlowImage from '../../assets/left-glow.webp'
 import RightGlowImage from '../../assets/right-glow.webp'
-import FileSVG from '../../assets/file.svg?react'
-import { usePoolStore } from '../../store/poolStore.ts'
-import { useQuery } from '@tanstack/react-query'
-import urlcat from 'urlcat'
 import { FIREFLY_API_ROOT } from '../../constants/api.ts'
+import { convertTwitterAvatar } from '../../helpers/convertTwitterAvatar.ts'
 import { fetchJSON } from '../../helpers/fetchJSON.ts'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { usePoolStore } from '../../store/poolStore.ts'
 import { StakeRankItem, StakeRankResponse } from '../../types/api.ts'
 import { Spinner } from '../Spinner.tsx'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { Tooltip } from '../Tooltip.tsx'
+import { RankingAvatar, RankingAvatarProps } from './RankingAvatar.tsx'
 
 export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 'tag' | 'name' | 'src'>> = ({
   item,
@@ -21,7 +22,7 @@ export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 
 }) => {
   return (
     <RankingAvatar
-      src={item.twitter_image}
+      src={convertTwitterAvatar(item.twitter_image)}
       name={item.twitter_name}
       tag={<Tooltip label={`${item.score} PTS`} hasArrow>{`${formatMarketCap(item.score)} PTS`}</Tooltip>}
       boxSize="64px"
