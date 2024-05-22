@@ -10,6 +10,7 @@ import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
 import { ZERO } from '../../constants/misc.ts'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { formatNumber } from '../../helpers/formatNumber.ts'
 import { resolveTxLink } from '../../helpers/resolveTxLink.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
 import { useToast } from '../../hooks/useToast.tsx'
@@ -28,7 +29,11 @@ export function StakedMask(props: BoxProps) {
   const account = useAccount()
   const { stakeManagerAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
-  const { isLoading: isReadingUserInfos, data: chainData } = useReadContract({
+  const {
+    isLoading: isReadingUserInfos,
+    data: chainData,
+    refetch,
+  } = useReadContract({
     abi: StakeManagerABI,
     functionName: 'userInfos',
     address: stakeManagerAddress,
@@ -115,10 +120,11 @@ export function StakedMask(props: BoxProps) {
                     status: 'success',
                     description: <TxToastDescription link={txLink} text={t`Successfully unstaked MASK Tokens.`} />,
                   })
+                  refetch()
                   await resultModal.show({
                     title: t`Unstake`,
                     message: t`Unstake Successfully`,
-                    description: t`You have successfully unstaked ${staked} MASK`,
+                    description: t`You have successfully unstaked ${formatNumber(staked, 4)} MASK`,
                   })
                 }
               } catch (err) {
