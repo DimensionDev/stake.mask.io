@@ -245,7 +245,7 @@ msgid "Not started yet."
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
-msgid "On going"
+msgid "Ongoing"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx

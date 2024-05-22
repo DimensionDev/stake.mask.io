@@ -6,6 +6,7 @@
     "darkweb",
     "immer",
     "masknet",
+    "masknetwork",
     "Merkle",
     "Pageable",
     "reinit",
@@ -15,6 +16,7 @@
     "unstake",
     "unstaked",
     "urlcat",
+    "vitejs",
     "webp",
     "zustand"
   ],
@@ -59,3 +61,4 @@
   ],
   "overrides": []
 }
+

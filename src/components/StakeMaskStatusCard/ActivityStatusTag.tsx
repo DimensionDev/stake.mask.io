@@ -26,7 +26,7 @@ export const ActivityStatusTag: FC<BoxProps> = ({ ...props }) => {
       ) : isEnded ? (
         t`Ended`
       ) : isStarted ? (
-        t`On going`
+        t`Ongoing`
       ) : (
         t`Not started`
       )}
