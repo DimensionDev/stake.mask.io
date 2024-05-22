@@ -72,8 +72,6 @@ msgstr ""
 #: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/RewardCard.tsx
-#: src/components/UserStatus/RewardCard.tsx
-#: src/components/UserStatus/RewardCard.tsx
 msgid "Claim"
 msgstr ""
 
@@ -83,6 +81,12 @@ msgstr ""
 
 #: src/modals/ProfileModal.tsx
 msgid "Confirm"
+msgstr ""
+
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/UserStatus/StakedMask.tsx
+#: src/modals/StakeModal.tsx
+msgid "Confirm this transaction in your wallet."
 msgstr ""
 
 #: src/components/Nav/MobileMenu.tsx
@@ -301,6 +305,7 @@ msgstr ""
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
+#: src/modals/StakeModal.tsx
 msgid "Stake"
 msgstr ""
 
@@ -335,8 +340,16 @@ msgstr ""
 msgid "Staking Ranking"
 msgstr ""
 
+#: src/modals/StakeModal.tsx
+msgid "Successfully staked MASK Tokens."
+msgstr ""
+
 #: src/components/UserStatus/RewardCard.tsx
 msgid "Successfully unstaked {0} Tokens."
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Successfully unstaked MASK Tokens."
 msgstr ""
 
 #: src/components/Footer/index.tsx
@@ -379,17 +392,8 @@ msgid ""
 "If you have any questions about these Terms, please contact us at info@dimension.im."
 msgstr ""
 
-#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
-msgid "The approval transaction gets reverted!"
-msgstr ""
-
 #: src/modals/StakeModal.tsx
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions. <0>More</0>"
-msgstr ""
-
-#: src/components/UserStatus/StakedMask.tsx
-#: src/modals/StakeModal.tsx
-msgid "The transaction gets reverted!"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -430,7 +434,10 @@ msgstr ""
 msgid "Total Rewards"
 msgstr ""
 
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/StakedMask.tsx
+#: src/modals/StakeModal.tsx
 msgid "Transaction failed."
 msgstr ""
 
@@ -446,6 +453,7 @@ msgid "Types of Cookies We Use"
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlock MASK"
 msgstr ""
 
@@ -453,6 +461,7 @@ msgstr ""
 msgid "Unlocking"
 msgstr ""
 
+#: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/StakedMask.tsx
 msgid "Unstake"
 msgstr ""
@@ -528,4 +537,11 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/BlackListBoundary.tsx
 msgid "Your wallet address is on the blacklist"
+msgstr ""
+
+#: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/StakedMask.tsx
+#: src/modals/StakeModal.tsx
+msgid "Your wallet cancelled the transaction."
 msgstr ""

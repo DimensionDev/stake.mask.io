@@ -6,8 +6,8 @@ export interface ToastOptions extends Omit<UseToastOptions, 'render' | 'status'>
   status: ToastProps['status']
 }
 
-export function useToast() {
-  const toast = useRawToast()
+export function useToast(options?: UseToastOptions) {
+  const toast = useRawToast(options)
   return useCallback(
     (options: ToastOptions) => {
       return toast({

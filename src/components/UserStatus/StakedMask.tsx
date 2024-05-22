@@ -45,7 +45,7 @@ export function StakedMask(props: BoxProps) {
 
   const [waiting, setWaiting] = useState(false)
   const { writeContractAsync, isPending: isWithdrawing } = useWriteContract()
-  const toast = useToast()
+  const toast = useToast({ title: t`Unstake` })
   const handleError = useHandleError()
 
   const isZero = chainData?.[0] ? chainData[0] === ZERO : true
@@ -83,7 +83,6 @@ export function StakedMask(props: BoxProps) {
               try {
                 toast({
                   status: 'loading',
-                  title: t`Unstake`,
                   description: t`Confirm this transaction in your wallet.`,
                 })
                 const hash = await writeContractAsync({
@@ -95,7 +94,6 @@ export function StakedMask(props: BoxProps) {
                 const txLink = resolveTxLink(chainId, hash)
                 toast({
                   status: 'loading',
-                  title: t`Unstake`,
                   description: <TxToastDescription link={txLink} text={t`Transaction submitted!`} color="primary.4" />,
                 })
 
@@ -109,14 +107,12 @@ export function StakedMask(props: BoxProps) {
                 if (receipt.status === 'reverted') {
                   toast({
                     status: 'error',
-                    title: t`Unstake`,
                     description: <TxToastDescription link={txLink} text={t`Transaction failed.`} />,
                   })
                   throw new Error('The transaction gets reverted!')
                 } else {
                   toast({
                     status: 'success',
-                    title: t`Unstake`,
                     description: <TxToastDescription link={txLink} text={t`Successfully unstaked MASK Tokens.`} />,
                   })
                   await resultModal.show({
@@ -127,10 +123,9 @@ export function StakedMask(props: BoxProps) {
                 }
               } catch (err) {
                 const cause = err instanceof TransactionExecutionError ? err.cause : err
-                if (err instanceof UserRejectedRequestError) {
+                if (cause instanceof UserRejectedRequestError) {
                   toast({
                     status: 'error',
-                    title: t`Unstake`,
                     description: t`Your wallet cancelled the transaction.`,
                   })
                   return
