@@ -31,7 +31,7 @@ export function useUpdateUserInfo() {
       })
     },
     onSuccess() {
-      queryClient.refetchQueries({ queryKey: ['user-info'] })
+      queryClient.invalidateQueries({ queryKey: ['user-info'] })
     },
   })
 }

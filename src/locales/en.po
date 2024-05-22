@@ -98,6 +98,7 @@ msgid "Connect to stake"
 msgstr ""
 
 #: src/components/ConnectButton.tsx
+#: src/components/StakeRequirementBoundary/ConnectBoundary.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Connect Wallet"

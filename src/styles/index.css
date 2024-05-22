@@ -43,6 +43,33 @@ body {
   --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.3));
 }
 
+.gradient-box {
+  --border-radius: 10px;
+  --border-width: 2px;
+  --border-color: var(--chakra-colors-gradient-purple);
+  position: relative;
+  border-radius: var(--border-radius);
+}
+
+.gradient-box::after {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100% - calc(var(--border-width) * 2));
+  height: calc(100% - calc(var(--border-width) * 2));
+  padding: var(--border-width);
+  border-radius: calc(var(--border-radius) + 1px);
+  background: var(--border-color);
+  --mask-bg: linear-gradient(#fff, #fff);
+  --mask-clip: content-box, padding-box;
+  -webkit-mask-image: var(--mask-bg), var(--mask-bg);
+  -webkit-mask-clip: var(--mask-clip);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}
+
 ::selection {
   background: #7280fe;
   color: white;
