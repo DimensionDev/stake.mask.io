@@ -74,6 +74,9 @@ body .purple-gradient-button:not(:disabled):active {
 .stake-form:focus-within .input-box {
   border-color: #3182ce;
 }
+.input-box input {
+  caret-color: blue;
+}
 
 h1[id]:before,
 h2[id]:before,
