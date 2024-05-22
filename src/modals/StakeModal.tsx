@@ -23,7 +23,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Link } from '@tanstack/react-router'
 import { useLayoutEffect, useMemo, useState } from 'react'
 import { parseUnits } from 'viem'
-import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
+import { useAccount, useBalance, useChainId, useConfig, useToken, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
 import { StakeRequirementBoundary } from '../components/StakeRequirementBoundary/index.tsx'
@@ -46,8 +46,11 @@ import { profileModal } from './ProfileModal.tsx'
 import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
+import { resolveTxLink } from '../helpers/resolveTxLink.ts'
+import { TxToastDescription } from '../components/TxToastDescription.tsx'
 
 export function StakeModal(props: ModalProps) {
+  const chainId = useChainId()
   const account = useAccount()
   const config = useConfig()
   const { openConnectModal } = useConnectModal()
@@ -313,15 +316,25 @@ export function StakeModal(props: ModalProps) {
                     return
                   }
                   try {
+                    toast({
+                      status: 'loading',
+                      title: t`Stake`,
+                      description: t`Confirm this transaction in your wallet.`,
+                    })
                     const hash = await writeContractAsync({
                       abi: StakeManagerABI,
                       address: stakeManagerAddress,
                       functionName: 'depositAndLock',
                       args: [amount],
                     })
+                    const txLink = resolveTxLink(chainId, hash)
+
                     toast({
-                      status: 'success',
-                      title: t`Transaction submitted!`,
+                      status: 'loading',
+                      title: t`Stake`,
+                      description: (
+                        <TxToastDescription link={txLink} text={t`Transaction submitted!`} color="primary.4" />
+                      ),
                     })
                     setWaiting(true)
                     const receipt = await waitForTransactionReceipt(config, {
@@ -331,10 +344,16 @@ export function StakeModal(props: ModalProps) {
                     if (receipt.status === 'reverted') {
                       toast({
                         status: 'error',
-                        title: t`The transaction gets reverted!`,
+                        title: t`Stake`,
+                        description: <TxToastDescription link={txLink} text={t`Transaction failed.`} />,
                       })
                       throw new Error('The transaction gets reverted!')
                     } else {
+                      toast({
+                        status: 'success',
+                        title: t`Stake`,
+                        description: <TxToastDescription link={txLink} text={t`Successfully staking MASK Tokens.`} />,
+                      })
                       await resultModal.show({
                         title: t`Stake`,
                         message: t`Stake Successfully`,

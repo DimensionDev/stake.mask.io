@@ -71,6 +71,9 @@ msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/RewardCard.tsx
 msgid "Claim"
 msgstr ""
 
@@ -332,6 +335,10 @@ msgstr ""
 msgid "Staking Ranking"
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
+msgid "Successfully unstaked {0} Tokens."
+msgstr ""
+
 #: src/components/Footer/index.tsx
 msgid "Support"
 msgstr ""
@@ -380,7 +387,6 @@ msgstr ""
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions. <0>More</0>"
 msgstr ""
 
-#: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/modals/StakeModal.tsx
 msgid "The transaction gets reverted!"
@@ -422,6 +428,10 @@ msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Total Rewards"
+msgstr ""
+
+#: src/components/UserStatus/RewardCard.tsx
+msgid "Transaction failed."
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx

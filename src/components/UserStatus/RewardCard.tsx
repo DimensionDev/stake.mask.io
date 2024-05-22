@@ -1,10 +1,12 @@
 import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { useConfig, useWriteContract } from 'wagmi'
+import { useChainId, useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { rewardABI } from '../../abis/reward'
 import QuestionSVG from '../../assets/question.svg?react'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { formatNumber } from '../../helpers/formatNumber'
+import { resolveTxLink } from '../../helpers/resolveTxLink.ts'
 import { useToast } from '../../hooks/useToast'
 import { useUserInfo } from '../../hooks/useUserInfo'
 import { resultModal } from '../../modals/ResultModal'
@@ -13,8 +15,8 @@ import { UserInfo } from '../../types/api'
 import { Spinner } from '../Spinner'
 import { TokenIcon } from '../TokenIcon'
 import { Tooltip } from '../Tooltip'
+import { TxToastDescription } from '../TxToastDescription.tsx'
 import { ActionCard, ActionCardProps } from './ActionCard'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 interface Props extends ActionCardProps {
   tokenIcon?: string
@@ -24,6 +26,7 @@ interface Props extends ActionCardProps {
 }
 
 export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlocked, ...props }: Props) {
+  const chainId = useChainId()
   const config = useConfig()
   const { writeContractAsync, isPending } = useWriteContract()
   const { rewardAddress } = usePoolStore()
@@ -80,9 +83,11 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
               functionName: 'claim',
               args: [reward.reward_pool_id, BigInt(reward.big_amount), rewardPool.proof],
             })
+            const txLink = resolveTxLink(chainId, hash)
             toast({
-              status: 'success',
-              title: t`Transaction submitted!`,
+              status: 'loading',
+              title: t`Claim`,
+              description: <TxToastDescription link={txLink} text={t`Transaction submitted!`} />,
             })
 
             const receipt = await waitForTransactionReceipt(config, {
@@ -93,10 +98,22 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
             if (receipt.status === 'reverted') {
               toast({
                 status: 'error',
-                title: t`The transaction gets reverted!`,
+                title: t`Claim`,
+                description: <TxToastDescription link={txLink} text={t`Transaction failed.`} />,
               })
               throw new Error('The approval transaction gets reverted!')
             } else {
+              toast({
+                status: 'success',
+                title: t`Claim`,
+                description: (
+                  <TxToastDescription
+                    link={txLink}
+                    text={t`Successfully unstaked ${tokenSymbol?.toUpperCase()} Tokens.`}
+                    color="primary.4"
+                  />
+                ),
+              })
               await resultModal.show({
                 title: t`Claim`,
                 message: t`Claim Successfully`,

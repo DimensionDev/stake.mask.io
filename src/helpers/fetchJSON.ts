@@ -4,8 +4,7 @@ import { Toast } from '../components/Toast'
 
 export async function fetchJSON<T = unknown>(input: RequestInfo | URL, init?: RequestInit): Promise<T> {
   try {
-    const url = `https://cors-next.r2d2.to?${encodeURIComponent(input.toString())}`
-    const response = await fetch(url, {
+    const response = await fetch(input, {
       ...init,
       headers: {
         'Content-Type': 'application/json',

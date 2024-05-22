@@ -3,13 +3,14 @@ import { t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
 import { useMemo, useState } from 'react'
-import { formatUnits } from 'viem'
-import { useAccount, useConfig, useReadContract, useWriteContract } from 'wagmi'
+import { TransactionExecutionError, UserRejectedRequestError, formatUnits } from 'viem'
+import { useAccount, useChainId, useConfig, useReadContract, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
 import { ZERO } from '../../constants/misc.ts'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { resolveTxLink } from '../../helpers/resolveTxLink.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
 import { useToast } from '../../hooks/useToast.tsx'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
@@ -18,10 +19,12 @@ import { usePoolStore } from '../../store/poolStore.ts'
 import { MaskStakingButton } from '../MaskStakingButton.tsx'
 import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
+import { TxToastDescription } from '../TxToastDescription.tsx'
 import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.tsx'
 
 export function StakedMask(props: BoxProps) {
   const config = useConfig()
+  const chainId = useChainId()
   const account = useAccount()
   const { stakeManagerAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
@@ -78,15 +81,22 @@ export function StakedMask(props: BoxProps) {
             onClick={async () => {
               if (!chainData?.[0]) return
               try {
+                toast({
+                  status: 'loading',
+                  title: t`Unstake`,
+                  description: t`Confirm this transaction in your wallet.`,
+                })
                 const hash = await writeContractAsync({
                   abi: StakeManagerABI,
                   address: stakeManagerAddress,
                   functionName: 'withdraw',
                   args: [chainData[0]],
                 })
+                const txLink = resolveTxLink(chainId, hash)
                 toast({
-                  status: 'success',
-                  title: t`Transaction submitted!`,
+                  status: 'loading',
+                  title: t`Unstake`,
+                  description: <TxToastDescription link={txLink} text={t`Transaction submitted!`} color="primary.4" />,
                 })
 
                 setWaiting(true)
@@ -99,10 +109,16 @@ export function StakedMask(props: BoxProps) {
                 if (receipt.status === 'reverted') {
                   toast({
                     status: 'error',
-                    title: t`The transaction gets reverted!`,
+                    title: t`Unstake`,
+                    description: <TxToastDescription link={txLink} text={t`Transaction failed.`} />,
                   })
                   throw new Error('The transaction gets reverted!')
                 } else {
+                  toast({
+                    status: 'success',
+                    title: t`Unstake`,
+                    description: <TxToastDescription link={txLink} text={t`Successfully unstaked MASK Tokens.`} />,
+                  })
                   await resultModal.show({
                     title: t`Unstake`,
                     message: t`Unstake Successfully`,
@@ -110,7 +126,17 @@ export function StakedMask(props: BoxProps) {
                   })
                 }
               } catch (err) {
-                if (handleError(err)) return
+                const cause = err instanceof TransactionExecutionError ? err.cause : err
+                if (err instanceof UserRejectedRequestError) {
+                  toast({
+                    status: 'error',
+                    title: t`Unstake`,
+                    description: t`Your wallet cancelled the transaction.`,
+                  })
+                  return
+                } else if (handleError(err)) {
+                  return
+                }
                 throw err
               } finally {
                 setWaiting(false)
