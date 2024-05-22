@@ -88,7 +88,18 @@ export const Footer: FC = () => {
               sx={{ li: { w: '100%' } }}
             >
               <li>
-                <Link as={RouteLink} to="/faqs" _hover={{ textDecoration: 'underline' }}>
+                <Link
+                  as={RouteLink}
+                  to="/faqs"
+                  _hover={{ textDecoration: 'underline' }}
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      left: 0,
+                      behavior: 'instant',
+                    })
+                  }}
+                >
                   {t`FAQs`}
                 </Link>
               </li>

@@ -1,10 +1,14 @@
 import { type FC, lazy, Suspense } from 'react'
-import { Center, Image } from '@chakra-ui/react'
+import { Center, CenterProps, Image } from '@chakra-ui/react'
 import KvImage from '../../assets/kv.webp'
 
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
-export const HeaderImage: FC = () => {
+export interface HeaderImageProps extends CenterProps {
+  onlyBg?: boolean
+}
+
+export const HeaderImage: FC<HeaderImageProps> = ({ onlyBg = false, ...props }) => {
   return (
     <Center
       pos="relative"
@@ -23,25 +27,28 @@ export const HeaderImage: FC = () => {
       }}
       onWheelCapture={(e) => e.stopPropagation()}
       onContextMenuCapture={(e) => e.preventDefault()}
+      {...props}
     >
-      <Suspense
-        fallback={
-          <div>
-            <Image
-              src={KvImage}
-              minW="1440px"
-              w="1440px"
-              h="auto"
-              pos="absolute"
-              top="0"
-              left="50%"
-              transform="translateX(-50%)"
-            />
-          </div>
-        }
-      >
-        <Spline scene="/kv.splinecode" renderOnDemand />
-      </Suspense>
+      {!onlyBg ? (
+        <Suspense
+          fallback={
+            <div>
+              <Image
+                src={KvImage}
+                minW="1440px"
+                w="1440px"
+                h="auto"
+                pos="absolute"
+                top="0"
+                left="50%"
+                transform="translateX(-50%)"
+              />
+            </div>
+          }
+        >
+          <Spline scene="/kv.splinecode" renderOnDemand />
+        </Suspense>
+      ) : null}
     </Center>
   )
 }
