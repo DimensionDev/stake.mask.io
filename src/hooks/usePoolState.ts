@@ -1,18 +1,33 @@
 import dayjs from 'dayjs'
 import { useEffect, useMemo, useState } from 'react'
 import { PoolInfo } from '../types/api'
+import { useBlockNumber, useReadContract } from 'wagmi'
+import { usePoolStore } from '../store/poolStore'
+import { StakeManagerABI } from '../abis/stakeManager'
 
-export function usePoolState(pool: PoolInfo | undefined) {
-  const [tick, setTick] = useState(0)
+export function usePoolState(poolInfo: PoolInfo | undefined) {
+  const { poolId, stakeManagerAddress } = usePoolStore()
+
+  const [watch, setWatch] = useState<boolean | { pollingInterval: number }>({ pollingInterval: 60_000 })
+  const { data: blockNumber } = useBlockNumber({ watch })
+  const { data: pools, isLoading } = useReadContract({
+    abi: StakeManagerABI,
+    address: stakeManagerAddress,
+    functionName: 'pools',
+    args: poolId ? [BigInt(poolId)] : undefined,
+  })
+
+  const result = useMemo(() => {
+    if (!poolInfo || !pools || !blockNumber) return { isStarted: false, isEnded: false }
+    const [startBlock, endBlock, , stakingEnabled] = pools
+    const isStarted = dayjs(poolInfo.start_time * 1000).isAfter(Date.now()) ? false : startBlock < blockNumber
+    const isEnded = dayjs(poolInfo.end_time * 1000).isAfter(Date.now()) ? false : endBlock < blockNumber
+    return { isStarted, isEnded: isEnded && !stakingEnabled }
+  }, [blockNumber, poolInfo, pools])
+
   useEffect(() => {
-    setInterval(() => {
-      setTick((n) => n + 1)
-    }, 1e4)
-  }, [])
-  return useMemo(() => {
-    const isStarted = pool ? dayjs(pool.start_time * 1000).isBefore(Date.now()) : false
-    const isEnded = pool ? dayjs(pool.end_time * 1000).isBefore(Date.now()) : false
-    return { isStarted, isEnded } as const
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pool, tick])
+    if (result.isEnded) setWatch(false)
+  }, [result.isEnded])
+
+  return { ...result, isLoadingPools: isLoading }
 }
