@@ -242,7 +242,7 @@ export function StakeModal(props: ModalProps) {
             <Text>{t`Unstake MASK Time`}</Text>
             {pool?.end_time ? (
               <Text color="secondary.3">
-                {/* cspell:ignore UTCZ*/}
+                {/* cspell:ignore UTCZ */}
                 {formatSeconds(pool.end_time, 'hh:mm d/MM/YYYY (UTCZ)').replace(/:00\)$/, ')')}
               </Text>
             ) : (
