@@ -521,7 +521,7 @@ msgid "You can manage and delete cookies through your browser settings. Please n
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
-msgid "You have successfully claimed {0} RSS3."
+msgid "You have successfully claimed {0} {tokenSymbol}."
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -529,7 +529,7 @@ msgid "You have successfully staked {rawAmount} MASK."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "You have successfully unstaked {staked} MASK"
+msgid "You have successfully unstaked {0} MASK"
 msgstr ""
 
 #: src/components/Footer/index.tsx

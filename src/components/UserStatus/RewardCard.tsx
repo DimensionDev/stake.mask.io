@@ -118,7 +118,7 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
                 await resultModal.show({
                   title: t`Claim`,
                   message: t`Claim Successfully`,
-                  description: t`You have successfully claimed ${formatNumber(+reward.amount)} RSS3.`,
+                  description: t`You have successfully claimed ${formatNumber(+reward.amount, 4)} ${tokenSymbol}.`,
                 })
               }
             } catch (err) {
