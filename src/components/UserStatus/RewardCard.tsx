@@ -1,10 +1,14 @@
 import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { useConfig, useWriteContract } from 'wagmi'
+import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
+import { useChainId, useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { rewardABI } from '../../abis/reward'
 import QuestionSVG from '../../assets/question.svg?react'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { formatNumber } from '../../helpers/formatNumber'
+import { resolveTxLink } from '../../helpers/resolveTxLink.ts'
+import { useHandleError } from '../../hooks/useHandleError.ts'
 import { useToast } from '../../hooks/useToast'
 import { useUserInfo } from '../../hooks/useUserInfo'
 import { resultModal } from '../../modals/ResultModal'
@@ -13,8 +17,8 @@ import { UserInfo } from '../../types/api'
 import { Spinner } from '../Spinner'
 import { TokenIcon } from '../TokenIcon'
 import { Tooltip } from '../Tooltip'
+import { TxToastDescription } from '../TxToastDescription.tsx'
 import { ActionCard, ActionCardProps } from './ActionCard'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 
 interface Props extends ActionCardProps {
   tokenIcon?: string
@@ -24,11 +28,13 @@ interface Props extends ActionCardProps {
 }
 
 export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlocked, ...props }: Props) {
+  const chainId = useChainId()
   const config = useConfig()
   const { writeContractAsync, isPending } = useWriteContract()
   const { rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
-  const toast = useToast()
+  const toast = useToast({ title: t`Claim` })
+  const handleError = useHandleError()
 
   const amount = reward?.amount ? +reward.amount : 0
   const isDisabled = !unlocked || !amount || loadingUserInfo
@@ -74,34 +80,57 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
               })
               return
             }
-            const hash = await writeContractAsync({
-              abi: rewardABI,
-              address: rewardAddress,
-              functionName: 'claim',
-              args: [reward.reward_pool_id, BigInt(reward.big_amount), rewardPool.proof],
-            })
-            toast({
-              status: 'success',
-              title: t`Transaction submitted!`,
-            })
-
-            const receipt = await waitForTransactionReceipt(config, {
-              hash,
-              confirmations: 1,
-            })
-
-            if (receipt.status === 'reverted') {
+            try {
+              const hash = await writeContractAsync({
+                abi: rewardABI,
+                address: rewardAddress,
+                functionName: 'claim',
+                args: [reward.reward_pool_id, BigInt(reward.big_amount), rewardPool.proof],
+              })
+              const txLink = resolveTxLink(chainId, hash)
               toast({
-                status: 'error',
-                title: t`The transaction gets reverted!`,
+                status: 'loading',
+                description: <TxToastDescription link={txLink} text={t`Transaction submitted!`} />,
               })
-              throw new Error('The approval transaction gets reverted!')
-            } else {
-              await resultModal.show({
-                title: t`Claim`,
-                message: t`Claim Successfully`,
-                description: t`You have successfully claimed ${formatNumber(+reward.amount)} RSS3.`,
+
+              const receipt = await waitForTransactionReceipt(config, {
+                hash,
+                confirmations: 1,
               })
+
+              if (receipt.status === 'reverted') {
+                toast({
+                  status: 'error',
+                  description: <TxToastDescription link={txLink} text={t`Transaction failed.`} />,
+                })
+                throw new Error('The approval transaction gets reverted!')
+              } else {
+                toast({
+                  status: 'success',
+                  description: (
+                    <TxToastDescription
+                      link={txLink}
+                      text={t`Successfully unstaked ${tokenSymbol?.toUpperCase()} Tokens.`}
+                      color="primary.4"
+                    />
+                  ),
+                })
+                await resultModal.show({
+                  title: t`Claim`,
+                  message: t`Claim Successfully`,
+                  description: t`You have successfully claimed ${formatNumber(+reward.amount)} RSS3.`,
+                })
+              }
+            } catch (err) {
+              const cause = err instanceof TransactionExecutionError ? err.cause : err
+              if (cause instanceof UserRejectedRequestError) {
+                toast({
+                  status: 'error',
+                  description: t`Your wallet cancelled the transaction.`,
+                })
+                return
+              } else if (handleError(err)) return
+              throw err
             }
           }}
         >

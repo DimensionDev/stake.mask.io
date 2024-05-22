@@ -22,8 +22,8 @@ import { Trans, t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Link } from '@tanstack/react-router'
 import { useLayoutEffect, useMemo, useState } from 'react'
-import { parseUnits } from 'viem'
-import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
+import { TransactionExecutionError, UserRejectedRequestError, parseUnits } from 'viem'
+import { useAccount, useBalance, useChainId, useConfig, useToken, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
 import { StakeRequirementBoundary } from '../components/StakeRequirementBoundary/index.tsx'
@@ -46,8 +46,11 @@ import { profileModal } from './ProfileModal.tsx'
 import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
+import { resolveTxLink } from '../helpers/resolveTxLink.ts'
+import { TxToastDescription } from '../components/TxToastDescription.tsx'
 
 export function StakeModal(props: ModalProps) {
+  const chainId = useChainId()
   const account = useAccount()
   const config = useConfig()
   const { openConnectModal } = useConnectModal()
@@ -92,7 +95,7 @@ export function StakeModal(props: ModalProps) {
     }
   }, [account.isConnected, isLoadingUserInfo, linkTwitter, linkedTwitter])
 
-  const toast = useToast()
+  const toast = useToast({ title: t`Stake` })
   const { writeContractAsync, isPending } = useWriteContract()
   const handleError = useHandleError()
 
@@ -239,7 +242,7 @@ export function StakeModal(props: ModalProps) {
             <Text>{t`Unstake MASK Time`}</Text>
             {pool?.end_time ? (
               <Text color="secondary.3">
-                {/* cspell:ignore UTCZ*/}
+                {/* cspell:ignore UTCZ */}
                 {formatSeconds(pool.end_time, 'hh:mm d/MM/YYYY (UTCZ)').replace(/:00\)$/, ')')}
               </Text>
             ) : (
@@ -313,15 +316,23 @@ export function StakeModal(props: ModalProps) {
                     return
                   }
                   try {
+                    toast({
+                      status: 'loading',
+                      description: t`Confirm this transaction in your wallet.`,
+                    })
                     const hash = await writeContractAsync({
                       abi: StakeManagerABI,
                       address: stakeManagerAddress,
                       functionName: 'depositAndLock',
                       args: [amount],
                     })
+                    const txLink = resolveTxLink(chainId, hash)
+
                     toast({
-                      status: 'success',
-                      title: t`Transaction submitted!`,
+                      status: 'loading',
+                      description: (
+                        <TxToastDescription link={txLink} text={t`Transaction submitted!`} color="primary.4" />
+                      ),
                     })
                     setWaiting(true)
                     const receipt = await waitForTransactionReceipt(config, {
@@ -331,10 +342,14 @@ export function StakeModal(props: ModalProps) {
                     if (receipt.status === 'reverted') {
                       toast({
                         status: 'error',
-                        title: t`The transaction gets reverted!`,
+                        description: <TxToastDescription link={txLink} text={t`Transaction failed.`} />,
                       })
                       throw new Error('The transaction gets reverted!')
                     } else {
+                      toast({
+                        status: 'success',
+                        description: <TxToastDescription link={txLink} text={t`Successfully staked MASK Tokens.`} />,
+                      })
                       await resultModal.show({
                         title: t`Stake`,
                         message: t`Stake Successfully`,
@@ -343,7 +358,14 @@ export function StakeModal(props: ModalProps) {
                       props.onClose()
                     }
                   } catch (err) {
-                    if (handleError(err)) return
+                    const cause = err instanceof TransactionExecutionError ? err.cause : err
+                    if (cause instanceof UserRejectedRequestError) {
+                      toast({
+                        status: 'error',
+                        description: t`Your wallet cancelled the transaction.`,
+                      })
+                      return
+                    } else if (handleError(err)) return
                     throw err
                   } finally {
                     setWaiting(false)
