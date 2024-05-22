@@ -19,6 +19,7 @@ Sentry.init({
   tracesSampleRate: 1.0,
   replaysSessionSampleRate: 1.0,
   replaysOnErrorSampleRate: 1.0,
+  enabled: process.env.NODE_ENV === 'production',
 })
 
 const rootElement = document.getElementById('root')!
