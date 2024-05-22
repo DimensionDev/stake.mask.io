@@ -1,4 +1,14 @@
-import { Box, Center, Divider, Flex, Icon, useBreakpointValue, useDisclosure, type FlexProps } from '@chakra-ui/react'
+import {
+  Box,
+  Center,
+  Divider,
+  Flex,
+  Icon,
+  SkeletonCircle,
+  useBreakpointValue,
+  useDisclosure,
+  type FlexProps,
+} from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { Link } from '@tanstack/react-router'
 import { FC, useMemo } from 'react'
@@ -15,7 +25,7 @@ export interface NavProps extends FlexProps {}
 
 export const Nav: FC<NavProps> = ({ ...props }) => {
   const isHiddenTabs = useBreakpointValue({ base: true, lg: false })
-  const { data: user } = useUserInfo()
+  const { data: user, isLoading: isLoadingUserInfo } = useUserInfo()
   const mobileMenu = useDisclosure()
   const menus = useMemo(
     () => [
@@ -52,12 +62,14 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
             <Divider orientation="vertical" borderLeft="1px solid rgba(255, 255, 255, 0.1)" ml="8" mr="6" />
             <DesktopMenu menus={menus} />
             <Center ml="auto">
-              {user?.twitter_id ? (
+              {isLoadingUserInfo ? (
+                <SkeletonCircle w="40px" h="40px" mr="8px" />
+              ) : user?.twitter_id ? (
                 <TwitterAvatar
                   src={user.twitter_image}
                   cursor="pointer"
                   size="40px"
-                  mr="4px"
+                  mr="8px"
                   variant="light"
                   onClick={() => {
                     profileModal.show()

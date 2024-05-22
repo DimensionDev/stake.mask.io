@@ -287,6 +287,7 @@ export function StakeModal(props: ModalProps) {
               restricted regions.{' '}
               <Link
                 to="/faqs"
+                target="_blank"
                 hash="staking-guidelines"
                 style={{ textDecoration: 'underline' }}
                 onClick={props.onClose}

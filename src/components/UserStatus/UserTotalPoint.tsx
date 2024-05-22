@@ -30,7 +30,11 @@ export function UserTotalPoints({ user, ...props }: Props) {
             profileModal.show()
           }}
         />
-        <TextOverflowTooltip label={user.twitter_display_name} hasArrow placement="top">
+        <TextOverflowTooltip
+          label={user.twitter_id ? user.twitter_display_name : account.address}
+          hasArrow
+          placement="top"
+        >
           <Text
             ml="auto"
             fontSize="xx-large"
@@ -45,7 +49,7 @@ export function UserTotalPoints({ user, ...props }: Props) {
               profileModal.show()
             }}
           >
-            {user.twitter_id ? user.twitter_display_name || 'N/A' : formatEthereumAddress(account.address!)}
+            {user.twitter_id ? user.twitter_display_name || 'N/A' : formatEthereumAddress(account.address!, 4)}
           </Text>
         </TextOverflowTooltip>
       </Flex>
