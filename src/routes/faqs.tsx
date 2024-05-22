@@ -4,12 +4,20 @@ import { Box, Center, Flex } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { FaqsToc } from '../components/FaqsToc.tsx'
 import content from '../assets/faqs.md'
+import { HeaderImage } from '../components/HeaderImage'
 
 const FaqsPage = () => {
   const contentElRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Center w="100%" pt={{ base: '110px', md: '80px' }} px={{ base: '24px', xl: '48px' }} transition="200ms">
+    <Center
+      flexDir="column"
+      w="100%"
+      pt={{ base: '110px', md: '80px' }}
+      px={{ base: '24px', xl: '48px' }}
+      transition="200ms"
+    >
+      <HeaderImage w="100%" pos="absolute" top="0" left="0" onlyBg />
       <Flex
         w="100%"
         maxW="maxW"
