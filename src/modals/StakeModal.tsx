@@ -158,8 +158,7 @@ export function StakeModal(props: ModalProps) {
           </HStack>
         ) : null}
         <Box
-          className="input-box"
-          border="2px solid"
+          className="input-box gradient-box"
           borderColor="neutrals.6"
           rounded={12}
           p={4}

@@ -1,4 +1,4 @@
-import { Box, StackProps, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, StackProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { profileModal } from '../../modals/ProfileModal'
 import { UserInfo } from '../../types/api'
@@ -6,15 +6,18 @@ import { TextOverflowTooltip } from '../TextOverflowTooltip'
 import { Tooltip } from '../Tooltip'
 import { TwitterAvatar } from '../TwitterAvatar'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { useAccount } from 'wagmi'
+import { formatEthereumAddress } from '../../helpers/formatEthereumAddress.ts'
 
 interface Props extends StackProps {
   user: UserInfo
 }
 
 export function UserTotalPoints({ user, ...props }: Props) {
+  const account = useAccount()
   return (
     <VStack overflow="hidden" {...props}>
-      <Box flexDir="row" w="100%" pl="100px" pos="relative">
+      <Flex flexDir="row" w="100%" pl="100px" pos="relative">
         <TwitterAvatar
           size={100}
           pos="absolute"
@@ -29,6 +32,7 @@ export function UserTotalPoints({ user, ...props }: Props) {
         />
         <TextOverflowTooltip label={user.twitter_display_name} hasArrow placement="top">
           <Text
+            ml="auto"
             fontSize="xx-large"
             textAlign="right"
             fontWeight="bold"
@@ -41,10 +45,10 @@ export function UserTotalPoints({ user, ...props }: Props) {
               profileModal.show()
             }}
           >
-            {user.twitter_display_name || 'N/A'}
+            {user.twitter_id ? user.twitter_display_name || 'N/A' : formatEthereumAddress(account.address!)}
           </Text>
         </TextOverflowTooltip>
-      </Box>
+      </Flex>
       <Box
         w="100%"
         h="132px"

@@ -56,6 +56,7 @@ export function ProfileModal(props: ModalProps) {
           flexGrow={1}
           flexBasis={0}
           p={0}
+          isLoading={updateUserInfo.isPending}
           disabled={!username}
           onClick={async () => {
             if (!username) {
