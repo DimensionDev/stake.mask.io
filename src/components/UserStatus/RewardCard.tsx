@@ -1,10 +1,10 @@
 import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { memo, useMemo } from 'react'
-import { formatUnits } from 'viem'
+import { memo } from 'react'
 import { useAccount, useBalance, useReadContract, useToken } from 'wagmi'
 import { rewardABI } from '../../abis/reward'
 import QuestionSVG from '../../assets/question.svg?react'
+import { ZERO } from '../../constants/misc.ts'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { usePoolStore } from '../../store/poolStore'
 import { UserInfo } from '../../types/api'
@@ -48,13 +48,10 @@ export const RewardCard = memo(function RewardCard({
   const { data, isLoading: loadingRewardBalance } = useBalance({ chainId, address: reward?.address })
   const enoughReward = !data?.value || !reward ? false : data.value >= BigInt(reward.big_amount)
 
-  const decimals = token?.decimals || 18
-  const amount = useMemo(() => {
-    if (userReward !== undefined) return formatUnits(userReward, decimals)
-    return reward?.amount ? +reward.amount : 0
-  }, [userReward, decimals, reward?.amount])
+  const amount = reward?.amount ? +reward.amount : 0
+  const hasClaimed = userReward !== undefined ? userReward > ZERO : false
   const loading = loadingUserInfo || switchingChain || loadingRewardBalance || loadingRewards || waiting
-  const isDisabled = loading || !unlocked || !amount || !enoughReward
+  const isDisabled = loading || !unlocked || !amount || !enoughReward || hasClaimed
   const tokenSymbol = reward?.name?.toUpperCase() || defaultSymbol
 
   return (
@@ -73,7 +70,7 @@ export const RewardCard = memo(function RewardCard({
                 loading={loadingRewards}
                 skeletonProps={{ w: '60px', height: '24px', rounded: '4px' }}
               >
-                {formatMarketCap(amount)}
+                {hasClaimed ? 0 : formatMarketCap(amount)}
               </ProgressiveText>
             </Tooltip>
             <Text fontSize={16} fontWeight={700} lineHeight="16px">
@@ -94,11 +91,15 @@ export const RewardCard = memo(function RewardCard({
             )
           }
           className="purple-gradient-button"
-          onClick={() => {
-            claimReward()
-          }}
+          onClick={claimReward}
         >
-          {claiming ? <Spinner h="24px" w="24px" color="neutrals.9" /> : t`Claim`}
+          {claiming ? (
+            <Spinner h="24px" w="24px" color="neutrals.9" />
+          ) : hasClaimed ? (
+            t`You have already claimed `
+          ) : (
+            t`Claim`
+          )}
         </Button>
       </Stack>
     </ActionCard>
