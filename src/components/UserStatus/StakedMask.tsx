@@ -62,7 +62,7 @@ export function StakedMask(props: BoxProps) {
   const disabled = isZero
   const pendingStakingNumbers = isReadingUserInfos || loadingUserInfo || isLoadingPools
   return (
-    <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
+    <ActionCard title={t`Staked MASK`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
         <ProgressiveText
           loading={pendingStakingNumbers}
@@ -159,7 +159,7 @@ export function StakedMask(props: BoxProps) {
                 setWaiting(false)
               }
             }}
-          >{t`Unstake Mask`}</MaskStakingButton>
+          >{t`Unstake MASK`}</MaskStakingButton>
         </UnstakeRequirementBoundary>
       </Stack>
     </ActionCard>
