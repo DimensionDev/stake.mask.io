@@ -42,7 +42,14 @@ export const Footer: FC = () => {
         >
           <VStack align="start" spacing={8} gridColumn={{ base: '1/3', md: 'auto' }}>
             <Icon as={LogoSVG} w="164px" h="auto" />
-            <Heading color="neutrals.2" letterSpacing="-0.24px" lineHeight="32px" fontWeight={400} fontSize="24px">
+            <Heading
+              color="neutrals.2"
+              letterSpacing="-0.24px"
+              lineHeight="32px"
+              fontWeight={400}
+              fontSize="24px"
+              maxW={{ base: 'none', md: '220px' }}
+            >
               {t`Your Portal To The New, Open Internet.`}
             </Heading>
           </VStack>
