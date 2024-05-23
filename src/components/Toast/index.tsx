@@ -19,6 +19,7 @@ export const Toast: FC<ToastProps> = ({ status, title, description }) => {
           {title}
         </Heading>
         <Text
+          as="div"
           fontSize="14px"
           fontWeight={700}
           lineHeight="22px"

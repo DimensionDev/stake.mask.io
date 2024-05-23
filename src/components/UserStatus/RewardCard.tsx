@@ -46,12 +46,12 @@ export const RewardCard = memo(function RewardCard({
   })
 
   const { data, isLoading: loadingRewardBalance } = useBalance({ chainId, address: reward?.address })
-  const enoughReward = !data?.value || !reward ? false : data.value >= BigInt(reward.big_amount)
+  const noEnoughReward = data?.value !== undefined && reward ? data.value < BigInt(reward.big_amount) : false
 
   const amount = reward?.amount ? +reward.amount : 0
   const hasClaimed = userReward !== undefined ? userReward > ZERO : false
   const loading = loadingUserInfo || switchingChain || loadingRewardBalance || loadingRewards || waiting
-  const isDisabled = loading || !unlocked || !amount || !enoughReward || hasClaimed
+  const isDisabled = loading || !unlocked || !amount || noEnoughReward || hasClaimed
   const tokenSymbol = reward?.name?.toUpperCase() || defaultSymbol
 
   return (
@@ -70,7 +70,7 @@ export const RewardCard = memo(function RewardCard({
                 loading={loadingRewards}
                 skeletonProps={{ w: '60px', height: '24px', rounded: '4px' }}
               >
-                {hasClaimed ? 0 : formatMarketCap(amount)}
+                {formatMarketCap(amount)}
               </ProgressiveText>
             </Tooltip>
             <Text fontSize={16} fontWeight={700} lineHeight="16px">
@@ -84,11 +84,14 @@ export const RewardCard = memo(function RewardCard({
           alignSelf="stretch"
           color="neutrals.9"
           rightIcon={
-            unlocked || claiming ? undefined : (
-              <Tooltip label={t`You can claim after the event ends.`} shouldWrapChildren>
+            !unlocked || noEnoughReward ? (
+              <Tooltip
+                label={noEnoughReward ? t`No enough ${tokenSymbol} to claim` : t`You can claim after the event ends.`}
+                shouldWrapChildren
+              >
                 <Icon as={QuestionSVG} w="initial" h="initial" />
               </Tooltip>
-            )
+            ) : undefined
           }
           className="purple-gradient-button"
           onClick={claimReward}
