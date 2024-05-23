@@ -4,7 +4,7 @@ import { useAccount } from 'wagmi'
 import { FIREFLY_API_ROOT } from '../constants/api'
 import { fetchJSON } from '../helpers/fetchJSON'
 import { useAccountStore } from '../store/accountStore'
-import { UpdateUserInfoParams, UpdateUserInfoResponse } from '../types/api'
+import { StakeRankItem, UpdateUserInfoParams, UpdateUserInfoResponse } from '../types/api'
 import { useLogin } from './useLogin'
 
 export function useUpdateUserInfo() {
@@ -30,8 +30,15 @@ export function useUpdateUserInfo() {
         body: JSON.stringify(params),
       })
     },
-    onSuccess() {
+    onSuccess(_, variables) {
       queryClient.invalidateQueries({ queryKey: ['user-info'] })
+      queryClient.setQueriesData<StakeRankItem[]>({ queryKey: ['staking-ranking-list'] }, (ranks) => {
+        if (!ranks) return ranks
+        const address = account.address?.toLowerCase()
+        return ranks.map((x) => {
+          return x.address.toLowerCase() === address ? { ...x, twitter_display_name: variables.display_username } : x
+        })
+      })
     },
   })
 }
