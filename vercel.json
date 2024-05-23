@@ -23,7 +23,7 @@
         },
         {
           "key": "Content-Security-Policy-Report-Only",
-          "value": "default-src https: wss: 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com/ https://cdn.jsdelivr.net https://*.vercel-scripts.com https://*.firefly.land/; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; report-uri https://sentry.firefly.land/api/7/security/?sentry_key=8f0bc157f1bc434162e702a175451829"
+          "value": "default-src https: wss: 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com/ https://cdn.jsdelivr.net https://*.vercel-scripts.com https://*.firefly.land/; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; report-uri https://sentry.firefly.land/api/7/security/?sentry_key=8f0bc157f1bc434162e702a175451829; img-src 'self' data: blob:"
         }
       ]
     }
