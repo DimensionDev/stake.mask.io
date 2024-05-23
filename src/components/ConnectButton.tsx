@@ -1,13 +1,14 @@
-import { ConnectButton as RawConnectButton } from '@rainbow-me/rainbowkit'
-import { type FC, memo } from 'react'
-import { GradientButton } from './GradientButton.tsx'
+import { Box, Button, Flex, Icon, Image, type BoxProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { Box, type BoxProps, Button, Flex, Icon, Image } from '@chakra-ui/react'
-import WalletSVG from '../assets/wallet.svg?react'
-import { useAccount, useConnectors } from 'wagmi'
-import type { Connector } from 'wagmi'
+import { ConnectButton as RawConnectButton } from '@rainbow-me/rainbowkit'
 import { useQuery } from '@tanstack/react-query'
+import { memo, type FC } from 'react'
+import type { Connector } from 'wagmi'
+import { useAccount, useConnectors } from 'wagmi'
+import WalletSVG from '../assets/wallet.svg?react'
 import { formatEthereumAddress } from '../helpers/formatEthereumAddress.ts'
+import { usePoolStore } from '../store/poolStore.ts'
+import { GradientButton } from './GradientButton.tsx'
 
 interface ConnectorWithRkDetails extends Connector {
   rkDetails: {
@@ -44,6 +45,7 @@ export interface ConnectButtonProps {
 }
 
 export const ConnectButton: FC<ConnectButtonProps> = memo(({ connectText }) => {
+  const { chainId } = usePoolStore()
   return (
     <RawConnectButton.Custom>
       {({ account, chain, openAccountModal, openChainModal, openConnectModal, authenticationStatus, mounted }) => {
@@ -71,7 +73,7 @@ export const ConnectButton: FC<ConnectButtonProps> = memo(({ connectText }) => {
                 )
               }
 
-              if (chain.unsupported) {
+              if (chain.unsupported || chain.id !== chainId) {
                 return (
                   <Button px={6} colorScheme="red" rounded="full" onClick={openChainModal} type="button">
                     {t`Wrong network`}

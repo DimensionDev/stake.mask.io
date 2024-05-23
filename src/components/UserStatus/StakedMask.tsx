@@ -60,7 +60,7 @@ export function StakedMask(props: BoxProps) {
   const isZero = chainData?.[0] ? chainData[0] === ZERO : true
   const loading = isWithdrawing || waiting || isReadingUserInfos
   const disabled = isZero
-  const pendingStakingNumbers = (isReadingUserInfos && loadingUserInfo) || isLoadingPools || isEnded
+  const pendingStakingNumbers = isReadingUserInfos || loadingUserInfo || isLoadingPools
   return (
     <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
@@ -76,7 +76,7 @@ export function StakedMask(props: BoxProps) {
             my: '10px',
           }}
         >
-          {staked ? formatMarketCap(staked, 4) : '-'}
+          {staked ? formatMarketCap(staked, 4) : 0}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
           <Trans>
@@ -85,7 +85,7 @@ export function StakedMask(props: BoxProps) {
               loading={pendingStakingNumbers}
               skeletonProps={{ h: '20px', w: '30px', rounded: '4px' }}
             >
-              {`+${userInfo?.score_per_hour}`}
+              {`+${isEnded ? 0 : userInfo?.score_per_hour}`}
             </ProgressiveText>
             Points/h
           </Trans>

@@ -58,7 +58,7 @@ export function StakeModal(props: ModalProps) {
   const [rawAmount, setRawAmount] = useState('')
   const balance = useBalance({ chainId, address: account.address, token: maskTokenAddress })
   const allowance = useMaskAllowance()
-  const maskToken = useToken({ address: maskTokenAddress })
+  const maskToken = useToken({ chainId, address: maskTokenAddress })
   const [{ loading: linkingTwitter }, linkTwitter] = useLinkTwitter()
   const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id

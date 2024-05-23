@@ -9,7 +9,7 @@ export function usePoolState(poolInfo: PoolInfo | undefined) {
   const { chainId, poolId, stakeManagerAddress } = usePoolStore()
 
   const [watch, setWatch] = useState<boolean | { pollingInterval: number }>({ pollingInterval: 60_000 })
-  const { data: blockNumber } = useBlockNumber({ watch })
+  const { data: blockNumber } = useBlockNumber({ chainId, watch })
   const { data: pools, isLoading } = useReadContract({
     chainId,
     abi: StakeManagerABI,
