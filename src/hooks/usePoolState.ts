@@ -6,11 +6,12 @@ import { usePoolStore } from '../store/poolStore'
 import { StakeManagerABI } from '../abis/stakeManager'
 
 export function usePoolState(poolInfo: PoolInfo | undefined) {
-  const { poolId, stakeManagerAddress } = usePoolStore()
+  const { chainId, poolId, stakeManagerAddress } = usePoolStore()
 
   const [watch, setWatch] = useState<boolean | { pollingInterval: number }>({ pollingInterval: 60_000 })
   const { data: blockNumber } = useBlockNumber({ watch })
   const { data: pools, isLoading } = useReadContract({
+    chainId,
     abi: StakeManagerABI,
     address: stakeManagerAddress,
     functionName: 'pools',

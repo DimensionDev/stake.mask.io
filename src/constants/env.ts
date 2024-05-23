@@ -5,6 +5,7 @@ import { NODE_ENV, VERCEL_NEV } from './enum'
 const InternalEnvSchema = z.object({})
 
 const ExternalEnvSchema = z.object({
+  CHAIN_ID: z.coerce.number().default(1),
   VERCEL_ENV: z.nativeEnum(VERCEL_NEV).default(VERCEL_NEV.Development),
   W3M_PROJECT_ID: z.string(),
   TWITTER_URL: z.string().default('https://twitter.com/realMaskNetwork'),
@@ -27,6 +28,7 @@ export const env = {
     typeof InternalEnvSchema
   >,
   external: ExternalEnvSchema.parse({
+    CHAIN_ID: import.meta.env.VITE_CHAIN_ID,
     VERCEL_ENV: import.meta.env.VITE_VERCEL_ENV,
     W3M_PROJECT_ID: import.meta.env.VITE_W3M_PROJECT_ID,
     TWITTER_URL: import.meta.env.VITE_TWITTER_URL,

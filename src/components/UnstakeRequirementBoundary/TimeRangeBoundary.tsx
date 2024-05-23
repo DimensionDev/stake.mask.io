@@ -14,8 +14,9 @@ interface BoundaryProps extends PropsWithChildren {
 
 export const TimeRangeBoundary = memo<BoundaryProps>(function TimeRangeBoundary({ children }) {
   const { data: poolInfo, isLoading: loadingPoolInfo } = usePoolInfo()
-  const { poolId, stakeManagerAddress } = usePoolStore()
+  const { chainId, poolId, stakeManagerAddress } = usePoolStore()
   const { data, isLoading: loadingPools } = useReadContract({
+    chainId,
     abi: StakeManagerABI,
     address: stakeManagerAddress,
     functionName: 'pools',

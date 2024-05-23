@@ -4,7 +4,7 @@ import { ActionCard } from './ActionCard'
 
 import { useMemo, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError, formatUnits } from 'viem'
-import { useAccount, useChainId, useConfig, useReadContract, useWriteContract } from 'wagmi'
+import { useAccount, useConfig, useReadContract, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
@@ -27,9 +27,8 @@ import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.
 
 export function StakedMask(props: BoxProps) {
   const config = useConfig()
-  const chainId = useChainId()
   const account = useAccount()
-  const { stakeManagerAddress } = usePoolStore()
+  const { chainId, stakeManagerAddress } = usePoolStore()
   const { data: poolInfo } = usePoolInfo()
   const { isEnded, isLoadingPools } = usePoolState(poolInfo)
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
@@ -38,9 +37,10 @@ export function StakedMask(props: BoxProps) {
     data: chainData,
     refetch,
   } = useReadContract({
+    chainId,
     abi: StakeManagerABI,
-    functionName: 'userInfos',
     address: stakeManagerAddress,
+    functionName: 'userInfos',
     args: account.address ? [account.address] : undefined,
   })
 

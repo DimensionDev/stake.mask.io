@@ -2,8 +2,10 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { readStakeManager } from '../helpers/readStakeManager'
+import { env } from '../constants/env'
 
 interface PollState {
+  chainId: number
   poolId: number | null
   maskTokenAddress: `0x${string}`
   stakeManagerAddress: `0x${string}`
@@ -20,6 +22,7 @@ const { VITE_STAKE_MANAGER_CONTRACT_ADDRESS, VITE_REWARD_CONTRACT_ADDRESS, VITE_
 export const usePoolStore = create<PollState, [['zustand/persist', PollState], ['zustand/immer', never]]>(
   persist(
     immer((set, get) => ({
+      chainId: env.external.CHAIN_ID,
       poolId: null,
       syncingPoolInfo: false,
       maskTokenAddress: VITE_MASK_TOKEN_ADDRESS,
@@ -32,6 +35,9 @@ export const usePoolStore = create<PollState, [['zustand/persist', PollState], [
         }),
       syncPoolInfo: async () => {
         set((state) => {
+          if (env.external.CHAIN_ID) {
+            state.chainId = env.external.CHAIN_ID
+          }
           state.syncingPoolInfo = true
         })
         const { currentPoolId: poolId, maskTokenAddress } = await readStakeManager()

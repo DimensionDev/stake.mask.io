@@ -12,11 +12,12 @@ export interface UserStatusProps extends GridProps {}
 
 export function UserStatus(props: UserStatusProps) {
   const { data: userInfo, isLoading } = useUserInfo()
-  const { poolId, stakeManagerAddress } = usePoolStore()
+  const { chainId, poolId, stakeManagerAddress } = usePoolStore()
   const rss3 = userInfo?.reward_pool.find((x) => x.name === 'rss3')
   const ton = userInfo?.reward_pool.find((x) => x.name === 'ton')
 
   const res = useReadContract({
+    chainId,
     abi: StakeManagerABI,
     address: stakeManagerAddress,
     functionName: 'pools',
