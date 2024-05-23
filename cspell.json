@@ -8,6 +8,7 @@
     "masknet",
     "masknetwork",
     "Merkle",
+    "nosniff",
     "Pageable",
     "reinit",
     "sepolia",
@@ -62,3 +63,4 @@
   ],
   "overrides": []
 }
+

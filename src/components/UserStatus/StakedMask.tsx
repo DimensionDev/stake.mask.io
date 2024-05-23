@@ -4,7 +4,7 @@ import { ActionCard } from './ActionCard'
 
 import { useMemo, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError, formatUnits } from 'viem'
-import { useAccount, useChainId, useConfig, useReadContract, useWriteContract } from 'wagmi'
+import { useAccount, useConfig, useReadContract, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
@@ -27,9 +27,8 @@ import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.
 
 export function StakedMask(props: BoxProps) {
   const config = useConfig()
-  const chainId = useChainId()
   const account = useAccount()
-  const { stakeManagerAddress } = usePoolStore()
+  const { chainId, stakeManagerAddress } = usePoolStore()
   const { data: poolInfo } = usePoolInfo()
   const { isEnded, isLoadingPools } = usePoolState(poolInfo)
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
@@ -38,9 +37,10 @@ export function StakedMask(props: BoxProps) {
     data: chainData,
     refetch,
   } = useReadContract({
+    chainId,
     abi: StakeManagerABI,
-    functionName: 'userInfos',
     address: stakeManagerAddress,
+    functionName: 'userInfos',
     args: account.address ? [account.address] : undefined,
   })
 
@@ -60,7 +60,7 @@ export function StakedMask(props: BoxProps) {
   const isZero = chainData?.[0] ? chainData[0] === ZERO : true
   const loading = isWithdrawing || waiting || isReadingUserInfos
   const disabled = isZero
-  const pendingStakingNumbers = (isReadingUserInfos && loadingUserInfo) || isLoadingPools || isEnded
+  const pendingStakingNumbers = isReadingUserInfos || loadingUserInfo || isLoadingPools
   return (
     <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
@@ -76,7 +76,7 @@ export function StakedMask(props: BoxProps) {
             my: '10px',
           }}
         >
-          {staked ? formatMarketCap(staked, 4) : '-'}
+          {staked ? formatMarketCap(staked, 4) : 0}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
           <Trans>
@@ -85,7 +85,7 @@ export function StakedMask(props: BoxProps) {
               loading={pendingStakingNumbers}
               skeletonProps={{ h: '20px', w: '30px', rounded: '4px' }}
             >
-              {`+${userInfo?.score_per_hour}`}
+              {`+${isEnded ? 0 : userInfo?.score_per_hour}`}
             </ProgressiveText>
             Points/h
           </Trans>

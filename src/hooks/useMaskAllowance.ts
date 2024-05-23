@@ -3,10 +3,11 @@ import { usePoolStore } from '../store/poolStore'
 import { erc20Abi } from 'viem'
 
 export function useMaskAllowance() {
-  const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
+  const { chainId, maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const account = useAccount()
 
   return useReadContract({
+    chainId,
     abi: erc20Abi,
     address: maskTokenAddress,
     functionName: 'allowance',

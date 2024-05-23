@@ -1,3 +1,4 @@
+import { t } from '@lingui/macro'
 import { useCallback } from 'react'
 import { BaseError, ContractFunctionExecutionError, TransactionExecutionError, UserRejectedRequestError } from 'viem'
 import { useToast } from './useToast'
@@ -11,13 +12,15 @@ export function useHandleError() {
       if (cause instanceof UserRejectedRequestError) {
         toast({
           status: 'error',
-          title: cause.details,
+          title: t`Error`,
+          description: cause.details,
         })
         return true
       } else if (err instanceof ContractFunctionExecutionError) {
         toast({
           status: 'error',
-          title: err.message,
+          title: t`Error`,
+          description: err.message,
         })
         return true
       }

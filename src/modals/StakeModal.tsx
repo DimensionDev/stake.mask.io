@@ -23,7 +23,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Link } from '@tanstack/react-router'
 import { useLayoutEffect, useMemo, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError, parseUnits } from 'viem'
-import { useAccount, useBalance, useChainId, useConfig, useToken, useWriteContract } from 'wagmi'
+import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
 import { StakeRequirementBoundary } from '../components/StakeRequirementBoundary/index.tsx'
@@ -31,9 +31,11 @@ import { StepIcon } from '../components/StepIcon'
 import { TokenIcon } from '../components/TokenIcon'
 import { Tooltip } from '../components/Tooltip.tsx'
 import { TwitterAvatar } from '../components/TwitterAvatar.tsx'
+import { TxToastDescription } from '../components/TxToastDescription.tsx'
 import { ZERO } from '../constants/misc.ts'
 import { formatNumber } from '../helpers/formatNumber'
 import { formatSeconds } from '../helpers/formatSeconds.ts'
+import { resolveTxLink } from '../helpers/resolveTxLink.ts'
 import { useHandleError } from '../hooks/useHandleError.ts'
 import { useLinkTwitter } from '../hooks/useLinkTwitter'
 import { useMaskAllowance } from '../hooks/useMaskAllowance.ts'
@@ -46,20 +48,17 @@ import { profileModal } from './ProfileModal.tsx'
 import { resultModal } from './ResultModal.tsx'
 import { createUITaskManager } from './UITaskManager.tsx'
 import { verifyModal } from './VerifyModal.tsx'
-import { resolveTxLink } from '../helpers/resolveTxLink.ts'
-import { TxToastDescription } from '../components/TxToastDescription.tsx'
 
 export function StakeModal(props: ModalProps) {
-  const chainId = useChainId()
   const account = useAccount()
   const config = useConfig()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
-  const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
+  const { chainId, maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const [rawAmount, setRawAmount] = useState('')
-  const balance = useBalance({ address: account.address, token: maskTokenAddress })
+  const balance = useBalance({ chainId, address: account.address, token: maskTokenAddress })
   const allowance = useMaskAllowance()
-  const maskToken = useToken({ address: maskTokenAddress })
+  const maskToken = useToken({ chainId, address: maskTokenAddress })
   const [{ loading: linkingTwitter }, linkTwitter] = useLinkTwitter()
   const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id

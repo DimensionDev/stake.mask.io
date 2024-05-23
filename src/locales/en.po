@@ -132,6 +132,11 @@ msgstr ""
 msgid "Ended"
 msgstr ""
 
+#: src/hooks/useHandleError.ts
+#: src/hooks/useHandleError.ts
+msgid "Error"
+msgstr ""
+
 #: src/components/UserStatus/index.tsx
 #: src/components/UserStatus/index.tsx
 msgid "Estimated Rewards"
