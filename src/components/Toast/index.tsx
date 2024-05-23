@@ -14,7 +14,7 @@ export const Toast: FC<ToastProps> = ({ status, title, description }) => {
   return (
     <HStack spacing={4} bg="neutrals.8" rounded="16px" p={4}>
       <Icon as={{ error: ErrorIcon, success: SuccessIcon, loading: LoadingIcon }[status]} boxSize={8} />
-      <VStack align="start" spacing={0} w={{ base: 'unset', sm: '300px' }} minW="200px">
+      <VStack align="start" spacing={0} w={{ base: 'unset' }} minW="200px">
         <Heading as="h6" color="neutrals.1" fontSize="16px" fontWeight={700} lineHeight="24px">
           {title}
         </Heading>
@@ -22,6 +22,11 @@ export const Toast: FC<ToastProps> = ({ status, title, description }) => {
           fontSize="14px"
           fontWeight={700}
           lineHeight="22px"
+          whiteSpace="wrap"
+          w="100%"
+          overflow="auto"
+          maxH="120px"
+          style={{ scrollbarWidth: 'none' }}
           color={{ loading: 'neutrals.3', error: 'primary.3', success: 'primary.4' }[status]}
         >
           {description}

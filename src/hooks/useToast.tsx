@@ -17,6 +17,8 @@ export function useToast(options?: UseToastOptions) {
         },
         containerStyle: {
           minW: 'unset',
+          maxW: 500,
+          maxH: 300,
         },
       })
     },
