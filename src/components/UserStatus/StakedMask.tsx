@@ -2,7 +2,7 @@ import { Box, BoxProps, HStack, Icon, Stack } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
-import { useMemo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError, formatUnits } from 'viem'
 import { useAccount, useChainId, useConfig, useReadContract, useSwitchChain, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -25,7 +25,7 @@ import { Tooltip } from '../Tooltip.tsx'
 import { TxToastDescription } from '../TxToastDescription.tsx'
 import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.tsx'
 
-export function StakedMask(props: BoxProps) {
+export const StakedMask = memo(function StakedMask(props: BoxProps) {
   const config = useConfig()
   const account = useAccount()
   const currentChainId = useChainId()
@@ -169,4 +169,4 @@ export function StakedMask(props: BoxProps) {
       </Stack>
     </ActionCard>
   )
-}
+})

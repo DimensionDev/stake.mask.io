@@ -1,7 +1,8 @@
 import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { memo } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useChainId, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
+import { useBalance, useChainId, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { rewardABI } from '../../abis/reward'
 import QuestionSVG from '../../assets/question.svg?react'
@@ -27,19 +28,28 @@ interface Props extends ActionCardProps {
   unlocked?: boolean
 }
 
-export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlocked, ...props }: Props) {
+export const RewardCard = memo(function RewardCard({
+  reward,
+  tokenIcon,
+  tokenSymbol: defaultSymbol,
+  unlocked,
+  ...props
+}: Props) {
   const currentChainId = useChainId()
   const config = useConfig()
+  const { chainId, rewardAddress } = usePoolStore()
   const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending } = useWriteContract()
-  const { chainId, rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast({ title: t`Claim` })
   const handleError = useHandleError()
 
+  const { data, isLoading: loadingRewardBalance } = useBalance({ chainId, address: reward?.address })
+  const enoughReward = !data?.value || !reward ? false : data.value >= BigInt(reward.big_amount)
+
   const amount = reward?.amount ? +reward.amount : 0
-  const loading = loadingUserInfo || isSwitchingChain
-  const isDisabled = !unlocked || !amount || loading
+  const loading = loadingUserInfo || isSwitchingChain || loadingRewardBalance
+  const isDisabled = loading || !unlocked || !amount || !enoughReward
   const tokenSymbol = reward?.name?.toUpperCase() || defaultSymbol
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
@@ -148,4 +158,4 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
       </Stack>
     </ActionCard>
   )
-}
+})

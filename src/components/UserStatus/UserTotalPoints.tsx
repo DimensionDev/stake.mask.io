@@ -1,19 +1,20 @@
 import { Box, Flex, StackProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { profileModal } from '../../modals/ProfileModal'
-import { UserInfo } from '../../types/api'
-import { TextOverflowTooltip } from '../TextOverflowTooltip'
-import { Tooltip } from '../Tooltip'
-import { TwitterAvatar } from '../TwitterAvatar'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { memo } from 'react'
 import { useAccount } from 'wagmi'
 import { formatEthereumAddress } from '../../helpers/formatEthereumAddress.ts'
+import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
+import { profileModal } from '../../modals/ProfileModal.tsx'
+import { UserInfo } from '../../types/api.ts'
+import { TextOverflowTooltip } from '../TextOverflowTooltip.tsx'
+import { Tooltip } from '../Tooltip.tsx'
+import { TwitterAvatar } from '../TwitterAvatar.tsx'
 
 interface Props extends StackProps {
   user: UserInfo
 }
 
-export function UserTotalPoints({ user, ...props }: Props) {
+export const UserTotalPoints = memo(function UserTotalPoints({ user, ...props }: Props) {
   const account = useAccount()
   return (
     <VStack overflow="hidden" {...props}>
@@ -82,4 +83,4 @@ export function UserTotalPoints({ user, ...props }: Props) {
       </Box>
     </VStack>
   )
-}
+})
