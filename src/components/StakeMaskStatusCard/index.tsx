@@ -76,7 +76,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
             pr="52px"
             mr="auto"
           >
-            {t`Stake Mask`}
+            {t`Stake MASK`}
             <Icon
               w="42px"
               h="22px"
@@ -233,7 +233,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
           </VStack>
         </Grid>
         <Text fontSize="14px" lineHeight="22px" fontWeight={700} color="neutrals.9">
-          {t`This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes.`}
+          {t`This is the first phase of the MASK staking event. You will be able to retrieve your staked MASK tokens and reward tokens only after the event concludes.`}
         </Text>
         <Box display="flex" justifyContent="center" width="100%">
           <Button
@@ -254,7 +254,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
               stakeModal.show()
             }}
           >
-            {account.isConnected ? t`Stake Mask Now` : t`Connect to stake`}
+            {account.isConnected ? t`Stake MASK Now` : t`Connect to stake`}
           </Button>
         </Box>
       </VStack>

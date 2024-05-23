@@ -39,7 +39,7 @@ function Index() {
             lineHeight="150%"
             fontWeight="500"
           >
-            {t`This website is specifically created for Mask investors and believers, where you can stake $Mask to earn token rewards!`}
+            {t`This website is specifically created for $MASK investors and believers, where you can stake $MASK to earn token rewards!`}
           </Text>
         </VStack>
         <StakeMaskStatusCard />

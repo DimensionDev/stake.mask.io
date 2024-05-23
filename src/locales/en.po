@@ -319,19 +319,25 @@ msgstr ""
 msgid "Stake $MASK for Rewards"
 msgstr ""
 
-#: src/components/StakeMaskStatusCard/index.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
-#: src/components/UserStatus/StakedMask.tsx
 msgid "Stake Mask"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "Stake Mask Now"
+msgid "Stake MASK"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Stake MASK Now"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "Stake Successfully"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Staked MASK"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
@@ -408,7 +414,7 @@ msgid "Third-Party Cookies: The Site may use cookies from third-party service pr
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes."
+msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked MASK tokens and reward tokens only after the event concludes."
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -417,7 +423,7 @@ msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By u
 msgstr ""
 
 #: src/routes/index.tsx
-msgid "This website is specifically created for Mask investors and believers, where you can stake $Mask to earn token rewards!"
+msgid "This website is specifically created for $MASK investors and believers, where you can stake $MASK to earn token rewards!"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
@@ -473,7 +479,7 @@ msgid "Unstake"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "Unstake Mask"
+msgid "Unstake MASK"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
