@@ -103,6 +103,7 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
           <MaskStakingButton
             isDisabled={disabled}
             isLoading={loading}
+            disabledIcon={hasUnstaked}
             onClick={async () => {
               if (!chainData?.[0]) return
               try {
