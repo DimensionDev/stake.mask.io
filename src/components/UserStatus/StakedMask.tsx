@@ -4,7 +4,7 @@ import { ActionCard } from './ActionCard'
 
 import { useMemo, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError, formatUnits } from 'viem'
-import { useAccount, useConfig, useReadContract, useWriteContract } from 'wagmi'
+import { useAccount, useChainId, useConfig, useReadContract, useSwitchChain, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../../abis/stakeManager.ts'
 import Question from '../../assets/question.svg?react'
@@ -28,6 +28,7 @@ import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.
 export function StakedMask(props: BoxProps) {
   const config = useConfig()
   const account = useAccount()
+  const currentChainId = useChainId()
   const { chainId, stakeManagerAddress } = usePoolStore()
   const { data: poolInfo } = usePoolInfo()
   const { isEnded, isLoadingPools } = usePoolState(poolInfo)
@@ -53,12 +54,13 @@ export function StakedMask(props: BoxProps) {
   const ratio = userInfo?.address_type === '1' ? 1.05 : 1
 
   const [waiting, setWaiting] = useState(false)
+  const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending: isWithdrawing } = useWriteContract()
   const toast = useToast({ title: t`Unstake` })
   const handleError = useHandleError()
 
   const isZero = chainData?.[0] ? chainData[0] === ZERO : true
-  const loading = isWithdrawing || waiting || isReadingUserInfos
+  const loading = isWithdrawing || waiting || isReadingUserInfos || isSwitchingChain
   const disabled = isZero
   const pendingStakingNumbers = isReadingUserInfos || loadingUserInfo || isLoadingPools
   return (
@@ -102,6 +104,9 @@ export function StakedMask(props: BoxProps) {
             onClick={async () => {
               if (!chainData?.[0]) return
               try {
+                if (currentChainId !== chainId) {
+                  await switchChainAsync({ chainId })
+                }
                 toast({
                   status: 'loading',
                   description: t`Confirm this transaction in your wallet.`,

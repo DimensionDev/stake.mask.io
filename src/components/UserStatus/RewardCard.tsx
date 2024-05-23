@@ -1,7 +1,7 @@
 import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useChainId, useConfig, useWriteContract } from 'wagmi'
+import { useChainId, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { rewardABI } from '../../abis/reward'
 import QuestionSVG from '../../assets/question.svg?react'
@@ -28,16 +28,18 @@ interface Props extends ActionCardProps {
 }
 
 export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlocked, ...props }: Props) {
-  const chainId = useChainId()
+  const currentChainId = useChainId()
   const config = useConfig()
+  const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending } = useWriteContract()
-  const { rewardAddress } = usePoolStore()
+  const { chainId, rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast({ title: t`Claim` })
   const handleError = useHandleError()
 
   const amount = reward?.amount ? +reward.amount : 0
-  const isDisabled = !unlocked || !amount || loadingUserInfo
+  const loading = loadingUserInfo || isSwitchingChain
+  const isDisabled = !unlocked || !amount || loading
   const tokenSymbol = reward?.name?.toUpperCase() || defaultSymbol
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
@@ -81,6 +83,13 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
               return
             }
             try {
+              if (currentChainId !== chainId) {
+                await switchChainAsync({ chainId })
+              }
+              toast({
+                status: 'loading',
+                description: t`Confirm this transaction in your wallet.`,
+              })
               const hash = await writeContractAsync({
                 abi: rewardABI,
                 address: rewardAddress,
@@ -110,7 +119,7 @@ export function RewardCard({ reward, tokenIcon, tokenSymbol: defaultSymbol, unlo
                   description: (
                     <TxToastDescription
                       link={txLink}
-                      text={t`Successfully unstaked ${tokenSymbol?.toUpperCase()} Tokens.`}
+                      text={t`Successfully claimed ${tokenSymbol?.toUpperCase()} Tokens.`}
                       color="primary.4"
                     />
                   ),
