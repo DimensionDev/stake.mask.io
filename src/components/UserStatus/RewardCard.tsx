@@ -1,11 +1,22 @@
 import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { memo } from 'react'
-import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useBalance, useChainId, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
+import { produce } from 'immer'
+import { memo, useMemo, useState } from 'react'
+import { TransactionExecutionError, UserRejectedRequestError, formatUnits } from 'viem'
+import {
+  useAccount,
+  useBalance,
+  useChainId,
+  useConfig,
+  useReadContract,
+  useSwitchChain,
+  useToken,
+  useWriteContract,
+} from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { rewardABI } from '../../abis/reward'
 import QuestionSVG from '../../assets/question.svg?react'
+import { queryClient } from '../../configs/queryClient.ts'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { formatNumber } from '../../helpers/formatNumber'
 import { resolveTxLink } from '../../helpers/resolveTxLink.ts'
@@ -20,6 +31,20 @@ import { TokenIcon } from '../TokenIcon'
 import { Tooltip } from '../Tooltip'
 import { TxToastDescription } from '../TxToastDescription.tsx'
 import { ActionCard, ActionCardProps } from './ActionCard'
+import { ProgressiveText } from '../ProgressiveText.tsx'
+
+function clearReward(address: string, rewardPoolId: number) {
+  queryClient.setQueriesData<UserInfo>({ queryKey: ['user-info', address] }, (info) => {
+    if (!info) return info
+    return produce(info, (draft) => {
+      const rewardPool = draft.reward_pool.find((x) => x.reward_pool_id === rewardPoolId)
+      if (rewardPool) {
+        rewardPool.amount = '0'
+        rewardPool.big_amount = '0'
+      }
+    })
+  })
+}
 
 interface Props extends ActionCardProps {
   tokenIcon?: string
@@ -35,22 +60,38 @@ export const RewardCard = memo(function RewardCard({
   unlocked,
   ...props
 }: Props) {
+  reward?.reward_pool_id
+  const account = useAccount()
   const currentChainId = useChainId()
   const config = useConfig()
-  const { chainId, rewardAddress } = usePoolStore()
-  const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
+  const { chainId, poolId, rewardAddress } = usePoolStore()
+  const [waiting, setWaiting] = useState(false)
+  const { switchChainAsync, isPending: switchingChain } = useSwitchChain()
   const { writeContractAsync, isPending } = useWriteContract()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const toast = useToast({ title: t`Claim` })
+  const { data: token } = useToken({ chainId, address: reward?.address })
   const handleError = useHandleError()
+  const { data: userReward, isLoading: loadingRewards } = useReadContract({
+    chainId,
+    abi: rewardABI,
+    address: rewardAddress,
+    functionName: 'userRewards',
+    args: reward?.reward_pool_id && account.address ? [reward.reward_pool_id, account.address] : undefined,
+  })
 
   const { data, isLoading: loadingRewardBalance } = useBalance({ chainId, address: reward?.address })
   const enoughReward = !data?.value || !reward ? false : data.value >= BigInt(reward.big_amount)
 
-  const amount = reward?.amount ? +reward.amount : 0
-  const loading = loadingUserInfo || isSwitchingChain || loadingRewardBalance
+  const decimals = token?.decimals || 18
+  const amount = useMemo(() => {
+    if (userReward !== undefined) return formatUnits(userReward, decimals)
+    return reward?.amount ? +reward.amount : 0
+  }, [userReward, decimals, reward?.amount])
+  const loading = loadingUserInfo || switchingChain || loadingRewardBalance || loadingRewards || waiting
   const isDisabled = loading || !unlocked || !amount || !enoughReward
   const tokenSymbol = reward?.name?.toUpperCase() || defaultSymbol
+
   return (
     <ActionCard display="flex" flexDir="column" {...props}>
       <Stack alignItems="center" flexGrow={1} spacing={5} mt={5}>
@@ -60,9 +101,15 @@ export const RewardCard = memo(function RewardCard({
           </Box>
           <Stack ml="10px">
             <Tooltip label={amount}>
-              <Text fontSize={24} fontWeight={700} lineHeight="24px">
+              <ProgressiveText
+                fontSize={24}
+                fontWeight={700}
+                lineHeight="24px"
+                loading={loadingRewards}
+                skeletonProps={{ w: '60px', height: '24px', rounded: '4px' }}
+              >
                 {formatMarketCap(amount)}
-              </Text>
+              </ProgressiveText>
             </Tooltip>
             <Text fontSize={16} fontWeight={700} lineHeight="16px">
               {tokenSymbol}
@@ -112,10 +159,12 @@ export const RewardCard = memo(function RewardCard({
                 description: <TxToastDescription link={txLink} text={t`Transaction submitted!`} />,
               })
 
+              setWaiting(true)
               const receipt = await waitForTransactionReceipt(config, {
                 hash,
                 confirmations: 1,
               })
+              setWaiting(false)
 
               if (receipt.status === 'reverted') {
                 toast({
@@ -134,6 +183,7 @@ export const RewardCard = memo(function RewardCard({
                     />
                   ),
                 })
+                if (account.address && poolId) clearReward(account.address, poolId)
                 await resultModal.show({
                   title: t`Claim`,
                   message: t`Claim Successfully`,
@@ -150,6 +200,8 @@ export const RewardCard = memo(function RewardCard({
                 return
               } else if (handleError(err)) return
               throw err
+            } finally {
+              setWaiting(false)
             }
           }}
         >
