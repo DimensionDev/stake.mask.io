@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { Box, BoxProps, Center, Icon, Image, VStack } from '@chakra-ui/react'
 import CrownSVG from '../../assets/crown.svg?react'
+import { Tooltip } from '../Tooltip.tsx'
 
 export interface RankingAvatarProps extends BoxProps {
   tag: ReactNode
@@ -43,9 +44,11 @@ export const RankingAvatar: FC<RankingAvatarProps> = ({ name, tag, src, isCrown,
         >
           {tag}
         </Box>
-        <Box fontSize="12px" fontWeight={400} lineHeight="150%" color="neutrals.1">
-          {name}
-        </Box>
+        <Tooltip label={name} hasArrow offset={[0, -2]}>
+          <Box fontSize="12px" fontWeight={400} lineHeight="150%" color="neutrals.1" maxW="100px" noOfLines={1}>
+            {name}
+          </Box>
+        </Tooltip>
       </VStack>
     </Center>
   )
