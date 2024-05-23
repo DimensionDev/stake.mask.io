@@ -11,7 +11,7 @@ function Index() {
     <Flex direction="column" w="100%" pos="relative" align="center">
       <HeaderImage />
       <VStack
-        mt="-5vw"
+        mt="-100px"
         px={{ base: '24px', xl: '48px' }}
         transition="200ms"
         pb="100px"
