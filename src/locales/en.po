@@ -234,6 +234,10 @@ msgstr ""
 msgid "MAX"
 msgstr ""
 
+#: src/components/UserStatus/RewardCard.tsx
+msgid "No enough {tokenSymbol} to claim"
+msgstr ""
+
 #: src/components/UserStatus/useClaimReward.tsx
 msgid "No matched pool found."
 msgstr ""
@@ -534,6 +538,10 @@ msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
 msgid "You have already claimed"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "You have already unstaked"
 msgstr ""
 
 #: src/components/UserStatus/useClaimReward.tsx
