@@ -1,5 +1,5 @@
 import { Box, BoxProps, HStack, Icon, Stack } from '@chakra-ui/react'
-import { t } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import { ActionCard } from './ActionCard'
 
 import { useMemo, useState } from 'react'
@@ -13,6 +13,8 @@ import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { formatNumber } from '../../helpers/formatNumber.ts'
 import { resolveTxLink } from '../../helpers/resolveTxLink.ts'
 import { useHandleError } from '../../hooks/useHandleError.ts'
+import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
+import { usePoolState } from '../../hooks/usePoolState.ts'
 import { useToast } from '../../hooks/useToast.tsx'
 import { useUserInfo } from '../../hooks/useUserInfo.ts'
 import { resultModal } from '../../modals/ResultModal.tsx'
@@ -28,6 +30,8 @@ export function StakedMask(props: BoxProps) {
   const chainId = useChainId()
   const account = useAccount()
   const { stakeManagerAddress } = usePoolStore()
+  const { data: poolInfo } = usePoolInfo()
+  const { isEnded, isLoadingPools } = usePoolState(poolInfo)
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
   const {
     isLoading: isReadingUserInfos,
@@ -56,23 +60,35 @@ export function StakedMask(props: BoxProps) {
   const isZero = chainData?.[0] ? chainData[0] === ZERO : true
   const loading = isWithdrawing || waiting || isReadingUserInfos
   const disabled = isZero
+  const pendingStakingNumbers = (isReadingUserInfos && loadingUserInfo) || isLoadingPools || isEnded
   return (
     <ActionCard title={t`Stake Mask`} display="flex" flexDir="column" {...props}>
       <Stack alignItems="center">
         <ProgressiveText
-          loading={isReadingUserInfos && loadingUserInfo}
+          loading={pendingStakingNumbers}
           fontSize={48}
           lineHeight="56px"
           fontWeight={700}
-          skeletonWidth="100px"
-          skeletonHeight="56px"
+          skeletonProps={{
+            rounded: '4px',
+            w: '100px',
+            h: '36px',
+            my: '10px',
+          }}
         >
           {staked ? formatMarketCap(staked, 4) : '-'}
         </ProgressiveText>
         <HStack alignItems="center" my="auto">
-          <ProgressiveText as="div" loading={loadingUserInfo} skeletonWidth="50px">
-            {t`+${userInfo?.score_per_hour} Points/h`}
-          </ProgressiveText>
+          <Trans>
+            <ProgressiveText
+              as="div"
+              loading={pendingStakingNumbers}
+              skeletonProps={{ h: '20px', w: '30px', rounded: '4px' }}
+            >
+              {`+${userInfo?.score_per_hour}`}
+            </ProgressiveText>
+            Points/h
+          </Trans>
           <Tooltip label={t`1 staked MASK will generate ${ratio} point per hour.`} placement="top" hasArrow>
             <Box as="span" w={6} h={6} cursor="pointer">
               <Icon as={Question} w="initial" h="initial" />

@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "+{0} Points/h"
+msgid "<0>+{0}</0>Points/h"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx

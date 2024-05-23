@@ -64,9 +64,9 @@ export function ProfileModal(props: ModalProps) {
           flexBasis={0}
           p={0}
           isLoading={updateUserInfo.isPending}
-          disabled={!username}
+          isDisabled={!username?.trim()}
           onClick={async () => {
-            if (!username) {
+            if (!username?.trim()) {
               toast({
                 status: 'error',
                 title: t`Profile Name is required`,
