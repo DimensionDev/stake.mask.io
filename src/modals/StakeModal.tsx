@@ -23,7 +23,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { Link } from '@tanstack/react-router'
 import { useLayoutEffect, useMemo, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError, parseUnits } from 'viem'
-import { useAccount, useBalance, useConfig, useToken, useWriteContract } from 'wagmi'
+import { useAccount, useBalance, useChainId, useConfig, useSwitchChain, useToken, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 import { StakeManagerABI } from '../abis/stakeManager.ts'
 import { StakeRequirementBoundary } from '../components/StakeRequirementBoundary/index.tsx'
@@ -54,6 +54,7 @@ export function StakeModal(props: ModalProps) {
   const config = useConfig()
   const { openConnectModal } = useConnectModal()
   const { data: pool } = usePoolInfo()
+  const currentChainId = useChainId()
   const { chainId, maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const [rawAmount, setRawAmount] = useState('')
   const balance = useBalance({ chainId, address: account.address, token: maskTokenAddress })
@@ -95,10 +96,11 @@ export function StakeModal(props: ModalProps) {
   }, [account.isConnected, isLoadingUserInfo, linkTwitter, linkedTwitter])
 
   const toast = useToast({ title: t`Stake` })
+  const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending } = useWriteContract()
   const handleError = useHandleError()
 
-  const loading = allowance.isLoading || isPending || waiting
+  const loading = allowance.isLoading || isPending || waiting || isSwitchingChain
   const disabled = allowance.isLoading || amount === ZERO
   return (
     <BaseModal title={t`Stake`} width={572} {...props}>
@@ -315,6 +317,9 @@ export function StakeModal(props: ModalProps) {
                     return
                   }
                   try {
+                    if (currentChainId !== chainId) {
+                      await switchChainAsync({ chainId })
+                    }
                     toast({
                       status: 'loading',
                       description: t`Confirm this transaction in your wallet.`,
