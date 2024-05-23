@@ -141,7 +141,7 @@ export function useClaimReward(
 
 function clearReward(address: string, rewardPoolId: number) {
   queryClient.setQueriesData<UserInfo>({ queryKey: ['user-info', address] }, (info) => {
-    if (!info) return info
+    if (!info?.reward_pool) return info
     return produce(info, (draft) => {
       const rewardPool = draft.reward_pool.find((x) => x.reward_pool_id === rewardPoolId)
       if (rewardPool) {
