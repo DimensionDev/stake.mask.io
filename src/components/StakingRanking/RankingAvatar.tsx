@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { Box, BoxProps, Center, Icon, Image, VStack } from '@chakra-ui/react'
 import CrownSVG from '../../assets/crown.svg?react'
+import { TextOverflowTooltip } from '../TextOverflowTooltip.tsx'
 
 export interface RankingAvatarProps extends BoxProps {
   tag: ReactNode
@@ -43,9 +44,21 @@ export const RankingAvatar: FC<RankingAvatarProps> = ({ name, tag, src, isCrown,
         >
           {tag}
         </Box>
-        <Box fontSize="12px" fontWeight={400} lineHeight="150%" color="neutrals.1">
-          {name}
-        </Box>
+        <TextOverflowTooltip label={name} placement="bottom">
+          <Box
+            fontSize="12px"
+            fontWeight={400}
+            lineHeight="150%"
+            color="neutrals.1"
+            textAlign="center"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+            w="84px"
+          >
+            {name}
+          </Box>
+        </TextOverflowTooltip>
       </VStack>
     </Center>
   )

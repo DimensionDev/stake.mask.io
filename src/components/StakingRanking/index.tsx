@@ -23,7 +23,7 @@ export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 
   return (
     <RankingAvatar
       src={convertTwitterAvatar(item.twitter_image)}
-      name={item.twitter_name}
+      name={item.twitter_display_name}
       tag={<Tooltip label={`${item.score} PTS`} hasArrow>{`${formatMarketCap(item.score)} PTS`}</Tooltip>}
       boxSize="64px"
       {...props}
