@@ -42,22 +42,23 @@
   ],
   "flagWords": [],
   "ignorePaths": [
-    "pnpm-lock.yaml",
-    "package.json",
-    "cspell.json",
-    "tsconfig.tsbuildinfo",
-    "node_modules/**",
-    "dist/**",
-    "build/**",
     ".next/**",
+    "build/**",
+    "cspell.json",
+    "dist/**",
+    "node_modules/**",
+    "package.json",
+    "pnpm-lock.yaml",
     "public/**",
+    "src/abis/**",
     "src/assets/**",
     "src/locales/**",
-    "tests/**",
     "src/routeTree.gen.ts",
-    "src/abis/**",
+    "src/routes/about.tsx",
     "src/routes/faqs.tsx",
-    "src/routes/about.tsx"
+    "tests/**",
+    "tsconfig.tsbuildinfo",
+    "vercel.json"
   ],
   "overrides": []
 }
