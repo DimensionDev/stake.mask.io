@@ -1,23 +1,22 @@
-import { Text, TextProps, Skeleton } from '@chakra-ui/react'
+import { Text, TextProps, Skeleton, SkeletonProps } from '@chakra-ui/react'
 import { forwardRef, memo, type ReactNode } from 'react'
 
 export interface ProgressiveTextProps extends TextProps {
   loading?: boolean
-  skeletonWidth?: string | number
-  skeletonHeight?: string | number
+  skeletonProps?: SkeletonProps
   fallback?: ReactNode
   component?: string
 }
 
 export const ProgressiveText = memo(
   forwardRef<HTMLDivElement | HTMLParagraphElement | HTMLSpanElement, ProgressiveTextProps>(function ProgressiveText(
-    { loading, skeletonWidth, skeletonHeight, children, fallback = '--', ...props },
+    { loading, skeletonProps, children, fallback = '--', ...props },
     ref,
   ) {
     if (loading) {
       return (
         <Text as="div" {...props}>
-          <Skeleton height={skeletonHeight ?? '1.5em'} width={skeletonWidth ?? '100%'} />
+          <Skeleton {...skeletonProps} />
         </Text>
       )
     }
