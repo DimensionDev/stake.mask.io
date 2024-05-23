@@ -24,6 +24,7 @@ import { ProgressiveText } from '../ProgressiveText.tsx'
 import { Tooltip } from '../Tooltip.tsx'
 import { TxToastDescription } from '../TxToastDescription.tsx'
 import { UnstakeRequirementBoundary } from '../UnstakeRequirementBoundary/index.tsx'
+import { useHasUnstaked } from './useHasUnstaked.ts'
 
 export const StakedMask = memo(function StakedMask(props: BoxProps) {
   const config = useConfig()
@@ -54,13 +55,14 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
   const ratio = userInfo?.address_type === '1' ? 1.05 : 1
 
   const [waiting, setWaiting] = useState(false)
+  const { data: hasUnstaked, isLoading: checkingUnstakedStatus } = useHasUnstaked()
   const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending: isWithdrawing } = useWriteContract()
   const toast = useToast({ title: t`Unstake` })
   const handleError = useHandleError()
 
   const isZero = chainData?.[0] ? chainData[0] === ZERO : true
-  const loading = isWithdrawing || waiting || isReadingUserInfos || isSwitchingChain
+  const loading = isWithdrawing || waiting || isReadingUserInfos || isSwitchingChain || checkingUnstakedStatus
   const disabled = isZero
   const pendingStakingNumbers = isReadingUserInfos || loadingUserInfo || isLoadingPools
   return (
@@ -164,7 +166,9 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
                 setWaiting(false)
               }
             }}
-          >{t`Unstake MASK`}</MaskStakingButton>
+          >
+            {hasUnstaked ? t`You have already unstaked` : t`Unstake MASK`}
+          </MaskStakingButton>
         </UnstakeRequirementBoundary>
       </Stack>
     </ActionCard>

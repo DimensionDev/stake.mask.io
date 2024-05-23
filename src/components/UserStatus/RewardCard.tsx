@@ -84,7 +84,7 @@ export const RewardCard = memo(function RewardCard({
           alignSelf="stretch"
           color="neutrals.9"
           rightIcon={
-            !unlocked || noEnoughReward ? (
+            (!unlocked || noEnoughReward) && !hasClaimed ? (
               <Tooltip
                 label={noEnoughReward ? t`No enough ${tokenSymbol} to claim` : t`You can claim after the event ends.`}
                 shouldWrapChildren
