@@ -6,7 +6,7 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { usePoolStore } from '../../store/poolStore'
 import { RewardCard } from './RewardCard'
 import { StakedMask } from './StakedMask'
-import { UserTotalPoints } from './UserTotalPoint'
+import { UserTotalPoints } from './UserTotalPoints'
 
 export interface UserStatusProps extends GridProps {}
 

@@ -84,6 +84,7 @@ msgid "Confirm"
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
+#: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/modals/StakeModal.tsx
 msgid "Confirm this transaction in your wallet."
@@ -352,12 +353,12 @@ msgstr ""
 msgid "Staking Ranking"
 msgstr ""
 
-#: src/modals/StakeModal.tsx
-msgid "Successfully staked MASK Tokens."
+#: src/components/UserStatus/RewardCard.tsx
+msgid "Successfully claimed {0} Tokens."
 msgstr ""
 
-#: src/components/UserStatus/RewardCard.tsx
-msgid "Successfully unstaked {0} Tokens."
+#: src/modals/StakeModal.tsx
+msgid "Successfully staked MASK Tokens."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
@@ -438,7 +439,7 @@ msgstr ""
 msgid "Total MASK Staked"
 msgstr ""
 
-#: src/components/UserStatus/UserTotalPoint.tsx
+#: src/components/UserStatus/UserTotalPoints.tsx
 msgid "Total points"
 msgstr ""
 

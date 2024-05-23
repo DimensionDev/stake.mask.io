@@ -35,11 +35,13 @@ export interface UserInfo {
   reward_pool: Array<{
     reward_pool_id: number
     amount: string
+    /** token address */
+    address: HexString
     big_amount: string
     /** token name */
     name: string
     /** Merkle tree */
-    proof: Array<`0x${string}`>
+    proof: Array<HexString>
   }>
 }
 
