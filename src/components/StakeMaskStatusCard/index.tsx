@@ -193,7 +193,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
             spacing={6}
           >
             {pool?.apr !== undefined ? (
-              <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`} hasArrow placement="top">
+              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top">
                 <Box
                   h="56px"
                   fontSize="32px"
@@ -202,7 +202,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
                   color="neutrals.8"
                   letterSpacing="-0.32px"
                 >
-                  {formatNumber(+pool.apr * 100, 2)}%
+                  {formatNumber(pool.apr, 2)}%
                 </Box>
               </Tooltip>
             ) : (

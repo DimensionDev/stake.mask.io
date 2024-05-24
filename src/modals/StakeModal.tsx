@@ -260,8 +260,8 @@ export function StakeModal(props: ModalProps) {
           <HStack justifyContent="space-between">
             <Text>{t`APR`}</Text>
             {pool?.apr !== undefined ? (
-              <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`} hasArrow placement="top">
-                <Text>{formatNumber(+pool.apr * 110, 2)}%</Text>
+              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top">
+                <Text>{formatNumber(pool.apr, 2)}%</Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="100px" />

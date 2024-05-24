@@ -49,7 +49,7 @@ export type UserInfoResponse = Response<UserInfo>
 
 export interface PoolInfo {
   pool_id: number
-  apr: string
+  apr: number
   amount: string
   score: number
   /** in seconds */
