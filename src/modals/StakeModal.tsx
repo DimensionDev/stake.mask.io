@@ -244,7 +244,7 @@ export function StakeModal(props: ModalProps) {
             {pool?.end_time ? (
               <Text color="secondary.3">
                 {/* cspell:ignore UTCZ */}
-                {formatSeconds(pool.end_time, 'hh:mm d/MM/YYYY (UTCZ)').replace(/:00\)$/, ')')}
+                {formatSeconds(pool.end_time, 'HH:mm D/MM/YYYY (UTCZ)').replace(/:00\)$/, ')')}
               </Text>
             ) : (
               <Skeleton height="16px" width="100px" />
