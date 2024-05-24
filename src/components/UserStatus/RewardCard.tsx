@@ -50,7 +50,11 @@ export const RewardCard = memo(function RewardCard({
     defaultSymbol: defaultSymbol || token?.symbol,
   })
 
-  const { data, isLoading: loadingRewardBalance } = useBalance({ chainId, address: reward?.address })
+  const { data, isLoading: loadingRewardBalance } = useBalance({
+    chainId,
+    address: rewardAddress,
+    token: reward?.address,
+  })
   const noEnoughReward = data?.value !== undefined && reward ? data.value < BigInt(reward.big_amount) : false
 
   const amount = reward?.amount ? +reward.amount : 0
