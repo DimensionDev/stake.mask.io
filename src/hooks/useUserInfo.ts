@@ -9,8 +9,7 @@ import { convertTwitterAvatar } from '../helpers/convertTwitterAvatar'
 
 export function useUserInfo() {
   const { address } = useAccount()
-  const store = usePoolStore()
-  const poolId = store.poolId
+  const { poolId } = usePoolStore()
   return useQuery({
     enabled: !!poolId && !!address,
     queryKey: ['user-info', address, poolId],

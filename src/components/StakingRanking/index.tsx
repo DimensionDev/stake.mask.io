@@ -9,6 +9,7 @@ import RightGlowImage from '../../assets/right-glow.webp'
 import { FIREFLY_API_ROOT } from '../../constants/api.ts'
 import { convertTwitterAvatar } from '../../helpers/convertTwitterAvatar.ts'
 import { fetchJSON } from '../../helpers/fetchJSON.ts'
+import { formatEthereumAddress } from '../../helpers/formatEthereumAddress.ts'
 import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
 import { usePoolStore } from '../../store/poolStore.ts'
 import { StakeRankItem, StakeRankResponse } from '../../types/api.ts'
@@ -23,7 +24,7 @@ export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 
   return (
     <RankingAvatar
       src={convertTwitterAvatar(item.twitter_image)}
-      name={item.twitter_display_name}
+      name={item.twitter_display_name || formatEthereumAddress(item.address, 4)}
       tag={<Tooltip label={`${item.score} PTS`} hasArrow>{`${formatMarketCap(item.score)} PTS`}</Tooltip>}
       boxSize="64px"
       {...props}
