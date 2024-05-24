@@ -5,7 +5,7 @@ on:
     branches:
       - main
 
-  # start via Actions tab in Github UI
+  # start via Actions tab in GitHub UI
   workflow_dispatch:
 
 jobs:
