@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: stakemaskio\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-22 09:35\n"
+"PO-Revision-Date: 2024-05-23 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Crowdin-File-ID: 856\n"
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "+{0} Points/h"
+msgid "<0>+{0}</0>Points/h"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
@@ -75,12 +75,12 @@ msgid "Checking"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
-#: src/components/UserStatus/RewardCard.tsx
-#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/useClaimReward.tsx
+#: src/components/UserStatus/useClaimReward.tsx
 msgid "Claim"
 msgstr ""
 
-#: src/components/UserStatus/RewardCard.tsx
+#: src/components/UserStatus/useClaimReward.tsx
 msgid "Claim Successfully"
 msgstr ""
 
@@ -90,6 +90,7 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
+#: src/components/UserStatus/useClaimReward.tsx
 #: src/modals/StakeModal.tsx
 msgid "Confirm this transaction in your wallet."
 msgstr ""
@@ -135,6 +136,11 @@ msgstr ""
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 #: src/components/StakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Ended"
+msgstr ""
+
+#: src/hooks/useHandleError.ts
+#: src/hooks/useHandleError.ts
+msgid "Error"
 msgstr ""
 
 #: src/components/UserStatus/index.tsx
@@ -233,6 +239,10 @@ msgid "MAX"
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
+msgid "No enough {tokenSymbol} to claim"
+msgstr ""
+
+#: src/components/UserStatus/useClaimReward.tsx
 msgid "No matched pool found."
 msgstr ""
 
@@ -318,19 +328,25 @@ msgstr ""
 msgid "Stake $MASK for Rewards"
 msgstr ""
 
-#: src/components/StakeMaskStatusCard/index.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
-#: src/components/UserStatus/StakedMask.tsx
 msgid "Stake Mask"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "Stake Mask Now"
+msgid "Stake MASK"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Stake MASK Now"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "Stake Successfully"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "Staked MASK"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
@@ -345,12 +361,12 @@ msgstr ""
 msgid "Staking Ranking"
 msgstr ""
 
-#: src/modals/StakeModal.tsx
-msgid "Successfully staked MASK Tokens."
+#: src/components/UserStatus/useClaimReward.tsx
+msgid "Successfully claimed {0} Tokens."
 msgstr ""
 
-#: src/components/UserStatus/RewardCard.tsx
-msgid "Successfully unstaked {0} Tokens."
+#: src/modals/StakeModal.tsx
+msgid "Successfully staked MASK Tokens."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
@@ -406,7 +422,7 @@ msgid "Third-Party Cookies: The Site may use cookies from third-party service pr
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked Mask tokens and reward tokens only after the event concludes."
+msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked MASK tokens and reward tokens only after the event concludes."
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
@@ -415,7 +431,7 @@ msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By u
 msgstr ""
 
 #: src/routes/index.tsx
-msgid "This website is specifically created for Mask investors and believers, where you can stake $Mask to earn token rewards!"
+msgid "This website is specifically created for $MASK investors and believers, where you can stake $MASK to earn token rewards!"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
@@ -430,7 +446,7 @@ msgstr ""
 msgid "Total MASK Staked"
 msgstr ""
 
-#: src/components/UserStatus/UserTotalPoint.tsx
+#: src/components/UserStatus/UserTotalPoints.tsx
 msgid "Total points"
 msgstr ""
 
@@ -439,14 +455,14 @@ msgid "Total Rewards"
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
-#: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/StakedMask.tsx
+#: src/components/UserStatus/useClaimReward.tsx
 #: src/modals/StakeModal.tsx
 msgid "Transaction failed."
 msgstr ""
 
-#: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/StakedMask.tsx
+#: src/components/UserStatus/useClaimReward.tsx
 #: src/modals/StakeModal.tsx
 msgid "Transaction submitted!"
 msgstr ""
@@ -471,7 +487,7 @@ msgid "Unstake"
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "Unstake Mask"
+msgid "Unstake MASK"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -524,7 +540,15 @@ msgid "You can manage and delete cookies through your browser settings. Please n
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
-msgid "You have successfully claimed {0} RSS3."
+msgid "You have already claimed"
+msgstr ""
+
+#: src/components/UserStatus/StakedMask.tsx
+msgid "You have already unstaked"
+msgstr ""
+
+#: src/components/UserStatus/useClaimReward.tsx
+msgid "You have successfully claimed {0} {tokenSymbol}."
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -532,7 +556,7 @@ msgid "You have successfully staked {rawAmount} MASK."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
-msgid "You have successfully unstaked {staked} MASK"
+msgid "You have successfully unstaked {0} MASK"
 msgstr ""
 
 #: src/components/Footer/index.tsx
@@ -544,8 +568,8 @@ msgid "Your wallet address is on the blacklist"
 msgstr ""
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
-#: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/StakedMask.tsx
+#: src/components/UserStatus/useClaimReward.tsx
 #: src/modals/StakeModal.tsx
 msgid "Your wallet cancelled the transaction."
 msgstr ""
