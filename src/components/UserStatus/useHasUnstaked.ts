@@ -26,7 +26,7 @@ export function useHasUnstaked() {
           poolId,
         },
         fromBlock,
-        toBlock,
+        toBlock: 'latest',
       })
 
       const logs = await client.getFilterLogs({ filter })

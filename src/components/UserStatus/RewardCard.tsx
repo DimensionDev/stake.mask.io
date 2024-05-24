@@ -34,7 +34,11 @@ export const RewardCard = memo(function RewardCard({
   const account = useAccount()
   const { chainId, rewardAddress } = usePoolStore()
   const { data: token } = useToken({ chainId, address: reward?.address })
-  const { data: userReward, isLoading: loadingRewards } = useReadContract({
+  const {
+    data: userReward,
+    isLoading: loadingRewards,
+    refetch: recheckUserReward,
+  } = useReadContract({
     chainId,
     abi: rewardABI,
     address: rewardAddress,
@@ -95,7 +99,10 @@ export const RewardCard = memo(function RewardCard({
             ) : undefined
           }
           className="purple-gradient-button"
-          onClick={claimReward}
+          onClick={async () => {
+            await claimReward()
+            await recheckUserReward()
+          }}
         >
           {claiming ? (
             <Spinner h="24px" w="24px" color="neutrals.9" />
