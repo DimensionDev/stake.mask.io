@@ -1,23 +1,24 @@
 import { Box, Center, Flex, Heading, Icon, Image, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useQuery } from '@tanstack/react-query'
-import { FC } from 'react'
+import { ComponentType } from 'react'
 import urlcat from 'urlcat'
-import FileSVG from '../../assets/file.svg?react'
-import LeftGlowImage from '../../assets/left-glow.webp'
-import RightGlowImage from '../../assets/right-glow.webp'
-import { FIREFLY_API_ROOT } from '../../constants/api.ts'
-import { convertTwitterAvatar } from '../../helpers/convertTwitterAvatar.ts'
-import { fetchJSON } from '../../helpers/fetchJSON.ts'
-import { formatEthereumAddress } from '../../helpers/formatEthereumAddress.ts'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
-import { usePoolStore } from '../../store/poolStore.ts'
-import { StakeRankItem, StakeRankResponse } from '../../types/api.ts'
-import { Spinner } from '../Spinner.tsx'
-import { Tooltip } from '../Tooltip.tsx'
-import { RankingAvatar, RankingAvatarProps } from './RankingAvatar.tsx'
 
-export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 'tag' | 'name' | 'src'>> = ({
+import FileSVG from '@/assets/file.svg?react'
+import LeftGlowImage from '@/assets/left-glow.webp'
+import RightGlowImage from '@/assets/right-glow.webp'
+import { Spinner } from '@/components/Spinner.tsx'
+import { RankingAvatar, RankingAvatarProps } from '@/components/StakingRanking/RankingAvatar.tsx'
+import { Tooltip } from '@/components/Tooltip.tsx'
+import { FIREFLY_API_ROOT } from '@/constants/api.ts'
+import { convertTwitterAvatar } from '@/helpers/convertTwitterAvatar.ts'
+import { fetchJSON } from '@/helpers/fetchJSON.ts'
+import { formatEthereumAddress } from '@/helpers/formatEthereumAddress.ts'
+import { formatMarketCap } from '@/helpers/formatMarketCap.ts'
+import { usePoolStore } from '@/store/poolStore.ts'
+import { StakeRankItem, StakeRankResponse } from '@/types/api.ts'
+
+export const RankingItem: ComponentType<{ item: StakeRankItem } & Omit<RankingAvatarProps, 'tag' | 'name' | 'src'>> = ({
   item,
   ...props
 }) => {
@@ -32,7 +33,7 @@ export const RankingItem: FC<{ item: StakeRankItem } & Omit<RankingAvatarProps, 
   )
 }
 
-export const StakingRankingList: FC = () => {
+export const StakingRankingList: ComponentType = () => {
   const poolStore = usePoolStore()
   const {
     data = [],
@@ -94,7 +95,7 @@ export const StakingRankingList: FC = () => {
   )
 }
 
-export const StakingRanking: FC = () => {
+export const StakingRanking: ComponentType = () => {
   return (
     <Box w="100%" maxW="maxW" pos="relative" border="1px solid" borderColor="neutrals.6" rounded="16px">
       <Image

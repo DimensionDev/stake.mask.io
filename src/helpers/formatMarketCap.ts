@@ -20,7 +20,7 @@ export function formatMarketCap(amount: BigNumber.Value, digits = 2) {
     let suffixIndex = 0
     while (bigNumber.isGreaterThanOrEqualTo(1000) && suffixIndex < suffixes.length - 1) {
       bigNumber = bigNumber.dividedBy(1000)
-      suffixIndex++
+      suffixIndex += 1
     }
     return prefix + parseFloat(bigNumber.toFixed(digits)) + (suffixes[suffixIndex] ?? '')
   }

@@ -1,11 +1,12 @@
-import { createRootRoute, Outlet, ScrollRestoration } from '@tanstack/react-router'
-import { Nav } from '../components/Nav'
-import { Footer } from '../components/Footer'
 import { Flex } from '@chakra-ui/react'
-import { AcceptCookie } from '../components/AcceptCookie.tsx'
-import { Modals } from '../modals/index.tsx'
+import { createRootRoute, Outlet, ScrollRestoration } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { env } from '../constants/env.ts'
+
+import { AcceptCookie } from '@/components/AcceptCookie.tsx'
+import { Footer } from '@/components/Footer'
+import { Nav } from '@/components/Nav'
+import { env } from '@/constants/env.ts'
+import { Modals } from '@/modals/index.tsx'
 
 export const Route = createRootRoute({
   component: () => (

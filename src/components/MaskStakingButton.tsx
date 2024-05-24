@@ -1,5 +1,6 @@
 import { Button, ButtonProps, Icon } from '@chakra-ui/react'
-import MaskLogo from '../assets/mask-logo.svg?react'
+
+import MaskLogo from '@/assets/mask-logo.svg?react'
 
 interface Props extends ButtonProps {
   disabledIcon?: boolean

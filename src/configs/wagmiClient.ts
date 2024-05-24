@@ -1,4 +1,4 @@
-import { connectorsForWallets, type Chain } from '@rainbow-me/rainbowkit'
+import { type Chain, connectorsForWallets } from '@rainbow-me/rainbowkit'
 import {
   coinbaseWallet,
   metaMaskWallet,
@@ -7,10 +7,10 @@ import {
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
 import { createClient, http } from 'viem'
-import { createConfig, type Config } from 'wagmi'
+import { type Config, createConfig } from 'wagmi'
 import { mainnet, sepolia } from 'wagmi/chains'
 
-import { env } from '../constants/env'
+import { env } from '@/constants/env'
 
 export const chains =
   import.meta.env.VITE_CHANNEL === 'production'

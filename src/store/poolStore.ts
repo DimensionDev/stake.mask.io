@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
-import { readStakeManager } from '../helpers/readStakeManager'
-import { env } from '../constants/env'
+
+import { env } from '@/constants/env'
+import { readStakeManager } from '@/helpers/readStakeManager'
 
 interface PollState {
   chainId: number

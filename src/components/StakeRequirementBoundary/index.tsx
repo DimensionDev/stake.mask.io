@@ -1,11 +1,12 @@
 import { ButtonProps } from '@chakra-ui/react'
-import { PropsWithChildren, memo } from 'react'
-import { BlackListBoundary } from './BlackListBoundary'
-import { TimeRangeBoundary } from './TimeRangeBoundary'
-import { MaskBalanceBoundary } from './MaskBalanceBoundary'
-import { MaskApproveBoundary } from './MaskApproveBoundary'
-import { RegionBoundary } from './RegionBoundary'
-import { ConnectBoundary } from './ConnectBoundary'
+import { memo, PropsWithChildren } from 'react'
+
+import { BlackListBoundary } from '@/components/StakeRequirementBoundary/BlackListBoundary'
+import { ConnectBoundary } from '@/components/StakeRequirementBoundary/ConnectBoundary'
+import { MaskApproveBoundary } from '@/components/StakeRequirementBoundary/MaskApproveBoundary'
+import { MaskBalanceBoundary } from '@/components/StakeRequirementBoundary/MaskBalanceBoundary'
+import { RegionBoundary } from '@/components/StakeRequirementBoundary/RegionBoundary'
+import { TimeRangeBoundary } from '@/components/StakeRequirementBoundary/TimeRangeBoundary'
 
 interface BoundaryProps extends PropsWithChildren {
   amount: bigint

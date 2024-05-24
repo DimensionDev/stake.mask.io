@@ -1,9 +1,9 @@
-import { type FC, lazy, Suspense } from 'react'
 import { Center, Spinner } from '@chakra-ui/react'
+import { ComponentType, lazy, Suspense } from 'react'
 
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
-export const MaskNetworkSplice: FC = () => {
+export const MaskNetworkSplice: ComponentType = () => {
   return (
     <Center
       pos="relative"

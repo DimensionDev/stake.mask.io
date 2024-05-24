@@ -1,7 +1,8 @@
 import { readContracts } from 'wagmi/actions'
-import { StakeManagerABI } from '../abis/stakeManager'
-import { config } from '../configs/wagmiClient'
-import { env } from '../constants/env'
+
+import { StakeManagerABI } from '@/abis/stakeManager'
+import { config } from '@/configs/wagmiClient'
+import { env } from '@/constants/env'
 
 const stakeManagerContract = {
   chainId: env.external.CHAIN_ID,

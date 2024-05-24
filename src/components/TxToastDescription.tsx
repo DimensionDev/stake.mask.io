@@ -1,5 +1,6 @@
 import { Icon, Link, Text, TextProps } from '@chakra-ui/react'
-import LinkSVG from '../assets/link.svg?react'
+
+import LinkSVG from '@/assets/link.svg?react'
 
 interface Props extends TextProps {
   link: string

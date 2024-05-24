@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchJSON } from '../helpers/fetchJSON'
-import { FIREFLY_API_ROOT } from '../constants/api'
-import { UserInfo, UserInfoResponse } from '../types/api'
 import urlcat from 'urlcat'
 import { useAccount } from 'wagmi'
-import { usePoolStore } from '../store/poolStore'
-import { convertTwitterAvatar } from '../helpers/convertTwitterAvatar'
+
+import { FIREFLY_API_ROOT } from '@/constants/api'
+import { convertTwitterAvatar } from '@/helpers/convertTwitterAvatar'
+import { fetchJSON } from '@/helpers/fetchJSON'
+import { usePoolStore } from '@/store/poolStore'
+import { UserInfo, UserInfoResponse } from '@/types/api'
 
 export function useUserInfo() {
   const { address } = useAccount()

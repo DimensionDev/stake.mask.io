@@ -3,27 +3,28 @@ import {
   Center,
   Divider,
   Flex,
+  type FlexProps,
   Icon,
   SkeletonCircle,
   useBreakpointValue,
   useDisclosure,
-  type FlexProps,
 } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { Link } from '@tanstack/react-router'
-import { FC, useMemo } from 'react'
-import LogoSVG from '../../assets/logo.svg?react'
-import { useUserInfo } from '../../hooks/useUserInfo.ts'
-import { ConnectButton } from '../ConnectButton.tsx'
-import { TwitterAvatar } from '../TwitterAvatar.tsx'
-import { DesktopMenu } from './DesktopMenu.tsx'
-import { MenuButton } from './MenuButton.tsx'
-import { MobileMenu } from './MobileMenu.tsx'
-import { profileModal } from '../../modals/ProfileModal.tsx'
+import { ComponentType, useMemo } from 'react'
+
+import LogoSVG from '@/assets/logo.svg?react'
+import { ConnectButton } from '@/components/ConnectButton.tsx'
+import { DesktopMenu } from '@/components/Nav/DesktopMenu.tsx'
+import { MenuButton } from '@/components/Nav/MenuButton.tsx'
+import { MobileMenu } from '@/components/Nav/MobileMenu.tsx'
+import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
+import { useUserInfo } from '@/hooks/useUserInfo.ts'
+import { profileModal } from '@/modals/ProfileModal.tsx'
 
 export interface NavProps extends FlexProps {}
 
-export const Nav: FC<NavProps> = ({ ...props }) => {
+export const Nav: ComponentType<NavProps> = ({ ...props }) => {
   const isHiddenTabs = useBreakpointValue({ base: true, lg: false })
   const { data: user, isLoading: isLoadingUserInfo } = useUserInfo()
   const mobileMenu = useDisclosure()
@@ -102,7 +103,7 @@ export const Nav: FC<NavProps> = ({ ...props }) => {
           background: mobileMenu.isOpen ? 'rgba(0, 0, 0, 0.80)' : undefined,
         }}
       />
-      <MobileMenu isOpen={isHiddenTabs && mobileMenu.isOpen} onClose={mobileMenu.onClose} menus={menus} />
+      <MobileMenu isOpen={isHiddenTabs ? mobileMenu.isOpen : false} onClose={mobileMenu.onClose} menus={menus} />
     </Center>
   )
 }

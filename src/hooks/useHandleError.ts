@@ -1,7 +1,8 @@
 import { t } from '@lingui/macro'
 import { useCallback } from 'react'
 import { BaseError, ContractFunctionExecutionError, TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useToast } from './useToast'
+
+import { useToast } from '@/hooks/useToast'
 
 export function useHandleError() {
   const toast = useToast()

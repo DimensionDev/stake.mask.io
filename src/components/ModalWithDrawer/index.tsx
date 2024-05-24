@@ -1,17 +1,17 @@
-import type { FC, PropsWithChildren } from 'react'
 import {
-  Modal,
-  useBreakpointValue,
-  ModalOverlay,
-  ModalContent,
   Drawer,
-  DrawerOverlay,
   DrawerContent,
-  type ModalProps,
-  type DrawerProps,
-  type ModalContentProps,
   type DrawerContentProps,
+  DrawerOverlay,
+  type DrawerProps,
+  Modal,
+  ModalContent,
+  type ModalContentProps,
+  ModalOverlay,
+  type ModalProps,
+  useBreakpointValue,
 } from '@chakra-ui/react'
+import type { ComponentType, PropsWithChildren } from 'react'
 
 export interface ModalWithDrawerProps extends PropsWithChildren {
   isOpen: boolean
@@ -22,7 +22,7 @@ export interface ModalWithDrawerProps extends PropsWithChildren {
   drawerContentProps?: DrawerContentProps
 }
 
-export const ModalWithDrawer: FC<ModalWithDrawerProps> = ({
+export const ModalWithDrawer: ComponentType<ModalWithDrawerProps> = ({
   isOpen,
   onClose,
   modalProps,

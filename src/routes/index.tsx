@@ -1,10 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Flex, Heading, VStack, Text } from '@chakra-ui/react'
-import { StakeMaskStatusCard } from '../components/StakeMaskStatusCard'
-import { UserStatus } from '../components/UserStatus'
-import { StakingRanking } from '../components/StakingRanking'
-import { HeaderImage } from '../components/HeaderImage'
+import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { createFileRoute } from '@tanstack/react-router'
+
+import { HeaderImage } from '@/components/HeaderImage'
+import { StakeMaskStatusCard } from '@/components/StakeMaskStatusCard'
+import { StakingRanking } from '@/components/StakingRanking'
+import { UserStatus } from '@/components/UserStatus'
 
 function Index() {
   return (

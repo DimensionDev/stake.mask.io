@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import urlcat from 'urlcat'
-import { FIREFLY_API_ROOT } from '../constants/api'
-import { fetchJSON } from '../helpers/fetchJSON'
-import { PoolInfoResponse } from '../types/api'
-import { usePoolStore } from '../store/poolStore'
+
+import { FIREFLY_API_ROOT } from '@/constants/api'
+import { fetchJSON } from '@/helpers/fetchJSON'
+import { usePoolStore } from '@/store/poolStore'
+import { PoolInfoResponse } from '@/types/api'
 
 /**
  * Get info of current pool

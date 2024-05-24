@@ -1,15 +1,15 @@
-import ReactDOM from 'react-dom/client'
-import * as Sentry from '@sentry/react'
-import './styles/index.css'
-
-import { App } from './App'
-import { setLocale } from './i18n'
-import { Locale } from './types/enum'
-
+import '@/styles/index.css'
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
+
+import * as Sentry from '@sentry/react'
+import ReactDOM from 'react-dom/client'
+
+import { App } from '@/App'
+import { setLocale } from '@/i18n/index.ts'
+import { Locale } from '@/types/enum.ts'
 
 setLocale(Locale.en)
 

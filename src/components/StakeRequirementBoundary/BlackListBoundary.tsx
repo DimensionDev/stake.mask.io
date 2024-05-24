@@ -1,15 +1,16 @@
 import { Button, ButtonProps, Icon, Link, ScaleFade, Text } from '@chakra-ui/react'
-import { Trans, t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { skipToken, useQuery } from '@tanstack/react-query'
 import { omit } from 'lodash-es'
-import { PropsWithChildren, memo } from 'react'
+import { memo, PropsWithChildren } from 'react'
 import urlcat from 'urlcat'
 import { useAccount } from 'wagmi'
-import QuestionSVG from '../../assets/question.svg?react'
-import { FIREFLY_API_ROOT } from '../../constants/api'
-import { fetchJSON } from '../../helpers/fetchJSON'
-import { AddressSecurityResponse } from '../../types/api'
-import { Tooltip } from '../Tooltip'
+
+import QuestionSVG from '@/assets/question.svg?react'
+import { Tooltip } from '@/components/Tooltip'
+import { FIREFLY_API_ROOT } from '@/constants/api'
+import { fetchJSON } from '@/helpers/fetchJSON'
+import { AddressSecurityResponse } from '@/types/api'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps

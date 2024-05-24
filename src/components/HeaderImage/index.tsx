@@ -1,6 +1,7 @@
-import { type FC, lazy, Suspense } from 'react'
 import { Center, CenterProps, Image } from '@chakra-ui/react'
-import KvImage from '../../assets/kv.webp'
+import { ComponentType, lazy, Suspense } from 'react'
+
+import KvImage from '@/assets/kv.webp'
 
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
@@ -8,7 +9,7 @@ export interface HeaderImageProps extends CenterProps {
   onlyBg?: boolean
 }
 
-export const HeaderImage: FC<HeaderImageProps> = ({ onlyBg = false, ...props }) => {
+export const HeaderImage: ComponentType<HeaderImageProps> = ({ onlyBg = false, ...props }) => {
   return (
     <Center
       pos="relative"

@@ -4,37 +4,38 @@ import {
   Button,
   Flex,
   Grid,
-  HStack,
   Heading,
+  HStack,
   Icon,
   Skeleton,
   Stack,
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { Trans, t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { FC } from 'react'
+import { ComponentType } from 'react'
 import { useAccount } from 'wagmi'
-import MaskLogoSVG from '../../assets/mask-logo.svg?react'
-import No1SVG from '../../assets/no-1.svg?react'
-import PlusSVG from '../../assets/plus.svg?react'
-import QuestionSVG from '../../assets/question.svg?react'
-import RightArrow from '../../assets/right-arrow.svg?react'
-import Rss3EthSVG from '../../assets/rss3-eth.svg?react'
-import TonEthSVG from '../../assets/ton-eth.svg?react'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
-import { formatNumber } from '../../helpers/formatNumber.ts'
-import { formatSeconds } from '../../helpers/formatSeconds.ts'
-import { usePoolInfo } from '../../hooks/usePoolInfo.ts'
-import { usePoolState } from '../../hooks/usePoolState.ts'
-import { stakeModal } from '../../modals/StakeModal.tsx'
-import { Tooltip } from '../Tooltip.tsx'
-import { ActivityStatusTag } from './ActivityStatusTag.tsx'
+
+import MaskLogoSVG from '@/assets/mask-logo.svg?react'
+import No1SVG from '@/assets/no-1.svg?react'
+import PlusSVG from '@/assets/plus.svg?react'
+import QuestionSVG from '@/assets/question.svg?react'
+import RightArrow from '@/assets/right-arrow.svg?react'
+import Rss3EthSVG from '@/assets/rss3-eth.svg?react'
+import TonEthSVG from '@/assets/ton-eth.svg?react'
+import { ActivityStatusTag } from '@/components/StakeMaskStatusCard/ActivityStatusTag.tsx'
+import { Tooltip } from '@/components/Tooltip.tsx'
+import { formatMarketCap } from '@/helpers/formatMarketCap.ts'
+import { formatNumber } from '@/helpers/formatNumber.ts'
+import { formatSeconds } from '@/helpers/formatSeconds.ts'
+import { usePoolInfo } from '@/hooks/usePoolInfo.ts'
+import { usePoolState } from '@/hooks/usePoolState.ts'
+import { stakeModal } from '@/modals/StakeModal.tsx'
 
 export interface StakeMaskStatusCardProps extends BoxProps {}
 
-export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) => {
+export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ ...props }) => {
   const account = useAccount()
   const { data: pool, isLoading } = usePoolInfo()
   const rewardTokens = pool ? Object.values(pool.reward_pool) : []
@@ -194,7 +195,7 @@ export const StakeMaskStatusCard: FC<StakeMaskStatusCardProps> = ({ ...props }) 
                 </Box>
               </Tooltip>
             ) : (
-              <Skeleton h="32px" my="12px" width="100px" fontSize="32px"></Skeleton>
+              <Skeleton h="32px" my="12px" width="100px" fontSize="32px" />
             )}
             <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
               {t`APR`}

@@ -1,9 +1,15 @@
-import { FC, useMemo } from 'react'
-import { Icon, Tooltip as RawTooltip } from '@chakra-ui/react'
-import { TooltipProps } from '@chakra-ui/react'
-import TooltipArrow from '../assets/tooltip-arrow.svg?react'
+import { Icon, Tooltip as RawTooltip, TooltipProps } from '@chakra-ui/react'
+import { ComponentType, useMemo } from 'react'
 
-export const Tooltip: FC<TooltipProps> = ({ children, label, hasArrow = true, placement = 'top', ...props }) => {
+import TooltipArrow from '@/assets/tooltip-arrow.svg?react'
+
+export const Tooltip: ComponentType<TooltipProps> = ({
+  children,
+  label,
+  hasArrow = true,
+  placement = 'top',
+  ...props
+}) => {
   const arrowIcon = useMemo(() => {
     if (hasArrow) {
       if (placement === 'top') {

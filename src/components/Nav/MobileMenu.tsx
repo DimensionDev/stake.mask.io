@@ -1,17 +1,18 @@
-import type { FC, ReactNode } from 'react'
 import { Box, type BoxProps, Flex, HStack, keyframes, List, VStack } from '@chakra-ui/react'
-import { useLockBodyScroll } from 'react-use'
-import { Link, useLocation } from '@tanstack/react-router'
-import { ConnectButton } from '../ConnectButton.tsx'
 import { t } from '@lingui/macro'
-import { TwitterAvatar } from '../TwitterAvatar.tsx'
-import { profileModal } from '../../modals/ProfileModal.tsx'
-import { useUserInfo } from '../../hooks/useUserInfo.ts'
+import { Link, useLocation } from '@tanstack/react-router'
+import type { ComponentType, ReactNode } from 'react'
+import { useLockBodyScroll } from 'react-use'
+
+import { ConnectButton } from '@/components/ConnectButton.tsx'
+import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
+import { useUserInfo } from '@/hooks/useUserInfo.ts'
+import { profileModal } from '@/modals/ProfileModal.tsx'
 
 export interface MobileMenuProps extends BoxProps {
   isOpen?: boolean
   onClose: () => void
-  menus: { label: ReactNode; path: string }[]
+  menus: Array<{ label: ReactNode; path: string }>
 }
 
 const showListItem = keyframes`
@@ -36,7 +37,7 @@ const showMenuButton = keyframes`
     }
 `
 
-export const MobileMenu: FC<MobileMenuProps> = ({ isOpen = false, onClose, menus }) => {
+export const MobileMenu: ComponentType<MobileMenuProps> = ({ isOpen = false, onClose, menus }) => {
   useLockBodyScroll(isOpen)
   const { pathname } = useLocation()
   const { data: user } = useUserInfo()

@@ -1,9 +1,10 @@
 import dayjs from 'dayjs'
 import { useEffect, useMemo, useState } from 'react'
-import { PoolInfo } from '../types/api'
 import { useBlockNumber, useReadContract } from 'wagmi'
-import { usePoolStore } from '../store/poolStore'
-import { StakeManagerABI } from '../abis/stakeManager'
+
+import { StakeManagerABI } from '@/abis/stakeManager'
+import { usePoolStore } from '@/store/poolStore'
+import { PoolInfo } from '@/types/api'
 
 export function usePoolState(poolInfo: PoolInfo | undefined) {
   const { chainId, poolId, stakeManagerAddress } = usePoolStore()

@@ -1,14 +1,15 @@
-import { Box, Button, Flex, Icon, Image, type BoxProps } from '@chakra-ui/react'
+import { Box, type BoxProps, Button, Flex, Icon, Image } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ConnectButton as RawConnectButton } from '@rainbow-me/rainbowkit'
 import { useQuery } from '@tanstack/react-query'
-import { memo, type FC } from 'react'
+import { ComponentType, memo } from 'react'
 import type { Connector } from 'wagmi'
 import { useAccount, useConnectors } from 'wagmi'
-import WalletSVG from '../assets/wallet.svg?react'
-import { formatEthereumAddress } from '../helpers/formatEthereumAddress.ts'
-import { usePoolStore } from '../store/poolStore.ts'
-import { GradientButton } from './GradientButton.tsx'
+
+import WalletSVG from '@/assets/wallet.svg?react'
+import { GradientButton } from '@/components/GradientButton.tsx'
+import { formatEthereumAddress } from '@/helpers/formatEthereumAddress.ts'
+import { usePoolStore } from '@/store/poolStore.ts'
 
 interface ConnectorWithRkDetails extends Connector {
   rkDetails: {
@@ -18,7 +19,7 @@ interface ConnectorWithRkDetails extends Connector {
   }
 }
 
-export const ConnectedWalletIcon: FC<BoxProps> = memo(({ ...props }) => {
+export const ConnectedWalletIcon: ComponentType<BoxProps> = memo(({ ...props }) => {
   const connectors = useConnectors()
   const account = useAccount()
 
@@ -44,7 +45,7 @@ export interface ConnectButtonProps {
   connectText?: string
 }
 
-export const ConnectButton: FC<ConnectButtonProps> = memo(({ connectText }) => {
+export const ConnectButton: ComponentType<ConnectButtonProps> = memo(({ connectText }) => {
   const { chainId } = usePoolStore()
   return (
     <RawConnectButton.Custom>

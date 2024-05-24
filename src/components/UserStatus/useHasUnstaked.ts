@@ -1,8 +1,9 @@
+import { useQuery } from '@tanstack/react-query'
 import { parseAbiItem } from 'viem'
 import { useAccount, useBlockNumber, usePublicClient } from 'wagmi'
-import { usePoolInfo } from '../../hooks/usePoolInfo'
-import { usePoolStore } from '../../store/poolStore'
-import { useQuery } from '@tanstack/react-query'
+
+import { usePoolInfo } from '@/hooks/usePoolInfo'
+import { usePoolStore } from '@/store/poolStore'
 
 export function useHasUnstaked() {
   const { chainId, poolId, stakeManagerAddress } = usePoolStore()
@@ -12,7 +13,7 @@ export function useHasUnstaked() {
   const { data: poolInfo } = usePoolInfo()
   const enabled = !!toBlock && !!client && !!poolInfo?.point_acc_end_block
   return useQuery({
-    enabled: enabled,
+    enabled,
     queryKey: ['has-unstaked', account.address, poolId],
     queryFn: async () => {
       if (!client || !toBlock) return

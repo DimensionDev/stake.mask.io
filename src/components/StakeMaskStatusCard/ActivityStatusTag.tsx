@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Skeleton, type BoxProps } from '@chakra-ui/react'
+import { Box, type BoxProps, Skeleton } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { type FC } from 'react'
-import { usePoolInfo } from '../../hooks/usePoolInfo'
-import { usePoolState } from '../../hooks/usePoolState'
+import { ComponentType } from 'react'
 
-export const ActivityStatusTag: FC<BoxProps> = ({ ...props }) => {
+import { usePoolInfo } from '@/hooks/usePoolInfo'
+import { usePoolState } from '@/hooks/usePoolState'
+
+export const ActivityStatusTag: ComponentType<BoxProps> = ({ ...props }) => {
   const { data: pool, isLoading } = usePoolInfo()
 
   const { isStarted, isEnded } = usePoolState(pool)

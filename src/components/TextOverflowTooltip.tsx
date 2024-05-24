@@ -1,10 +1,11 @@
-import { cloneElement, memo, type ReactElement } from 'react'
 import { TooltipProps } from '@chakra-ui/react'
-import { useDetectOverflow } from '../hooks/useDetectOverflow'
-import { Tooltip } from './Tooltip'
+import { cloneElement, memo, ReactNode } from 'react'
+
+import { Tooltip } from '@/components/Tooltip'
+import { useDetectOverflow } from '@/hooks/useDetectOverflow'
 
 interface TextOverflowTooltipProps extends TooltipProps {
-  children: ReactElement
+  children: ReactNode
 }
 
 export const TextOverflowTooltip = memo(({ children, ...rest }: TextOverflowTooltipProps) => {

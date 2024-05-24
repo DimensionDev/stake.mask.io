@@ -1,14 +1,14 @@
-import { Box, Icon } from '@chakra-ui/react'
-import { FC } from 'react'
-import { HTMLChakraProps } from '@chakra-ui/react'
-import MoreSVG from '../../assets/more.svg?react'
-import CloseSVG from '../../assets/close.svg?react'
+import { Box, HTMLChakraProps, Icon } from '@chakra-ui/react'
+import { ComponentType } from 'react'
+
+import CloseSVG from '@/assets/close.svg?react'
+import MoreSVG from '@/assets/more.svg?react'
 
 export interface MenuButton extends HTMLChakraProps<'button'> {
   isOpen?: boolean
 }
 
-export const MenuButton: FC<MenuButton> = ({ isOpen = false, ...props }) => {
+export const MenuButton: ComponentType<MenuButton> = ({ isOpen = false, ...props }) => {
   return (
     <Box as="button" color="neutrals.4" w="8" h="8" ml="auto" pos="relative" {...props}>
       <Icon

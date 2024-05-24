@@ -1,9 +1,10 @@
 import { Button, ButtonProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { PropsWithChildren, memo } from 'react'
-import { usePoolInfo } from '../../hooks/usePoolInfo'
-import { usePoolState } from '../../hooks/usePoolState'
-import { Spinner } from '../Spinner'
+import { memo, PropsWithChildren } from 'react'
+
+import { Spinner } from '@/components/Spinner'
+import { usePoolInfo } from '@/hooks/usePoolInfo'
+import { usePoolState } from '@/hooks/usePoolState'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps

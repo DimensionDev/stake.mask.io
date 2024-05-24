@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 import urlcat from 'urlcat'
 import { useAccount, useSignMessage } from 'wagmi'
-import { FIREFLY_API_ROOT } from '../constants/api'
-import { fetchJSON } from '../helpers/fetchJSON'
-import { LoginResponse } from '../types/api'
-import { useAccountStore } from '../store/accountStore'
+
+import { FIREFLY_API_ROOT } from '@/constants/api'
+import { fetchJSON } from '@/helpers/fetchJSON'
+import { useAccountStore } from '@/store/accountStore'
+import { LoginResponse } from '@/types/api'
 
 export function useLogin() {
   const account = useAccount()

@@ -1,10 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { FC } from 'react'
-import { HeaderImage } from '../components/HeaderImage'
 import { Center, Flex, Heading, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
+import { createFileRoute } from '@tanstack/react-router'
+import { ComponentType } from 'react'
 
-const About: FC = () => {
+import { HeaderImage } from '@/components/HeaderImage'
+
+const About: ComponentType = () => {
   return (
     <>
       <HeaderImage />

@@ -1,7 +1,8 @@
 import { ModalProps } from '@chakra-ui/react'
-import { Fragment, createElement, useEffect, useMemo, useState, type ComponentType } from 'react'
-import { EMPTY_LIST } from '../constants/misc'
-import { DeferTuple, defer } from '../utils/defer'
+import { type ComponentType, createElement, Fragment, useEffect, useMemo, useState } from 'react'
+
+import { EMPTY_LIST } from '@/constants/misc'
+import { defer, DeferTuple } from '@/utils/defer'
 
 export interface ContextOptions<Options, Result> {
   show(options?: Omit<Options, 'isOpen'>, signal?: AbortSignal): Promise<Result>

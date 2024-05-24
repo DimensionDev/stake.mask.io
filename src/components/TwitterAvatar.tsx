@@ -1,6 +1,6 @@
 import { Box, BoxProps, Center, Icon, Image } from '@chakra-ui/react'
 
-import Twitter from '../assets/twitter.svg?react'
+import Twitter from '@/assets/twitter.svg?react'
 
 interface Props extends BoxProps {
   variant?: 'light' | 'dark'
@@ -23,7 +23,7 @@ export function TwitterAvatar({ size, src, variant = 'light', omitBadge, ...prop
         draggable={false}
         userSelect="none"
         src={src}
-        fallbackSrc={new URL('../assets/default-avatar.svg', import.meta.url).href}
+        fallbackSrc={new URL('@/assets/default-avatar.svg', import.meta.url).href}
         alt="user name"
       />
       {omitBadge ? null : (

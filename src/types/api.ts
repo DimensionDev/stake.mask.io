@@ -41,7 +41,7 @@ export interface UserInfo {
     /** token name */
     name: string
     /** Merkle tree */
-    proof: Array<HexString>
+    proof: HexString[]
   }>
 }
 

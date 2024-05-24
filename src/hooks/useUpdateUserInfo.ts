@@ -1,11 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import urlcat from 'urlcat'
 import { useAccount } from 'wagmi'
-import { FIREFLY_API_ROOT } from '../constants/api'
-import { fetchJSON } from '../helpers/fetchJSON'
-import { useAccountStore } from '../store/accountStore'
-import { StakeRankItem, UpdateUserInfoParams, UpdateUserInfoResponse } from '../types/api'
-import { useLogin } from './useLogin'
+
+import { FIREFLY_API_ROOT } from '@/constants/api'
+import { fetchJSON } from '@/helpers/fetchJSON'
+import { isSameAddress } from '@/helpers/isSameAddress'
+import { useLogin } from '@/hooks/useLogin'
+import { useAccountStore } from '@/store/accountStore'
+import { StakeRankItem, UpdateUserInfoParams, UpdateUserInfoResponse } from '@/types/api'
 
 export function useUpdateUserInfo() {
   const queryClient = useQueryClient()
@@ -36,7 +38,7 @@ export function useUpdateUserInfo() {
         if (!ranks) return ranks
         const address = account.address?.toLowerCase()
         return ranks.map((x) => {
-          return x.address.toLowerCase() === address ? { ...x, twitter_display_name: variables.display_username } : x
+          return isSameAddress(x.address, address) ? { ...x, twitter_display_name: variables.display_username } : x
         })
       })
     },

@@ -1,5 +1,7 @@
 import { Box, BoxProps } from '@chakra-ui/react'
-import Check from '../assets/check.svg?react'
+
+import Check from '@/assets/check.svg?react'
+
 interface Props extends BoxProps {
   step: number
   completed?: boolean

@@ -15,7 +15,6 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-
 import { ReactNode } from 'react'
 
 export interface BaseModalProps extends ModalProps {

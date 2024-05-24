@@ -1,4 +1,4 @@
-import { Text, TextProps, Skeleton, SkeletonProps } from '@chakra-ui/react'
+import { Skeleton, SkeletonProps, Text, TextProps } from '@chakra-ui/react'
 import { forwardRef, memo, type ReactNode } from 'react'
 
 export interface ProgressiveTextProps extends TextProps {
