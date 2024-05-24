@@ -41,6 +41,12 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
   }
   function Tasks() {
     const [tasks, setTasks] = useState<Task[]>(EMPTY_LIST)
+    const [injectedPromise, resolveInjected] = useMemo(() => defer(), [])
+
+    useEffect(() => {
+      resolveInjected(true)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const control = useMemo(() => {
       const removeTask = (id: number) => {
@@ -56,7 +62,8 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
       }
 
       return {
-        show(options?: Omit<TaskOptions, 'isOpen'>, signal?: AbortSignal) {
+        async show(options?: Omit<TaskOptions, 'isOpen'>, signal?: AbortSignal) {
+          await injectedPromise
           const [promise, resolve, reject] = defer<Result | null>()
           id += 1
           function abortHandler() {
@@ -79,6 +86,7 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
           return promise
         },
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {

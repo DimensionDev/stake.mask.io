@@ -549,7 +549,7 @@ msgid "You have successfully claimed {0} {tokenSymbol}."
 msgstr ""
 
 #: src/modals/StakeModal.tsx
-msgid "You have successfully staked {rawAmount} MASK."
+msgid "You have successfully staked {0} MASK."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
