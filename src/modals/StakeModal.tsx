@@ -177,7 +177,7 @@ export function StakeModal(props: ModalProps) {
             {isHiddenTokenName ? null : (
               <Stack ml={4}>
                 <Text fontSize={20} lineHeight="20px">
-                  Mask
+                  MASK
                 </Text>
                 <Text fontSize={16} lineHeight="16px">
                   Ethereum
