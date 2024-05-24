@@ -32,7 +32,7 @@ export const BlackListBoundary = memo(function BlackListBoundary({ children }: B
         }
       : skipToken,
     select(data) {
-      const values = Object.values(omit(data.data, ['contract_address', 'data_source'])) as string[]
+      const values = Object.values(omit(data.data, ['contract_address', 'data_source', 'is_black_ip'])) as string[]
       return values.some((x) => +x)
     },
   })
