@@ -49,7 +49,7 @@ export const Nav: ComponentType<NavProps> = ({ ...props }) => {
   return (
     <Center
       w="100%"
-      h={{ base: '107px', lg: '80px' }}
+      h="80px"
       borderBottom={{ base: 'none', lg: '1px solid rgba(255, 255, 255, 0.1)' }}
       pos="relative"
       {...props}

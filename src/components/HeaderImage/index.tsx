@@ -14,10 +14,11 @@ export const HeaderImage: ComponentType<HeaderImageProps> = ({ onlyBg = false, .
     <Center
       pos="relative"
       w="100%"
-      h="520px"
+      h="580px"
       bg="radial-gradient(closest-side, rgba(0, 0, 0, 0) 35%, rgb(82, 42, 190) 70%, rgb(120, 80, 220) 80%, rgb(170, 157, 220) 95%) 50% 10% / 280% 200%"
       bgSize="280% 200%"
       bgPos="50% 10%"
+      pt="60px"
       sx={{
         '> div': {
           maxW: '1440px',
