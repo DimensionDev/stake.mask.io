@@ -38,6 +38,13 @@ export default defineConfig({
             id: process.env.GOOGLE_ANALYTICS_ID,
           }
         : undefined,
+      gtm: process.env.GOOGLE_TAG_MANAGER_ID
+        ? [
+            {
+              id: process.env.GOOGLE_TAG_MANAGER_ID,
+            },
+          ]
+        : undefined,
     }),
   ],
 
