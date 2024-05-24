@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Heading, Icon, Image, VStack } from '@chakra-ui/react'
+import { Box, Center, Flex, Heading, Icon, Image, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useQuery } from '@tanstack/react-query'
 import { ComponentType } from 'react'
@@ -129,9 +129,12 @@ export const StakingRanking: ComponentType = () => {
         pointerEvents="none"
       />
       <VStack spacing="64px" py={4} px={6} w="100%" overflow="hidden" h="698px" pos="relative">
-        <Heading fontSize="24px" fontWeight={700} lineHeight="32px" w="100%" color="neutrals.2">
-          {t`Staking Ranking`}
-        </Heading>
+        <Flex justifyContent="space-between" alignItems="center" w="100%">
+          <Heading fontSize="24px" fontWeight={700} lineHeight="32px" w="100%" color="neutrals.2">
+            {t`Staking Ranking`}
+          </Heading>
+          <Text whiteSpace="nowrap">{t`Ranking updates every 10 min`}</Text>
+        </Flex>
         <StakingRankingList />
         <Box
           w="100%"
