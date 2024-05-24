@@ -92,7 +92,7 @@ export function useClaimReward(
             />
           ),
         })
-        if (account.address && poolId) clearReward(account.address, poolId)
+        if (account.address && typeof poolId === 'number') clearReward(account.address, poolId)
         await resultModal.show({
           title: t`Claim`,
           message: t`Claim Successfully`,

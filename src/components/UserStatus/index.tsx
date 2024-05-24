@@ -21,7 +21,7 @@ export function UserStatus(props: UserStatusProps) {
     abi: StakeManagerABI,
     address: stakeManagerAddress,
     functionName: 'pools',
-    args: poolId ? [BigInt(poolId)] : undefined,
+    args: typeof poolId === 'number' ? [BigInt(poolId)] : undefined,
   })
   const unlocked = res.data?.[2]
 
