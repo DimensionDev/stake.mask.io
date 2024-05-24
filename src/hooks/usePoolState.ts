@@ -15,7 +15,7 @@ export function usePoolState(poolInfo: PoolInfo | undefined) {
     abi: StakeManagerABI,
     address: stakeManagerAddress,
     functionName: 'pools',
-    args: poolId ? [BigInt(poolId)] : undefined,
+    args: typeof poolId === 'number' ? [BigInt(poolId)] : undefined,
   })
 
   const result = useMemo(() => {
