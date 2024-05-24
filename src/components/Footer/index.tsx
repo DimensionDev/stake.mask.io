@@ -76,7 +76,7 @@ export const Footer: ComponentType = () => {
             >
               <li>
                 <Link target="_blank" href={env.external.GITHUB_URL} _hover={{ textDecoration: 'underline' }}>
-                  {`Github`}
+                  {`GitHub`}
                 </Link>
               </li>
             </VStack>
