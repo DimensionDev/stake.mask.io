@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { t, Trans } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { ComponentType } from 'react'
+import { ComponentType, useEffect } from 'react'
 import { useAccount } from 'wagmi'
 
 import MaskLogoSVG from '@/assets/mask-logo.svg?react'
@@ -44,6 +44,17 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
   const { openConnectModal } = useConnectModal()
 
   const { isEnded } = usePoolState(pool)
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const stake = params.get('stake')
+    if (!stake) return
+    const abort = new AbortController()
+    stakeModal.show(undefined, abort.signal)
+    return () => {
+      abort.abort()
+    }
+  }, [])
 
   return (
     <Box
@@ -219,7 +230,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
               color="neutrals.8"
               letterSpacing="-0.32px"
             >
-              {pool?.amount ? (
+              {pool?.amount !== undefined ? (
                 <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
                   <Text>{formatMarketCap(+pool.amount)}</Text>
                 </Tooltip>

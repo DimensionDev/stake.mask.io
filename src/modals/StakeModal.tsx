@@ -33,6 +33,7 @@ import { TokenIcon } from '@/components/TokenIcon'
 import { Tooltip } from '@/components/Tooltip.tsx'
 import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
 import { TxToastDescription } from '@/components/TxToastDescription.tsx'
+import { queryClient } from '@/configs/queryClient'
 import { ZERO } from '@/constants/misc.ts'
 import { formatNumber } from '@/helpers/formatNumber'
 import { formatSeconds } from '@/helpers/formatSeconds.ts'
@@ -252,7 +253,7 @@ export function StakeModal(props: ModalProps) {
           </HStack>
           <HStack justifyContent="space-between">
             <Text>{t`APR`}</Text>
-            {pool?.apr ? (
+            {pool?.apr !== undefined ? (
               <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`} hasArrow placement="top">
                 <Text>{formatNumber(+pool.apr * 110, 2)}%</Text>
               </Tooltip>
@@ -355,10 +356,12 @@ export function StakeModal(props: ModalProps) {
                         status: 'success',
                         description: <TxToastDescription link={txLink} text={t`Successfully staked MASK Tokens.`} />,
                       })
+                      queryClient.refetchQueries({ queryKey: ['pool-info'] })
+                      queryClient.refetchQueries({ queryKey: ['user-info'] })
                       await resultModal.show({
                         title: t`Stake`,
                         message: t`Stake Successfully`,
-                        description: t`You have successfully staked ${rawAmount} MASK.`,
+                        description: t`You have successfully staked ${formatNumber(+rawAmount, 4)} MASK.`,
                       })
                       props.onClose()
                     }
