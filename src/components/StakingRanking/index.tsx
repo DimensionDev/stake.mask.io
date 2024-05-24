@@ -26,7 +26,11 @@ export const RankingItem: ComponentType<{ item: StakeRankItem } & Omit<RankingAv
     <RankingAvatar
       src={convertTwitterAvatar(item.twitter_image)}
       name={item.twitter_display_name || formatEthereumAddress(item.address, 4)}
-      tag={<Tooltip label={`${item.score} PTS`} hasArrow>{`${formatMarketCap(item.score)} PTS`}</Tooltip>}
+      tag={
+        <Tooltip label={`${item.score} PTS`} hasArrow>
+          <span>{`${formatMarketCap(item.score)} PTS`}</span>
+        </Tooltip>
+      }
       boxSize="64px"
       {...props}
     />
