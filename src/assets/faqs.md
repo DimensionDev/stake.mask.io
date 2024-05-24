@@ -104,7 +104,7 @@ Please carefully evaluate and assess the relevant risks before participating in 
 
 ### **How to stake MASK?**
 
-**\*Note that you can only unstake your MASK after the event ends.**
+***Note that you can only unstake your MASK after the event ends.**
 
 1. Make sure you have MASK in your wallet address.
 2. Connect your wallet to the Mask Stake website.
@@ -183,9 +183,15 @@ Address: 0xc98d64da73a6616c42117b582e832812e7b8d57f
 
 Chain name: ETH network
 
+Address: 0x3d809e601b12e36cd817c4234a2f05249112eabb
+
 ### **Reward Contract**
 
 Chain name: ETH network
+
+Address: 0x9903c9d15f7ee48d1f6d9c258cf1c1387603d851
+
+
 
 ## **Other**
 
