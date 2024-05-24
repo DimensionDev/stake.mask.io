@@ -38,7 +38,9 @@ export const ConnectedWalletIcon: ComponentType<BoxProps> = memo(({ ...props }) 
     refetchOnReconnect: false,
   })
 
-  return <Image src={icon} boxSize={9} {...props} />
+  return (
+    <Image src={icon} boxSize={9} fallbackSrc={new URL('../assets/mask-logo.svg', import.meta.url).href} {...props} />
+  )
 })
 
 export interface ConnectButtonProps {
