@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 import svgr from 'vite-plugin-svgr'
+import { VitePluginRadar } from 'vite-plugin-radar'
 
 function createURL(pathToFile: string) {
   return new URL(pathToFile, import.meta.url).pathname
@@ -30,6 +31,13 @@ export default defineConfig({
       org: 'dimension',
       project: 'stake-mask-io',
       url: 'https://sentry.firefly.land',
+    }),
+    VitePluginRadar({
+      analytics: process.env.GOOGLE_ANALYTICS_ID
+        ? {
+            id: process.env.GOOGLE_ANALYTICS_ID,
+          }
+        : undefined,
     }),
   ],
 
