@@ -30,22 +30,22 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
     options?: Omit<TaskOptions, 'isOpen'>
   }
 
+  const [injectedPromise, resolveInjected] = defer()
   type Controller = {
     show(options?: Omit<TaskOptions, 'isOpen' | 'children' | 'onClose'>, signal?: AbortSignal): Promise<Result | null>
   }
 
   const controller: Controller = {
-    show() {
-      throw new Error('Task UI not injected yet.')
+    async show(options, signal) {
+      await injectedPromise
+      return controller.show(options, signal)
     },
   }
   function Tasks() {
     const [tasks, setTasks] = useState<Task[]>(EMPTY_LIST)
-    const [injectedPromise, resolveInjected] = useMemo(() => defer(), [])
 
     useEffect(() => {
       resolveInjected(true)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const control = useMemo(() => {
@@ -63,7 +63,6 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
 
       return {
         async show(options?: Omit<TaskOptions, 'isOpen'>, signal?: AbortSignal) {
-          await injectedPromise
           const [promise, resolve, reject] = defer<Result | null>()
           id += 1
           function abortHandler() {
@@ -86,7 +85,6 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
           return promise
         },
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
