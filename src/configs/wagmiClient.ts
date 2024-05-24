@@ -12,7 +12,10 @@ import { mainnet, sepolia } from 'wagmi/chains'
 
 import { env } from '../constants/env'
 
-export const chains = [mainnet, sepolia] as const satisfies Chain[]
+export const chains =
+  import.meta.env.VITE_CHANNEL === 'production'
+    ? ([mainnet] as const satisfies Chain[])
+    : ([mainnet, sepolia] as const satisfies Chain[])
 
 export const connectors = connectorsForWallets(
   [
