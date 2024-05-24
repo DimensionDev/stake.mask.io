@@ -49,6 +49,7 @@ export const StakingRankingList: ComponentType = () => {
       const response = await fetchJSON<StakeRankResponse>(url)
       return response.data.list
     },
+    refetchInterval: 5 * 1000 * 60,
   })
 
   if (isLoading) {

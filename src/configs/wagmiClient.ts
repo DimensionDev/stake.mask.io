@@ -6,11 +6,22 @@ import {
   rabbyWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
-import { createClient, http } from 'viem'
-import { type Config, createConfig } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
+import { createClient } from 'viem'
+import { type Config, createConfig, http } from 'wagmi'
+import { mainnet as builtInMainnet, sepolia } from 'wagmi/chains'
 
 import { env } from '@/constants/env'
+
+const mainnet = import.meta.env.VITE_ETH_RPC
+  ? ({
+      ...builtInMainnet,
+      rpcUrls: {
+        default: {
+          http: [import.meta.env.VITE_ETH_RPC],
+        },
+      },
+    } as const)
+  : builtInMainnet
 
 export const chains =
   import.meta.env.VITE_CHANNEL === 'production'
