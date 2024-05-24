@@ -18,6 +18,7 @@ export function useUserInfo() {
       const url = urlcat(FIREFLY_API_ROOT, '/v1/mask_stake/user_info', {
         address,
         pool_id: poolId,
+        source: 'other',
       })
       return fetchJSON<UserInfoResponse>(url)
     },

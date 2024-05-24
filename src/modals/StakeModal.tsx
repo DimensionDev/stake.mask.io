@@ -6,7 +6,6 @@ import {
   HStack,
   Input,
   InputGroup,
-  InputLeftAddon,
   InputRightAddon,
   List,
   ListItem,
@@ -164,80 +163,81 @@ export function StakeModal(props: ModalProps) {
           className="input-box gradient-box"
           borderColor="neutrals.6"
           rounded={12}
-          p={4}
+          p={3}
+          display="flex"
           _focusWithin={{
             borderColor: 'neutrals.3',
           }}
         >
-          <InputGroup alignItems="center">
-            <InputLeftAddon flexShrink={0} p={0} bg="transparent">
-              <Flex bg="rgba(255,255,255,0.03)" px={3} py={2} rounded={999} fontWeight="bold" alignItems="center">
-                <TokenIcon flexShrink={0} />
-                <Stack ml={4}>
-                  <Text fontSize={20} lineHeight="20px">
-                    Mask
-                  </Text>
-                  <Text fontSize={16} lineHeight="16px">
-                    Ethereum
-                  </Text>
-                </Stack>
-              </Flex>
-            </InputLeftAddon>
-            <Input
-              size="lg"
-              placeholder={t`Amount`}
-              border="none"
-              outline="none"
-              fontSize="40px"
-              fontFamily="input"
-              type="number"
-              min={0}
-              fontWeight={700}
-              autoFocus
-              value={rawAmount}
-              max={1e10}
-              onChange={(e) => {
-                const value = e.currentTarget.value
-                setRawAmount(+value < 0 ? '0' : value)
-              }}
-              _focus={{ outline: 'none', border: 'none' }}
-              _focusVisible={{ border: 'none', boxShadow: 'none' }}
-            />
-            <InputRightAddon p={0} bg="transparent">
-              <VStack alignItems="flex-end">
-                <Text fontSize={16} color="neutrals.4" display="inline-flex" alignItems="center">
-                  <Trans>
-                    Balance:{' '}
-                    {balance.isPending ? (
-                      <Skeleton as="span" ml={2} height="16px" width="20px" />
-                    ) : balance.isError ? (
-                      <Tooltip label={balance.error.message}>
-                        <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
-                      </Tooltip>
-                    ) : (
-                      formatNumber(+balance.data.formatted, 4)
-                    )}
-                  </Trans>
-                </Text>
-                <Button
-                  size="xs"
-                  fontSize="14px"
-                  px="8px"
-                  py="6px"
-                  height={26}
-                  boxSizing="border-box"
-                  color="neutrals.6"
-                  bg="gradient.purple"
-                  _hover={{ bg: 'gradient.purple' }}
-                  onClick={() => {
-                    if (balance.data) {
-                      setRawAmount(balance.data.formatted)
-                    }
-                  }}
-                >{t`MAX`}</Button>
-              </VStack>
-            </InputRightAddon>
-          </InputGroup>
+          <Flex bg="rgba(255,255,255,0.03)" px={3} py={2} rounded={999} fontWeight="bold" alignItems="center">
+            <TokenIcon flexShrink={0} />
+            <Stack ml={4}>
+              <Text fontSize={20} lineHeight="20px">
+                Mask
+              </Text>
+              <Text fontSize={16} lineHeight="16px">
+                Ethereum
+              </Text>
+            </Stack>
+          </Flex>
+          <Flex flexDir="column">
+            <Text fontSize={16} color="neutrals.4" alignItems="center" textAlign="right" alignSelf="flex-end">
+              <Trans>
+                Balance:{' '}
+                {balance.isPending ? (
+                  <Skeleton as="span" ml={2} height="16px" width="20px" />
+                ) : balance.isError ? (
+                  <Tooltip label={balance.error.message}>
+                    <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
+                  </Tooltip>
+                ) : (
+                  formatNumber(+balance.data.formatted, 4)
+                )}
+              </Trans>
+            </Text>
+            <InputGroup alignItems="center" pos="relative" alignSelf="flex-end">
+              <Input
+                size="lg"
+                placeholder={t`Amount`}
+                border="none"
+                outline="none"
+                fontSize="40px"
+                fontFamily="input"
+                type="number"
+                min={0}
+                fontWeight={700}
+                autoFocus
+                value={rawAmount}
+                max={1e10}
+                onChange={(e) => {
+                  const value = e.currentTarget.value
+                  setRawAmount(+value < 0 ? '0' : value)
+                }}
+                _focus={{ outline: 'none', border: 'none' }}
+                _focusVisible={{ border: 'none', boxShadow: 'none' }}
+              />
+              <InputRightAddon p={0} bg="transparent">
+                <VStack alignItems="flex-end">
+                  <Button
+                    size="xs"
+                    fontSize="14px"
+                    px="8px"
+                    py="6px"
+                    height={26}
+                    boxSizing="border-box"
+                    color="neutrals.6"
+                    bg="gradient.purple"
+                    _hover={{ bg: 'gradient.purple' }}
+                    onClick={() => {
+                      if (balance.data) {
+                        setRawAmount(balance.data.formatted)
+                      }
+                    }}
+                  >{t`MAX`}</Button>
+                </VStack>
+              </InputRightAddon>
+            </InputGroup>
+          </Flex>
         </Box>
         <VStack spacing="10px" mt="10px" alignItems="stretch" fontSize={16} color="neutrals.4">
           <HStack justifyContent="space-between">
