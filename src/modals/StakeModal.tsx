@@ -15,6 +15,7 @@ import {
   Spinner,
   Stack,
   Text,
+  useBreakpointValue,
   VStack,
 } from '@chakra-ui/react'
 import { t, Trans } from '@lingui/macro'
@@ -66,6 +67,7 @@ export function StakeModal(props: ModalProps) {
   const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo()
   const linkedTwitter = !!userInfo?.twitter_id
   const [waiting, setWaiting] = useState(false)
+  const isHiddenTokenName = useBreakpointValue({ base: true, md: false, lg: false, sm: true })
 
   const decimals = maskToken.data?.decimals || 18
   const amount = useMemo(() => {
@@ -172,16 +174,18 @@ export function StakeModal(props: ModalProps) {
         >
           <Flex bg="rgba(255,255,255,0.03)" px={3} py={2} rounded={999} fontWeight="bold" alignItems="center">
             <TokenIcon flexShrink={0} />
-            <Stack ml={4}>
-              <Text fontSize={20} lineHeight="20px">
-                Mask
-              </Text>
-              <Text fontSize={16} lineHeight="16px">
-                Ethereum
-              </Text>
-            </Stack>
+            {isHiddenTokenName ? null : (
+              <Stack ml={4}>
+                <Text fontSize={20} lineHeight="20px">
+                  Mask
+                </Text>
+                <Text fontSize={16} lineHeight="16px">
+                  Ethereum
+                </Text>
+              </Stack>
+            )}
           </Flex>
-          <Flex flexDir="column">
+          <Flex flexDir="column" flexGrow={1}>
             <Text fontSize={16} color="neutrals.4" alignItems="center" textAlign="right" alignSelf="flex-end">
               <Trans>
                 Balance:{' '}
@@ -217,11 +221,12 @@ export function StakeModal(props: ModalProps) {
                 _focus={{ outline: 'none', border: 'none' }}
                 _focusVisible={{ border: 'none', boxShadow: 'none' }}
               />
-              <InputRightAddon p={0} bg="transparent">
+              <InputRightAddon p={0} bg="transparent" border="none">
                 <VStack alignItems="flex-end">
                   <Button
                     size="xs"
                     fontSize="14px"
+                    border="none"
                     px="8px"
                     py="6px"
                     height={26}
@@ -255,8 +260,8 @@ export function StakeModal(props: ModalProps) {
           <HStack justifyContent="space-between">
             <Text>{t`APR`}</Text>
             {pool?.apr !== undefined ? (
-              <Tooltip label={`${formatNumber(+pool.apr * 100, 18)}%`} hasArrow placement="top">
-                <Text>{formatNumber(+pool.apr * 110, 2)}%</Text>
+              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top">
+                <Text>{formatNumber(pool.apr, 2)}%</Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="100px" />
