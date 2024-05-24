@@ -13,7 +13,7 @@ export const AcceptCookie: ComponentType = memo(() => {
   const [isClosed, setIsClosed] = useState(false)
 
   return (
-    <Fade in={!isAcceptedCookie && !isClosed}>
+    <Fade in={!isAcceptedCookie && !isClosed} unmountOnExit>
       <HStack
         color="neutrals.4"
         fontSize="12px"
