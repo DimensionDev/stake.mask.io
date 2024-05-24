@@ -50,11 +50,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
     const stake = params.get('stake')
     if (!stake) return
     const abort = new AbortController()
-    try {
-      stakeModal.show(undefined, abort.signal)
-    } catch {
-      // modal ui might not injected yet.
-    }
+    stakeModal.show(undefined, abort.signal)
     return () => {
       abort.abort()
     }
