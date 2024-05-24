@@ -41,7 +41,7 @@ export const HeaderImage: ComponentType<HeaderImageProps> = ({ onlyBg = false, .
                 w="1440px"
                 h="auto"
                 pos="absolute"
-                top="0"
+                top="60px"
                 left="50%"
                 transform="translateX(-50%)"
               />

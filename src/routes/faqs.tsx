@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import content from '@/assets/faqs.md'
 import { FaqsToc } from '@/components/FaqsToc.tsx'
 import { HeaderImage } from '@/components/HeaderImage'
+import { markdownBaseStyle } from '@/styles/markdown-base-style.svg.ts'
 
 function FaqsPage() {
   const contentElRef = useRef<HTMLDivElement>(null)
@@ -27,44 +28,7 @@ function FaqsPage() {
         direction={{ base: 'column', md: 'row' }}
       >
         <FaqsToc contentRef={contentElRef} />
-        <Box
-          ref={contentElRef}
-          w="100%"
-          color="neutrals.4"
-          fontSize="16px"
-          lineHeight="150%"
-          sx={{
-            'h1, h2, h3, h4, h5, h6': {
-              mb: '32px',
-              fontWeight: 700,
-            },
-            'p, ul, ol': {
-              mb: '32px',
-            },
-            h1: {
-              fontSize: '32px',
-            },
-            h2: {
-              fontSize: '24px',
-            },
-            h3: {
-              fontSize: '20px',
-            },
-            'ul, ol': {
-              pl: '32px',
-              img: {
-                w: '16px',
-                h: '16px',
-                display: 'inline-block',
-                mr: 1,
-                transform: 'translateY(15%)',
-              },
-            },
-            a: {
-              textDecor: 'underline',
-            },
-          }}
-        >
+        <Box ref={contentElRef} w="100%" color="neutrals.4" fontSize="16px" lineHeight="150%" sx={markdownBaseStyle}>
           <Markdown
             children={content}
             options={{
