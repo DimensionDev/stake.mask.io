@@ -37,7 +37,7 @@ export const usePoolStore = create<PollState, [['zustand/persist', PollState], [
         set((state) => {
           if (maskTokenAddress) state.maskTokenAddress = maskTokenAddress
           state.syncingPoolInfo = false
-          if (poolId && get().poolId !== poolId) {
+          if (poolId !== undefined && get().poolId !== poolId) {
             state.poolId = poolId
           }
         })
