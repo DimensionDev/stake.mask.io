@@ -5,7 +5,7 @@ import type { ComponentType, ReactNode } from 'react'
 import { useLockBodyScroll } from 'react-use'
 
 import { ConnectButton } from '@/components/ConnectButton.tsx'
-import { TextOverflowTooltip } from '@/components/TextOverflowTooltip.tsx';
+import { TextOverflowTooltip } from '@/components/TextOverflowTooltip.tsx'
 import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
 import { useUserInfo } from '@/hooks/useUserInfo.ts'
 import { profileModal } from '@/modals/ProfileModal.tsx'
@@ -123,10 +123,21 @@ export const MobileMenu: ComponentType<MobileMenuProps> = ({ isOpen = false, onC
           >
             <TwitterAvatar src={user.twitter_image} cursor="pointer" size="40px" mr="4px" variant="dark" />
             <TextOverflowTooltip label={user.twitter_display_name}>
-
-            <Box color="neutrals.1" fontSize="14px" fontWeight={700} lineHeight="22px" noOfLines={1} w="calc(100% - 80px)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" display="block" textAlign="left">
-              {user.twitter_display_name}
-            </Box>
+              <Box
+                color="neutrals.1"
+                fontSize="14px"
+                fontWeight={700}
+                lineHeight="22px"
+                noOfLines={1}
+                w="calc(100% - 80px)"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                display="block"
+                textAlign="left"
+              >
+                {user.twitter_display_name}
+              </Box>
             </TextOverflowTooltip>
           </HStack>
         ) : null}
