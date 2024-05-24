@@ -10,8 +10,6 @@ interface PollState {
   maskTokenAddress: `0x${string}`
   stakeManagerAddress: `0x${string}`
   rewardAddress: `0x${string}`
-  /** @deprecated */
-  updatePollId(poolId: number): void
   syncingPoolInfo: boolean
   syncPoolInfo(): Promise<void>
 }
@@ -26,13 +24,8 @@ export const usePoolStore = create<PollState, [['zustand/persist', PollState], [
       poolId: null,
       syncingPoolInfo: false,
       maskTokenAddress: VITE_MASK_TOKEN_ADDRESS,
-      stakeManagerAddress: VITE_STAKE_MANAGER_CONTRACT_ADDRESS || '0xece3ef2bf6f6fa7f13beab519c60a72e92bbd47c',
-      rewardAddress: VITE_REWARD_CONTRACT_ADDRESS || '0xf0c196D1b1489738Cda956e994e82EF6897e85bC',
-      /** @deprecated */
-      updatePollId: (poolId: number) =>
-        set((state) => {
-          state.poolId = poolId
-        }),
+      stakeManagerAddress: VITE_STAKE_MANAGER_CONTRACT_ADDRESS,
+      rewardAddress: VITE_REWARD_CONTRACT_ADDRESS,
       syncPoolInfo: async () => {
         set((state) => {
           if (env.external.CHAIN_ID) {
