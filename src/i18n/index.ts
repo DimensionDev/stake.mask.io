@@ -2,7 +2,7 @@ import { i18n, type Messages } from '@lingui/core'
 import dayjs from 'dayjs'
 
 import { messages as en } from '../locales/en.ts'
-import { Locale } from '../types'
+import { Locale } from '../types/enum.ts'
 
 const locales: Record<Locale, Messages> = {
   [Locale.en]: en,

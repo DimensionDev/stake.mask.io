@@ -4,7 +4,7 @@ import './styles/index.css'
 
 import { App } from './App'
 import { setLocale } from './i18n'
-import { Locale } from './types'
+import { Locale } from './types/enum'
 
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'

@@ -5,7 +5,7 @@ import { polygon } from 'viem/chains'
 import { WagmiProvider as WagmiConfig } from 'wagmi'
 import { config } from '../configs/wagmiClient.ts'
 import { resolveRainbowKitLocale } from '../helpers/resolveRainbowKitLocale.ts'
-import { Locale } from '../types'
+import { Locale } from '../types/enum.ts'
 import type { PropsWithChildren } from 'react'
 
 export interface WagmiProviderProps extends PropsWithChildren {}
