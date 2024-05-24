@@ -11,7 +11,7 @@ export function useUserInfo() {
   const { address } = useAccount()
   const { poolId } = usePoolStore()
   return useQuery({
-    enabled: !!poolId && !!address,
+    enabled: poolId !== undefined && !!address,
     queryKey: ['user-info', address, poolId],
     queryFn: async () => {
       const url = urlcat(FIREFLY_API_ROOT, '/v1/mask_stake/user_info', {
