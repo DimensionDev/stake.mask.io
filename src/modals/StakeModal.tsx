@@ -34,6 +34,7 @@ import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
 import { TxToastDescription } from '@/components/TxToastDescription.tsx'
 import { queryClient } from '@/configs/queryClient'
 import { ZERO } from '@/constants/misc.ts'
+import { checkStats } from '@/helpers/checkStats'
 import { formatNumber } from '@/helpers/formatNumber'
 import { formatSeconds } from '@/helpers/formatSeconds.ts'
 import { resolveTxLink } from '@/helpers/resolveTxLink.ts'
@@ -356,6 +357,7 @@ export function StakeModal(props: ModalProps) {
                         status: 'success',
                         description: <TxToastDescription link={txLink} text={t`Successfully staked MASK Tokens.`} />,
                       })
+                      checkStats() // omit await, avoid blocking
                       queryClient.refetchQueries({ queryKey: ['pool-info'] })
                       queryClient.refetchQueries({ queryKey: ['user-info'] })
                       await resultModal.show({

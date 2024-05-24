@@ -287,6 +287,10 @@ msgstr ""
 msgid "Profile Name is required"
 msgstr ""
 
+#: src/components/StakingRanking/index.tsx
+msgid "Ranking updates every 10 min"
+msgstr ""
+
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Session Cookies: These cookies exist only during your visit to the website and are automatically deleted when you close your browser. They are used to maintain session state, such as storing the contents of your shopping cart."
