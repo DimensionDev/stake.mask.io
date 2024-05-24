@@ -55,7 +55,7 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
   const ratio = userInfo?.address_type === '1' ? 1.05 : 1
 
   const [waiting, setWaiting] = useState(false)
-  const { data: hasUnstaked, isLoading: checkingUnstakedStatus } = useHasUnstaked()
+  const { data: hasUnstaked, isLoading: checkingUnstakedStatus, refetch: recheckUnstake } = useHasUnstaked()
   const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending: isWithdrawing } = useWriteContract()
   const toast = useToast({ title: t`Unstake` })
@@ -145,6 +145,7 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
                     description: <TxToastDescription link={txLink} text={t`Successfully unstaked MASK Tokens.`} />,
                   })
                   refetch()
+                  recheckUnstake()
                   await resultModal.show({
                     title: t`Unstake`,
                     message: t`Unstake Successfully`,
