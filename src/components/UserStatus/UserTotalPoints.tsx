@@ -2,13 +2,14 @@ import { Box, Flex, StackProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { memo } from 'react'
 import { useAccount } from 'wagmi'
-import { formatEthereumAddress } from '../../helpers/formatEthereumAddress.ts'
-import { formatMarketCap } from '../../helpers/formatMarketCap.ts'
-import { profileModal } from '../../modals/ProfileModal.tsx'
-import { UserInfo } from '../../types/api.ts'
-import { TextOverflowTooltip } from '../TextOverflowTooltip.tsx'
-import { Tooltip } from '../Tooltip.tsx'
-import { TwitterAvatar } from '../TwitterAvatar.tsx'
+
+import { TextOverflowTooltip } from '@/components/TextOverflowTooltip.tsx'
+import { Tooltip } from '@/components/Tooltip.tsx'
+import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
+import { formatEthereumAddress } from '@/helpers/formatEthereumAddress.ts'
+import { formatMarketCap } from '@/helpers/formatMarketCap.ts'
+import { profileModal } from '@/modals/ProfileModal.tsx'
+import { UserInfo } from '@/types/api.ts'
 
 interface Props extends StackProps {
   user: UserInfo

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { NODE_ENV, VERCEL_NEV } from './enum'
+import { NODE_ENV, VERCEL_NEV } from '@/constants/enum'
 
 const InternalEnvSchema = z.object({})
 

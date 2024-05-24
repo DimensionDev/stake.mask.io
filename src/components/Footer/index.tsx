@@ -1,19 +1,20 @@
-import type { FC } from 'react'
-import { Box, Center, Flex, Grid, Heading, Icon, VStack, Link } from '@chakra-ui/react'
-import LogoSVG from '../../assets/logo-2.svg?react'
+import { Box, Center, Flex, Grid, Heading, Icon, Link, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { env } from '../../constants/env.ts'
-import DiscordSVG from '../../assets/social-media/discord.svg?react'
-import FacebookSVG from '../../assets/social-media/facebook.svg?react'
-import GithubSVG from '../../assets/social-media/github.svg?react'
-import TelegramSVG from '../../assets/social-media/telegram.svg?react'
-import RedditSVG from '../../assets/social-media/reddit.svg?react'
-import YoutubeSVG from '../../assets/social-media/youtube.svg?react'
-import MediumSVG from '../../assets/social-media/medium.svg?react'
-import TwitterSVG from '../../assets/social-media/twitter.svg?react'
-import { Terms } from './Terms'
-import { MaskNetworkSplice } from './MaskNetworkSplice.tsx'
 import { Link as RouteLink } from '@tanstack/react-router'
+import { ComponentType } from 'react'
+
+import LogoSVG from '@/assets/logo-2.svg?react'
+import DiscordSVG from '@/assets/social-media/discord.svg?react'
+import FacebookSVG from '@/assets/social-media/facebook.svg?react'
+import GithubSVG from '@/assets/social-media/github.svg?react'
+import MediumSVG from '@/assets/social-media/medium.svg?react'
+import RedditSVG from '@/assets/social-media/reddit.svg?react'
+import TelegramSVG from '@/assets/social-media/telegram.svg?react'
+import TwitterSVG from '@/assets/social-media/twitter.svg?react'
+import YoutubeSVG from '@/assets/social-media/youtube.svg?react'
+import { MaskNetworkSplice } from '@/components/Footer/MaskNetworkSplice.tsx'
+import { Terms } from '@/components/Footer/Terms'
+import { env } from '@/constants/env.ts'
 
 const SocialMedias = [
   { icon: TwitterSVG, href: env.external.TWITTER_URL },
@@ -26,7 +27,7 @@ const SocialMedias = [
   { icon: YoutubeSVG, href: env.external.YOUTUBE_URL },
 ]
 
-export const Footer: FC = () => {
+export const Footer: ComponentType = () => {
   return (
     <Flex direction="column" bg="neutrals.9" w="100%" mt="auto">
       <MaskNetworkSplice />

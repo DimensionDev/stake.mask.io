@@ -1,6 +1,7 @@
-import { useAccount, useReadContract } from 'wagmi'
-import { usePoolStore } from '../store/poolStore'
 import { erc20Abi } from 'viem'
+import { useAccount, useReadContract } from 'wagmi'
+
+import { usePoolStore } from '@/store/poolStore'
 
 export function useMaskAllowance() {
   const { chainId, maskTokenAddress, stakeManagerAddress } = usePoolStore()

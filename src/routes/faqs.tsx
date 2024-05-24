@@ -1,12 +1,13 @@
+import { Box, Center, Flex } from '@chakra-ui/react'
 import { createFileRoute } from '@tanstack/react-router'
 import Markdown from 'markdown-to-jsx'
-import { Box, Center, Flex } from '@chakra-ui/react'
 import { useRef } from 'react'
-import { FaqsToc } from '../components/FaqsToc.tsx'
-import content from '../assets/faqs.md'
-import { HeaderImage } from '../components/HeaderImage'
 
-const FaqsPage = () => {
+import content from '@/assets/faqs.md'
+import { FaqsToc } from '@/components/FaqsToc.tsx'
+import { HeaderImage } from '@/components/HeaderImage'
+
+function FaqsPage() {
   const contentElRef = useRef<HTMLDivElement>(null)
 
   return (

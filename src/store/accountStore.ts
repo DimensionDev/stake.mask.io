@@ -6,6 +6,7 @@ interface AccountState {
   token: string
   updateToken(token: string): void
 }
+
 export const useAccountStore = create<AccountState, [['zustand/persist', AccountState], ['zustand/immer', never]]>(
   persist(
     immer((set) => ({

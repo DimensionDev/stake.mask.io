@@ -1,8 +1,9 @@
 import { Button, Image, ModalProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ReactNode } from 'react'
-import { BaseModal, BaseModalProps } from './BaseModal'
-import { createUITaskManager } from './UITaskManager'
+
+import { BaseModal, BaseModalProps } from '@/modals/BaseModal'
+import { createUITaskManager } from '@/modals/UITaskManager'
 
 interface Props extends ModalProps {
   title?: BaseModalProps['title']
@@ -13,7 +14,7 @@ export function ResultModal({ title, message, description, ...props }: Props) {
   return (
     <BaseModal title={title} width={572} {...props}>
       <VStack alignItems="center" spacing={6}>
-        <Image src={new URL('../assets/astronaut.svg', import.meta.url).href} w={245} h={251} />
+        <Image src={new URL('@/assets/astronaut.svg', import.meta.url).href} w={245} h={251} />
         <Text color="neutrals.3" fontSize={32} fontWeight={700} lineHeight="40px" textAlign="center">
           {message}
         </Text>

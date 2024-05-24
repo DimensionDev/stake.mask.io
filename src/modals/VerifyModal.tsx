@@ -1,7 +1,8 @@
 import { Button, ModalProps, Text, VStack } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { BaseModal } from './BaseModal'
-import { createUITaskManager } from './UITaskManager'
+
+import { BaseModal } from '@/modals/BaseModal'
+import { createUITaskManager } from '@/modals/UITaskManager'
 
 interface Props extends ModalProps {
   onSign?(): void

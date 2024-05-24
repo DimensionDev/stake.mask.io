@@ -1,4 +1,3 @@
-import { FC, useEffect, useState, RefObject } from 'react'
 import {
   Accordion,
   AccordionButton,
@@ -16,8 +15,10 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useLocation, useNavigate } from '@tanstack/react-router'
-import MenuSVG from '../assets/menu.svg?react'
-import { sleep } from '../utils/sleep.ts'
+import { ComponentType, RefObject, useEffect, useState } from 'react'
+
+import MenuSVG from '@/assets/menu.svg?react'
+import { sleep } from '@/utils/sleep.ts'
 
 export interface TOCItem {
   id: string
@@ -34,7 +35,7 @@ function generateTOC(contentEl: HTMLElement) {
   let currentLevel2: TOCItem | null = null
 
   headings.forEach((heading) => {
-    const level = parseInt(heading.tagName.charAt(1))
+    const level = parseInt(heading.tagName.charAt(1), 10)
 
     if (level === 2) {
       const item: TOCItem = {
@@ -68,7 +69,7 @@ function generateTOC(contentEl: HTMLElement) {
   return toc
 }
 
-export const FaqsToc: FC<{ contentRef: RefObject<HTMLDivElement> }> = ({ contentRef }) => {
+export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> = ({ contentRef }) => {
   const [tocItems, setTOCItem] = useState<TOCItem[]>([])
   const { hash } = useLocation()
   const isShowDrawer = useBreakpointValue({ base: true, md: false })

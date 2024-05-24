@@ -1,13 +1,14 @@
 import { useAsyncFn } from 'react-use'
 import urlcat from 'urlcat'
 import { useAccount, useSignMessage } from 'wagmi'
-import { FIREFLY_API_ROOT } from '../constants/api'
-import { fetchJSON } from '../helpers/fetchJSON'
-import { useAccountStore } from '../store/accountStore'
-import { TwitterAuthorizeResponse } from '../types/api'
-import { useHandleError } from './useHandleError'
-import { useLogin } from './useLogin'
-import { useToast } from './useToast'
+
+import { FIREFLY_API_ROOT } from '@/constants/api'
+import { fetchJSON } from '@/helpers/fetchJSON'
+import { useHandleError } from '@/hooks/useHandleError'
+import { useLogin } from '@/hooks/useLogin'
+import { useToast } from '@/hooks/useToast'
+import { useAccountStore } from '@/store/accountStore'
+import { TwitterAuthorizeResponse } from '@/types/api'
 
 export function useLinkTwitter() {
   const account = useAccount()

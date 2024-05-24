@@ -1,12 +1,13 @@
 import { Grid, GridProps, Skeleton } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useAccount, useReadContract } from 'wagmi'
-import { StakeManagerABI } from '../../abis/stakeManager'
-import { useUserInfo } from '../../hooks/useUserInfo'
-import { usePoolStore } from '../../store/poolStore'
-import { RewardCard } from './RewardCard'
-import { StakedMask } from './StakedMask'
-import { UserTotalPoints } from './UserTotalPoints'
+
+import { StakeManagerABI } from '@/abis/stakeManager'
+import { RewardCard } from '@/components/UserStatus/RewardCard'
+import { StakedMask } from '@/components/UserStatus/StakedMask'
+import { UserTotalPoints } from '@/components/UserStatus/UserTotalPoints'
+import { useUserInfo } from '@/hooks/useUserInfo'
+import { usePoolStore } from '@/store/poolStore'
 
 export interface UserStatusProps extends GridProps {}
 

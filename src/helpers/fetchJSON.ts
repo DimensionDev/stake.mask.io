@@ -1,6 +1,7 @@
 import { createStandaloneToast } from '@chakra-ui/react'
 import { createElement } from 'react'
-import { Toast } from '../components/Toast'
+
+import { Toast } from '@/components/Toast'
 
 export async function fetchJSON<T = unknown>(input: RequestInfo | URL, init?: RequestInit): Promise<T> {
   try {

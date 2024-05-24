@@ -1,8 +1,9 @@
 import { Button, ButtonProps, ScaleFade } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { PropsWithChildren, memo } from 'react'
+import { memo, PropsWithChildren } from 'react'
 import { useAccount, useBalance } from 'wagmi'
-import { usePoolStore } from '../../store/poolStore'
+
+import { usePoolStore } from '@/store/poolStore'
 
 interface BoundaryProps extends PropsWithChildren {
   amount: bigint

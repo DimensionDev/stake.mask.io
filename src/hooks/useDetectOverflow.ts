@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 export function useDetectOverflow<T extends HTMLDivElement>(): [overflow: boolean, ref: (node: T | null) => void] {
   const [overflow, setOverflow] = useState(false)
@@ -6,5 +6,5 @@ export function useDetectOverflow<T extends HTMLDivElement>(): [overflow: boolea
     if (node) setOverflow(node.offsetWidth !== node.scrollWidth)
   }, [])
 
-  return [overflow, ref]
+  return [overflow, ref] as const
 }

@@ -1,10 +1,11 @@
 import { ButtonProps } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
-import { PropsWithChildren, memo } from 'react'
-import { usePoolInfo } from '../../hooks/usePoolInfo'
-import { usePoolState } from '../../hooks/usePoolState'
-import { stakeModal } from '../../modals/StakeModal'
-import { MaskStakingButton } from '../MaskStakingButton'
+import { memo, PropsWithChildren } from 'react'
+
+import { MaskStakingButton } from '@/components/MaskStakingButton'
+import { usePoolInfo } from '@/hooks/usePoolInfo'
+import { usePoolState } from '@/hooks/usePoolState'
+import { stakeModal } from '@/modals/StakeModal'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps

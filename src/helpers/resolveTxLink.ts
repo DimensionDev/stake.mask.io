@@ -1,4 +1,4 @@
-import { chains } from '../configs/wagmiClient'
+import { chains } from '@/configs/wagmiClient'
 
 export function resolveTxLink(chainId: number, hash: string) {
   const chain = chains.find((x) => x.id === chainId)

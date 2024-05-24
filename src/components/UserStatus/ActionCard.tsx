@@ -1,5 +1,6 @@
 import { Box, BoxProps, Image, Text } from '@chakra-ui/react'
-import CardGlowImage from '../../assets/card-glow.webp'
+
+import CardGlowImage from '@/assets/card-glow.webp'
 
 export interface ActionCardProps extends BoxProps {
   title: string

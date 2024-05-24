@@ -1,7 +1,7 @@
 import { Button, ButtonProps, ScaleFade } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { PropsWithChildren, memo } from 'react'
+import { memo, PropsWithChildren } from 'react'
 import { useAccount } from 'wagmi'
 
 interface BoundaryProps extends PropsWithChildren {

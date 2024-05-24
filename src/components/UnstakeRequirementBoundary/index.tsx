@@ -1,6 +1,7 @@
 import { ButtonProps } from '@chakra-ui/react'
-import { PropsWithChildren, memo } from 'react'
-import { TimeRangeBoundary } from './TimeRangeBoundary'
+import { memo, PropsWithChildren } from 'react'
+
+import { TimeRangeBoundary } from '@/components/UnstakeRequirementBoundary/TimeRangeBoundary'
 
 interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps

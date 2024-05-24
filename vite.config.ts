@@ -4,6 +4,10 @@ import react from '@vitejs/plugin-react-swc'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 import svgr from 'vite-plugin-svgr'
 
+function createURL(pathToFile: string) {
+  return new URL(pathToFile, import.meta.url).pathname
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -28,6 +32,12 @@ export default defineConfig({
       url: 'https://sentry.firefly.land',
     }),
   ],
+
+  resolve: {
+    alias: {
+      '@': createURL('./src'),
+    },
+  },
 
   build: {
     sourcemap: true,

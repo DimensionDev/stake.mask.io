@@ -1,13 +1,14 @@
 import { Button, Flex, FormControl, FormLabel, Input, ModalProps, Switch } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useId, useState } from 'react'
-import { GradientButton } from '../components/GradientButton'
-import { TwitterAvatar } from '../components/TwitterAvatar'
-import { useToast } from '../hooks/useToast'
-import { useUpdateUserInfo } from '../hooks/useUpdateUserInfo'
-import { useUserInfo } from '../hooks/useUserInfo'
-import { BaseModal } from './BaseModal'
-import { createUITaskManager } from './UITaskManager'
+
+import { GradientButton } from '@/components/GradientButton'
+import { TwitterAvatar } from '@/components/TwitterAvatar'
+import { useToast } from '@/hooks/useToast'
+import { useUpdateUserInfo } from '@/hooks/useUpdateUserInfo'
+import { useUserInfo } from '@/hooks/useUserInfo'
+import { BaseModal } from '@/modals/BaseModal'
+import { createUITaskManager } from '@/modals/UITaskManager'
 
 export function ProfileModal(props: ModalProps) {
   const { data: userInfo } = useUserInfo()
