@@ -18,7 +18,7 @@ interface BoundaryProps extends PropsWithChildren {
 export const BlackListBoundary = memo(function BlackListBoundary({ children }: BoundaryProps) {
   const account = useAccount()
 
-  const enabled = !!account.address && !!account.chainId
+  const enabled = !!account.address && account.chainId !== undefined
   const { data: inBlackList } = useQuery({
     queryKey: ['address-security', account.address, account.chainId],
     enabled,

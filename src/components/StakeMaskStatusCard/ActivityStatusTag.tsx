@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, type BoxProps, Skeleton } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { ComponentType } from 'react'

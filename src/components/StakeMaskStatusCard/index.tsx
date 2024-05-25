@@ -51,6 +51,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
     if (!stake) return
     const abort = new AbortController()
     stakeModal.show(undefined, abort.signal)
+    history.replaceState(history.state, '', '/')
     return () => {
       abort.abort()
     }
