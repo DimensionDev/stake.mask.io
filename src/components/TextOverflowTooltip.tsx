@@ -12,7 +12,7 @@ export const TextOverflowTooltip = memo(({ children, ...rest }: TextOverflowTool
   const [overflow, ref] = useDetectOverflow()
 
   return (
-    <Tooltip {...rest} label={overflow ? rest.label : ''} isDisabled={!overflow}>
+    <Tooltip {...rest} isDisabled={!overflow}>
       {cloneElement(children, { ...children.props, ref })}
     </Tooltip>
   )

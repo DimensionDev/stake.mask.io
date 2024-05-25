@@ -1,15 +1,13 @@
-import { Icon, Tooltip as RawTooltip, TooltipProps, useDisclosure } from '@chakra-ui/react'
-import { cloneElement, ComponentType, ReactElement, useEffect, useMemo, useRef } from 'react'
+import { Icon, Tooltip as RawTooltip, TooltipProps, useDisclosure, useMergeRefs } from '@chakra-ui/react'
+import { cloneElement, ComponentType, ReactElement, Ref, useEffect, useMemo, useRef } from 'react'
 
 import TooltipArrow from '@/assets/tooltip-arrow.svg?react'
 
-export const Tooltip: ComponentType<TooltipProps & { children: ReactElement }> = ({
-  children,
-  label,
-  hasArrow = true,
-  placement = 'top',
-  ...props
-}) => {
+interface Props extends TooltipProps {
+  children: ReactElement & { ref?: Ref<HTMLElement> }
+}
+
+export const Tooltip: ComponentType<Props> = ({ children, label, hasArrow = true, placement = 'top', ...props }) => {
   const { onOpen, onToggle, onClose, isOpen } = useDisclosure()
   const arrowIcon = useMemo(() => {
     if (hasArrow) {
@@ -48,7 +46,7 @@ export const Tooltip: ComponentType<TooltipProps & { children: ReactElement }> =
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (!ref.current) return
+    if (!ref.current || props.isDisabled) return
     const element = ref.current
     element.addEventListener('mouseenter', onOpen)
     element.addEventListener('mouseleave', onClose)
@@ -56,7 +54,9 @@ export const Tooltip: ComponentType<TooltipProps & { children: ReactElement }> =
       element.removeEventListener('mouseenter', onOpen)
       element.removeEventListener('mouseleave', onClose)
     }
-  }, [onClose, onOpen])
+  }, [onClose, onOpen, props.isDisabled])
+
+  const refs = useMergeRefs(ref, children.ref)
 
   return (
     <RawTooltip
@@ -71,11 +71,7 @@ export const Tooltip: ComponentType<TooltipProps & { children: ReactElement }> =
       onClick={onToggle}
       {...props}
     >
-      {typeof children === 'string' || typeof children === 'number' ? (
-        <span ref={ref}>children</span>
-      ) : (
-        cloneElement(children, { ...children.props, ref })
-      )}
+      {cloneElement(children, { ...children.props, ref: refs })}
     </RawTooltip>
   )
 }
