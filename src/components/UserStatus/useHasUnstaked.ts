@@ -11,10 +11,9 @@ export function useHasUnstaked() {
   const client = usePublicClient({ chainId })
   const { data: toBlock } = useBlockNumber({ chainId })
   const { data: poolInfo } = usePoolInfo()
-  const enabled = !!toBlock && !!client && !!poolInfo?.point_acc_end_block
   return useQuery({
-    enabled,
-    queryKey: ['has-unstaked', account.address, poolId],
+    enabled: !!client,
+    queryKey: ['has-unstaked', account.address, poolId, toBlock?.toString()],
     queryFn: async () => {
       if (!client || !toBlock) return
       const fromBlock = poolInfo?.point_acc_end_block ? BigInt(poolInfo.point_acc_end_block) : toBlock - BigInt(20000)

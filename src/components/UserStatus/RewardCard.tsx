@@ -30,7 +30,6 @@ export const RewardCard = memo(function RewardCard({
   unlocked,
   ...props
 }: Props) {
-  reward?.reward_pool_id
   const account = useAccount()
   const { chainId, rewardAddress } = usePoolStore()
   const { data: token } = useToken({ chainId, address: reward?.address })
@@ -43,7 +42,8 @@ export const RewardCard = memo(function RewardCard({
     abi: rewardABI,
     address: rewardAddress,
     functionName: 'userRewards',
-    args: reward?.reward_pool_id && account.address ? [reward.reward_pool_id, account.address] : undefined,
+    args:
+      reward?.reward_pool_id !== undefined && account.address ? [reward.reward_pool_id, account.address] : undefined,
   })
 
   const [{ switchingChain, claiming, loadingUserInfo, waiting }, claimReward] = useClaimReward(reward, {

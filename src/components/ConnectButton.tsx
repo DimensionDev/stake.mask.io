@@ -96,7 +96,7 @@ export const ConnectButton: ComponentType<ConnectButtonProps> = memo(({ connectT
                   >
                     <ConnectedWalletIcon rounded="100%" bg="white" />
                     <Box as="span" ml={1} w="110px" lineHeight="20px">
-                      {account.ensName ? account.ensName : formatEthereumAddress(account.address, 4)}
+                      {account.ensName || formatEthereumAddress(account.address, 4)}
                     </Box>
                   </Flex>
                   <Flex
