@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: stakemaskio\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-23 12:05\n"
+"PO-Revision-Date: 2024-05-25 12:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
 msgid "<0>+{0}</0>Points/h"
-msgstr ""
+msgstr "<0>+{0}</0>积分/每小时"
 
 #: src/components/UserStatus/StakedMask.tsx
 msgid "1 staked MASK will generate {ratio} point per hour."
@@ -32,11 +32,11 @@ msgstr "关于"
 
 #: src/routes/about.tsx
 msgid "About MASK Stake"
-msgstr ""
+msgstr "关于 MASK 质押"
 
 #: src/components/AcceptCookie.tsx
 msgid "Accept cookies"
-msgstr ""
+msgstr "接受 cookies"
 
 #: src/modals/StakeModal.tsx
 msgid "Amount"
@@ -45,7 +45,7 @@ msgstr "金额"
 #: src/components/StakeMaskStatusCard/index.tsx
 #: src/modals/StakeModal.tsx
 msgid "APR"
-msgstr ""
+msgstr "年利率"
 
 #: src/modals/ProfileModal.tsx
 msgid "Avatar"
@@ -57,7 +57,7 @@ msgstr "余额： {0}"
 
 #: src/components/StakeRequirementBoundary/BlackListBoundary.tsx
 msgid "Blacklist is powered by <0>Go+</0>"
-msgstr ""
+msgstr "黑名单提供方"
 
 #: src/modals/StakeModal.tsx
 msgid "Can not get determination MASK token"
@@ -66,27 +66,27 @@ msgstr ""
 #: src/modals/ProfileModal.tsx
 #: src/modals/VerifyModal.tsx
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Checking"
-msgstr ""
+msgstr "检查中"
 
 #: src/components/UserStatus/RewardCard.tsx
 #: src/components/UserStatus/useClaimReward.tsx
 #: src/components/UserStatus/useClaimReward.tsx
 msgid "Claim"
-msgstr ""
+msgstr "领取"
 
 #: src/components/UserStatus/useClaimReward.tsx
 msgid "Claim Successfully"
-msgstr ""
+msgstr "领取成功"
 
 #: src/modals/ProfileModal.tsx
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
@@ -97,30 +97,29 @@ msgstr ""
 
 #: src/components/Nav/MobileMenu.tsx
 msgid "Connect"
-msgstr ""
+msgstr "连接"
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Connect to stake"
-msgstr ""
+msgstr "开始质押"
 
 #: src/components/ConnectButton.tsx
 #: src/components/StakeRequirementBoundary/ConnectBoundary.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Connect Wallet"
-msgstr ""
+msgstr "连接钱包"
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Contact Us"
-msgstr ""
+msgstr "联系人"
 
+#: src/components/Footer/Terms/index.tsx
 #: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Cookie Policy"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are used to store information about you and your internet usage habits to improve your online experience. Cookies enable websites to recognize your device and remember some information about your preferences."
 msgstr ""
@@ -153,17 +152,14 @@ msgstr ""
 msgid "FAQs"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "How to Control Cookies"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "If you have any questions or concerns about this Cookie Policy, please contact us at:"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "info@dimension.im"
 msgstr ""
@@ -172,40 +168,6 @@ msgstr ""
 msgid "Insufficient balance"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
-msgid "Introduction\n"
-"Mask Network is committed to protecting the privacy of its users. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you stake Mask to receive other token rewards through our website. By using our service, you consent to the data practices described in this policy.\n"
-"Information Collection and Use\n"
-"Information You Provide to Us\n"
-"We collect information you provide directly to us when you use our services. This may include:\n"
-"Contact information, such as your name, email address, and phone number.\n"
-"Blockchain-related information, such as your wallet addresses.\n"
-"Social media account information, including but not limited to accounts on platforms like x.com.\n"
-"When you choose to link your social media accounts or provide your wallet addresses, we may display this information on our website to enhance the user experience and foster a community environment. We encourage you to review the privacy settings and policies of any social media platforms you interact with to understand how your information may be shared and used.\n"
-"Information We Collect Automatically\n"
-"When you access our website, we may automatically collect information about your device and usage, including:\n"
-"IP address, browser type, and operating system.\n"
-"Information about your interactions with our website, such as the pages you visit.\n"
-"Use of Your Information\n"
-"We use the information we collect about you to:\n"
-"Provide, maintain, and improve our services.\n"
-"Display your social media profiles and wallet addresses on our website, subject to your preferences and permissions.\n"
-"Respond to your inquiries and provide customer support.\n"
-"Monitor and analyze trends, usage, and activities in connection with our services.\n"
-"Sharing of Your Information\n"
-"We may share your information with third parties in the following situations:\n"
-"With your consent or at your direction.\n"
-"With service providers who assist us in our operations, under confidentiality agreements.\n"
-"If required by law or to protect the rights, property, or safety of [Your Website Name], our users, or others.\n"
-"Security\n"
-"We take reasonable measures to protect your information from unauthorized access, use, alteration, and destruction. However, no internet or email transmission is ever fully secure or error-free.\n"
-"Changes to This Privacy Policy\n"
-"We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the \"Last Updated\" date.\n"
-"Contact Us\n"
-"If you have any questions about this Privacy Policy, please contact us at info@dimension.im."
-msgstr ""
-
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Last Updated: 03.10 2024"
 msgstr ""
@@ -262,7 +224,6 @@ msgstr ""
 msgid "Ongoing"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Persistent Cookies: These cookies are stored on your device until they reach their expiration date or are manually deleted. They are used to remember your preferences and provide a personalized experience when you revisit the website."
 msgstr ""
@@ -276,12 +237,13 @@ msgid "Pool Liquidity"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
+#: src/components/Footer/Terms/index.tsx
 msgid "Privacy Policy"
 msgstr ""
 
 #: src/modals/ProfileModal.tsx
 msgid "Profile"
-msgstr ""
+msgstr "个人信息"
 
 #: src/modals/ProfileModal.tsx
 msgid "Profile Name"
@@ -291,7 +253,10 @@ msgstr ""
 msgid "Profile Name is required"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
+#: src/components/StakingRanking/index.tsx
+msgid "Ranking updates every 10 min"
+msgstr ""
+
 #: src/modals/CookiePolicyModal.tsx
 msgid "Session Cookies: These cookies exist only during your visit to the website and are automatically deleted when you close your browser. They are used to maintain session state, such as storing the contents of your shopping cart."
 msgstr ""
@@ -306,7 +271,7 @@ msgstr ""
 
 #: src/modals/VerifyModal.tsx
 msgid "Sign"
-msgstr ""
+msgstr "签名"
 
 #: src/components/Footer/index.tsx
 msgid "Since 2019 to Now ｜"
@@ -322,7 +287,7 @@ msgstr ""
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
-msgstr ""
+msgstr "质押"
 
 #: src/routes/index.tsx
 msgid "Stake $MASK for Rewards"
@@ -331,7 +296,7 @@ msgstr ""
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 #: src/components/UnstakeRequirementBoundary/TimeRangeBoundary.tsx
 msgid "Stake Mask"
-msgstr ""
+msgstr "质押 Mask"
 
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "Stake MASK"
@@ -378,45 +343,14 @@ msgid "Support"
 msgstr ""
 
 #: src/components/Footer/Terms/index.tsx
-msgid "Terms of Use"
-msgstr ""
-
 #: src/components/Footer/Terms/index.tsx
-msgid "Terms of Use for Mask.io\n"
-"Acceptance of Terms\n"
-"By accessing and using Mask.io , you agree to be bound by these Terms of Use (\"Terms\"). If you do not agree to these Terms, you may not use our services.\n"
-"Changes to Terms\n"
-"We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. Your continued use of our services after any changes indicates your acceptance of the new Terms.\n"
-"Use of Our Services\n"
-"[Your Website Name] allows you to stake Mask to receive other token rewards. You agree to use our services only for lawful purposes and in accordance with these Terms.\n"
-"Account Responsibilities\n"
-"You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.\n"
-"You agree to notify us immediately of any unauthorized use of your account.\n"
-"Prohibited Activities\n"
-"You agree not to engage in any of the following prohibited activities:\n"
-"Using our services for any illegal purpose or in violation of any local, state, national, or international law.\n"
-"Infringing on the intellectual property rights of others or the intellectual property rights of Mask.io.\n"
-"Attempting to gain unauthorized access to our services or another user's account.\n"
-"Interfering with the security-related features of our services.\n"
-"Intellectual Property\n"
-"All content, trademarks, logos, and service marks displayed on Mask.io are our property or the property of other third parties. You are not permitted to use these Marks without our prior written consent or the consent of such third party which may own the Marks.\n"
-"Disclaimer of Warranties\n"
-"Our services are provided on an \"as is\" and \"as available\" basis. Mask.io expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.\n"
-"Limitation of Liability\n"
-"[Your Website Name] shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to, damages for loss of profits, goodwill, use, data, or other intangible losses, resulting from the use or the inability to use our services.\n"
-"Indemnification\n"
-"You agree to indemnify and hold harmless Mask.io and its officers, directors, employees, and agents from any and all claims, damages, expenses, and liabilities arising out of your use of our services, your violation of these Terms, or your violation of the rights of a third party.\n"
-"Governing Law\n"
-"These Terms shall be governed and construed in accordance with the laws of the People's Republic of China, without regard to its conflict of law provisions.\n"
-"Contact Us\n"
-"If you have any questions about these Terms, please contact us at info@dimension.im."
+msgid "Terms of Use"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions. <0>More</0>"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Third-Party Cookies: The Site may use cookies from third-party service providers for traffic analysis and user behavior tracking, as well as to display ads relevant to your interests."
 msgstr ""
@@ -425,7 +359,6 @@ msgstr ""
 msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked MASK tokens and reward tokens only after the event concludes."
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By using the Site, you consent to the use of cookies as described in this Cookie Policy."
 msgstr ""
@@ -467,7 +400,6 @@ msgstr ""
 msgid "Transaction submitted!"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Types of Cookies We Use"
 msgstr ""
@@ -498,7 +430,6 @@ msgstr ""
 msgid "Unstake Successfully"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "Updates to the Cookie Policy"
 msgstr ""
@@ -512,7 +443,6 @@ msgstr ""
 msgid "Waiting for transaction confirmation"
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "We reserve the right to update this Cookie Policy at any time. The updated Cookie Policy will be posted on this page and will become effective immediately. We recommend checking back regularly for updates."
 msgstr ""
@@ -521,7 +451,6 @@ msgstr ""
 msgid "We use our own cookies."
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "What Are Cookies?"
 msgstr ""
@@ -534,7 +463,6 @@ msgstr ""
 msgid "You can claim after the event ends."
 msgstr ""
 
-#: src/components/Footer/Terms/index.tsx
 #: src/modals/CookiePolicyModal.tsx
 msgid "You can manage and delete cookies through your browser settings. Please note that disabling cookies may affect your access to and experience on the Site."
 msgstr ""
@@ -552,7 +480,7 @@ msgid "You have successfully claimed {0} {tokenSymbol}."
 msgstr ""
 
 #: src/modals/StakeModal.tsx
-msgid "You have successfully staked {rawAmount} MASK."
+msgid "You have successfully staked {0} MASK."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
