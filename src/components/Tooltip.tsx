@@ -1,5 +1,5 @@
-import { Icon, Tooltip as RawTooltip, TooltipProps, useDisclosure, useMergeRefs } from '@chakra-ui/react'
-import { cloneElement, ComponentType, ReactElement, Ref, useEffect, useMemo, useRef } from 'react'
+import { Icon, Tooltip as RawTooltip, TooltipProps } from '@chakra-ui/react'
+import { ComponentType, ReactElement, Ref, useMemo } from 'react'
 
 import TooltipArrow from '@/assets/tooltip-arrow.svg?react'
 
@@ -8,7 +8,6 @@ interface Props extends TooltipProps {
 }
 
 export const Tooltip: ComponentType<Props> = ({ children, label, hasArrow = true, placement = 'top', ...props }) => {
-  const { onOpen, onToggle, onClose, isOpen } = useDisclosure()
   const arrowIcon = useMemo(() => {
     if (hasArrow) {
       if (placement === 'top') {
@@ -43,21 +42,6 @@ export const Tooltip: ComponentType<Props> = ({ children, label, hasArrow = true
     return null
   }, [hasArrow, placement])
 
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    if (!ref.current || props.isDisabled) return
-    const element = ref.current
-    element.addEventListener('mouseenter', onOpen)
-    element.addEventListener('mouseleave', onClose)
-    return () => {
-      element.removeEventListener('mouseenter', onOpen)
-      element.removeEventListener('mouseleave', onClose)
-    }
-  }, [onClose, onOpen, props.isDisabled])
-
-  const refs = useMergeRefs(ref, children.ref)
-
   return (
     <RawTooltip
       label={
@@ -66,12 +50,10 @@ export const Tooltip: ComponentType<Props> = ({ children, label, hasArrow = true
           {arrowIcon}
         </>
       }
-      isOpen={isOpen}
       placement={placement}
-      onClick={onToggle}
       {...props}
     >
-      {cloneElement(children, { ...children.props, ref: refs })}
+      {children}
     </RawTooltip>
   )
 }

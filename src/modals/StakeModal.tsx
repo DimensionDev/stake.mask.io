@@ -192,7 +192,7 @@ export function StakeModal(props: ModalProps) {
                 {balance.isPending ? (
                   <Skeleton as="span" ml={2} height="16px" width="20px" />
                 ) : balance.isError ? (
-                  <Tooltip label={balance.error.message}>
+                  <Tooltip label={balance.error.message} shouldWrapChildren>
                     <InfoIcon width={5} height={5} color="danger" onClick={() => balance.refetch()} />
                   </Tooltip>
                 ) : (
@@ -260,7 +260,7 @@ export function StakeModal(props: ModalProps) {
           <HStack justifyContent="space-between">
             <Text>{t`APR`}</Text>
             {pool?.apr !== undefined ? (
-              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top">
+              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top" shouldWrapChildren>
                 <Text>{formatNumber(pool.apr, 2)}%</Text>
               </Tooltip>
             ) : (
@@ -270,7 +270,7 @@ export function StakeModal(props: ModalProps) {
           <HStack justifyContent="space-between">
             <Text>{t`Share of Pool`}</Text>
             {share !== undefined ? (
-              <Tooltip label={`${formatNumber(share * 100, 4)}%`} hasArrow placement="top">
+              <Tooltip label={`${formatNumber(share * 100, 4)}%`} hasArrow placement="top" shouldWrapChildren>
                 <Text>{formatNumber(share * 100, 2)}%</Text>
               </Tooltip>
             ) : (
@@ -282,7 +282,7 @@ export function StakeModal(props: ModalProps) {
             <HStack>
               <TokenIcon width={4} height={4} omitChain />
               {pool?.amount ? (
-                <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
+                <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top" shouldWrapChildren>
                   <Text>{formatNumber(+pool.amount)}</Text>
                 </Tooltip>
               ) : (
