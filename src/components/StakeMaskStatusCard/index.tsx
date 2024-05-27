@@ -116,7 +116,12 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
                 `${formatSeconds(pool?.start_time, 'M.DD YYYY')}~${formatSeconds(pool.end_time, 'M.DD YYYY')}`
               )}
             </Trans>
-            <Tooltip label={t`Staked MASK can be unstake after the campaign ends.`} placement="top" hasArrow>
+            <Tooltip
+              label={t`Staked MASK can be unstake after the campaign ends.`}
+              placement="top"
+              hasArrow
+              shouldWrapChildren
+            >
               <Box as="span" w="6" h="6" ml="10px" cursor="pointer">
                 <Icon as={QuestionSVG} w="initial" h="initial" />
               </Box>
@@ -194,7 +199,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
             spacing={6}
           >
             {pool?.apr !== undefined ? (
-              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top">
+              <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top" shouldWrapChildren>
                 <Box
                   h="56px"
                   fontSize="32px"
@@ -232,7 +237,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
               letterSpacing="-0.32px"
             >
               {pool?.amount !== undefined ? (
-                <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top">
+                <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top" shouldWrapChildren>
                   <Text>{formatMarketCap(+pool.amount)}</Text>
                 </Tooltip>
               ) : (
