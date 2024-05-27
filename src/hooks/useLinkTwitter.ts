@@ -1,6 +1,6 @@
 import { useAsyncFn } from 'react-use'
 import urlcat from 'urlcat'
-import { useAccount, useSignMessage } from 'wagmi'
+import { useAccount } from 'wagmi'
 
 import { FIREFLY_API_ROOT } from '@/constants/api'
 import { fetchJSON } from '@/helpers/fetchJSON'
@@ -13,10 +13,8 @@ import { TwitterAuthorizeResponse } from '@/types/api'
 export function useLinkTwitter() {
   const account = useAccount()
   const toast = useToast()
-  const { signMessageAsync } = useSignMessage()
   const handleError = useHandleError()
 
-  const { updateToken } = useAccountStore()
   const { token } = useAccountStore()
   const login = useLogin()
 
@@ -51,5 +49,5 @@ export function useLinkTwitter() {
       if (handleError(err)) return
       throw err
     }
-  }, [account.address, signMessageAsync, login.mutateAsync, updateToken])
+  }, [account.address, handleError, token, login.mutateAsync])
 }
