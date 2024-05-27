@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: stakemaskio\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-25 12:04\n"
+"PO-Revision-Date: 2024-05-27 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -59,7 +59,7 @@ msgstr "余额： {0}"
 msgid "Blacklist is powered by <0>Go+</0>"
 msgstr "黑名单提供方"
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Can not get determination MASK token"
 msgstr ""
 
@@ -91,7 +91,7 @@ msgstr "确认"
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Confirm this transaction in your wallet."
 msgstr ""
 
@@ -282,8 +282,8 @@ msgid "Sorry, you are in a restricted region"
 msgstr ""
 
 #: src/components/Nav/index.tsx
-#: src/modals/StakeModal.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
+#: src/hooks/useStake.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
@@ -306,7 +306,7 @@ msgstr ""
 msgid "Stake MASK Now"
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Stake Successfully"
 msgstr ""
 
@@ -330,7 +330,7 @@ msgstr ""
 msgid "Successfully claimed {0} Tokens."
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Successfully staked MASK Tokens."
 msgstr ""
 
@@ -390,13 +390,13 @@ msgstr ""
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Transaction failed."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Transaction submitted!"
 msgstr ""
 
@@ -479,7 +479,7 @@ msgstr ""
 msgid "You have successfully claimed {0} {tokenSymbol}."
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "You have successfully staked {0} MASK."
 msgstr ""
 
@@ -498,7 +498,7 @@ msgstr ""
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Your wallet cancelled the transaction."
 msgstr ""
 
