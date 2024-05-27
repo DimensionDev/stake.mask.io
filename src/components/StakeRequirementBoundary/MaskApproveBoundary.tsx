@@ -2,7 +2,7 @@ import { Button, ButtonProps, ScaleFade } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { memo, PropsWithChildren, useState } from 'react'
 import { erc20Abi, TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useChainId, useConfig, useWriteContract } from 'wagmi'
+import { useConfig, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 
 import { TxToastDescription } from '@/components/TxToastDescription'
@@ -17,10 +17,9 @@ interface BoundaryProps extends PropsWithChildren {
   buttonProps?: ButtonProps
 }
 export const MaskApproveBoundary = memo(function MaskApproveBoundary({ children, amount }: BoundaryProps) {
-  const chainId = useChainId()
   const allowance = useMaskAllowance()
   const insufficientAllowance = allowance.data === undefined ? true : allowance.data < amount
-  const { maskTokenAddress, stakeManagerAddress } = usePoolStore()
+  const { chainId, maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const { writeContractAsync, isPending } = useWriteContract()
   const handleError = useHandleError()
   const toast = useToast({ title: t`Unlock MASK` })

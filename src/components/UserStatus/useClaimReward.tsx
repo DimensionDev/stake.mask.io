@@ -2,7 +2,7 @@ import { t } from '@lingui/macro'
 import { produce } from 'immer'
 import { useCallback, useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useAccount, useChainId, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
+import { useAccount, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 
 import { rewardABI } from '@/abis/reward'
@@ -27,7 +27,7 @@ export function useClaimReward(
 ) {
   const config = useConfig()
   const account = useAccount()
-  const currentChainId = useChainId()
+  const currentChainId = account.chainId
   const toast = useToast({ title: t`Claim` })
   const { chainId, poolId, rewardAddress } = usePoolStore()
   const { data: userInfo, isLoading: loadingUserInfo } = useUserInfo()
