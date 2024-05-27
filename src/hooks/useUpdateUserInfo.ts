@@ -7,12 +7,14 @@ import { fetchJSON } from '@/helpers/fetchJSON'
 import { isSameAddress } from '@/helpers/isSameAddress'
 import { useLogin } from '@/hooks/useLogin'
 import { useAccountStore } from '@/store/accountStore'
+import { usePoolStore } from '@/store/poolStore'
 import { StakeRankItem, UpdateUserInfoParams, UpdateUserInfoResponse } from '@/types/api'
 
 export function useUpdateUserInfo() {
   const queryClient = useQueryClient()
   const account = useAccount()
   const { token } = useAccountStore()
+  const { poolId } = usePoolStore()
   const login = useLogin()
   return useMutation({
     mutationKey: ['update-user-info', account.address],
@@ -32,15 +34,15 @@ export function useUpdateUserInfo() {
         body: JSON.stringify(params),
       })
     },
-    onSuccess(_, variables) {
+    onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['user-info'] })
-      queryClient.setQueriesData<StakeRankItem[]>({ queryKey: ['staking-ranking-list'] }, (ranks) => {
-        if (!ranks) return ranks
-        const address = account.address?.toLowerCase()
-        return ranks.map((x) => {
-          return isSameAddress(x.address, address) ? { ...x, twitter_display_name: variables.display_username } : x
-        })
-      })
+      const queryKey = ['staking-ranking-list', poolId]
+      const data = queryClient.getQueryData<StakeRankItem[]>(queryKey)
+
+      const address = account.address?.toLowerCase()
+      if (data?.some((x) => isSameAddress(x.address, address))) {
+        queryClient.refetchQueries({ queryKey })
+      }
     },
   })
 }
