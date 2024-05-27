@@ -1,4 +1,4 @@
-interface Response<T> {
+export interface Response<T> {
   code: number
   reason: string
   message: string

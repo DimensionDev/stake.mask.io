@@ -12,6 +12,7 @@ export function useLogin() {
   const { signMessageAsync } = useSignMessage()
   const { updateToken } = useAccountStore()
   return useMutation({
+    mutationKey: ['login', account.address],
     mutationFn: async () => {
       const message = `Login stake.mask.io at ${new Date().toString()}`
       const signed = await signMessageAsync({ message })
