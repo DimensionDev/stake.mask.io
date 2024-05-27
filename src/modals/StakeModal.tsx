@@ -261,7 +261,10 @@ export function StakeModal(props: ModalProps) {
             <Text>{t`APR`}</Text>
             {pool?.apr !== undefined ? (
               <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top" shouldWrapChildren>
-                <Text>{formatNumber(pool.apr, 2)}%</Text>
+                <Text>
+                  {pool.apr > 10000 ? '>' : ''}
+                  {formatNumber(Math.min(pool.apr, 10000), 2)}%
+                </Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="100px" />
@@ -362,7 +365,7 @@ export function StakeModal(props: ModalProps) {
                         status: 'success',
                         description: <TxToastDescription link={txLink} text={t`Successfully staked MASK Tokens.`} />,
                       })
-                      checkStats() // omit await, avoid blocking
+                      await checkStats()
                       queryClient.refetchQueries({ queryKey: ['pool-info'] })
                       queryClient.refetchQueries({ queryKey: ['user-info'] })
                       await resultModal.show({
