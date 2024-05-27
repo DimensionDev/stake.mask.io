@@ -21,7 +21,8 @@ export function useLinkTwitter() {
   const login = useLogin()
 
   return useAsyncFn(async () => {
-    if (!account.address) return
+    const address = account.address
+    if (!address) return
     try {
       let jwtToken = token
       if (!jwtToken) {
@@ -29,7 +30,7 @@ export function useLinkTwitter() {
       }
 
       const url = urlcat(FIREFLY_API_ROOT, '/v1/mask_stake/twitter/authorize', {
-        wallet_address: account.address,
+        wallet_address: address,
       })
       const res = await fetchJSON<TwitterAuthorizeResponse>(url, {
         headers: {

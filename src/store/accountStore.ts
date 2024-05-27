@@ -5,6 +5,7 @@ import { immer } from 'zustand/middleware/immer'
 interface AccountState {
   token: string
   updateToken(token: string): void
+  clearToken(): void
 }
 
 export const useAccountStore = create<AccountState, [['zustand/persist', AccountState], ['zustand/immer', never]]>(
@@ -14,6 +15,11 @@ export const useAccountStore = create<AccountState, [['zustand/persist', Account
       updateToken: (token: string) => {
         set((state) => {
           state.token = token.trim()
+        })
+      },
+      clearToken() {
+        set((state) => {
+          state.token = ''
         })
       },
     })),
