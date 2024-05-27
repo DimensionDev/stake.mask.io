@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { noop } from 'lodash-es'
 import { useState } from 'react'
 import { TransactionExecutionError, UserRejectedRequestError } from 'viem'
-import { useChainId, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
+import { useAccount, useConfig, useSwitchChain, useWriteContract } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
 
 import { StakeManagerABI } from '@/abis/stakeManager'
@@ -26,7 +26,7 @@ interface Params {
 export function useStake() {
   const { chainId, maskTokenAddress, stakeManagerAddress } = usePoolStore()
   const config = useConfig()
-  const currentChainId = useChainId()
+  const { chainId: currentChainId } = useAccount()
   const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending: isStaking } = useWriteContract()
 
