@@ -1,4 +1,4 @@
-Privacy Policy for [Mask Network — Your Portal To The New, Open Internet.](http://mask.io/)
+Privacy Policy for stake.mask.io
 
 ## Introduction
 
