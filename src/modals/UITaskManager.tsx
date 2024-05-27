@@ -44,10 +44,6 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
   function Tasks() {
     const [tasks, setTasks] = useState<Task[]>(EMPTY_LIST)
 
-    useEffect(() => {
-      resolveInjected(true)
-    }, [])
-
     const control = useMemo(() => {
       const removeTask = (id: number) => {
         setTasks((list) =>
@@ -89,6 +85,7 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
 
     useEffect(() => {
       Object.assign(controller, control)
+      resolveInjected(true)
     }, [control])
 
     return (

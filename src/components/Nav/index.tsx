@@ -12,6 +12,7 @@ import {
 import { t } from '@lingui/macro'
 import { Link } from '@tanstack/react-router'
 import { ComponentType, useMemo } from 'react'
+import { useAccountEffect } from 'wagmi'
 
 import LogoSVG from '@/assets/logo.svg?react'
 import { ConnectButton } from '@/components/ConnectButton.tsx'
@@ -21,12 +22,14 @@ import { MobileMenu } from '@/components/Nav/MobileMenu.tsx'
 import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
 import { useUserInfo } from '@/hooks/useUserInfo.ts'
 import { profileModal } from '@/modals/ProfileModal.tsx'
+import { useAccountStore } from '@/store/accountStore'
 
 export interface NavProps extends FlexProps {}
 
 export const Nav: ComponentType<NavProps> = ({ ...props }) => {
   const isHiddenTabs = useBreakpointValue({ base: true, lg: false })
   const { data: user, isLoading: isLoadingUserInfo } = useUserInfo()
+  const { clearToken } = useAccountStore()
   const mobileMenu = useDisclosure()
   const menus = useMemo(
     () => [
@@ -45,6 +48,12 @@ export const Nav: ComponentType<NavProps> = ({ ...props }) => {
     ],
     [],
   )
+
+  useAccountEffect({
+    onDisconnect() {
+      clearToken()
+    },
+  })
 
   return (
     <Center

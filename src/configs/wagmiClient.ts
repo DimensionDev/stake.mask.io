@@ -45,6 +45,11 @@ export const config = createConfig({
   chains,
   connectors,
   client({ chain }) {
-    return createClient({ chain, transport: http() })
+    return createClient({
+      chain,
+      transport: http(undefined, {
+        batch: true,
+      }),
+    })
   },
 }) as Config

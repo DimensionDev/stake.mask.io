@@ -15,7 +15,7 @@ export function useHasUnstaked() {
     enabled: !!client,
     queryKey: ['has-unstaked', account.address, poolId, toBlock?.toString()],
     queryFn: async () => {
-      if (!client || !toBlock) return
+      if (!client || !toBlock) return null
       const fromBlock = poolInfo?.point_acc_end_block ? BigInt(poolInfo.point_acc_end_block) : toBlock - BigInt(20000)
       const filter = await client.createEventFilter({
         address: stakeManagerAddress,
