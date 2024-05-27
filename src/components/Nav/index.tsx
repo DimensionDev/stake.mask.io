@@ -56,13 +56,7 @@ export const Nav: ComponentType<NavProps> = ({ ...props }) => {
   })
 
   return (
-    <Center
-      w="100%"
-      h="80px"
-      borderBottom={{ base: 'none', lg: '1px solid rgba(255, 255, 255, 0.1)' }}
-      pos="relative"
-      {...props}
-    >
+    <Center w="100%" h="80px" borderBottom="1px solid rgba(255, 255, 255, 0.1)" pos="relative" {...props}>
       <Flex p={5} align="center" w="100%" h="inherit" maxW="1440px" pos="relative" zIndex={30}>
         <Link to="/">
           <Icon as={LogoSVG} w="164px" h="auto" />
