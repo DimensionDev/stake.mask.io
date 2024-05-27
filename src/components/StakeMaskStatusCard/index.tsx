@@ -158,7 +158,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
                 <VStack spacing={0} color="neutrals.8" align="start">
                   {rss3 ? (
                     <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
-                      {formatNumber(+rss3.amount)}
+                      {formatNumber(+rss3.amount, 0)}
                     </Box>
                   ) : (
                     <Skeleton height="24px" width="80px" my="4px" />
@@ -174,7 +174,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
                 <VStack spacing={0} color="neutrals.8" align="start">
                   {ton ? (
                     <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
-                      {formatNumber(+ton.amount)}
+                      {formatNumber(+ton.amount, 0)}
                     </Box>
                   ) : (
                     <Skeleton height="24px" width="80px" my="4px" />

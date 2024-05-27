@@ -6,7 +6,7 @@ import { FIREFLY_API_ROOT } from '@/constants/api'
 import { fetchJSON } from '@/helpers/fetchJSON'
 import { useLogin } from '@/hooks/useLogin'
 import { useAccountStore } from '@/store/accountStore'
-import { TwitterAuthorizeResponse } from '@/types/api'
+import { CheckTokenResponse } from '@/types/api'
 
 export function useCheckStats() {
   const account = useAccount()
@@ -24,11 +24,12 @@ export function useCheckStats() {
       }
 
       const url = urlcat(FIREFLY_API_ROOT, 'v1/mask_stake/check_token')
-      await fetchJSON<TwitterAuthorizeResponse>(url, {
+      const res = await fetchJSON<CheckTokenResponse>(url, {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },
       })
+      return res.data
     } catch {
       //
     }
