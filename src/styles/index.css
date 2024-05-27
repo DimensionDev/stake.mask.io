@@ -110,8 +110,33 @@ h5[id]:before,
 h6[id]:before {
   display: block;
   content: ' ';
-  margin-top: -110px;
-  height: 110px;
+  margin-top: -90px;
+  height: 90px;
   visibility: hidden;
   pointer-events: none;
+}
+
+.markdown-content {
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 32px;
+    font-weight: 700;
+  }
+  p, ul, ol {
+    margin-bottom: 32px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  ul, ol {
+    padding-left: 32px;
+  }
+  a {
+    text-decoration: underline;
+  }
 }

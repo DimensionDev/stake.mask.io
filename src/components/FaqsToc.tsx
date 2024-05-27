@@ -9,15 +9,17 @@ import {
   DrawerCloseButton,
   DrawerContent,
   DrawerOverlay,
+  Flex,
   Icon,
   Link,
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useLocation, useNavigate } from '@tanstack/react-router'
-import { ComponentType, RefObject, useEffect, useState } from 'react'
+import { useNavigate } from '@tanstack/react-router'
+import { ComponentType, RefObject, useEffect, useMemo, useState } from 'react'
 
 import MenuSVG from '@/assets/menu.svg?react'
+import { useInViewId } from '@/hooks/useInViewId.ts'
 import { sleep } from '@/utils/sleep.ts'
 
 export interface TOCItem {
@@ -71,7 +73,6 @@ function generateTOC(contentEl: HTMLElement) {
 
 export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> = ({ contentRef }) => {
   const [tocItems, setTOCItem] = useState<TOCItem[]>([])
-  const { hash } = useLocation()
   const isShowDrawer = useBreakpointValue({ base: true, md: false })
   const drawer = useDisclosure()
   const navigate = useNavigate()
@@ -85,18 +86,36 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
     }
   }, [])
 
+  const { inViewId } = useInViewId('#faqs-content')
+
   useEffect(() => {
-    if (contentRef.current) {
-      setTOCItem(generateTOC(contentRef.current))
+    if (!contentRef.current) {
+      return
     }
+    const newTocItems = generateTOC(contentRef.current)
+    setTOCItem(newTocItems)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const currentToc = useMemo(() => {
+    for (const tocItem of tocItems) {
+      if (tocItem.id === inViewId) {
+        return [tocItem]
+      }
+      for (const subTocItem of tocItem.children) {
+        if (subTocItem.id === inViewId) {
+          return [tocItem, subTocItem]
+        }
+      }
+    }
+    return []
+  }, [inViewId, tocItems])
 
   const content =
     tocItems.length > 0 ? (
       <Accordion defaultIndex={new Array(tocItems.length).fill(0).map((_, i) => i)} allowMultiple w="100%" top="110px">
         {tocItems.map((tocItem) => {
-          const isActive = tocItem.id === hash || tocItem.children.some((sub) => sub.id === hash)
+          const isActive = tocItem.id === inViewId || tocItem.children.some((sub) => sub.id === inViewId)
           return (
             <AccordionItem key={tocItem.id} border="none">
               <AccordionButton
@@ -115,6 +134,7 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
               </AccordionButton>
               <AccordionPanel py={0} px={0}>
                 {tocItem.children.map((sub) => {
+                  const isActive2 = sub.id === inViewId
                   return (
                     <Link
                       key={sub.id}
@@ -129,11 +149,11 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
                       transition="200ms"
                       _hover={{
                         textDecoration: 'none',
-                        bg: 'neutrals.8',
+                        bg: 'rgba(255, 255, 255, 0.1)',
                       }}
                       style={{
-                        color: sub.id === hash ? 'var(--chakra-colors-flow-line)' : undefined,
-                        background: sub.id === hash ? 'var(--chakra-colors-neutrals-8)' : undefined,
+                        color: isActive2 ? 'var(--chakra-colors-flow-line)' : undefined,
+                        background: isActive2 ? 'rgba(255, 255, 255, 0.1)' : undefined,
                       }}
                       onClick={async (e) => {
                         if (isShowDrawer) {
@@ -160,9 +180,32 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
   if (isShowDrawer) {
     return (
       <>
-        <Box as="button" mr="auto" w={8} h={8} mb="10px" zIndex={1} onClick={drawer.onOpen}>
-          <Icon as={MenuSVG} boxSize={8} />
-        </Box>
+        <Flex
+          pos="fixed"
+          w="100%"
+          left="0"
+          top="79px"
+          mr="auto"
+          lineHeight="6"
+          fontSize="sm"
+          align="center"
+          mb="10px"
+          px={3}
+          h="56px"
+          borderBottom="1px solid rgba(255, 255, 255, 0.1)"
+          bg="rgba(0, 0, 0, 0.10)"
+          backdropFilter="blur(10px)"
+          transform="translate3d(0, 0, 0)" // use gpu to render blur
+        >
+          <Box as="button" w={8} h={8} zIndex={1} onClick={drawer.onOpen}>
+            <Icon as={MenuSVG} boxSize={8} />
+          </Box>
+          <Flex align="center" ml="8px" flex={1}>
+            <Flex align="center">{currentToc[currentToc.length - 1]?.text}</Flex>
+          </Flex>
+        </Flex>
+        <Flex h="56px" mb="24px" w="100%" />
+
         <Drawer isOpen={drawer.isOpen} onClose={drawer.onClose} placement="left">
           <DrawerOverlay />
           <DrawerContent rounded="0" overflowY="auto">
