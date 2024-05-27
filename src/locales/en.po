@@ -54,7 +54,7 @@ msgstr ""
 msgid "Blacklist is powered by <0>Go+</0>"
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Can not get determination MASK token"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Confirm this transaction in your wallet."
 msgstr ""
 
@@ -277,8 +277,8 @@ msgid "Sorry, you are in a restricted region"
 msgstr ""
 
 #: src/components/Nav/index.tsx
-#: src/modals/StakeModal.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
+#: src/hooks/useStake.tsx
 #: src/modals/StakeModal.tsx
 #: src/modals/StakeModal.tsx
 msgid "Stake"
@@ -301,7 +301,7 @@ msgstr ""
 msgid "Stake MASK Now"
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Stake Successfully"
 msgstr ""
 
@@ -325,7 +325,7 @@ msgstr ""
 msgid "Successfully claimed {0} Tokens."
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Successfully staked MASK Tokens."
 msgstr ""
 
@@ -385,13 +385,13 @@ msgstr ""
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Transaction failed."
 msgstr ""
 
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Transaction submitted!"
 msgstr ""
 
@@ -474,7 +474,7 @@ msgstr ""
 msgid "You have successfully claimed {0} {tokenSymbol}."
 msgstr ""
 
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "You have successfully staked {0} MASK."
 msgstr ""
 
@@ -493,6 +493,6 @@ msgstr ""
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/UserStatus/StakedMask.tsx
 #: src/components/UserStatus/useClaimReward.tsx
-#: src/modals/StakeModal.tsx
+#: src/hooks/useStake.tsx
 msgid "Your wallet cancelled the transaction."
 msgstr ""

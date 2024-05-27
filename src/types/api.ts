@@ -141,3 +141,8 @@ export interface AddressSecurity {
 }
 
 export type AddressSecurityResponse = Response<AddressSecurity>
+
+export type CheckTokenResponse = Response<{
+  address: string
+  height: number
+}>
