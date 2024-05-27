@@ -27,12 +27,14 @@ import { useAccount, useBalance, useToken } from 'wagmi'
 
 import { StakeRequirementBoundary } from '@/components/StakeRequirementBoundary/index.tsx'
 import { StepIcon } from '@/components/StepIcon'
+import { TextOverflowTooltip } from '@/components/TextOverflowTooltip'
 import { TokenIcon } from '@/components/TokenIcon'
 import { Tooltip } from '@/components/Tooltip.tsx'
 import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
 import { ZERO } from '@/constants/misc.ts'
 import { formatNumber } from '@/helpers/formatNumber'
 import { formatSeconds } from '@/helpers/formatSeconds.ts'
+import { refetchInfos } from '@/helpers/refetchInfos'
 import { useLinkTwitter } from '@/hooks/useLinkTwitter'
 import { useMaskAllowance } from '@/hooks/useMaskAllowance.ts'
 import { usePoolInfo } from '@/hooks/usePoolInfo'
@@ -93,7 +95,14 @@ export function StakeModal(props: ModalProps) {
   const loading = allowance.isLoading || isStaking || waiting || updating || isSwitchingChain
   const disabled = allowance.isLoading || amount === ZERO
   return (
-    <BaseModal title={t`Stake`} width={572} {...props}>
+    <BaseModal
+      title={t`Stake`}
+      width={572}
+      {...props}
+      onCloseComplete={() => {
+        refetchInfos()
+      }}
+    >
       <Box as="form" display="flex" flexDir="column" className="stake-form" flexGrow={1}>
         {!account.isConnected || !linkedTwitter ? (
           <List spacing={6} mb={6}>
@@ -134,10 +143,20 @@ export function StakeModal(props: ModalProps) {
         ) : null}
         {linkedTwitter ? (
           <HStack mb={6}>
-            <TwitterAvatar size={12} src={userInfo.twitter_image} />
-            <Text fontSize={14} fontWeight={700} color="neutrals.1" ml={6}>
-              {userInfo.twitter_display_name}
-            </Text>
+            <TwitterAvatar size={12} src={userInfo.twitter_image} flexShrink={0} />
+            <TextOverflowTooltip label={userInfo.twitter_display_name}>
+              <Text
+                fontSize={14}
+                fontWeight={700}
+                color="neutrals.1"
+                ml={6}
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+                overflow="hidden"
+              >
+                {userInfo.twitter_display_name}
+              </Text>
+            </TextOverflowTooltip>
             <Text
               ml="auto"
               cursor="pointer"
@@ -267,7 +286,7 @@ export function StakeModal(props: ModalProps) {
             <Text>{t`Pool Liquidity`}</Text>
             <HStack>
               <TokenIcon width={4} height={4} omitChain />
-              {pool?.amount ? (
+              {pool?.amount !== undefined ? (
                 <Tooltip label={formatNumber(+pool.amount)} hasArrow placement="top" shouldWrapChildren>
                   <Text>{formatNumber(+pool.amount)}</Text>
                 </Tooltip>
