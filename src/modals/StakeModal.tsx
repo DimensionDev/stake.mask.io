@@ -262,10 +262,7 @@ export function StakeModal(props: ModalProps) {
             <Text>{t`APR`}</Text>
             {pool?.apr !== undefined ? (
               <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top" shouldWrapChildren>
-                <Text>
-                  {pool.apr > 10000 ? '>' : ''}
-                  {formatNumber(Math.min(pool.apr, 10000), 2)}%
-                </Text>
+                <Text>{pool.apr > 10000 ? '>10,000%' : `${formatNumber(Math.min(pool.apr, 10000), 2)}%`}</Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="100px" />

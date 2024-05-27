@@ -35,7 +35,7 @@ export function useUpdateUserInfo() {
       })
     },
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ['user-info'] })
+      queryClient.refetchQueries({ queryKey: ['user-info'] })
       const queryKey = ['staking-ranking-list', poolId]
       const data = queryClient.getQueryData<StakeRankItem[]>(queryKey)
 
