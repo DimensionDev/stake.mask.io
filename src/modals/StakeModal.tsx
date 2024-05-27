@@ -35,10 +35,10 @@ import { TwitterAvatar } from '@/components/TwitterAvatar.tsx'
 import { TxToastDescription } from '@/components/TxToastDescription.tsx'
 import { queryClient } from '@/configs/queryClient'
 import { ZERO } from '@/constants/misc.ts'
-import { checkStats } from '@/helpers/checkStats'
 import { formatNumber } from '@/helpers/formatNumber'
 import { formatSeconds } from '@/helpers/formatSeconds.ts'
 import { resolveTxLink } from '@/helpers/resolveTxLink.ts'
+import { useCheckStats } from '@/hooks/useCheckStats'
 import { useHandleError } from '@/hooks/useHandleError.ts'
 import { useLinkTwitter } from '@/hooks/useLinkTwitter'
 import { useMaskAllowance } from '@/hooks/useMaskAllowance.ts'
@@ -103,6 +103,7 @@ export function StakeModal(props: ModalProps) {
   const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending } = useWriteContract()
   const handleError = useHandleError()
+  const checkStats = useCheckStats()
 
   const loading = allowance.isLoading || isPending || waiting || isSwitchingChain
   const disabled = allowance.isLoading || amount === ZERO
@@ -261,10 +262,7 @@ export function StakeModal(props: ModalProps) {
             <Text>{t`APR`}</Text>
             {pool?.apr !== undefined ? (
               <Tooltip label={`${formatNumber(pool.apr, 18)}%`} hasArrow placement="top" shouldWrapChildren>
-                <Text>
-                  {pool.apr > 10000 ? '>' : ''}
-                  {formatNumber(Math.min(pool.apr, 10000), 2)}%
-                </Text>
+                <Text>{pool.apr > 10000 ? '>10,000%' : `${formatNumber(Math.min(pool.apr, 10000), 2)}%`}</Text>
               </Tooltip>
             ) : (
               <Skeleton height="16px" width="100px" />
