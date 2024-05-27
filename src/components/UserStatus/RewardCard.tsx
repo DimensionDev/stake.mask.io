@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Center, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { memo } from 'react'
 import { useAccount, useBalance, useReadContract, useToken } from 'wagmi'
@@ -98,7 +98,9 @@ export const RewardCard = memo(function RewardCard({
                 label={noEnoughReward ? t`No enough ${tokenSymbol} to claim` : t`You can claim after the event ends.`}
                 shouldWrapChildren
               >
-                <Icon as={QuestionSVG} w="initial" h="initial" />
+                <Center as="span" w="6" h="6">
+                  <Icon as={QuestionSVG} w="initial" h="initial" />
+                </Center>
               </Tooltip>
             ) : undefined
           }

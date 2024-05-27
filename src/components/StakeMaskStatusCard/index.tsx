@@ -2,6 +2,7 @@ import {
   Box,
   BoxProps,
   Button,
+  Center,
   Flex,
   Grid,
   Heading,
@@ -122,9 +123,9 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
               hasArrow
               shouldWrapChildren
             >
-              <Box as="span" w="6" h="6" ml="10px" cursor="pointer">
+              <Center as="span" w="6" h="6" ml="10px" cursor="pointer">
                 <Icon as={QuestionSVG} w="initial" h="initial" />
-              </Box>
+              </Center>
             </Tooltip>
           </Flex>
         </Flex>

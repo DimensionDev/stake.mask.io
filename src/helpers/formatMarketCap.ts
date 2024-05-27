@@ -25,8 +25,8 @@ export function formatMarketCap(amount: BigNumber.Value, digits = 2) {
     return prefix + parseFloat(bigNumber.toFixed(digits)) + (suffixes[suffixIndex] ?? '')
   }
   if (bigNumber.isLessThan(1)) {
-    const zeroCount = bigNumber.toFormat().substring(digits).match(/^0+/)?.[0].length ?? 0
-    const format = bigNumber.toFormat(zeroCount + digits + 2, 1)
+    const zeroCount = bigNumber.toFormat().substring(2).match(/^0+/)?.[0].length ?? 0
+    const format = bigNumber.toFormat(zeroCount + digits, 1)
     if (format.length >= 10) {
       return prefix + abbreviationForZero(removeTrailingZeros(format), zeroCount)
     }
