@@ -1,4 +1,3 @@
-import { useToast } from '@chakra-ui/react'
 import { t } from '@lingui/macro'
 import { useMutation } from '@tanstack/react-query'
 import { noop } from 'lodash-es'
@@ -9,11 +8,12 @@ import { waitForTransactionReceipt } from 'wagmi/actions'
 
 import { StakeManagerABI } from '@/abis/stakeManager'
 import { TxToastDescription } from '@/components/TxToastDescription'
-import { queryClient } from '@/configs/queryClient'
 import { formatNumber } from '@/helpers/formatNumber'
+import { refetchInfos } from '@/helpers/refetchInfos'
 import { resolveTxLink } from '@/helpers/resolveTxLink'
 import { useCheckStats } from '@/hooks/useCheckStats'
 import { useHandleError } from '@/hooks/useHandleError'
+import { useToast } from '@/hooks/useToast'
 import { resultModal } from '@/modals/ResultModal'
 import { usePoolStore } from '@/store/poolStore'
 import { sleep } from '@/utils/sleep'
@@ -97,8 +97,7 @@ export function useStake() {
               description: t`You have successfully staked ${formatNumber(+rawAmount, 4)} MASK.`,
             }),
           ])
-          queryClient.refetchQueries({ queryKey: ['pool-info'] })
-          queryClient.refetchQueries({ queryKey: ['user-info'] })
+          await refetchInfos()
         }
       } catch (err) {
         const cause = err instanceof TransactionExecutionError ? err.cause : err

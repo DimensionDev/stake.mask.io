@@ -48,7 +48,7 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
 
   const staked = useMemo(() => {
     if (chainData) {
-      return +formatUnits(chainData[0], 18)
+      return Math.max(+formatUnits(chainData[0], 18), userInfo?.amount || 0)
     }
     return userInfo?.amount
   }, [chainData, userInfo?.amount])
