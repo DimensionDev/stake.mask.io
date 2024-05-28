@@ -12,10 +12,12 @@ import {
   Flex,
   Icon,
   Link,
+  SlideFade,
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useNavigate } from '@tanstack/react-router'
+import { last } from 'lodash-es'
 import { ComponentType, RefObject, useEffect, useMemo, useState } from 'react'
 
 import MenuSVG from '@/assets/menu.svg?react'
@@ -178,6 +180,7 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
     ) : null
 
   if (isShowDrawer) {
+    const breadcrumb = last(currentToc)?.text || ''
     return (
       <>
         <Flex
@@ -201,7 +204,9 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
             <Icon as={MenuSVG} boxSize={8} />
           </Box>
           <Flex align="center" ml="8px" flex={1}>
-            <Flex align="center">{currentToc[currentToc.length - 1]?.text}</Flex>
+            <SlideFade in key={breadcrumb}>
+              <Flex align="center">{breadcrumb}</Flex>
+            </SlideFade>
           </Flex>
         </Flex>
         <Flex h="56px" mb="24px" w="100%" />

@@ -34,6 +34,7 @@ export function useAuthFetch<T extends Response<unknown>>() {
       }
       return await send()
     },
-    [account.address, login, tokenMap],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [account.address, login.mutateAsync, tokenMap],
   )
 }

@@ -134,8 +134,20 @@ export const StakingRanking: ComponentType = () => {
         pointerEvents="none"
       />
       <VStack spacing="64px" py={4} px={6} w="100%" overflow="hidden" h="698px" pos="relative">
-        <Flex justifyContent="space-between" alignItems="center" w="100%">
-          <Heading fontSize="24px" fontWeight={700} lineHeight="32px" w="100%" color="neutrals.2">
+        <Flex
+          justifyContent={{ base: 'center', md: 'space-between' }}
+          flexDirection={{ base: 'column', md: 'row' }}
+          alignItems="center"
+          w="100%"
+        >
+          <Heading
+            fontSize="24px"
+            fontWeight={700}
+            lineHeight="32px"
+            w="100%"
+            color="neutrals.2"
+            textAlign={{ base: 'center', md: 'left' }}
+          >
             {t`Staking Ranking`}
           </Heading>
           <Text whiteSpace="nowrap">{t`Ranking updates every 10 min`}</Text>
