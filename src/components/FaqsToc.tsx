@@ -17,6 +17,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useNavigate } from '@tanstack/react-router'
+import { last } from 'lodash-es'
 import { ComponentType, RefObject, useEffect, useMemo, useState } from 'react'
 
 import MenuSVG from '@/assets/menu.svg?react'
@@ -179,7 +180,7 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
     ) : null
 
   if (isShowDrawer) {
-    const breadcrumb = currentToc[currentToc.length - 1]?.text || ''
+    const breadcrumb = last(currentToc)?.text || ''
     return (
       <>
         <Flex
