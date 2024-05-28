@@ -8,13 +8,13 @@ import { Response } from '@/types/api'
 
 export function useAuthFetch<T extends Response<unknown>>() {
   const login = useLogin()
-  const { token } = useAccountStore()
+  const { tokenMap } = useAccountStore()
   const account = useAccount()
   return useCallback<typeof fetchJSON<T>>(
     async (input, init) => {
       const address = account.address
       if (!address) throw new Error('No wallet connected')
-      let jwtToken = token
+      let jwtToken = tokenMap[address.toLowerCase()]
       if (!jwtToken) {
         jwtToken = await login.mutateAsync()
       }
@@ -34,6 +34,6 @@ export function useAuthFetch<T extends Response<unknown>>() {
       }
       return await send()
     },
-    [account.address, login, token],
+    [account.address, login, tokenMap],
   )
 }

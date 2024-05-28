@@ -27,7 +27,7 @@ export function useLogin() {
         }),
       })
       if (loginRes.code === 200) {
-        updateToken(loginRes.data.token)
+        account.address && updateToken(account.address, loginRes.data.token)
         return loginRes.data.token
       } else {
         throw new Error('Failed to login')
