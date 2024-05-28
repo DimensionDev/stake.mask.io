@@ -46,16 +46,17 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
     args: account.address ? [account.address] : undefined,
   })
 
+  const { data: hasUnstaked, isLoading: checkingUnstakedStatus, refetch: recheckUnstake } = useHasUnstaked()
   const staked = useMemo(() => {
+    if (hasUnstaked) return 0
     if (chainData) {
       return Math.max(+formatUnits(chainData[0], 18), userInfo?.amount || 0)
     }
     return userInfo?.amount
-  }, [chainData, userInfo?.amount])
+  }, [hasUnstaked, chainData, userInfo?.amount])
   const ratio = userInfo?.address_type === '1' ? 1.05 : 1
 
   const [waiting, setWaiting] = useState(false)
-  const { data: hasUnstaked, isLoading: checkingUnstakedStatus, refetch: recheckUnstake } = useHasUnstaked()
   const { switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const { writeContractAsync, isPending: isWithdrawing } = useWriteContract()
   const toast = useToast({ title: t`Unstake` })

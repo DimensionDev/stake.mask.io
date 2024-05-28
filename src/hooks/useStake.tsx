@@ -85,9 +85,9 @@ export function useStake() {
           })
           setUpdating(true)
           await Promise.allSettled([
-            checkStats()
+            checkStats(receipt.blockNumber)
               .then(async (res) => {
-                if (res && BigInt(res.height) < receipt.blockNumber) await sleep(6000)
+                if (res) await sleep(6000)
               })
               .catch(noop)
               .finally(() => setUpdating(false)),
