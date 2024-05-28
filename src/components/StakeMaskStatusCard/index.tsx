@@ -23,9 +23,8 @@ import No1SVG from '@/assets/no-1.svg?react'
 import PlusSVG from '@/assets/plus.svg?react'
 import QuestionSVG from '@/assets/question.svg?react'
 import RightArrow from '@/assets/right-arrow.svg?react'
-import Rss3EthSVG from '@/assets/rss3-eth.svg?react'
-import TonEthSVG from '@/assets/ton-eth.svg?react'
 import { ActivityStatusTag } from '@/components/StakeMaskStatusCard/ActivityStatusTag.tsx'
+import { TokenIcon } from '@/components/TokenIcon'
 import { Tooltip } from '@/components/Tooltip.tsx'
 import { formatMarketCap } from '@/helpers/formatMarketCap.ts'
 import { formatNumber } from '@/helpers/formatNumber.ts'
@@ -154,7 +153,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
               h={{ base: 'auto', md: '56px' }}
             >
               <HStack spacing={1}>
-                <Icon as={Rss3EthSVG} w="12" h="12" />
+                <TokenIcon src={new URL('../../assets/rss3.svg', import.meta.url).href} />
                 <VStack spacing={0} color="neutrals.8" align="start">
                   {rss3 ? (
                     <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
@@ -170,7 +169,7 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
               </HStack>
               <Icon as={PlusSVG} w="6" h="6" />
               <HStack spacing={1}>
-                <Icon as={TonEthSVG} w="12" h="12" />
+                <TokenIcon src={new URL('../../assets/ton.svg', import.meta.url).href} />
                 <VStack spacing={0} color="neutrals.8" align="start">
                   {ton ? (
                     <Box fontSize="24px" lineHeight="32px" fontWeight={700}>
