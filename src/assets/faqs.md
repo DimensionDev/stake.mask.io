@@ -12,21 +12,21 @@
 
 You may also connect with other wallets, such as following:
 
-1. **Zerion**
+1. **OKX**
+
+   [OKX Wallet](https://www.okx.com/web3) is a universal crypto wallet available on multiple platforms, including app, web, and extension. You can use OKX Wallet to easily access 3,000+ crypto, 80+ networks, thousands of DApps, and the Web3 ecosystem.
+
+2. **Zerion**
 
    [Zerion Wallet](https://zerion.io/) is a non-custodial wallet for crypto that gives you access to a broad range of opportunities across DeFi and NFTs. With Zerion Wallet you can easily lend out your cryptocurrency and generate a yield. You can also provide liquidity and earn trading fees.
 
-2. **Rainbow**
+3. **Rainbow**
 
    [Rainbow](https://rainbow.me/en/) is a fun, simple, and secure way to get started with crypto and explore Ethereum. You can use Rainbow to purchase, manage, and display Ethereum-based assets on mainnet, Optimism, Arbitrum, Polygon, Base, and Zora.
 
-3. **Rabby**
+4. **Rabby**
 
    [Rabby](https://rabby.io/) is an open source crypto wallet in your browser for Ethereum. It is built and maintained by the DeBank team. Designed for DeFi users with a smooth multi-chain experience. Protect your assets with pre-transaction potential risk scanning.
-
-4. **OKX**
-
-   [OKX Wallet](https://www.okx.com/web3) is a universal crypto wallet available on multiple platforms, including app, web, and extension. You can use OKX Wallet to easily access 3,000+ crypto, 80+ networks, thousands of DApps, and the Web3 ecosystem.
 
 5. **Coinbase**
 
@@ -76,7 +76,7 @@ Staking is not available in restricted countries, including the US, Canada, Chin
 
 ### **Eligible Participants**
 
-MASK Staking is exclusively open to individual users. Organizations, companies, or institutions are not allowed to participate in the mining activity.
+MASK Staking is exclusively open to individual users. Organizations, companies, or institutions are not allowed to participate in the staking activity. It is especially prohibited for institutions to use users' unauthorized assets for staking. If discovered, the Mask Network team reserves the right to clear the staking rewards of the violating account addresses.
 
 The staking addresses need to pass [Go+ security check](https://gopluslabs.io/malicious-address-detection). Users must hold MASK tokens to participate in the mining activity. There is no minimum holding requirement.
 
@@ -92,7 +92,7 @@ You can deposit MASK at any time during each period, and withdraw at a unified t
 
 ### **Contract Security and Risks**
 
-The stake MASK contract will undergo strict security audits and testing to ensure the safety of user assets.
+The stake MASK contract will undergo **SlowMist** audit and testing to ensure the safety of user assets.
 
 Despite our best efforts to ensure contract security, users should understand that participating in staking activities carries certain risks.
 
@@ -126,10 +126,11 @@ When the staking activity for this period has ended, the unstake option will be 
 
 ### **How to claim MASK staking reward?**
 
-1. When the staking activity for this period has ended, the claim option will be opened.
-2. Visit the Mask Stake official website where you have staked MASK tokens.
-3. Find “Estimated Rewards” card, and click on the "Claim" button.
-4. After confirming the transaction, the staking rewards will be added to your wallet balance.
+When the staking activity for this period has ended, the claim option will be opened.
+
+1. Visit the Mask Stake official website where you have staked MASK tokens.
+2. Find “Estimated Rewards” card, and click on the "Claim" button.
+3. After confirming the transaction, the staking rewards will be added to your wallet balance.
 
 ### **How to reinvest MASK to the next period?**
 
@@ -139,7 +140,7 @@ If the MASK staked in the previous period has not been withdrawn and a new staki
 2. Confirm the reinvestment into the new staking period.
 3. After on-chain confirmation, these MASK will be reinvested into the new staking period and earn points.
 
-Reinvestment requires only one step, "Reinvest", without the need to "Unstake" and then "Stake", saving gas fees.
+Reinvestment requires only one step, "Reinvest", without the need to "Unstake" and then "Stake", saving gas fee.
 
 ### **What are the benefits of staking MASK?**
 
@@ -183,13 +184,13 @@ Address: 0xc98d64da73a6616c42117b582e832812e7b8d57f
 
 Chain name: ETH network
 
-Address: 0x3d809e601b12e36cd817c4234a2f05249112eabb
+Address: 0x089f9e409e2ae5837def520ce6bfb2fa03ce5128
 
 ### **Reward Contract**
 
 Chain name: ETH network
 
-Address: 0x9903c9d15f7ee48d1f6d9c258cf1c1387603d851
+Address: 0xb55f6363e8033641ada71afadabd667d071bc9b1
 
 ## **Other**
 

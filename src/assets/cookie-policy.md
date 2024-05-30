@@ -18,7 +18,8 @@ You can manage and delete cookies through your browser settings. Please note tha
 
 We reserve the right to update this Cookie Policy at any time. The updated Cookie Policy will be posted on this page and will become effective immediately. We recommend checking back regularly for updates.
 
-Contact Us
+## Contact Us
+
 If you have any questions or concerns about this Cookie Policy, please contact us at:
 [info@dimension.im](mailto:info@dimension.im)
-Last Updated: 03.10 2024
+Last Updated: 05.28 2024
