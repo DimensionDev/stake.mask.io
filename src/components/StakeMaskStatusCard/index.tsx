@@ -108,21 +108,23 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
             lineHeight={{ base: 6, lg: '140%' }}
             align="center"
           >
-            <Trans>
-              Time{' '}
-              {isLoading || !pool ? (
-                <Skeleton width="100px" height="16px" ml={1} />
-              ) : (
-                `${formatSeconds(pool?.start_time, 'M.DD YYYY')}~${formatSeconds(pool.end_time, 'M.DD YYYY')}`
-              )}
-            </Trans>
+            <Center mr="10px">
+              <Trans>
+                Time{' '}
+                {isLoading || !pool ? (
+                  <Skeleton width="100px" height="16px" ml={1} />
+                ) : (
+                  `${formatSeconds(pool?.start_time, 'M.DD YYYY')}~${formatSeconds(pool.end_time, 'M.DD YYYY')}`
+                )}
+              </Trans>
+            </Center>
             <Tooltip
               label={t`Staked MASK can be unstake after the campaign ends.`}
               placement="top"
               hasArrow
               shouldWrapChildren
             >
-              <Center as="span" w="6" h="6" ml="10px" cursor="pointer">
+              <Center as="span" w="6" h="6" cursor="pointer">
                 <Icon as={QuestionSVG} w="initial" h="initial" />
               </Center>
             </Tooltip>
