@@ -50,7 +50,8 @@ export function useStake() {
         if (currentChainId !== chainId) {
           await switchChainAsync({ chainId })
         }
-        toast({
+        toast.closeAll()
+        const toastId = toast({
           status: 'loading',
           description: t`Confirm this transaction in your wallet.`,
         })
@@ -62,6 +63,7 @@ export function useStake() {
         })
         const txLink = resolveTxLink(chainId, hash)
 
+        toast.close(toastId)
         toast({
           status: 'loading',
           description: <TxToastDescription link={txLink} text={t`Transaction submitted!`} color="primary.4" />,
