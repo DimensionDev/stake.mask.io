@@ -70,93 +70,89 @@ You may also connect with other wallets, such as following:
 
 ## **Staking Guidelines**
 
-### **Restricted Region**
+### **Restricted Region and Compliance**
 
-Staking is not available in restricted countries, including the US, Canada, China, Iran, North Korea, the Syrian Arab Republic, Netherlands, Crimea, Malaysia, Bangladesh, Bolivia and Cuba.
+Staking is not available in restricted countries, including but not limited to the US, Canada, China, Iran, North Korea, the Syrian Arab Republic, Netherlands, Crimea, Malaysia, Bangladesh, Bolivia and Cuba. You are obliged to ensure that your use of Mask staking services does not violate any applicable laws, including but not limited to regulations on AML, CFT, sanctions and financial regulations.
 
 ### **Eligible Participants**
 
 MASK Staking is exclusively open to individual users. Organizations, companies, or institutions are not allowed to participate in the staking activity. It is especially prohibited for institutions to use users' unauthorized assets for staking. If discovered, the Mask Network team reserves the right to clear the staking rewards of the violating account addresses.
 
-The staking addresses need to pass [Go+ security check](https://gopluslabs.io/malicious-address-detection). Users must hold MASK tokens to participate in the mining activity. There is no minimum holding requirement.
+In addition, the staking addresses need to pass [Go+ security check](https://gopluslabs.io/malicious-address-detection).
 
-### **Staking Model**
+### **Points Model**
 
-The staking model follows a points system. The higher the points, the greater the rewards. You need to stake MASK on the Ethereum mainnet to earn points.
+The staking model follows a points system. The higher the points, the greater the rewards. You need to stake $MASK on the Ethereum mainnet to earn points.
 
-Regular users earn 1 point per hour for each staked MASK, while OKX staking users receive bonus points and can earn 1.05 points.
+Regular users earn 1 point per hour for each staked $MASK, while OKX staking users receive bonus points and can earn 1.05 points.
 
 The reward period spans the entire activity duration. The distribution of total rewards is based on the proportion of an individual's points to the total points.
 
-You can deposit MASK at any time during each period, and withdraw at a unified time at the end of the period. During each period, staked assets are locked and cannot be withdrawn. After a period ends, you can withdraw your staked MASK, claim the rewardToken from the previous activity period, or restake MASK for the next round of activities.
+You can deposit $MASK at any time during each period, and withdraw at a set time at the end of the period. During the set period, staked assets are locked and cannot be withdrawn. After the set period ends, you can withdraw your staked $MASK, claim the reward tokens from the previous activity, or restake $MASK for the next round of activities.
 
 ### **Contract Security and Risks**
 
-The stake MASK contract will undergo **SlowMist** audit and testing to ensure the safety of user assets.
+The staking contract will undergo **SlowMist** audit and testing to ensure the safety of user assets.
 
-Despite our best efforts to ensure contract security, users should understand that participating in staking activities carries certain risks.
-
-Users are responsible for the market risks, smart contract vulnerabilities, and other potential risks associated with staking activities.
-
-Please carefully evaluate and assess the relevant risks before participating in staking activities and make decisions based on your risk tolerance.
+Despite our best efforts to ensure contract security, users should understand that participating in staking activities carries certain risks. Users are solely responsible for the market risks, smart contract vulnerabilities, and other potential risks not intentionally caused by the organizers associated with staking activities. Please carefully evaluate and assess the relevant risks before participating in staking activities and make decisions based on your risk tolerance.
 
 ## **Staking Tutorial**
 
-### **How to stake MASK?**
+### **How to stake $MASK?**
 
-**\*Note that you can only unstake your MASK after the event ends.**
+**\*Note that you can only unstake your $MASK after the event ends.**
 
-1. Make sure you have MASK in your wallet address.
-2. Connect your wallet to the Mask Stake website.
+1. Make sure you have $MASK in your wallet address.
+2. Connect your wallet to the Mask Staking website.
 3. Find the staking project on the homepage, and click on the "Stake" button.
-4. Fill in the amount of MASK you want to stake.
+4. Fill in the amount of $MASK you want to stake.
 5. Confirm the transaction.
-6. Wait for the transaction to be confirmed, and you have successfully staked MASK.
+6. Wait for the transaction to be confirmed, and you have successfully staked $MASK.
 
 If you want to **add Stake**, simply repeat the above steps. Then your stake amount will increase, and the points accrual rate will also change.
 
-### **How to unstake MASK?**
+### **How to unstake $MASK?**
 
 When the staking activity for this period has ended, the unstake option will be opened.
 
-1. Visit the Mask Stake official website where you have staked MASK tokens.
+1. Visit the Mask Staking official website where you have staked $MASK.
 2. Find “Staked MASK” card, and click on the "Unstake MASK" button.
 3. Confirm the transaction and wait for the unstaking process to complete.
-4. Once the unstaking process is completed, your MASK tokens will be available for further use in your wallet.
+4. Once the unstaking process is completed, your $MASK will be available for further use in your wallet.
 
-### **How to claim MASK staking reward?**
+### **How to claim $MASK staking reward?**
 
 When the staking activity for this period has ended, the claim option will be opened.
 
-1. Visit the Mask Stake official website where you have staked MASK tokens.
+1. Visit the Mask Staking official website where you have staked $MASK.
 2. Find “Estimated Rewards” card, and click on the "Claim" button.
 3. After confirming the transaction, the staking rewards will be added to your wallet balance.
 
-### **How to reinvest MASK to the next period?**
+### **How to reinvest $MASK to the next period?**
 
-If the MASK staked in the previous period has not been withdrawn and a new staking period has started, you can transfer the unstaken MASK to the new period to continue participating in the staking activity.
+If the $MASK staked in the previous period has not been withdrawn and a new staking period has started, you can transfer the unstaken $MASK to the new period to continue participating in the staking activity.
 
 1. Find the “Staked MASK” card from the previous period, and click on the "Reinvest MASK" button.
 2. Confirm the reinvestment into the new staking period.
-3. After on-chain confirmation, these MASK will be reinvested into the new staking period and earn points.
+3. After on-chain confirmation, these $MASK will be reinvested into the new staking period and earn points.
 
 Reinvestment requires only one step, "Reinvest", without the need to "Unstake" and then "Stake", saving gas fee.
 
-### **What are the benefits of staking MASK?**
+### **What are the benefits of staking $MASK?**
 
-**Earning rewards**: Staking MASK allows you to earn token rewards from high-quality investment projects.
+**Earning rewards**: Staking $MASK allows you to earn token rewards from high-quality investment projects.
 
-**Long-term holding incentive**: Staking MASK encourages long-term token holding. With possible staking durations, you will be incentivized to lock your MASK tokens for a period of time, reducing frequent trading and potentially increasing long-term investment returns.
+**Long-term holding incentive**: Staking $MASK encourages long-term token holding. With possible staking durations, you will be incentivized to lock your $MASK tokens for a period of time, reducing frequent trading and potentially increasing long-term investment returns.
 
-### **What are the risks of staking MASK?**
+### **What are the risks of staking $MASK?**
 
-**Market risk**: The market value of MASK tokens may fluctuate, which can affect the value of your staked tokens. If the token price decreases, the value of your staked tokens may decrease.
+**Market risk**: The market value of $MASK tokens may fluctuate, which can affect the value of your staked tokens. If the token price decreases, the value of your staked tokens may decrease.
 
-**Contract risk**: Interacting with the staking contract for MASK tokens involves inherent risks associated with smart contracts. There is a possibility of contract vulnerabilities, misconfigurations, or attacks that could result in the loss of your staked funds.
+**Contract risk**: Interacting with the staking contract for $MASK tokens involves inherent risks associated with smart contracts. There is a possibility of contract vulnerabilities, misconfigurations, or attacks that could result in the loss of your staked funds.
 
 **Unstake restrictions**: During the lock-up period of staked funds, you cannot unstake or withdraw your tokens. This may limit the flexibility of using your funds.
 
-**Uncertain returns**: Staking MASK may lead to returns, but the specific rate of return is uncertain. The returns can be influenced by changes in the staking platform, market factors, and the behavior of network participants.
+**Uncertain returns**: Staking $MASK may lead to returns, but the specific rate of return is uncertain. The returns can be influenced by changes in the staking platform, market factors, and the behavior of network participants.
 
 Mask Network Team is driven to mitigate the above risks and eliminate them entirely to the extent possible. Despite this, they may still exist.
 
@@ -194,6 +190,6 @@ Address: 0xb55f6363e8033641ada71afadabd667d071bc9b1
 
 ## **Other**
 
-### How to buy MASK？
+### How to buy $MASK？
 
-You can buy MASK spot on major CEX such as Binance, OKX, and Gate.io .
+You can buy $MASK on the exchange such as OKX, Binance and Gate.io.
