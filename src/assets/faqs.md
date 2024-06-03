@@ -100,7 +100,7 @@ Despite our best efforts to ensure contract security, users should understand th
 
 ### **How to stake $MASK?**
 
-***Note that you can only unstake your $MASK after the event ends.**
+**\*Note that you can only unstake your $MASK after the event ends.**
 
 1. Make sure you have $MASK in your wallet address.
 2. Connect your wallet to the Mask Staking website.
@@ -187,8 +187,6 @@ Address: 0x089f9e409e2ae5837def520ce6bfb2fa03ce5128
 Chain name: ETH network
 
 Address: 0xb55f6363e8033641ada71afadabd667d071bc9b1
-
-
 
 ## **Other**
 
