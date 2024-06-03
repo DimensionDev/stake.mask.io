@@ -1,6 +1,6 @@
 ## Acceptance of Terms
 
-By accessing and using [Mask Network — Your Portal To The New, Open Internet.](http://mask.io/) , you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, you may not use our services.
+By accessing and using stake.mask.io, you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, you may not use our services.
 
 ## Changes to Terms
 
@@ -19,17 +19,17 @@ You agree to notify us immediately of any unauthorized use of your account.
 
 You agree not to engage in any of the following prohibited activities:
 Using our services for any illegal purpose or in violation of any local, state, national, or international law.
-Infringing on the intellectual property rights of others or the intellectual property rights of [Mask Network — Your Portal To The New, Open Internet.](http://mask.io/) .
+Infringing on the intellectual property rights of others or the intellectual property rights of stake.mask.io.
 Attempting to gain unauthorized access to our services or another user's account.
 Interfering with the security-related features of our services.
 
 ## Intellectual Property
 
-All content, trademarks, logos, and service marks displayed on [Mask Network — Your Portal To The New, Open Internet.](http://mask.io/) are our property or the property of other third parties. You are not permitted to use these Marks without our prior written consent or the consent of such third party which may own the Marks.
+All content, trademarks, logos, and service marks displayed on stake.mask.io are our property or the property of other third parties. You are not permitted to use these Marks without our prior written consent or the consent of such third party which may own the Marks.
 
 ## Disclaimer of Warranties
 
-Our services are provided on an "as is" and "as available" basis. [Mask Network — Your Portal To The New, Open Internet.](http://mask.io/) expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+Our services are provided on an "as is" and "as available" basis. stake.mask.io expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
 
 ## Limitation of Liability
 
@@ -37,7 +37,7 @@ MASK Staking shall not be liable for any indirect, incidental, special, conseque
 
 ## Indemnification
 
-You agree to indemnify and hold harmless [Mask Network — Your Portal To The New, Open Internet.](http://mask.io/) and its officers, directors, employees, and agents from any and all claims, damages, expenses, and liabilities arising out of your use of our services, your violation of these Terms, or your violation of the rights of a third party.
+You agree to indemnify and hold harmless stake.mask.io and its officers, directors, employees, and agents from any and all claims, damages, expenses, and liabilities arising out of your use of our services, your violation of these Terms, or your violation of the rights of a third party.
 
 ## Governing Law
 

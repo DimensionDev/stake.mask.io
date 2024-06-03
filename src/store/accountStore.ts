@@ -3,23 +3,24 @@ import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
 interface AccountState {
-  token: string
-  updateToken(token: string): void
+  tokenMap: Record<string, string>
+  updateToken(address: string, token: string): void
   clearToken(): void
 }
 
 export const useAccountStore = create<AccountState, [['zustand/persist', AccountState], ['zustand/immer', never]]>(
   persist(
     immer((set) => ({
-      token: '',
-      updateToken: (token: string) => {
+      tokenMap: {},
+      updateToken: (address: string, token: string) => {
         set((state) => {
-          state.token = token.trim()
+          const key = address.toLowerCase()
+          state.tokenMap[key] = token.trim()
         })
       },
       clearToken() {
         set((state) => {
-          state.token = ''
+          state.tokenMap = {}
         })
       },
     })),

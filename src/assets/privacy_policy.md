@@ -2,7 +2,7 @@ Privacy Policy for stake.mask.io
 
 ## Introduction
 
-Mask Network is committed to protecting the privacy of its users. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you stake Mask to receive other token rewards through our website. By using our service, you consent to the data practices described in this policy.
+Mask Staking is committed to protecting the privacy of its users. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you stake Mask to receive other token rewards through our website. By using our service, you consent to the data practices described in this policy.
 
 ## Information Collection and Use
 
@@ -41,7 +41,7 @@ We take reasonable measures to protect your information from unauthorized access
 
 ## Changes to This Privacy Policy
 
-We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last Updated" date.
+We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.
 
 ## Contact Us
 

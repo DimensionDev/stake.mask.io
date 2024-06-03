@@ -75,7 +75,7 @@ export function ProfileModal(props: ModalProps) {
               return
             }
             const res = await updateUserInfo.mutateAsync({
-              display_username: username,
+              display_username: username.trim(),
               show_avatar: !!showAvatar,
             })
             if (res?.code !== 200 && res?.reason) {

@@ -12,6 +12,7 @@ export function useLogin() {
   const { signMessageAsync } = useSignMessage()
   const { updateToken } = useAccountStore()
   return useMutation({
+    mutationKey: ['login', account.address],
     mutationFn: async () => {
       const message = `Login stake.mask.io at ${new Date().toString()}`
       const signed = await signMessageAsync({ message })
@@ -26,7 +27,7 @@ export function useLogin() {
         }),
       })
       if (loginRes.code === 200) {
-        updateToken(loginRes.data.token)
+        account.address && updateToken(account.address, loginRes.data.token)
         return loginRes.data.token
       } else {
         throw new Error('Failed to login')
