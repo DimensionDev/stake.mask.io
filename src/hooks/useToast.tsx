@@ -22,9 +22,9 @@ export function useToast(options?: UseToastOptions): CreateToastFnReturn {
           maxH: 300,
         },
       })
-      Object.assign(toast, rawToast)
       return toast
     }
+    Object.assign(toast, rawToast)
     return toast as CreateToastFnReturn
   }, [rawToast])
 }

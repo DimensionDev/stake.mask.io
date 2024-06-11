@@ -75,7 +75,10 @@ function generateTOC(contentEl: HTMLElement) {
 
 export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> = ({ contentRef }) => {
   const [tocItems, setTOCItem] = useState<TOCItem[]>([])
-  const isShowDrawer = useBreakpointValue({ base: true, md: false })
+  const isShowDrawer = useBreakpointValue(
+    { base: true, md: false },
+    { fallback: window.innerWidth <= 768 ? 'base' : 'md' },
+  )
   const drawer = useDisclosure()
   const navigate = useNavigate()
 
