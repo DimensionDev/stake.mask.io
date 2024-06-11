@@ -14,6 +14,7 @@ export function ProfileModal(props: ModalProps) {
   const { data: userInfo } = useUserInfo()
   const switchId = useId()
   const [username = userInfo?.twitter_display_name, setUsername] = useState<string>()
+  const trimmed = username?.trim()
   const [showAvatar = userInfo?.twitter_show_image, setShowAvatar] = useState<boolean>()
   const updateUserInfo = useUpdateUserInfo()
   const toast = useToast()
@@ -65,9 +66,9 @@ export function ProfileModal(props: ModalProps) {
           flexBasis={0}
           p={0}
           isLoading={updateUserInfo.isPending}
-          isDisabled={!username?.trim()}
+          isDisabled={!trimmed}
           onClick={async () => {
-            if (!username?.trim()) {
+            if (!trimmed) {
               toast({
                 status: 'error',
                 title: t`Profile Name is required`,
@@ -75,7 +76,7 @@ export function ProfileModal(props: ModalProps) {
               return
             }
             const res = await updateUserInfo.mutateAsync({
-              display_username: username.trim(),
+              display_username: trimmed,
               show_avatar: !!showAvatar,
             })
             if (res?.code !== 200 && res?.reason) {
