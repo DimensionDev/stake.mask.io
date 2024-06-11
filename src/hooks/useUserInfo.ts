@@ -3,6 +3,7 @@ import urlcat from 'urlcat'
 import { useAccount } from 'wagmi'
 
 import { FIREFLY_API_ROOT } from '@/constants/api'
+import { POLL_INTERVAL } from '@/constants/misc'
 import { convertTwitterAvatar } from '@/helpers/convertTwitterAvatar'
 import { fetchJSON } from '@/helpers/fetchJSON'
 import { usePoolStore } from '@/store/poolStore'
@@ -29,5 +30,6 @@ export function useUserInfo() {
         twitter_image: convertTwitterAvatar(res.data.twitter_image),
       } as UserInfo
     },
+    refetchInterval: POLL_INTERVAL,
   })
 }

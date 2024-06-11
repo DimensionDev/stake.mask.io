@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import urlcat from 'urlcat'
 
 import { FIREFLY_API_ROOT } from '@/constants/api'
+import { POLL_INTERVAL } from '@/constants/misc'
 import { fetchJSON } from '@/helpers/fetchJSON'
 import { usePoolStore } from '@/store/poolStore'
 import { PoolInfoResponse } from '@/types/api'
@@ -18,5 +19,6 @@ export function usePoolInfo() {
       const res = await fetchJSON<PoolInfoResponse>(url)
       return res.data
     },
+    refetchInterval: POLL_INTERVAL,
   })
 }
