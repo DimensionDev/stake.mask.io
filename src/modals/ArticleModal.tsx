@@ -14,11 +14,11 @@ export function ArticleModal({ title, content, ...props }: Props) {
   return (
     <BaseModal title={title} width={572} {...props}>
       <Box
+        className="hide-scrollbar"
         color="neutrals.2"
         fontSize="12px"
         maxH={600}
         overflow="auto"
-        style={{ scrollbarWidth: 'none' }}
         fontWeight={700}
         lineHeight="20px"
         sx={markdownBaseStyle}
