@@ -4,9 +4,10 @@ import { ComponentType, memo, useState } from 'react'
 import { useLocalStorage } from 'react-use'
 
 import CloseCircle from '@/assets/close-circle.svg?react'
+import cookiePolicyContent from '@/assets/cookie-policy.md'
 import Heart from '@/assets/heart.svg?react'
 import { GradientButton } from '@/components/GradientButton.tsx'
-import { cookiePolicyModal } from '@/modals/CookiePolicyModal.tsx'
+import { articleModal } from '@/modals/ArticleModal'
 
 export const AcceptCookie: ComponentType = memo(() => {
   const [isAcceptedCookie, setIsAcceptedCookie] = useLocalStorage('is-accepted-cookie', false)
@@ -41,13 +42,17 @@ export const AcceptCookie: ComponentType = memo(() => {
               fontWeight={700}
               ml={1}
               color="neutrals.2"
-              onClick={() => cookiePolicyModal.show()}
+              onClick={() => {
+                articleModal.show({
+                  title: t`Cookie Policy`,
+                  content: cookiePolicyContent,
+                })
+              }}
             >{t`Learn more`}</Link>
           </Box>
-          <GradientButton
-            leftIcon={<Icon as={Heart} w={4} h={4} />}
-            onClick={() => setIsAcceptedCookie(true)}
-          >{t`Accept cookies`}</GradientButton>
+          <GradientButton leftIcon={<Icon as={Heart} w={4} h={4} />} onClick={() => setIsAcceptedCookie(true)}>
+            {t`Accept cookies`}
+          </GradientButton>
         </Stack>
         <Box as="button" w={6} h={6} onClick={() => setIsClosed(true)}>
           <Icon as={CloseCircle} w={6} h={6} />
