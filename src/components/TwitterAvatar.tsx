@@ -23,7 +23,7 @@ export function TwitterAvatar({ size, src, variant = 'light', omitBadge, ...prop
         draggable={false}
         userSelect="none"
         src={src}
-        fallbackSrc={new URL('@/assets/default-avatar.svg', import.meta.url).href}
+        fallbackSrc={new URL('@/assets/my-default-avatar.svg', import.meta.url).href}
         alt="user name"
       />
       {omitBadge ? null : (

@@ -11,6 +11,7 @@ import { Spinner } from '@/components/Spinner.tsx'
 import { RankingAvatar, RankingAvatarProps } from '@/components/StakingRanking/RankingAvatar.tsx'
 import { Tooltip } from '@/components/Tooltip.tsx'
 import { FIREFLY_API_ROOT } from '@/constants/api.ts'
+import { POLL_INTERVAL } from '@/constants/misc'
 import { convertTwitterAvatar } from '@/helpers/convertTwitterAvatar.ts'
 import { fetchJSON } from '@/helpers/fetchJSON.ts'
 import { formatEthereumAddress } from '@/helpers/formatEthereumAddress.ts'
@@ -53,7 +54,7 @@ export const StakingRankingList: ComponentType = () => {
       const response = await fetchJSON<StakeRankResponse>(url)
       return response.data.list
     },
-    refetchInterval: 5 * 1000 * 60,
+    refetchInterval: POLL_INTERVAL * 10,
   })
 
   if (isLoading) {

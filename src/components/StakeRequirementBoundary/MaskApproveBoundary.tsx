@@ -38,7 +38,7 @@ export const MaskApproveBoundary = memo(function MaskApproveBoundary({ children,
           }
           onClick={async () => {
             try {
-              toast({
+              const toastId = toast({
                 status: 'loading',
                 description: t`Confirm this transaction in your wallet.`,
               })
@@ -48,6 +48,7 @@ export const MaskApproveBoundary = memo(function MaskApproveBoundary({ children,
                 functionName: 'approve',
                 args: [stakeManagerAddress, amount],
               })
+              toast.close(toastId)
               const txLink = resolveTxLink(chainId, hash)
               setWaiting(true)
               const receipt = await waitForTransactionReceipt(config, {

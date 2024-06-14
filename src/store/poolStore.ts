@@ -32,7 +32,6 @@ export const usePoolStore = create<PollState, [['zustand/persist', PollState], [
           if (env.external.CHAIN_ID) {
             state.chainId = env.external.CHAIN_ID
           }
-          state.stakeManagerAddress = VITE_STAKE_MANAGER_CONTRACT_ADDRESS
           state.rewardAddress = VITE_REWARD_CONTRACT_ADDRESS
           state.syncingPoolInfo = true
         })
