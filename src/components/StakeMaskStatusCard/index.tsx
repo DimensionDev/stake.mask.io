@@ -114,7 +114,6 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
             ) : (
               <Tooltip
                 label={t`Campaign Period: ${toUTC(pool.start_time)} - ${toUTC(pool.end_time)}`}
-                maxW="none"
                 placement="top"
                 hasArrow
                 shouldWrapChildren
