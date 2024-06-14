@@ -29,6 +29,7 @@ import { Tooltip } from '@/components/Tooltip.tsx'
 import { formatMarketCap } from '@/helpers/formatMarketCap.ts'
 import { formatNumber } from '@/helpers/formatNumber.ts'
 import { formatSeconds } from '@/helpers/formatSeconds.ts'
+import { toUTC } from '@/helpers/toUTC'
 import { usePoolInfo } from '@/hooks/usePoolInfo.ts'
 import { usePoolState } from '@/hooks/usePoolState.ts'
 import { stakeModal } from '@/modals/StakeModal.tsx'
@@ -108,18 +109,25 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
             lineHeight={{ base: 6, lg: '140%' }}
             align="center"
           >
-            <Center mr="10px">
-              <Trans>
-                Time{' '}
-                {isLoading || !pool ? (
-                  <Skeleton width="100px" height="16px" ml={1} />
-                ) : (
-                  `${formatSeconds(pool?.start_time, 'M.DD YYYY')}~${formatSeconds(pool.end_time, 'M.DD YYYY')}`
-                )}
-              </Trans>
-            </Center>
+            {isLoading || !pool ? (
+              <Skeleton width="100px" height="16px" ml={1} mr="10px" />
+            ) : (
+              <Tooltip
+                label={t`Campaign Period: ${toUTC(pool.start_time)} - ${toUTC(pool.end_time)}`}
+                maxW="none"
+                placement="top"
+                hasArrow
+                shouldWrapChildren
+              >
+                <Center mr="10px">
+                  <Trans>
+                    Time {`${formatSeconds(pool.start_time, 'M.DD YYYY')}~${formatSeconds(pool.end_time, 'M.DD YYYY')}`}
+                  </Trans>
+                </Center>
+              </Tooltip>
+            )}
             <Tooltip
-              label={t`Staked MASK can be unstake after the campaign ends.`}
+              label={t`Note: Staked MASK can be unstaked after the campaign ends.`}
               placement="top"
               hasArrow
               shouldWrapChildren

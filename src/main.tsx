@@ -5,6 +5,8 @@ import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 
 import * as Sentry from '@sentry/react'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import ReactDOM from 'react-dom/client'
 
 import { App } from '@/App'
@@ -12,6 +14,7 @@ import { setLocale } from '@/i18n/index.ts'
 import { Locale } from '@/types/enum.ts'
 
 setLocale(Locale.en)
+dayjs.extend(utc)
 
 Sentry.init({
   dsn: 'https://8f0bc157f1bc434162e702a175451829@sentry.firefly.land/7',

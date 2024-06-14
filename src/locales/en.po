@@ -54,6 +54,10 @@ msgstr ""
 msgid "Blacklist is powered by <0>Go+</0>"
 msgstr ""
 
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Campaign Period: {0} - {1}"
+msgstr ""
+
 #: src/hooks/useStake.tsx
 msgid "Can not get determination MASK token"
 msgstr ""
@@ -191,6 +195,10 @@ msgstr ""
 msgid "Not started yet."
 msgstr ""
 
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Note: Staked MASK can be unstaked after the campaign ends."
+msgstr ""
+
 #: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
 msgid "Ongoing"
 msgstr ""
@@ -277,10 +285,6 @@ msgstr ""
 msgid "Staked MASK"
 msgstr ""
 
-#: src/components/StakeMaskStatusCard/index.tsx
-msgid "Staked MASK can be unstake after the campaign ends."
-msgstr ""
-
 #: src/components/StakeRequirementBoundary/RegionBoundary.tsx
 msgid "Staking is not available in restricted countries, including the US, Canada, China, Iran, North Korea, the Syrian Arab Republic, Netherlands, Crimea, Malaysia, Bangladesh, Bolivia and Cuba."
 msgstr ""
@@ -323,7 +327,7 @@ msgid "This website is specifically created for $MASK investors and believers, w
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "Time {0}"
+msgid "Time {0}~{1}"
 msgstr ""
 
 #: src/modals/VerifyModal.tsx
