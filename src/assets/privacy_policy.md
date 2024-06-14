@@ -31,13 +31,14 @@ Monitor and analyze trends, usage, and activities in connection with our service
 ### Sharing of Your Information
 
 We may share your information with third parties in the following situations:
-With your consent or at your direction.
-With service providers who assist us in our operations, under confidentiality agreements.
-If required by law or to protect the rights, property, or safety of MASK Staking, our users, or others.
+
+1. With your consent or at your direction.
+2. With service providers who assist us in our operations, conducting business, or servicing you to the extent necessary to fulfill these purposes and under confidentiality agreements.
+3. If required by law or to protect the rights, property, or safety of MASK Staking, our users, or others.
 
 ## Security
 
-We take reasonable measures to protect your information from unauthorized access, use, alteration, and destruction. However, no internet or email transmission is ever fully secure or error-free.
+We take reasonable measures to protect your information from unauthorized access, use, alteration, and destruction. However, you understand and acknowledge that no internet or email transmission is ever fully secure or error-free.
 
 ## Changes to This Privacy Policy
 

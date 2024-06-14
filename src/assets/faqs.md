@@ -100,7 +100,7 @@ Despite our best efforts to ensure contract security, users should understand th
 
 ### **How to stake $MASK?**
 
-**\*Note that you can only unstake your $MASK after the event ends.**
+**Please note:** You can only unstake your $MASK after the event ends.
 
 1. Make sure you have $MASK in your wallet address.
 2. Connect your wallet to the Mask Staking website.
@@ -123,6 +123,8 @@ When the staking activity for this period has ended, the unstake option will be 
 ### **How to claim $MASK staking reward?**
 
 When the staking activity for this period has ended, the claim option will be opened.
+
+**Please note:** Due to the need for proof calculation and contract release, you can claim your rewards approximately one hour after the campaign ends.
 
 1. Visit the Mask Staking official website where you have staked $MASK.
 2. Find “Estimated Rewards” card, and click on the "Claim" button.
@@ -187,6 +189,8 @@ Address: 0x089f9e409e2ae5837def520ce6bfb2fa03ce5128
 Chain name: ETH network
 
 Address: 0xb55f6363e8033641ada71afadabd667d071bc9b1
+
+
 
 ## **Other**
 
