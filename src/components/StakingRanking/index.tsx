@@ -151,7 +151,7 @@ export const StakingRanking: ComponentType = () => {
           >
             {t`Staking Ranking`}
           </Heading>
-          <Text whiteSpace="nowrap">{t`Ranking updates every 10 min`}</Text>
+          <Text whiteSpace="nowrap">{t`Ranking updates every 10 mins.`}</Text>
         </Flex>
         <StakingRankingList />
         <Box

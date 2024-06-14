@@ -229,7 +229,7 @@ msgid "Profile Name is required"
 msgstr ""
 
 #: src/components/StakingRanking/index.tsx
-msgid "Ranking updates every 10 min"
+msgid "Ranking updates every 10 mins."
 msgstr ""
 
 #: src/modals/StakeModal.tsx
