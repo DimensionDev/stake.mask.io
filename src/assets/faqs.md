@@ -190,8 +190,6 @@ Chain name: ETH network
 
 Address: 0xb55f6363e8033641ada71afadabd667d071bc9b1
 
-
-
 ## **Other**
 
 ### How to buy $MASK？
