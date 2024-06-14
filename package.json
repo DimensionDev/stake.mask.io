@@ -1,7 +1,7 @@
 {
   "name": "stake.mask.io-vite",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "packageManager": "pnpm@8.10.4",
   "scripts": {
