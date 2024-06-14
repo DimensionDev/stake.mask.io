@@ -27,11 +27,11 @@ Access to our services is strictly prohibited for individuals or entities residi
 
 ## Intellectual Property
 
-All content, trademarks, logos, and service marks displayed on stake.mask.io  are our property or the property of other third parties. You are not permitted to use these Marks without our prior written consent or the consent of such third party which may own the Marks.
+All content, trademarks, logos, and service marks displayed on stake.mask.io are our property or the property of other third parties. You are not permitted to use these Marks without our prior written consent or the consent of such third party which may own the Marks.
 
 ## Disclaimer of Warranties
 
-Our services are provided on an "as is" and "as available" basis. stake.mask.io  expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+Our services are provided on an "as is" and "as available" basis. stake.mask.io expressly disclaims all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
 
 ## Limitation of Liability
 
@@ -39,11 +39,11 @@ MASK Staking shall not be liable for any direct, indirect, intentional, negligen
 
 ## Indemnification
 
-You agree to indemnify and hold harmless stake.mask.io  and its officers, directors, employees, and agents from any and all claims, damages, expenses, and liabilities arising out of your use of our services, your violation of these Terms, or your violation of the rights of a third party.
+You agree to indemnify and hold harmless stake.mask.io and its officers, directors, employees, and agents from any and all claims, damages, expenses, and liabilities arising out of your use of our services, your violation of these Terms, or your violation of the rights of a third party.
 
 ## Governing Law and Dispute Resolution
 
-These Terms shall be governed and construed in accordance with the laws of the British Virgin Islands, without regard to its conflict of law provisions.  In the event of any dispute, claim, or controversy arising out of or relating to these Terms of Service (including their formation, interpretation, performance, breach, or termination), the parties shall first seek to resolve the dispute through good faith negotiations and, if necessary, mediation conducted by a mutually agreed-upon mediator in accordance with the mediation rules of the British Virgin Islands International Arbitration Centre (BVIIAC).
+These Terms shall be governed and construed in accordance with the laws of the British Virgin Islands, without regard to its conflict of law provisions. In the event of any dispute, claim, or controversy arising out of or relating to these Terms of Service (including their formation, interpretation, performance, breach, or termination), the parties shall first seek to resolve the dispute through good faith negotiations and, if necessary, mediation conducted by a mutually agreed-upon mediator in accordance with the mediation rules of the British Virgin Islands International Arbitration Centre (BVIIAC).
 
 ## Contact Us
 
