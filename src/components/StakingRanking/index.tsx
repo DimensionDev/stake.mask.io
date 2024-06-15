@@ -155,6 +155,7 @@ export const StakingRanking: ComponentType = () => {
         </Flex>
         <StakingRankingList />
         <Box
+          pointerEvents="none"
           w="100%"
           h="127px"
           bg="linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1))"
