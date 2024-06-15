@@ -38,6 +38,10 @@ msgid "Amount"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
+msgid "Annual percentage rate"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
 #: src/modals/StakeModal.tsx
 msgid "APR"
 msgstr ""
