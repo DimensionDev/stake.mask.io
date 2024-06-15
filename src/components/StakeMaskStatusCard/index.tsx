@@ -224,7 +224,14 @@ export const StakeMaskStatusCard: ComponentType<StakeMaskStatusCardProps> = ({ .
               <Skeleton h="32px" my="12px" width="100px" fontSize="32px" />
             )}
             <Box fontSize="16px" fontWeight={700} lineHeight="150%" color="neutrals.6">
-              {t`APR`}
+              <Text
+                title={t`Annual percentage rate`}
+                as="abbr"
+                className="notranslate"
+                textDecoration="none !important"
+              >
+                {t`APR`}
+              </Text>
             </Box>
           </VStack>
           <VStack
