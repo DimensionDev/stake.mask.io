@@ -103,6 +103,8 @@ export const createUITaskManager = <TaskOptions extends BaseDialogProps<Result>,
       </Fragment>
     )
   }
+  const name = Component.displayName || Component.name
+  Tasks.displayName = `${name}(Tasks)`
 
   return {
     controller,
