@@ -84,7 +84,7 @@ In addition, the staking addresses need to pass [Go+ security check](https://gop
 
 The staking model follows a points system. The higher the points, the greater the rewards. You need to stake $MASK on the Ethereum mainnet to earn points.
 
-Regular users earn 1 point per hour for each staked $MASK, while OKX staking users receive bonus points and can earn 1.05 points.
+Regular users earn 1 point per hour for each staked $MASK, while users staking through [the OKX DeFi Earning project](https://www.okx.com/web3/defi/detail/227300) will earn bonus points, receiving 1.05 points.
 
 The reward period spans the entire activity duration. The distribution of total rewards is based on the proportion of an individual's points to the total points.
 
