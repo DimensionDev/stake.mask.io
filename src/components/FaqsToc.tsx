@@ -33,7 +33,7 @@ export interface TOCItem {
 
 // only h2 and h3
 function generateTOC(contentEl: HTMLElement) {
-  const headings = contentEl?.querySelectorAll('h2, h3') ?? []
+  const headings = contentEl.querySelectorAll('h2, h3') ?? []
   const toc: TOCItem[] = []
   let currentLevel1: TOCItem | null = null
   let currentLevel2: TOCItem | null = null
@@ -146,7 +146,9 @@ export const FaqsToc: ComponentType<{ contentRef: RefObject<HTMLDivElement> }> =
                       href={`#${sub.id}`}
                       display="block"
                       fontSize="14px"
-                      lineHeight="32px"
+                      lineHeight="20px"
+                      py="6px"
+                      mb={1}
                       fontWeight={400}
                       px="10px"
                       rounded="4px"

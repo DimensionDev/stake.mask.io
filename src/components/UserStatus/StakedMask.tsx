@@ -68,7 +68,7 @@ export const StakedMask = memo(function StakedMask(props: BoxProps) {
   const pendingStakingNumbers = isReadingUserInfos || loadingUserInfo || isLoadingPools
   return (
     <ActionCard title={t`Staked MASK`} display="flex" flexDir="column" {...props}>
-      <Stack alignItems="center">
+      <Stack alignItems="center" flexGrow={1}>
         <ProgressiveText
           loading={pendingStakingNumbers}
           fontSize={48}

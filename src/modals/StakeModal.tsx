@@ -90,7 +90,7 @@ export function StakeModal(props: ModalProps) {
     }
   }, [account.isConnected, isLoadingUserInfo, linkTwitter, linkedTwitter])
 
-  const [{ updating, waiting, isSwitchingChain, isStaking }, mutation] = useStake()
+  const [{ updating, waiting, isSwitchingChain, isStaking }, stakeMutation] = useStake()
 
   const loading = allowance.isLoading || isStaking || waiting || updating || isSwitchingChain
   const disabled = allowance.isLoading || amount === ZERO
@@ -315,11 +315,13 @@ export function StakeModal(props: ModalProps) {
                 className="purple-gradient-button"
                 rounded={50}
                 isDisabled={disabled}
-                onClick={() => {
-                  mutation.mutate({
+                onClick={async () => {
+                  await stakeMutation.mutateAsync({
                     amount,
                     rawAmount,
                   })
+                  setRawAmount('')
+                  balance.refetch()
                 }}
               >
                 {account.isConnected ? t`Stake` : t`Please connect first`}
