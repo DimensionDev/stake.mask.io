@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 import svgr from 'vite-plugin-svgr'
 import { VitePluginRadar } from 'vite-plugin-radar'
+import version from 'vite-plugin-package-version'
 
 function createURL(pathToFile: string) {
   return new URL(pathToFile, import.meta.url).pathname
@@ -46,6 +47,7 @@ export default defineConfig({
           ]
         : undefined,
     }),
+    version(),
   ],
 
   resolve: {
