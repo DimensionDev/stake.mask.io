@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: stakemaskio\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-27 12:05\n"
+"PO-Revision-Date: 2024-06-15 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -43,6 +43,10 @@ msgid "Amount"
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
+msgid "Annual percentage rate"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
 #: src/modals/StakeModal.tsx
 msgid "APR"
 msgstr ""
@@ -57,6 +61,10 @@ msgstr ""
 
 #: src/components/StakeRequirementBoundary/BlackListBoundary.tsx
 msgid "Blacklist is powered by <0>Go+</0>"
+msgstr ""
+
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Campaign Period: {0} - {1}"
 msgstr ""
 
 #: src/hooks/useStake.tsx
@@ -110,18 +118,10 @@ msgstr ""
 msgid "Connect Wallet"
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "Contact Us"
-msgstr ""
-
+#: src/components/AcceptCookie.tsx
 #: src/components/Footer/Terms/index.tsx
 #: src/components/Footer/Terms/index.tsx
-#: src/modals/CookiePolicyModal.tsx
 msgid "Cookie Policy"
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are used to store information about you and your internet usage habits to improve your online experience. Cookies enable websites to recognize your device and remember some information about your preferences."
 msgstr ""
 
 #: src/modals/ResultModal.tsx
@@ -152,24 +152,8 @@ msgstr ""
 msgid "FAQs"
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "How to Control Cookies"
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "If you have any questions or concerns about this Cookie Policy, please contact us at:"
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "info@dimension.im"
-msgstr ""
-
 #: src/components/StakeRequirementBoundary/MaskBalanceBoundary.tsx
 msgid "Insufficient balance"
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "Last Updated: 03.10 2024"
 msgstr ""
 
 #: src/components/AcceptCookie.tsx
@@ -220,12 +204,12 @@ msgstr ""
 msgid "Not started yet."
 msgstr ""
 
-#: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
-msgid "Ongoing"
+#: src/components/StakeMaskStatusCard/index.tsx
+msgid "Note: Staked MASK can be unstaked after the campaign ends."
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "Persistent Cookies: These cookies are stored on your device until they reach their expiration date or are manually deleted. They are used to remember your preferences and provide a personalized experience when you revisit the website."
+#: src/components/StakeMaskStatusCard/ActivityStatusTag.tsx
+msgid "Ongoing"
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -254,11 +238,7 @@ msgid "Profile Name is required"
 msgstr ""
 
 #: src/components/StakingRanking/index.tsx
-msgid "Ranking updates every 10 min"
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "Session Cookies: These cookies exist only during your visit to the website and are automatically deleted when you close your browser. They are used to maintain session state, such as storing the contents of your shopping cart."
+msgid "Ranking updates every 10 mins."
 msgstr ""
 
 #: src/modals/StakeModal.tsx
@@ -314,10 +294,6 @@ msgstr ""
 msgid "Staked MASK"
 msgstr ""
 
-#: src/components/StakeMaskStatusCard/index.tsx
-msgid "Staked MASK can be unstake after the campaign ends."
-msgstr ""
-
 #: src/components/StakeRequirementBoundary/RegionBoundary.tsx
 msgid "Staking is not available in restricted countries, including the US, Canada, China, Iran, North Korea, the Syrian Arab Republic, Netherlands, Crimea, Malaysia, Bangladesh, Bolivia and Cuba."
 msgstr ""
@@ -351,16 +327,8 @@ msgstr ""
 msgid "The staking addresses need to pass Go+ security check. Note that staking is not available in some restricted regions. <0>More</0>"
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "Third-Party Cookies: The Site may use cookies from third-party service providers for traffic analysis and user behavior tracking, as well as to display ads relevant to your interests."
-msgstr ""
-
 #: src/components/StakeMaskStatusCard/index.tsx
 msgid "This is the first phase of the MASK staking event. You will be able to retrieve your staked MASK tokens and reward tokens only after the event concludes."
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "This website (hereinafter referred to as \"the Site\") uses cookies. By using the Site, you consent to the use of cookies as described in this Cookie Policy."
 msgstr ""
 
 #: src/routes/index.tsx
@@ -368,7 +336,7 @@ msgid "This website is specifically created for $MASK investors and believers, w
 msgstr ""
 
 #: src/components/StakeMaskStatusCard/index.tsx
-msgid "Time {0}"
+msgid "Time {0}~{1}"
 msgstr ""
 
 #: src/modals/VerifyModal.tsx
@@ -400,10 +368,6 @@ msgstr ""
 msgid "Transaction submitted!"
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "Types of Cookies We Use"
-msgstr ""
-
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 #: src/components/StakeRequirementBoundary/MaskApproveBoundary.tsx
 msgid "Unlock MASK"
@@ -430,10 +394,6 @@ msgstr ""
 msgid "Unstake Successfully"
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "Updates to the Cookie Policy"
-msgstr ""
-
 #: src/modals/VerifyModal.tsx
 msgid "Verify your account"
 msgstr ""
@@ -443,16 +403,8 @@ msgstr ""
 msgid "Waiting for transaction confirmation"
 msgstr ""
 
-#: src/modals/CookiePolicyModal.tsx
-msgid "We reserve the right to update this Cookie Policy at any time. The updated Cookie Policy will be posted on this page and will become effective immediately. We recommend checking back regularly for updates."
-msgstr ""
-
 #: src/components/AcceptCookie.tsx
 msgid "We use our own cookies."
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "What Are Cookies?"
 msgstr ""
 
 #: src/components/ConnectButton.tsx
@@ -461,10 +413,6 @@ msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
 msgid "You can claim after the event ends."
-msgstr ""
-
-#: src/modals/CookiePolicyModal.tsx
-msgid "You can manage and delete cookies through your browser settings. Please note that disabling cookies may affect your access to and experience on the Site."
 msgstr ""
 
 #: src/components/UserStatus/RewardCard.tsx
