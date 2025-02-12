@@ -1,4 +1,3 @@
-import { sentryVitePlugin } from '@sentry/vite-plugin'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
@@ -28,11 +27,6 @@ export default defineConfig({
         }
       },
     },
-    sentryVitePlugin({
-      org: 'dimension',
-      project: 'stake-mask-io',
-      url: 'https://sentry.firefly.land',
-    }),
     VitePluginRadar({
       analytics: process.env.GOOGLE_ANALYTICS_ID
         ? {
