@@ -1,4 +1,4 @@
-import { type Chain,connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { type Chain, connectorsForWallets } from '@rainbow-me/rainbowkit'
 import {
   coinbaseWallet,
   metaMaskWallet,
@@ -8,7 +8,7 @@ import {
 } from '@rainbow-me/rainbowkit/wallets'
 import { compact } from 'lodash-es'
 import { createClient } from 'viem'
-import { type Config,createConfig, http } from 'wagmi'
+import { type Config, createConfig, http } from 'wagmi'
 import { mainnet as builtInMainnet, sepolia } from 'wagmi/chains'
 
 import { env } from '@/constants/env'
