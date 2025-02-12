@@ -2,7 +2,6 @@
   "version": "0.1",
   "language": "en",
   "words": [
-    "vercel",
     "cybercrime",
     "darkweb",
     "immer",
@@ -19,8 +18,10 @@
     "unstake",
     "unstaked",
     "urlcat",
+    "vercel",
     "vitejs",
     "webp",
+    "youtube",
     "zustand"
   ],
   "ignoreWords": [

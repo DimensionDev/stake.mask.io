@@ -6,6 +6,7 @@ import {
   rabbyWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
+import { compact } from 'lodash-es'
 import { createClient } from 'viem'
 import { type Config, createConfig, http } from 'wagmi'
 import { mainnet as builtInMainnet, sepolia } from 'wagmi/chains'
@@ -28,11 +29,18 @@ export const chains =
     ? ([mainnet] as const satisfies Chain[])
     : ([mainnet, sepolia] as const satisfies Chain[])
 
+const isFirefox = navigator.userAgent.toLowerCase().includes('firefox')
 export const connectors = connectorsForWallets(
   [
     {
       groupName: 'Recommended',
-      wallets: [metaMaskWallet, walletConnectWallet, coinbaseWallet, rabbyWallet, okxWallet],
+      wallets: compact([
+        metaMaskWallet,
+        walletConnectWallet,
+        coinbaseWallet,
+        rabbyWallet,
+        !isFirefox ? okxWallet : null, // OKX wallet is not available on Firefox
+      ]),
     },
   ],
   {
